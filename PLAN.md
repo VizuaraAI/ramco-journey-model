@@ -28,7 +28,7 @@ Where the determinism contract permits LLM use (P4 labeller and P6–P8 chatbot 
 | Setting | Value |
 |---|---|
 | Model | `gemini-2.5-pro` |
-| API key | `AIzaSyDhpQhMMZJtR2_zpzQJLOmNpelcLgAvXsk` |
+| API key | `<scrubbed — store in .env locally and as a Space secret on HF>` |
 | Key file (canonical) | `/Users/rajat/Desktop/Ramco Rise Claude/ramco-journey-model/.env` |
 | Loaded by | every module that talks to the LLM (P4 labeller, P6/P7/P8 chatbot) |
 
