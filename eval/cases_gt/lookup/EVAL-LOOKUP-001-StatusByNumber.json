@@ -1,0 +1,36 @@
+{
+  "id": "EVAL-LOOKUP-001",
+  "title": "User asks for the status of a specific PO",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "lookup",
+  "difficulty": "easy",
+  "user_persona": "Buyer checking a specific PO",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "What's the status of PO-2026-820?"
+    },
+    {
+      "turn": 2,
+      "user": "When was it approved and by whom?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "lookup",
+    "no_writes_expected": true,
+    "status_after": "<reported, not changed>",
+    "reads": [
+      {
+        "task": "POVWENTTRN1",
+        "activity": "POVIW",
+        "filter_slots": {},
+        "returns_fields": []
+      }
+    ]
+  }
+}

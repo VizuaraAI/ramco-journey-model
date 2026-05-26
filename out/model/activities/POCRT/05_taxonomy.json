@@ -1,0 +1,10 @@
+{
+  "activity": "POCRT",
+  "description": "Create Direct Purchase Order",
+  "entity_produced": {
+    "kind": "PurchaseOrder",
+    "id_slot": "po_number"
+  },
+  "entity_consumed": null,
+  "role": "producer"
+}

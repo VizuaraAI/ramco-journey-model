@@ -1,0 +1,63 @@
+{
+  "activity": "LCVIEW",
+  "description": "View LC Details",
+  "is_user_facing": false,
+  "screen_count": 1,
+  "main_screen": "LCVIEWMAIN",
+  "canonical_spine": [],
+  "splice_summary": {
+    "ui_splices": 0,
+    "state_splices": 0,
+    "data_splices": 0,
+    "total": 0
+  },
+  "splices": {
+    "ui_splices": [],
+    "state_splices": [],
+    "data_splices": []
+  },
+  "screens": [
+    {
+      "ilbo_name": "LCDTLS",
+      "ilbo_desc": "View LC details",
+      "canonical_services": [],
+      "task_count": 2,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN38FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "INIT": [],
+        "TRANS": [],
+        "LINK": [],
+        "UI": [],
+        "HELP": []
+      },
+      "slot_count": 1,
+      "slots": [
+        {
+          "field_id": "hdnprj_hdn_ctrl",
+          "field_name": "hdnprj_hdn_ctrl",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {},
+  "sp_chains_summary": {}
+}

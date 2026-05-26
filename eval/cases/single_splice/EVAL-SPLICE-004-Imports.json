@@ -1,0 +1,87 @@
+{
+  "id": "EVAL-SPLICE-004",
+  "title": "Buyer creates an imports PO — imports flag triggers customs/landed-cost requirements",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["imports-splice", "data-triggered", "landed-cost"],
+  "user_persona": "International procurement buyer importing goods from overseas",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create an imports PO from supplier SUP-INTL-DE in EUR. Goods being shipped from Germany to our India warehouse.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-INTL-DE", "currency": "EUR", "imports_flag": true},
+        "splice_triggered": "imports==true",
+        "additional_required_slots": ["incoterm", "country_of_origin", "shipping_mode"],
+        "bot_must": [
+          "set imports flag",
+          "note Imports splice triggers additional required slots and exchange-rate fetch",
+          "ask for incoterm (e.g., FOB, CIF, DDP) and shipping mode (air/sea/road)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "FOB Hamburg, sea freight, country DE.",
+      "expected": {
+        "slots_extracted": {"incoterm": "FOB", "shipping_mode": "sea", "country_of_origin": "DE"},
+        "bot_must": [
+          "note that supplier currency EUR != likely base currency — exchange rate fetch needed (this maps to the SP IF @sup_currency != @currencycode)",
+          "fetch current EUR exchange rate via the auto-triggered SP path",
+          "continue header collection"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Buyer BUY-INTL, numbering PO/IMP/2026, today, ship-to WH-MAIN. Line: ITM-IMP-7, 500 units at 22 EUR.",
+      "expected": {
+        "slots_extracted": {
+          "buyer": "BUY-INTL",
+          "numbering_series": "PO/IMP/2026",
+          "po_date": "<today>",
+          "ship_from_id": "WH-MAIN",
+          "item_code": "ITM-IMP-7",
+          "quantity": 500,
+          "cost": 22
+        },
+        "bot_must": [
+          "acknowledge slots",
+          "compute total in EUR and base currency using fetched rate",
+          "ask if ready to commit"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "splice_walked": ["imports==true", "exchange_rate_fetch"],
+        "bot_must": [
+          "fire POCRTMAINSBT",
+          "PO created with imports flag, incoterm, country recorded"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "imports_flag", "incoterm", "country_of_origin", "shipping_mode", "buyer", "numbering_series", "po_date", "ship_from_id", "item_code", "quantity", "cost", "exchange_rate"],
+    "splices_walked": ["imports==true", "exchange_rate_fetch"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "imports_flag_detection": "imports recognised from 'imports PO' or 'shipped from <country>' phrasing",
+    "computed_splice": "exchange_rate_fetch triggered automatically because currency != base"
+  }
+}

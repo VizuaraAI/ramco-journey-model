@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-HAPPY-007",
+  "title": "Approver authorises a PO that has been waiting",
+  "covers_journeys": ["PoApp"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["approve", "post-create"],
+  "user_persona": "Department head who reviews and approves POs",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to approve PO-2026-410.",
+      "expected": {
+        "intent": "approve_purchase_order",
+        "journey_locked": "PoApp",
+        "slots_extracted": {"po_number": "PO-2026-410"},
+        "bot_must": [
+          "lock PoApp journey",
+          "fire POAPPENTTRN1 (entry search) with po_number=PO-2026-410",
+          "report PO found, current status (should be Draft / Pending Approval), supplier, total value"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Yes, show me the details before I approve.",
+      "expected": {
+        "bot_must": [
+          "load main approve screen POAPPMAIN with PO data",
+          "show key details: supplier, lines, total, terms",
+          "offer Approve / Return / cancel"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "All looks fine, approve it.",
+      "expected": {
+        "trans_invoked": "POAPPMAINSBT",
+        "bot_must": [
+          "fire POAPPMAINSBT (Approve PO)",
+          "report status changed to Authorised",
+          "mention approval date stamped"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoApp",
+    "commit_task": "POAPPMAINSBT",
+    "po_status": "Authorised",
+    "slots_filled": ["po_number", "approval_date"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "entry_search_first": "POAPPENTTRN1 fired",
+    "details_shown_before_commit": "PO details displayed before approve",
+    "commit_correctness": "POAPPMAINSBT (Approve PO)"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "EVAL-LOOKUP-005",
+  "title": "Buyer asks where a specific item is on order across all open POs",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "lookup",
+  "difficulty": "medium",
+  "user_persona": "Buyer or planner checking commitments for an item",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Where is item ITM-300 currently on order? I need every open PO that has it on a line."
+    },
+    {
+      "turn": 2,
+      "user": "What's the total open quantity I have on order?"
+    },
+    {
+      "turn": 3,
+      "user": "Show me the oldest one."
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<list view>",
+    "must_enumerate_information": [
+      "return list: PO number, supplier, ordered qty, received qty, balance qty, need date"
+    ]
+  }
+}

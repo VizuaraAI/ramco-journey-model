@@ -1,0 +1,342 @@
+{
+  "activity": "POCRTTEN",
+  "description": "Create Purchase Order From Tender",
+  "is_user_facing": true,
+  "screen_count": 1,
+  "main_screen": "POCRTTENMAIN",
+  "canonical_spine": [],
+  "splice_summary": {
+    "ui_splices": 2,
+    "state_splices": 0,
+    "data_splices": 0,
+    "total": 2
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN40EDITBPLK",
+        "description": "Link to Edit BPo",
+        "hook_screen": "POCRTTENUI",
+        "trigger": "user_clicks_EDITBPO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN40EDITPOLK",
+        "description": "Link to Edit Po",
+        "hook_screen": "POCRTTENUI",
+        "trigger": "user_clicks_EDITPO",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": []
+  },
+  "screens": [
+    {
+      "ilbo_name": "POCRTTENUI",
+      "ilbo_desc": "Create Purchase Order From Tender",
+      "canonical_services": [],
+      "task_count": 10,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN40FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POMAIN40INIT",
+            "description": "Initialize",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POMAIN40COMPUTTR",
+            "description": "Compute",
+            "type": "TRANS",
+            "pattern": "TRANS1",
+            "primary_control_bt": "COMPUTE"
+          },
+          {
+            "name": "POMAIN40CREATETR",
+            "description": "Create PO",
+            "type": "TRANS",
+            "pattern": "TRANS1",
+            "primary_control_bt": "CREATEPO1"
+          },
+          {
+            "name": "POMAIN40SEARCHTR",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "SEARCH"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POMAIN40EDITBPLK",
+            "description": "Link to Edit BPo",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDITBPO"
+          },
+          {
+            "name": "POMAIN40EDITPOLK",
+            "description": "Link to Edit Po",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDITPO"
+          }
+        ],
+        "UI": [],
+        "HELP": [
+          {
+            "name": "POMAIN40FROMTEHP",
+            "description": "Help on From Tender No",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "FROMTENDERNO"
+          },
+          {
+            "name": "POMAIN40TOTENDHP",
+            "description": "Help on To Tender No",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "TOTENDERNO"
+          }
+        ]
+      },
+      "slot_count": 4,
+      "slots": [
+        {
+          "field_id": "txtsuppliercode1",
+          "field_name": "txtsuppliercode1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsuppliername1",
+          "field_name": "dspsuppliername1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcontactperson",
+          "field_name": "txtcontactperson",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnprj_hdn_ctrl",
+          "field_name": "hdnprj_hdn_ctrl",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {
+    "PoCrtTenUi.pomain40ComputTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComput_HdrChk",
+        "method_name": "pomain40_MComput_HdrChk",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputLineDe",
+        "method_name": "pomain40_MComputLineDe",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComput_HdrSav",
+        "method_name": "pomain40_MComput_HdrSav",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputhlp",
+        "method_name": "pomain40_MComputhlp",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputLineDe_out",
+        "method_name": "pomain40_MComputLineDe_Out_",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40CreateTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreatehlp",
+        "method_name": "pomain40_MCreatehlp",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreate_HdrChk",
+        "method_name": "pomain40_MCreate_HdrChk",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreateLineDe",
+        "method_name": "pomain40_MCreateLineDe",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreate_HdrSav",
+        "method_name": "pomain40_MCreate_HdrSav",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreateLineDe_out",
+        "method_name": "pomain40_MCreateLineDe_Out_",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40Init": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spinitContrt",
+        "method_name": "pomain40_MinitContrt",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain40_spinitNumber",
+        "method_name": "pomain40_MinitNumber",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "pomain40_spinitPOType",
+        "method_name": "pomain40_MinitPOType",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "pomain40_spinitTender",
+        "method_name": "pomain40_MinitTender",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "pomain40_spinitACusag",
+        "method_name": "pomain40_MinitACusag",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "pomain40_spinitAdhocl",
+        "method_name": "pomain40_MinitAdhocl",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "pomain40_spinitCCusag",
+        "method_name": "pomain40_MinitCCusag",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40Fth": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spfet_hfet",
+        "method_name": "pomain40_Mfet_hfet",
+        "service_name": "pomain40_serfet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain40_spfetLineDe",
+        "method_name": "pomain40_MfetLineDe",
+        "service_name": "pomain40_serfet",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40SearchTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spSearchLineDe_out",
+        "method_name": "pomain40_MSearchLineDe_Out_",
+        "service_name": "pomain40_serSearch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spSearchhlp",
+        "method_name": "pomain40_MSearchhlp",
+        "service_name": "pomain40_serSearch",
+        "lvl": "0"
+      }
+    ]
+  },
+  "sp_chains_summary": {
+    "screens": [
+      "PoCrtTenUi"
+    ],
+    "tasks": [
+      "pomain40ComputTr",
+      "pomain40CreateTr",
+      "pomain40Fth",
+      "pomain40Init",
+      "pomain40SearchTr"
+    ],
+    "sp_count": 21,
+    "method_count": 21,
+    "task_count": 5
+  }
+}

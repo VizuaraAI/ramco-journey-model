@@ -1,0 +1,68 @@
+{
+  "id": "EVAL-SPLICE-009",
+  "title": "Buyer covers a Sale Order with PO lines — UI splice via POCRTMAINLNK10",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["so-coverage", "ui-splice", "lnk10"],
+  "user_persona": "Buyer placing supplier orders to fulfil a specific sale order without dropship",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-202 to cover sale order SO-2026-555 line items, but they'll come to our warehouse first (not dropship).",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-202", "so_coverage_ref": "SO-2026-555"},
+        "splice_triggered": "user_opens_so_coverage_lnk10",
+        "bot_must": [
+          "lock PoCrt — not PoCrtSo since user explicitly said 'not dropship'",
+          "explain difference: PoCrtSo creates dropship PO; PoCrt + SO Coverage splice creates a stockable PO linked to an SO",
+          "plan to walk POCRTMAINLNK10 (PO-SO Coverage) after lines"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "USD, today, buyer BUY-12, ship-to WH-A. Lines come from the SO.",
+      "expected": {
+        "slots_extracted": {"currency": "USD", "po_date": "<today>", "buyer": "BUY-12", "ship_from_id": "WH-A"},
+        "bot_must": [
+          "fetch SO-2026-555 line items",
+          "copy as PO lines",
+          "open POCRTMAINLNK10 sub-screen",
+          "map each PO line to the SO line it covers"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Direct mapping, all PO lines cover the SO lines.",
+      "expected": {
+        "splice_walked": ["so_coverage_via_LNK10"],
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "save SO coverage mapping",
+          "fire POCRTMAINSBT",
+          "report PO created and linked to SO-2026-555"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "so_coverage_ref", "currency", "po_date", "buyer", "ship_from_id", "item_code", "quantity", "cost"],
+    "splices_walked": ["so_coverage_via_LNK10"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "journey_disambiguation_critical": "must NOT pick PoCrtSo (which would dropship) — user explicitly said warehouse-first",
+    "lnk10_invoked": "PO-SO Coverage sub-screen entered"
+  }
+}

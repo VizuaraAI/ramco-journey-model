@@ -1,0 +1,148 @@
+{
+  "activity": "POCRT",
+  "description": "Create Direct Purchase Order",
+  "main_screen": "POCRTMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POCRTMAINFTH",
+      "description": "Fetch Create Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POCRTMAININI",
+      "description": "Initialize Create Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POCRTMAINSBT",
+      "description": "Create PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_crt_hdrsav",
+          "method_name": "pocrmn_met_crt_hdrsav",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_crt_hdrchk",
+          "method_name": "pocrmn_met_crt_hdrchk",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_crtgrd",
+          "method_name": "pocrmn_met_crtgrd",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_init_suptxreg",
+          "method_name": "pocrmn_Mt_init_suptxreg",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "pocrmn_sp_aprhref",
+          "method_name": "pocrmn_met_aprHRef",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 3,
+          "spname": "pocrmn_sp_crtgrd_out",
+          "method_name": "pocrmn_met_crtgrd_out",
+          "service_name": "pocrmn_ser_crt",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POCRTMAINTRN2",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_def_hdrsav",
+          "method_name": "pocrmn_met_def_hdrsav",
+          "service_name": "pocrmn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_defgrd",
+          "method_name": "pocrmn_met_defgrd",
+          "service_name": "pocrmn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_defgrd_out",
+          "method_name": "pocrmn_met_defgrd_out",
+          "service_name": "pocrmn_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POCRTMAINTRN4",
+      "description": "Create and Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_apr_hdrchk",
+          "method_name": "pocrmn_met_apr_hdrchk",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_apr_hdrsav",
+          "method_name": "pocrmn_met_apr_hdrsav",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_aprgrd",
+          "method_name": "pocrmn_met_aprgrd",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "pocrmn_sp_init_suptxreg",
+          "method_name": "pocrmn_Mt_init_suptxreg",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "pocrmn_sp_aprhref",
+          "method_name": "pocrmn_met_aprHRef",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 3,
+          "spname": "pocrmn_sp_aprgrd_out",
+          "method_name": "pocrmn_met_aprgrd_out",
+          "service_name": "pocrmn_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

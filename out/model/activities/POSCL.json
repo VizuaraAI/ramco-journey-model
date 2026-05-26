@@ -1,0 +1,2688 @@
+{
+  "activity": "POSCL",
+  "description": "Short Close Purchase Order",
+  "is_user_facing": true,
+  "screen_count": 2,
+  "main_screen": "POSCLMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POSCLMAINFTH",
+      "description": "Fetch Shortclose Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POSCLMAINSBT",
+      "description": "Shortclose PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "posclm_sp_scl_docsav",
+          "method_name": "posclm_met_scl_docsav",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 3,
+          "spname": "posc_wf_sp_iscall",
+          "method_name": "posc_wf_mt_iscall",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 12,
+          "spname": "po_dummy_sp",
+          "method_name": "po_dummy_met",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 13,
+          "spname": "po_shcl_sp_Return_State_out",
+          "method_name": "po_shcl_M_Return_State_Out_",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        }
+      ]
+    }
+  ],
+  "splice_summary": {
+    "ui_splices": 24,
+    "state_splices": 0,
+    "data_splices": 7,
+    "total": 31
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLENTLNK1",
+        "description": "Shortclose PO",
+        "hook_screen": "POSCLENT",
+        "trigger": "user_clicks_POSCLENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLENTLNK2",
+        "description": "Shortclose PO",
+        "hook_screen": "POSCLENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN14COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN14VWORDELK",
+        "description": "Link to View Mapped LCs",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_VWORDERLC_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINBUYLNK",
+        "description": "View Buyer Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_BUYERHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINDISPLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINDISPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINEADLNK",
+        "description": "View Earliest Available Date Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINEADLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINFSTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINFSTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINITMLNK",
+        "description": "View item details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK11",
+        "description": "View Notes",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK12",
+        "description": "Posclmainlnk12",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_VATCALC",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK2",
+        "description": "View Schedule and Distribution",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK3",
+        "description": "View Terms and Condition",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINQUOTLNK",
+        "description": "View Quotation Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_REFDOCNOML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSSROULNK",
+        "description": "View Stock Status Review Details-OU Wise",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSSRWHLNK",
+        "description": "View Stock Status Review Details-Warehouse Wise",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINTAXLNK",
+        "description": "V iew Tax Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINWHLNK",
+        "description": "view warehouse details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_WAREHOUSE_CODE_MUL",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@prtype <> DP",
+        "trigger": "@prtype <> DP",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2181,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_mod_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2272,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "temp",
+                "po_prupd_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 2146,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_mod_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status = AM",
+        "trigger": "@status = AM",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 844,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2540,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 829,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@groption = Y",
+        "trigger": "@groption = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 898,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [
+                "po_updproposal_tmp"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 885,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [
+                "po_updproposal_tmp",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@modeflag <> S",
+        "trigger": "@modeflag <> S",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 1626,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potype <> 3",
+        "trigger": "@potype <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 1697,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_del_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 1656,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_del_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service_in = poscle_ser_scl",
+        "trigger": "@ctxt_service_in = poscle_ser_scl",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2471,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service_in = posclm_ser_scl",
+        "trigger": "@ctxt_service_in = posclm_ser_scl",
+        "sp_occurrences": [
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 2430,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  },
+  "screens": [
+    {
+      "ilbo_name": "POSCLENT",
+      "ilbo_desc": "Select Purchase Order",
+      "canonical_services": [],
+      "task_count": 9,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POSCLENTFTH",
+            "description": "Fetch Shortclose Entry Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Shortclose Entry Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POSCLENTINI",
+            "description": "Initialize Shortclose Entry Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Shortclose Entry Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POSCLENTTRN1",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSCLENTTRN1",
+            "js_success_message": "Search Successfully Completed"
+          },
+          {
+            "name": "POSCLENTTRN2",
+            "description": "Shortclose PO",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POSCLENTTRN2",
+            "js_success_message": "Shortclose PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POSCLENTLNK1",
+            "description": "Shortclose PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLENTLNK1",
+            "js_success_message": "Shortclose PO Successfully Completed"
+          },
+          {
+            "name": "POSCLENTLNK2",
+            "description": "Shortclose PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PONOMLT",
+            "js_success_message": "Shortclose PO Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POSCLENTRCODEUI",
+            "description": "Fetch Description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Fetch Description on enter Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POSCLENTRCODEHLP",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 21,
+      "slots": [
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001",
+          "field_name": "filler_001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcls_desc_po",
+          "field_name": "dspcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_f42972",
+          "field_name": "f_f42972",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_f42972_2",
+          "field_name": "f_f42972_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsubcls_desc_po",
+          "field_name": "dspsubcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller004",
+          "field_name": "dspfiller004",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller004_2",
+          "field_name": "dspfiller004_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_e3f011",
+          "field_name": "f_e3f011",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_e3f011_2",
+          "field_name": "f_e3f011_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode",
+          "field_name": "hdnclasscode",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_dockey",
+          "field_name": "hdnhdn_dockey",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_trantype",
+          "field_name": "hdnhdn_trantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsearchcriteria",
+          "field_name": "txtsearchcriteria",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmultilinename",
+          "field_name": "hdnmultilinename",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "posclent_mainscreen_section02",
+          "caption": "Direct Entry",
+          "label": "Collect Direct Entry",
+          "is_grid": false,
+          "slot_count": 1,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "posclent_mainscreen_section04",
+          "caption": "Search Criteria",
+          "label": "Collect Search Criteria",
+          "is_grid": false,
+          "slot_count": 31,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "frmpono",
+              "text": "From PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topono",
+              "text": "To PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "status",
+              "text": "Order Status",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "frmpodate",
+              "text": "From PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topodate",
+              "text": "To PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeallenum",
+              "text": "PO Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromquotedate",
+              "text": "From Quote No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "toquotedate",
+              "text": "To Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "originhdr",
+              "text": "Origin",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromsodate",
+              "text": "From SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosono",
+              "text": "To SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valuefromhr",
+              "text": "PO Value From",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valurtohr",
+              "text": "PO Value To",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currency_code",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "addressidhdr",
+              "text": "Address ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcode",
+              "text": "Item Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcode",
+              "text": "Variant Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcodedesc",
+              "text": "Item Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcodedesc",
+              "text": "Variant Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_po",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_desc_po",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_po",
+              "text": "Sub Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_desc_po",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "accounting_unit",
+              "text": "Accounting Unit",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehouse_code",
+              "text": "Warehouse Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "propnohdr",
+              "text": "Proposal No.",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAIN13CLS_POUI",
+          "POMAIN13RETURNTR",
+          "POMAIN13SUBCLSUI",
+          "POMAIN13WORKFLLK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    },
+    {
+      "ilbo_name": "POSCLMAIN",
+      "ilbo_desc": "Short Close Purchase Order",
+      "canonical_services": [],
+      "task_count": 27,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POSCLMAINFTH",
+            "description": "Fetch Shortclose Main Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Shortclose Main Page Successfully Completed"
+          }
+        ],
+        "INIT": [],
+        "TRANS": [
+          {
+            "name": "POSCLMAINSBT",
+            "description": "Shortclose PO",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POSCLMAINSBT",
+            "js_success_message": "Shortclose PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POMAIN14COLLABLK",
+            "description": "Link to Collaborate",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "COLLABORATE"
+          },
+          {
+            "name": "POMAIN14VWORDELK",
+            "description": "Link to View Mapped LCs",
+            "type": "LINK",
+            "pattern": "UI",
+            "primary_control_bt": "VWORDERLC_LNK"
+          },
+          {
+            "name": "POSCLMAINBUYLNK",
+            "description": "View Buyer Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "BUYERHDR",
+            "js_success_message": "View Buyer Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINDISPLNK",
+            "description": "View Disposition Review",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINDISPLNK",
+            "js_success_message": "View Disposition Review Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINEADLNK",
+            "description": "View Earliest Available Date Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINEADLNK",
+            "js_success_message": "View Earliest Available Date Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINFSTKLNK",
+            "description": "View Free Stock Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINFSTKLNK",
+            "js_success_message": "View Free Stock Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINITMLNK",
+            "description": "View item details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "View item details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK10",
+            "description": "View PO-SO Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK10",
+            "js_success_message": "View PO-SO Coverage Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK11",
+            "description": "View Notes",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK11",
+            "js_success_message": "View Notes Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK12",
+            "description": "Posclmainlnk12",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "VATCALC",
+            "js_success_message": "Posclmainlnk12 Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK2",
+            "description": "View Schedule and Distribution",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK2",
+            "js_success_message": "View Schedule and Distribution Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK3",
+            "description": "View Terms and Condition",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK3",
+            "js_success_message": "View Terms and Condition Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK6",
+            "description": "View Quality Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK6",
+            "js_success_message": "View Quality Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK7",
+            "description": "View Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK7",
+            "js_success_message": "View Budget Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK8",
+            "description": "View Dropship Address",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK8",
+            "js_success_message": "View Dropship Address Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINLNK9",
+            "description": "View PO-PR Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINLNK9",
+            "js_success_message": "View PO-PR Coverage Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINQUOTLNK",
+            "description": "View Quotation Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "REFDOCNOML",
+            "js_success_message": "View Quotation Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINSSROULNK",
+            "description": "View Stock Status Review Details-OU Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINSSROULNK",
+            "js_success_message": "View Stock Status Review Details-OU Wise Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINSSRWHLNK",
+            "description": "View Stock Status Review Details-Warehouse Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINSSRWHLNK",
+            "js_success_message": "View Stock Status Review Details-Warehouse Wise Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINSUPPLNK",
+            "description": "View Supplier details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "View Supplier details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINTAXLNK",
+            "description": "V iew Tax Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POSCLMAINTAXLNK",
+            "js_success_message": "View Tax Details Successfully Completed"
+          },
+          {
+            "name": "POSCLMAINWHLNK",
+            "description": "view warehouse details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "view warehouse details Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POSCLMAINRCODEUI",
+            "description": "Fetch Description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Fetch Description on enter Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POSCLMAINRCODEHLP",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 82,
+      "slots": [
+        {
+          "field_id": "dspfiller_00",
+          "field_name": "dspfiller_00",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflow_section",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_00_2",
+          "field_name": "dspfiller_00_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflow_section",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_002",
+          "field_name": "dspfiller_002",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflow_section",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_002_2",
+          "field_name": "dspfiller_002_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflow_section",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "workflow_status",
+          "field_name": "workflow_status",
+          "btsynonym": "workflow_status",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflow_section",
+          "display_label": "Workflow Status",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000_2",
+          "field_name": "filler_000_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001",
+          "field_name": "filler_001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001_2",
+          "field_name": "filler_001_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtstatus",
+          "field_name": "txtstatus",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpono",
+          "field_name": "txtpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtamdmtno",
+          "field_name": "txtamdmtno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrefquotno",
+          "field_name": "txtrefquotno",
+          "btsynonym": "refdocnoml",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "Ref. Quotation No.",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpodate",
+          "field_name": "txtpodate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttype",
+          "field_name": "txttype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtfolder",
+          "field_name": "txtfolder",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfolderdescriptionscmain",
+          "field_name": "dspfolderdescriptionscmain",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_z",
+          "field_name": "dspfiller_z",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_z_2",
+          "field_name": "dspfiller_z_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliercode",
+          "field_name": "txtsuppliercode",
+          "btsynonym": "supplier_code",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "Supplier Code",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliername",
+          "field_name": "txtsuppliername",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcontactperson",
+          "field_name": "txtcontactperson",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbuyer",
+          "field_name": "txtbuyer",
+          "btsynonym": "buyerhdr",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "Buyer",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtappdate",
+          "field_name": "txtappdate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspauthorisationremarkssc",
+          "field_name": "dspauthorisationremarkssc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_y",
+          "field_name": "dspfiller_y",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_y_2",
+          "field_name": "dspfiller_y_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfil1267",
+          "field_name": "dspfil1267",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfil1267_2",
+          "field_name": "dspfil1267_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller",
+          "field_name": "dspfiller",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_2",
+          "field_name": "dspfiller_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtorderdesc",
+          "field_name": "txtorderdesc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtremarks",
+          "field_name": "txtremarks",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspshipfromidshort",
+          "field_name": "dspshipfromidshort",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_scpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerg",
+          "field_name": "dspfillerg",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_scpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerg_2",
+          "field_name": "dspfillerg_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_scpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo",
+          "field_name": "dspfiller_scpo",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo_2",
+          "field_name": "dspfiller_scpo_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo1",
+          "field_name": "dspfiller_scpo1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo1_2",
+          "field_name": "dspfiller_scpo1_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo2",
+          "field_name": "dspfiller_scpo2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_scpo2_2",
+          "field_name": "dspfiller_scpo2_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdet_scpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcurrency",
+          "field_name": "txtcurrency",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtexchrate",
+          "field_name": "txtexchrate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbasecurvalue",
+          "field_name": "txtbasecurvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrsvalue",
+          "field_name": "txtrsvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtaddlcharge",
+          "field_name": "txtaddlcharge",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttotalvalue",
+          "field_name": "txttotalvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "posclmain_mainscreen_section03_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_a1bc13",
+          "field_name": "f_a1bc13",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_a1bc13_2",
+          "field_name": "f_a1bc13_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller2303",
+          "field_name": "dspfiller2303",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspf1",
+          "field_name": "dspf1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section09",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspf2",
+          "field_name": "dspf2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section09",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspf3",
+          "field_name": "dspf3",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section09",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreatedby",
+          "field_name": "txtcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_09d812",
+          "field_name": "f_09d812",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_09d812_2",
+          "field_name": "f_09d812_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreateddate",
+          "field_name": "txtcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtmodifiedby",
+          "field_name": "txtmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_c3d922",
+          "field_name": "f_c3d922",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_c3d922_2",
+          "field_name": "f_c3d922_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtmodifieddate",
+          "field_name": "txtmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "posclmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnamountdetails",
+          "field_name": "hdnamountdetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode",
+          "field_name": "hdnclasscode",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_csou",
+          "field_name": "hdnhdn_csou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_dockey",
+          "field_name": "hdnhdn_dockey",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_trantype",
+          "field_name": "hdnhdn_trantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnlinedetails",
+          "field_name": "hdnlinedetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpodetails",
+          "field_name": "hdnpodetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpono",
+          "field_name": "hdnpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcommittee",
+          "field_name": "txtcommittee",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspreasonforreturnsc",
+          "field_name": "dspreasonforreturnsc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspshipfromid",
+          "field_name": "dspshipfromid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnvatcalc",
+          "field_name": "hdnvatcalc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "posclmain_mainscreen_section03_1",
+          "caption": "PO Details",
+          "label": "Collect PO Details",
+          "is_grid": false,
+          "slot_count": 17,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentno",
+              "text": "Amendment No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "refdocnoml",
+              "text": "Ref. Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "podate",
+              "text": "PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "bscotype",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folderdescriptionscmain",
+              "text": "Folder Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "contactperson",
+              "text": "Contact Person",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "approveddate",
+              "text": "Approved Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "authorisationremarkssc",
+              "text": "Authorization Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "reasoncode",
+              "text": "Reason Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "classcodedescfil",
+              "text": "Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "remarks",
+              "text": "Remarks",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "posclmain_mainscreen_section03_2",
+          "caption": "Amount Details",
+          "label": "Collect Amount Details",
+          "is_grid": false,
+          "slot_count": 6,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "exchangerate",
+              "text": "Exchange Rate",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "basecurrvalue",
+              "text": "Base Currency Value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "povalue",
+              "text": "PO Value [Incl. Discounts]",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "additionalcharge",
+              "text": "Additional Charges",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "totalvalue",
+              "text": "Total Value",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "section_id": "posclmain_mainscreen_section10",
+          "caption": "Data History",
+          "label": "Collect Data History",
+          "is_grid": false,
+          "slot_count": 4,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "createdby",
+              "text": "Created By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "createddate",
+              "text": "Created Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodby",
+              "text": "Last Modified By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodifieddate",
+              "text": "Last Modified Date",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAIN14RETURNTR",
+          "POMAIN14WORKFLLK",
+          "POSCLMAINLNK4"
+        ],
+        "tasks_only_in_manifest": [
+          "POSCLMAINLNK12"
+        ]
+      }
+    }
+  ],
+  "sp_chains": {
+    "PoSclEnt.pomain13Cls_poUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_clsuisubui",
+        "method_name": "pomains8_M_clsuisubui",
+        "service_name": "pomain13_ser_clsui",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain13_sp_clsui_hrf",
+        "method_name": "pomain13_M_clsui_hrf",
+        "service_name": "pomain13_ser_clsui",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13SubclsUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_subui_hrf",
+        "method_name": "pomain13_M_subui_hrf",
+        "service_name": "pomain13_ser_subui",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13WorkflLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Workfl_hrf",
+        "method_name": "pomain13_M_Workfl_hrf",
+        "service_name": "pomain13_ser_Workfl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13ReturnTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Returnmltpos_out",
+        "method_name": "pomain13_M_Returnmltpos_Out_",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Return_HdrChk",
+        "method_name": "pomain13_M_Return_HdrChk",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Return_HdrSav",
+        "method_name": "pomain13_M_Return_HdrSav",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Returnmltpos",
+        "method_name": "pomain13_M_Returnmltpos",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclentRcodehlp": [
+      {
+        "sequenceno": 1,
+        "spname": "posclentrcodehlp_sp",
+        "method_name": "posclentrcodehlp_Met",
+        "service_name": "posclentrcodehlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_fet_hdrfet",
+        "method_name": "poscle_met_fet_hdrfet",
+        "service_name": "poscle_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_initcurr",
+        "method_name": "poscle_met_initcurr",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poscle_sp_initstat",
+        "method_name": "poscle_met_initstat",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiuseorgn",
+        "method_name": "poamden_met_CbIUseorgn",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poeent_SP_init_cls",
+        "method_name": "poeent_met_init_cls",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poeent_SP_init_subcls",
+        "method_name": "poeent_met_init_subcls",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "Po_scle_sp_init_acunit",
+        "method_name": "Po_scle_met_init_acunit",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "Po_scle_sp_init_whcode",
+        "method_name": "Po_scle_met_init_whcode",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclentRcodeUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_rcumgrd",
+        "method_name": "poscle_met_rcUMgrd",
+        "service_name": "poscle_ser_rc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_srch_hdrfet",
+        "method_name": "poscle_met_srch_hdrfet",
+        "service_name": "poscle_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poscle_sp_srchgrd",
+        "method_name": "poscle_met_srchgrd",
+        "service_name": "poscle_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainbuylnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainbuylnk_sp",
+        "method_name": "posclmainbuylnk_Met",
+        "service_name": "posclmainbuylnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMaindisplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaindisplnk_sp",
+        "method_name": "posclmaindisplnk_Met",
+        "service_name": "posclmaindisplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainfstklnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainfstklnk_sp",
+        "method_name": "posclmainfstklnk_Met",
+        "service_name": "posclmainfstklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMaineadlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaineadlnk_sp",
+        "method_name": "posclmaineadlnk_Met",
+        "service_name": "posclmaineadlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainitmlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainitmlnk_sp",
+        "method_name": "posclmainitmlnk_Met",
+        "service_name": "posclmainitmlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainQuotlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainquotlnk_sp",
+        "method_name": "posclmainquotlnk_Met",
+        "service_name": "posclmainquotlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.posclmainrcodehlp": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainrcodehlp_sp",
+        "method_name": "posclmainrcodehlp_Met",
+        "service_name": "posclmainrcodehlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainssrwhlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainssrwhlnk_sp",
+        "method_name": "posclmainssrwhlnk_Met",
+        "service_name": "posclmainssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainssroulnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainssroulnk_sp",
+        "method_name": "posclmainssroulnk_Met",
+        "service_name": "posclmainssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainTaxLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaintaxlnk_sp",
+        "method_name": "PoSclMainTaxLnk_Met",
+        "service_name": "PoSclMainTaxLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainsupplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainsupplnk_sp",
+        "method_name": "posclmainsupplnk_Met",
+        "service_name": "posclmainsupplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainwhlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainwhlnk_sp",
+        "method_name": "posclmainwhlnk_Met",
+        "service_name": "posclmainwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainFth": [
+      {
+        "sequenceno": 1,
+        "spname": "posclm_sp_fet_hdrfet",
+        "method_name": "posclm_met_fet_hdrfet",
+        "service_name": "posclm_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "posclm_sp_fetgrd",
+        "method_name": "posclm_met_fetgrd",
+        "service_name": "posclm_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclmainRcodeUI": [
+      {
+        "sequenceno": 1,
+        "spname": "pohldmn_sp_rc1uihdr",
+        "method_name": "pohldmn_met_rc1UiHdr",
+        "service_name": "posclm_ser_rc",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pohldmn_sp_rc1href",
+        "method_name": "pohldmn_met_rc1HRef",
+        "service_name": "posclm_ser_rc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_scl_hdrchk",
+        "method_name": "poscle_met_scl_hdrchk",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_sclgrd_out",
+        "method_name": "poscle_met_sclgrd_out",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_scl_hdrsav",
+        "method_name": "poscle_met_scl_hdrsav",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_sclgrd",
+        "method_name": "poscle_met_sclgrd",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "posc_wf_sp_iscall",
+        "method_name": "posc_wf_mt_iscall",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "po_dummy_sp",
+        "method_name": "po_dummy_met",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainSbt": [
+      {
+        "sequenceno": 1,
+        "spname": "posclm_sp_scl_docsav",
+        "method_name": "posclm_met_scl_docsav",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "posc_wf_sp_iscall",
+        "method_name": "posc_wf_mt_iscall",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "po_dummy_sp",
+        "method_name": "po_dummy_met",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 13,
+        "spname": "po_shcl_sp_Return_State_out",
+        "method_name": "po_shcl_M_Return_State_Out_",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14VwOrdeLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_vordlc_hlp",
+        "method_name": "po_shcl_M_vordlc_hlp",
+        "service_name": "po_shcl_ser_vordlc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14WorkflLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Workfl_hrf",
+        "method_name": "po_shcl_M_Workfl_hrf",
+        "service_name": "po_shcl_ser_Workfl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14ReturnTr": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Return_State_out",
+        "method_name": "po_shcl_M_Return_State_Out_",
+        "service_name": "po_shcl_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Return_hrf",
+        "method_name": "po_shcl_M_Return_hrf",
+        "service_name": "po_shcl_ser_Return",
+        "lvl": "0"
+      }
+    ]
+  },
+  "sp_chains_summary": {
+    "screens": [
+      "PoSclEnt",
+      "PoSclMain"
+    ],
+    "tasks": [
+      "PoSclEntFth",
+      "PoSclEntIni",
+      "PoSclEntTrn1",
+      "PoSclEntTrn2",
+      "PoSclMainFth",
+      "PoSclMainQuotlnk",
+      "PoSclMainSbt",
+      "PoSclMainTaxLnk",
+      "PoSclMainbuylnk",
+      "PoSclMaindisplnk",
+      "PoSclMaineadlnk",
+      "PoSclMainfstklnk",
+      "PoSclMainitmlnk",
+      "PoSclMainssroulnk",
+      "PoSclMainssrwhlnk",
+      "PoSclMainsupplnk",
+      "PoSclMainwhlnk",
+      "PoSclentRcodeUi",
+      "PoSclentRcodehlp",
+      "PoSclmainRcodeUI",
+      "pomain13Cls_poUi",
+      "pomain13ReturnTr",
+      "pomain13SubclsUi",
+      "pomain13WorkflLk",
+      "pomain14ReturnTr",
+      "pomain14VwOrdeLk",
+      "pomain14WorkflLk",
+      "posclmainrcodehlp"
+    ],
+    "sp_count": 49,
+    "method_count": 49,
+    "task_count": 28
+  }
+}

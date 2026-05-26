@@ -1,0 +1,43 @@
+{
+  "activity": "POHLP",
+  "description": "Help On Purchase Order",
+  "main_screen": "POHLPMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POHLPMAINFTH",
+      "description": "Fetch Help on Po Main page"
+    },
+    {
+      "phase": "init",
+      "task": "POHLPMAININI",
+      "description": "Initialize Help on Po main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POHLPMAINTRN1",
+      "description": "Search",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "popohlp_sp_srch_hdrfet",
+          "method_name": "popohlp_met_srch_hdrfet",
+          "service_name": "popohlp_ser_srch",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "popohlp_sp_srchgrd",
+          "method_name": "popohlp_met_srchgrd",
+          "service_name": "popohlp_ser_srch",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

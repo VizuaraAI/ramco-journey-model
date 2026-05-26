@@ -1,0 +1,81 @@
+{
+  "id": "EVAL-SPLICE-003",
+  "title": "Buyer creates a direct PO with dropship address — UI splice via POCRTMAINLNK8",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["dropship-splice", "ui-splice", "lnk8"],
+  "user_persona": "Buyer arranging delivery directly to a customer site",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a direct PO for SUP-100, USD, buyer BUY-22, but the goods need to ship directly to our customer CUST-99, not to our warehouse.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-100", "currency": "USD", "buyer": "BUY-22", "customer_code": "CUST-99"},
+        "splice_triggered": "user_indicated_dropship",
+        "bot_must": [
+          "recognise the dropship intent from 'ship directly to customer'",
+          "plan to navigate POCRTMAINLNK8 (Specify Dropship Address) sub-screen",
+          "ask for line items first, then walk the Dropship splice"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "ITM-400, 20 units at 25.",
+      "expected": {
+        "slots_extracted": {"item_code": "ITM-400", "quantity": 20, "cost": 25},
+        "bot_must": [
+          "acknowledge line",
+          "open Dropship splice — POCRTMAINLNK8 → PoCrtDrpshp sub-screen",
+          "ask for dropship address fields: contact, address, ship-to instructions",
+          "or offer to use customer's default address from CUST-99 master"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Use the customer's default address.",
+      "expected": {
+        "slots_extracted": {"dropship_id": "<CUST-99 default>"},
+        "splice_walked": ["dropship_via_LNK8"],
+        "bot_must": [
+          "fetch customer's default ship-to address",
+          "confirm dropship address set",
+          "ask if ready to commit"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Yes create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "fire POCRTMAINSBT with dropship sub-screen data attached",
+          "report PO created with dropship flag",
+          "note that GR will record receipt at customer location, not warehouse"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "buyer", "customer_code", "dropship_id", "item_code", "quantity", "cost"],
+    "splices_walked": ["dropship_via_LNK8"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "dropship_intent_recognition": "phrase 'ship directly to customer' must trigger the dropship splice",
+    "lnk8_invoked": "Dropship sub-screen entered via POCRTMAINLNK8",
+    "customer_default_lookup": "bot must offer customer-default address as a shortcut"
+  }
+}

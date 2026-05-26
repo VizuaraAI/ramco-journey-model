@@ -1,0 +1,88 @@
+{
+  "id": "EVAL-SPLICE-001",
+  "title": "Buyer creates a Capital PO — data-triggered splice from po_type",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["capital-po", "po-type-splice", "data-triggered"],
+  "user_persona": "Capital projects buyer ordering a fixed asset",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to create a Capital PO for a new milling machine from supplier SUP-CAP-1.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"po_type": "Capital", "supplier_code": "SUP-CAP-1"},
+        "splice_triggered": "po_type==Capital",
+        "additional_required_slots": ["capital_proposal_id"],
+        "bot_must": [
+          "acknowledge Capital PO type",
+          "note that Capital triggers additional required slots: capital_proposal_id (the approved capital proposal/project)",
+          "ask for the proposal id"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Proposal is CAP-PROP-2026-04.",
+      "expected": {
+        "slots_extracted": {"capital_proposal_id": "CAP-PROP-2026-04"},
+        "bot_must": [
+          "validate the proposal exists and is approved (look-up against the proposal master)",
+          "fire PoCrtMain INIT/UI tasks that load Capital-related defaults",
+          "continue collecting remaining standard header slots (numbering_series, po_date, currency, buyer)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Numbering series PO/CAP/2026, today, USD, buyer BUY-77. One line: ITM-MILL-X, 1 unit at 75000.",
+      "expected": {
+        "slots_extracted": {
+          "numbering_series": "PO/CAP/2026",
+          "po_date": "<today>",
+          "currency": "USD",
+          "buyer": "BUY-77",
+          "item_code": "ITM-MILL-X",
+          "quantity": 1,
+          "cost": 75000
+        },
+        "bot_must": [
+          "acknowledge all slots",
+          "remind that Capital POs typically need explicit approval (no TRN4 self-approval), so will use POCRTMAINSBT then route through PoApp"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create it for approval.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "splice_walked": ["po_type==Capital"],
+        "bot_must": [
+          "fire POCRTMAINSBT",
+          "report PO number, Draft status",
+          "note next step is PoApp by a capital-projects approver"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["po_type", "supplier_code", "capital_proposal_id", "numbering_series", "po_date", "currency", "buyer", "item_code", "quantity", "cost"],
+    "splices_walked": ["po_type==Capital"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "splice_detection_at_turn_1": "po_type==Capital recognised immediately from 'Capital PO'",
+    "additional_slot_request": "capital_proposal_id must be asked before commit",
+    "proposal_validation": "bot must validate proposal existence"
+  }
+}

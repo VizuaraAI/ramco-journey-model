@@ -1,0 +1,74 @@
+{
+  "id": "EVAL-ERR-002",
+  "title": "User tries to commit before all required slots are filled — bot refuses, lists missing",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "tags": ["missing-required", "commit-blocked"],
+  "user_persona": "Impatient buyer trying to skip slots",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-100. Just do it, figure out the rest.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-100"},
+        "bot_must": [
+          "lock PoCrt",
+          "refuse to commit",
+          "list the missing required slots: numbering_series, po_date, currency, buyer (if not auto-derivable), at least one line item with item_code/quantity/cost",
+          "explain the bot cannot fabricate these values"
+        ],
+        "bot_must_not": [
+          "fire POCRTMAINSBT",
+          "default to plausible values silently"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Fine. Today, USD, buyer BUY-1, numbering PO/STD/2026, item ITM-50 10 units at 30.",
+      "expected": {
+        "slots_extracted": {
+          "po_date": "<today>",
+          "currency": "USD",
+          "buyer": "BUY-1",
+          "numbering_series": "PO/STD/2026",
+          "item_code": "ITM-50",
+          "quantity": 10,
+          "cost": 30
+        },
+        "bot_must": [
+          "acknowledge all slots now provided",
+          "ask one final confirmation before commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Yes create.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT", "report PO created"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "po_date", "currency", "buyer", "numbering_series", "item_code", "quantity", "cost"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "commit_refused_at_turn_1": "no TRANS fired at turn 1",
+    "missing_slots_listed": "bot lists each missing slot by name",
+    "no_hallucinated_defaults": "bot does not fill missing slots with plausible-looking values"
+  }
+}

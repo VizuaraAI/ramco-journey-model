@@ -1,0 +1,80 @@
+{
+  "id": "EVAL-SPLICE-005",
+  "title": "Buyer creates a Letter-of-Intent PO (LoI flag)",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["loi-splice", "data-triggered", "letter-of-intent"],
+  "user_persona": "Buyer issuing an LoI ahead of full PO terms",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to issue a Letter of Intent purchase order to SUP-LOI-9 to lock in pricing while we finalize terms. Quantity is not final yet.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-LOI-9", "loi_flag": true},
+        "splice_triggered": "loi==true",
+        "bot_must": [
+          "recognise LoI intent and set loi flag",
+          "explain LoI POs allow uncommitted quantities and tentative terms — final amend will commit them",
+          "ask for the indicative slots (price, est qty, validity period)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Item ITM-LOI-1, indicative qty 1000, price locked at 12 USD, valid 60 days.",
+      "expected": {
+        "slots_extracted": {
+          "item_code": "ITM-LOI-1",
+          "quantity": 1000,
+          "cost": 12,
+          "loi_validity_days": 60
+        },
+        "bot_must": [
+          "tag quantity as indicative, not firm",
+          "set LoI validity",
+          "ask for header slots if not yet given"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Currency USD, buyer BUY-15, numbering PO/LOI/2026, today.",
+      "expected": {
+        "slots_extracted": {"currency": "USD", "buyer": "BUY-15", "numbering_series": "PO/LOI/2026", "po_date": "<today>"},
+        "bot_must": ["acknowledge header complete", "ask to commit"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create the LoI.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "splice_walked": ["loi==true"],
+        "bot_must": [
+          "fire POCRTMAINSBT with loi flag",
+          "report LoI PO created, status Draft",
+          "note that final firm PO requires a separate Amend to convert from LoI to firm"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft (LoI)",
+    "slots_filled": ["supplier_code", "loi_flag", "item_code", "quantity", "cost", "loi_validity_days", "currency", "buyer", "numbering_series", "po_date"],
+    "splices_walked": ["loi==true"],
+    "next_possible_journeys": ["PoApp", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "loi_detection": "'Letter of Intent' or 'LoI' phrase triggers loi flag",
+    "tentative_qty_handling": "quantity treated as indicative when LoI is set"
+  }
+}

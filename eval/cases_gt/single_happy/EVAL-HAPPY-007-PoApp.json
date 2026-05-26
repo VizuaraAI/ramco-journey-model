@@ -1,0 +1,64 @@
+{
+  "id": "EVAL-HAPPY-007",
+  "title": "Approver authorises a PO that has been waiting",
+  "covers_journeys": [
+    "PoApp"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "user_persona": "Department head who reviews and approves POs",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to approve PO-2026-410."
+    },
+    {
+      "turn": 2,
+      "user": "Yes, show me the details before I approve."
+    },
+    {
+      "turn": 3,
+      "user": "All looks fine, approve it."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Authorised",
+    "writes": [
+      {
+        "task": "POAPPMAINSBT",
+        "activity": "POAPP",
+        "screen": "PoAppMain",
+        "via_sp_chain": [
+          "poaprmn_sp_aprgrd",
+          "poaprmn_sp_apr_hdrchk",
+          "poaprmn_sp_aprhref",
+          "poaprmn_sp_apr_hdrsav",
+          "poaprmn_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "lc_ord_map",
+          "not_notes_dtl",
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poprq_poprcovg_detail",
+          "po_poqly_quality_detail",
+          "po_poshd_schedule_dtl",
+          "po_poso_posocovg_detail",
+          "po_potcd_doclevel_detail",
+          "po_potcd_itemtcd_dtl",
+          "po_potcd_otherlinetcd_dtl",
+          "po_powh_allocation_dtl",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {},
+        "status_after": "Authorised"
+      }
+    ]
+  }
+}

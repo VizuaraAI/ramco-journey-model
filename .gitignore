@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.gemini_cache/
+chatbot/.gemini_cache/
+eval/reports/2*.json
+eval/reports/2*.html
+out/parsed/screen_behaviour.json

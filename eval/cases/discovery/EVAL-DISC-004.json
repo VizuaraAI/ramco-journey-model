@@ -1,0 +1,118 @@
+{
+  "id": "EVAL-DISC-004",
+  "title": "First-time user requests guided onboarding for their first PO",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "discovery",
+  "difficulty": "medium",
+  "tags": ["onboarding", "guided-flow", "first-time-user"],
+  "user_persona": "A buyer who is anxious about doing it wrong and wants step-by-step hand-holding",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I'm new here. I need to make my first purchase order but I have no idea where to start. Can you walk me through it?",
+      "expected": {
+        "intent": "guided_onboarding",
+        "bot_must": [
+          "reassure the user briefly",
+          "ask one disambiguating question first: do they have a quotation/PR/sale-order/tender, or are they creating from scratch?",
+          "offer to default to PoCrt (Direct) if they have nothing"
+        ],
+        "bot_must_not": [
+          "dump all 5 create variants at once — should be a single disambiguating question",
+          "start asking for supplier code yet"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Nothing, just from scratch.",
+      "expected": {
+        "journey_locked": "PoCrt",
+        "bot_must": [
+          "confirm Direct PO chosen",
+          "explain at a high level: header (4-5 fields), at least one line item, then click Create",
+          "ask for the first header slot — recommend starting with supplier_code OR numbering_series"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "I don't know what numbering series is. Can you explain?",
+      "expected": {
+        "intent": "explain_slot",
+        "bot_must": [
+          "explain numbering_series is the document-number sequence (e.g., PO/2024/STANDARD) the system uses to assign the PO number",
+          "say it's typically chosen from a dropdown the system populates from configured series",
+          "offer to list available series or to skip and pick the default"
+        ],
+        "bot_must_not": ["block the conversation until user enters a value"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Just use the default, let's move on. Supplier is SUP-100, date is today, currency USD.",
+      "expected": {
+        "slots_extracted": {
+          "numbering_series": "<default>",
+          "supplier_code": "SUP-100",
+          "po_date": "<today>",
+          "currency": "USD"
+        },
+        "bot_must": [
+          "acknowledge all four slots extracted in one turn",
+          "ask for the line item details next"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "user": "5 units of ITM-200 at 100 each.",
+      "expected": {
+        "slots_extracted": {"item_code": "ITM-200", "quantity": 5, "cost": 100},
+        "bot_must": [
+          "confirm one line item captured",
+          "ask if there are more lines or if user is ready to create",
+          "remind user they can add Terms/TCD/Budget sub-screens before commit"
+        ]
+      }
+    },
+    {
+      "turn": 6,
+      "user": "Just create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "sp_chain_invoked": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "bot_must": [
+          "fire POCRTMAINSBT (Create, not Create+Approve — user did not say 'approve')",
+          "report the assigned PO number",
+          "tell user it's in Draft status and explain how to get it approved (PoApp journey)"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["numbering_series", "supplier_code", "po_date", "currency", "item_code", "quantity", "cost"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "onboarding_flow_pace": "turn 1 must ask one disambiguating question, not dump options",
+    "slot_explanation_quality": "turn 3 must define numbering_series in business terms",
+    "multi_slot_extraction": "turn 4 must extract 4 slots from one sentence",
+    "commit_correctness": "POCRTMAINSBT (not TRN4) since user said 'just create', not 'create and approve'"
+  }
+}

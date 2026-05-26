@@ -1,0 +1,410 @@
+{
+  "v01_coverage": {
+    "POAMND": {
+      "slot_count": 150,
+      "slot_label_pct": 2.7,
+      "trans_count": 10,
+      "splice_total": 124,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POAPP": {
+      "slot_count": 134,
+      "slot_label_pct": 0.7,
+      "trans_count": 7,
+      "splice_total": 100,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POCOPY": {
+      "slot_count": 29,
+      "slot_label_pct": 0.0,
+      "trans_count": 2,
+      "splice_total": 7,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    },
+    "POCRT": {
+      "slot_count": 549,
+      "slot_label_pct": 2.9,
+      "trans_count": 34,
+      "splice_total": 273,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POCRTQTN": {
+      "slot_count": 31,
+      "slot_label_pct": 0.0,
+      "trans_count": 2,
+      "splice_total": 17,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    },
+    "POCRTSO": {
+      "slot_count": 25,
+      "slot_label_pct": 0.0,
+      "trans_count": 2,
+      "splice_total": 20,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    },
+    "POCRTTEN": {
+      "slot_count": 4,
+      "slot_label_pct": 0.0,
+      "trans_count": 3,
+      "splice_total": 2,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    },
+    "POEDT": {
+      "slot_count": 107,
+      "slot_label_pct": 0.9,
+      "trans_count": 7,
+      "splice_total": 114,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POHLP": {
+      "slot_count": 13,
+      "slot_label_pct": 0.0,
+      "trans_count": 1,
+      "splice_total": 2,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POHOLD": {
+      "slot_count": 94,
+      "slot_label_pct": 3.2,
+      "trans_count": 3,
+      "splice_total": 32,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POMTN": {
+      "slot_count": 117,
+      "slot_label_pct": 0.9,
+      "trans_count": 5,
+      "splice_total": 32,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    },
+    "POSCL": {
+      "slot_count": 103,
+      "slot_label_pct": 3.9,
+      "trans_count": 3,
+      "splice_total": 31,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 100.0
+    },
+    "POVIW": {
+      "slot_count": 500,
+      "slot_label_pct": 4.8,
+      "trans_count": 1,
+      "splice_total": 146,
+      "splice_trigger_pct": 100.0,
+      "commit_sp_attach_pct": 0.0
+    }
+  },
+  "v02_gaps": {
+    "no_label_slots_count": 1802,
+    "no_label_slots_sample": [
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "filler_003",
+        "field_id": "filler_003",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "filler_003_2",
+        "field_id": "filler_003_2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "f_6d4872",
+        "field_id": "f_6d4872",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "f_6d4872_2",
+        "field_id": "f_6d4872_2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspcls_desc_po",
+        "field_id": "dspcls_desc_po",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfilcls_amd_ent",
+        "field_id": "dspfilcls_amd_ent",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfilcls_amd_ent_2",
+        "field_id": "dspfilcls_amd_ent_2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspsubcls_desc_po",
+        "field_id": "dspsubcls_desc_po",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfil_sub_cls_amd_ent",
+        "field_id": "dspfil_sub_cls_amd_ent",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfil_sub_cls_amd_ent_2",
+        "field_id": "dspfil_sub_cls_amd_ent_2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfiller003",
+        "field_id": "dspfiller003",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "dspfiller003_2",
+        "field_id": "dspfiller003_2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdnguid",
+        "field_id": "hdnguid",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdnhdnrt_stcontrol",
+        "field_id": "hdnhdnrt_stcontrol",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdntextcontrol1",
+        "field_id": "hdntextcontrol1",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdntextcontrol2",
+        "field_id": "hdntextcontrol2",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "txtsearchcriteria",
+        "field_id": "txtsearchcriteria",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdnmultilinename",
+        "field_id": "hdnmultilinename",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "field_name": "hdntimestamp",
+        "field_id": "hdntimestamp",
+        "input_type": "displayonly"
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDMAIN",
+        "field_name": "dspfiller101",
+        "field_id": "dspfiller101",
+        "input_type": "displayonly"
+      }
+    ],
+    "spine_without_commit": [
+      "POCOPY",
+      "POCRTQTN",
+      "POCRTSO",
+      "POCRTTEN",
+      "POMTN",
+      "POVIW"
+    ]
+  },
+  "v03_consistency": {
+    "screens_with_discrepancy": 26,
+    "discrepancies_sample": [
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDENT",
+        "tasks_only_in_form": [
+          "POMAINSCCLS_POUI",
+          "POMAINSCSUBCLSUI",
+          "POMAINSCWORKFLLK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDMAIN",
+        "tasks_only_in_form": [
+          "POAMDMAINLNK4",
+          "POMAINSRAMDPURLK",
+          "POMAINSRAMD_WFLK",
+          "POMAINSRCCUSAGUI",
+          "POMAINSRCLASSFUI",
+          "POMAINSRHACUSAUI",
+          "POMAINSRHCCUSAUI",
+          "POMAINSRPO_INDLK",
+          "POMAINSRPO_INILK",
+          "POMAINSRREASO_HP",
+          "POMAINSRREASO_UI",
+          "POMAINSRSPECI_LK",
+          "POMAINSRSUBCLAUI",
+          "POMAINSRTCAL_DLK",
+          "POMAINSRVIEWQULK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POAMND",
+        "screen": "POAMNDSCH",
+        "tasks_only_in_form": [
+          "POAMDSCHLNK4",
+          "POMAINSEACUSAEUI",
+          "POMAINSECCUSAEUI",
+          "POMAINSECCUSAGUI"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POAPP",
+        "screen": "POAPPENT",
+        "tasks_only_in_form": [
+          "POMAINSNCLS_POUI",
+          "POMAINSNSUBCLSUI",
+          "POMAINSNWORKFLLK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POAPP",
+        "screen": "POAPPMAIN",
+        "tasks_only_in_form": [
+          "POAPPMAINLNK4",
+          "POMAINCRAPPPURLK",
+          "POMAINCRAPP_WFLK",
+          "POMAINCRCCUSAGUI",
+          "POMAINCRFOLDERUI",
+          "POMAINCRHACUSAUI",
+          "POMAINCRHCCUSAUI",
+          "POMAINCRITEM_DLK",
+          "POMAINCRPO_INDLK",
+          "POMAINCRSHIPFOUI",
+          "POMAINCRSHIPFRUI",
+          "POMAINCRSHIPF_UI",
+          "POMAINCRSPECI_LK",
+          "POMAINCRTCAL_DLK",
+          "POMAINCRVEW_PULK",
+          "POMAINCRVIEWQULK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POCOPY",
+        "screen": "POCRTCOPYPO",
+        "tasks_only_in_form": [
+          "POMAINRECLS_POUI",
+          "POMAINRESUBCLSUI",
+          "POMAINRESUPPLIUI",
+          "POMAINREVIEWQULK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POCRT",
+        "screen": "POCRTMAIN",
+        "tasks_only_in_form": [
+          "POCRTMAINLNK4",
+          "POMAICRECCUSAGUI",
+          "POMAICRECLASSFUI",
+          "POMAICRECREATWLK",
+          "POMAICRECRTPURLK",
+          "POMAICREFOLDERUI",
+          "POMAICREHACUSAUI",
+          "POMAICREHCCUSAUI",
+          "POMAICREITEM_DLK",
+          "POMAICREPO_NDILK",
+          "POMAICRESHIPFRUI",
+          "POMAICRESHIPF_UI",
+          "POMAICRESPECI_LK",
+          "POMAICRESUB_CLUI",
+          "POMAICRESUPPLEUI",
+          "POMAICRETCAL_DLK",
+          "POMAICREVEW_PULK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POCRT",
+        "screen": "POCRTQLTY",
+        "tasks_only_in_form": [
+          "POMACREEPEN_BNHP",
+          "POMACREEPEN_BOHP"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POCRT",
+        "screen": "POCRTSCH",
+        "tasks_only_in_form": [
+          "POCRTSCHLNK4",
+          "POMAREENACUSAEUI",
+          "POMAREENCCUSAEUI",
+          "POMAREENCCUSAGUI",
+          "POMAREENTCAL_SLK"
+        ],
+        "tasks_only_in_manifest": []
+      },
+      {
+        "activity": "POCRT",
+        "screen": "POCRTSOCOV",
+        "tasks_only_in_form": [
+          "POCRTSOCOVPOLINEUI"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    ]
+  },
+  "lint_determinism": {
+    "violation_count": 0,
+    "violations": []
+  }
+}

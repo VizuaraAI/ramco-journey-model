@@ -1,0 +1,56 @@
+{
+  "id": "EVAL-DISC-003",
+  "title": "User asks for the full list of PO journeys",
+  "covers_journeys": [],
+  "covers_modules": ["PO"],
+  "category": "discovery",
+  "difficulty": "easy",
+  "tags": ["enumeration", "full-list"],
+  "user_persona": "A power user / admin who wants the complete inventory",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Give me the full list of every purchase-order activity I can perform in this system.",
+      "expected": {
+        "intent": "list_all_journeys",
+        "bot_must": [
+          "enumerate all 14 user-facing PO journeys with activity names and descriptions: PoCrt, PoCrtQtn, PoCrtSo, PoCrtTen, PoCopy, PoAmnd, PoApp, PoEdt, PoViw, PoMtn, PoHold, PoScl, PoAcCcUsgMod, PoHlp",
+          "group them: Create (5), Modify (4 — Amend, Edit, Maintain, AC/CC Usage Mod), Approve/Status (3 — Approve, Hold, Short-Close), View/Help (2)"
+        ],
+        "bot_must_not": [
+          "skip any of the 14",
+          "include the admin-only activities (PoSetSysPar, PoVwSysPar, AcknowMbp, SpecifyMbp, LcMast, LcView, ConfigPo) unless user explicitly asks",
+          "claim there are 13 (the common miscount)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "What's PoAcCcUsgMod?",
+      "expected": {
+        "intent": "explain_journey",
+        "journey_locked": "PoAcCcUsgMod",
+        "bot_must": [
+          "explain it changes the Account / Cost-Centre Usage on an existing PO without re-amending the whole document",
+          "note it's a specialised variant — most users won't touch it"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": null,
+    "commit_task": null,
+    "po_status": "no transaction",
+    "slots_filled": [],
+    "splices_walked": [],
+    "next_possible_journeys": []
+  },
+
+  "evaluation_metrics": {
+    "completeness": "all 14 user-facing journeys named at turn 1",
+    "no_admin_leakage": "admin-only activities not listed unless explicitly requested",
+    "explanation_accuracy_turn_2": "PoAcCcUsgMod correctly described as AC/CC usage modification on existing PO"
+  }
+}

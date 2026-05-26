@@ -1,0 +1,29 @@
+{
+  "id": "EVAL-XMOD-003",
+  "title": "User asks for the source quotation that a PO was created from",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO",
+    "PQ"
+  ],
+  "category": "cross-module",
+  "difficulty": "medium",
+  "user_persona": "Buyer reconciling supplier pricing vs the original quote",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO-2026-1300 was created from a quotation. Which one, and show me the quote pricing."
+    },
+    {
+      "turn": 2,
+      "user": "Are the PO line prices the same as the quote?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<inspected>"
+  }
+}

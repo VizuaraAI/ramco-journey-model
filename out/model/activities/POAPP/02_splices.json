@@ -1,0 +1,2053 @@
+{
+  "activity": "POAPP",
+  "splice_summary": {
+    "ui_splices": 28,
+    "state_splices": 16,
+    "data_splices": 56,
+    "total": 100
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPENTLNK1",
+        "description": "Approve PO",
+        "hook_screen": "POAPPENT",
+        "trigger": "user_clicks_POAPPENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPENTMAINLNK2",
+        "description": "Approve PO",
+        "hook_screen": "POAPPENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINBUDDETAILLNK",
+        "description": "View Budget Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINBUDDETAILLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINDISPNLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINDISPNLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINEARAVLBLDTLNK",
+        "description": "View Earliest Available Date",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINEARAVLBLDTLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINFREESTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINFREESTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK10",
+        "description": "Specify PO-SO Coverage",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK11",
+        "description": "Attach Notes",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK12",
+        "description": "View Item Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK12",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK13",
+        "description": "View Supplier Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK13",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK14",
+        "description": "View Buyer Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK14",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK15",
+        "description": "View Warehouse Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK15",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK2",
+        "description": "Specify Schedule and Distribution",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK3",
+        "description": "Specify Terms and Condition",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK6",
+        "description": "Specify Quality Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK7",
+        "description": "Specify Budget Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK8",
+        "description": "Specify Dropship Address",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK9",
+        "description": "Specify PO-PR Coverage",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINPROPSLLNK",
+        "description": "View Proposal Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINPROPSLLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINSSROULNK",
+        "description": "View Stock Status Review - OU Wise",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINSSRWHLNK",
+        "description": "View Stock Status Review - Warehouse Wise",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINTAXLNK",
+        "description": "Specify Tax Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRCOLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCROPERATLK",
+        "description": "Link to Operational Checklist",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_OPERATIONALCHECKLIST",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRPRINTPLK",
+        "description": "Link to Print Purchase Order",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_PRINTPURCHASEORDER",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRSPECIFLK",
+        "description": "Link to Specify Retention Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_SPECIFYRETENTIONDETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRSPECIYLK",
+        "description": "Link to Specify Milestone",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_SPECIFYMILESTONE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRVIEW_PLK",
+        "description": "Link to View PO",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_VIEW_PO",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@fgbase_yes_no = YES",
+        "trigger": "@fgbase_yes_no = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 855,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 862,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "341"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@imports = 1",
+        "trigger": "@imports = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 668,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "29"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2379,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "30"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "85"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status = OP",
+        "trigger": "@status = OP",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 682,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1001"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@workflow_app = Y",
+        "trigger": "@workflow_app = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_srchgrd",
+            "line": 1259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loi = 1",
+        "trigger": "@loi = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1457,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2032"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@part_cov_pr_flag = YES",
+        "trigger": "@part_cov_pr_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2124,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tran_rights_flag = Y",
+        "trigger": "@tran_rights_flag = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_fet_hdrfet",
+            "line": 494,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1600"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@mbp_ms_level = DOC",
+        "trigger": "@mbp_ms_level = DOC",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1328,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "85"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@budchk = Y",
+        "trigger": "@budchk = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 758,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 878,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 720,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 519,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 746,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = STAG",
+        "trigger": "@sched_typeml = STAG",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 977,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "133"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@presampling_flag = YES",
+        "trigger": "@presampling_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1025,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "301"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml <> SI",
+        "trigger": "@sched_typeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1968,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2010"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@modeflag = D",
+        "trigger": "@modeflag = D",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1279,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2013"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = YES",
+        "trigger": "@useroption = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2132,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml > @prqty",
+        "trigger": "@qtyml > @prqty",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1605,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2160,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitem = NONE",
+        "trigger": "@adhocitem = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2168,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype = SI",
+        "trigger": "@schtype = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2170,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2219,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1710"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@catchweightitem = 1",
+        "trigger": "@catchweightitem = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3583,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@uommult = @alternate_uom_tmp",
+        "trigger": "@uommult = @alternate_uom_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3597,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml <> NONE",
+        "trigger": "@adhocitemclassml <> NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2392,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "31"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> floor",
+        "trigger": "@qtyml <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 305,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 400,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SN",
+        "trigger": "@itemtype = SN",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3778,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "itm_sp_chk_sundrystock",
+                "itm_sp_get_uomconvfactor",
+                "uom_sp_get_convfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> FLOOR",
+        "trigger": "@qty_stockuom <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3853,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SR",
+        "trigger": "@itemtype = SR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4275,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5451,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 2",
+        "trigger": "@potypeenum = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4114,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4895,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5461,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 1",
+        "trigger": "@potypeenum = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4094,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4947,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5523,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = LT",
+        "trigger": "@rate_mismatch = LT",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3366,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "58"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val <> 2460367",
+        "trigger": "@return_val <> 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 346,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 2460367",
+        "trigger": "@return_val = 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3260,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 347,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 900016203",
+        "trigger": "@return_val = 900016203",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3287,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "503"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 370,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> FLOOR",
+        "trigger": "@qtyml <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3753,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = SI",
+        "trigger": "@sched_typeml = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6136,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6528,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl",
+                "po_poshd_schedule_dtl"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@flag_yesno = YES",
+        "trigger": "@flag_yesno = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4273,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4637,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "21"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml = NONE",
+        "trigger": "@adhocitemclassml = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6604,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 7541,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@variantno = ##",
+        "trigger": "@variantno = ##",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_itmumgrd",
+            "line": 829,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = BLTRAN",
+        "trigger": "@response = BLTRAN",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 406,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> floor",
+        "trigger": "@qty_stockuom <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 327,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 416,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@approvaldate > dbo",
+        "trigger": "@approvaldate > dbo",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 639,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025202"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loiml = Y",
+        "trigger": "@loiml = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 798,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 670,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorderml = Y",
+        "trigger": "@loitoorderml = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 803,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 675,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status <> FR",
+        "trigger": "@status <> FR",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 470,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "364"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_ret_docsav",
+            "line": 259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "364"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_old <> @pocurrency_new",
+        "trigger": "@pocurrency_old <> @pocurrency_new",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 434,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_new = @tcdcurrency",
+        "trigger": "@pocurrency_new = @tcdcurrency",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 473,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 558,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tcd_basis = F",
+        "trigger": "@tcd_basis = F",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 509,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 593,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_doclevel_detail"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorder = Y",
+        "trigger": "@loitoorder = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 873,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "not_checklist_lineno_swap_cmn_sp"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_pomas_pur_order_hdr"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@currencycode <> @currency_tbl",
+        "trigger": "@currencycode <> @currency_tbl",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1320,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorder = 1",
+        "trigger": "@loitoorder = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1463,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2032"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 4",
+        "trigger": "@potypeenum = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3481,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_consrule_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@execflag = 2",
+        "trigger": "@execflag = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3699,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1106"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum <> 3",
+        "trigger": "@potypeenum <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4140,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_transaction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@stockuom <> @uommult_tmp",
+        "trigger": "@stockuom <> @uommult_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 274,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

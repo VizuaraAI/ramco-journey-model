@@ -1,0 +1,58 @@
+{
+  "id": "EVAL-HAPPY-010",
+  "title": "Admin maintains a configured supplier supply order via PoMtn",
+  "covers_journeys": [
+    "PoMtn"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "hard",
+  "user_persona": "Procurement admin maintaining a configured supply arrangement",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to maintain the supply order configuration for supplier SUP-MNT-7."
+    },
+    {
+      "turn": 2,
+      "user": "Update the pay terms to NET45 and save."
+    },
+    {
+      "turn": 3,
+      "user": "Now approve the change."
+    }
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Approved (config)",
+    "writes": [
+      {
+        "task": "POMAIN29SAVE1TR",
+        "activity": "",
+        "screen": "",
+        "via_sp_chain": [],
+        "tables_required": [],
+        "slot_values_required": {
+          "supplier_code": "SUP-MNT-7",
+          "payment_terms": "NET45"
+        },
+        "status_after": "Approved (config)"
+      },
+      {
+        "task": "POMAIN29AUTHORTR",
+        "activity": "",
+        "screen": "",
+        "via_sp_chain": [],
+        "tables_required": [],
+        "slot_values_required": {
+          "supplier_code": "SUP-MNT-7",
+          "payment_terms": "NET45"
+        },
+        "status_after": "Approved (config)"
+      }
+    ]
+  }
+}

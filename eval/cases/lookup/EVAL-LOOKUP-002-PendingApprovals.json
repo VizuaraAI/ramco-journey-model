@@ -1,0 +1,70 @@
+{
+  "id": "EVAL-LOOKUP-002",
+  "title": "Approver asks for all POs pending their approval",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "lookup",
+  "difficulty": "medium",
+  "tags": ["filtered-list", "pending-approval", "by-approver"],
+  "user_persona": "Department head reviewing their approval queue",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me all POs pending my approval.",
+      "expected": {
+        "intent": "po_list_filtered",
+        "journey_locked": "PoViw",
+        "bot_must": [
+          "fire POVWENTTRN1 with filter (status=Draft/Pending, approver=current_user)",
+          "return list sorted by created date or value",
+          "show columns: PO number, supplier, total value, created date, days waiting"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Sort by value descending.",
+      "expected": {
+        "bot_must": ["re-sort the result", "return same set, value desc"]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Approve PO-2026-700 from that list.",
+      "expected": {
+        "intent": "approve_purchase_order",
+        "journey_switched": "PoApp",
+        "context_carried": {"po_number": "PO-2026-700"},
+        "trans_invoked": "POAPPENTTRN1",
+        "bot_must": [
+          "switch to PoApp",
+          "load PO-2026-700",
+          "show details before approve"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Approve.",
+      "expected": {
+        "trans_invoked": "POAPPMAINSBT",
+        "bot_must": ["fire POAPPMAINSBT", "status Authorised"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoApp",
+    "commit_task": "POAPPMAINSBT",
+    "po_status": "Authorised",
+    "slots_filled": ["po_number", "approval_date"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "filter_by_current_user": "filter uses current user as approver",
+    "lookup_to_action_pipeline": "PoViw list → PoApp action with context carry"
+  }
+}

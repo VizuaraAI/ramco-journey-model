@@ -1,0 +1,66 @@
+{
+  "id": "EVAL-XMOD-004",
+  "title": "User asks why a PO can't be closed — bot diagnoses a pending GR",
+  "covers_journeys": ["PoViw", "PoScl"],
+  "covers_modules": ["PO", "GR"],
+  "category": "cross-module",
+  "difficulty": "hard",
+  "tags": ["diagnostic-question", "po-gr-dependency", "cannot-close"],
+  "user_persona": "Buyer frustrated that a PO won't close at quarter end",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Why can't I close PO-2026-1450? I tried short close and it said no.",
+      "expected": {
+        "intent": "diagnose_po_close_blocker",
+        "journey_locked": "PoViw",
+        "covers_modules_acknowledged": ["PO", "GR"],
+        "slots_extracted": {"po_number": "PO-2026-1450"},
+        "bot_must": [
+          "fetch PO-2026-1450 status, lines, and receipt situation",
+          "cross-module query GR for in-progress GRs against this PO",
+          "diagnose specific blocker — common ones: (a) line has GR in 'draft' status not yet posted, (b) line has open milestone, (c) PO is on Hold and needs unhold first, (d) line has open Inspection",
+          "report the exact blocker and what to do"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "There's a draft GR? Where?",
+      "expected": {
+        "cross_module_query": "GR-search by status=Draft and source PO=PO-2026-1450",
+        "bot_must": [
+          "list the draft GR(s) by GR number, warehouse, who created",
+          "explain user needs to either post the draft GR (in GR module) or cancel it before short-close will work"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "If I cancel that draft GR can I then short close?",
+      "expected": {
+        "bot_must": [
+          "confirm yes — once the draft GR is cancelled, the line balance becomes available for short close",
+          "note that cancelling a GR is in the GR module, not PO module",
+          "offer to walk through after the user has cancelled it"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<diagnosed, not changed>",
+    "slots_filled": ["po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoScl (once GR cleared)", "GR-Cancel"]
+  },
+
+  "evaluation_metrics": {
+    "diagnostic_depth": "bot identifies specific blocker, not generic 'unknown reason'",
+    "cross_module_dependency_explained": "bot explains GR is in a different module and that's where the action must happen",
+    "remediation_path_clear": "bot tells user the sequence: cancel GR → then short close"
+  }
+}

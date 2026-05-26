@@ -1,0 +1,106 @@
+{
+  "id": "EVAL-HAPPY-001",
+  "title": "Buyer creates a simple direct PO end-to-end with no splices",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["create-direct", "supplier-known", "no-splices", "single-line"],
+  "user_persona": "Experienced buyer who knows exactly what they want",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to create a direct purchase order.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "bot_must": [
+          "confirm Direct PO journey",
+          "ask for the first header slot — supplier_code OR numbering_series"
+        ],
+        "bot_must_not": ["ask if user wants Quotation/PR/SO variant — user already said 'direct'"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Numbering series PO/STD/2026, supplier SUP-100, PO date today, currency USD.",
+      "expected": {
+        "slots_extracted": {
+          "numbering_series": "PO/STD/2026",
+          "supplier_code": "SUP-100",
+          "po_date": "<today>",
+          "currency": "USD"
+        },
+        "bot_must": [
+          "acknowledge all 4 slots",
+          "ask for buyer (if not derivable) and any remaining header fields, or move to lines"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Buyer is BUY-77, ship from MAIN-WH. Move to lines.",
+      "expected": {
+        "slots_extracted": {"buyer": "BUY-77", "ship_from_id": "MAIN-WH"},
+        "next_slot_group": "lines",
+        "bot_must": ["confirm header complete", "ask for line item details"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "One line: ITM-200, 10 units at 50 USD, need date 30 days from now.",
+      "expected": {
+        "slots_extracted": {
+          "item_code": "ITM-200",
+          "quantity": 10,
+          "cost": 50,
+          "need_date": "<today + 30d>"
+        },
+        "bot_must": [
+          "confirm line captured",
+          "compute and display line value (500 USD)",
+          "ask if user wants more lines or to commit"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "user": "That's all. Just create it, don't approve yet.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "sp_chain_invoked": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "bot_must": [
+          "fire POCRTMAINSBT (NOT POCRTMAINTRN4)",
+          "report assigned PO number",
+          "state status = Draft",
+          "mention next possible journey is PoApp (separate approval) or PoEdt (modify) or PoCrt again"
+        ],
+        "bot_must_not": ["fire POCRTMAINTRN4 since user explicitly said 'don't approve yet'"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["numbering_series", "supplier_code", "po_date", "currency", "buyer", "ship_from_id", "item_code", "quantity", "cost", "need_date"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "journey_lock_at_turn_1": "PoCrt locked immediately since 'direct' is unambiguous",
+    "multi_slot_extraction_turn_2": "4 slots in one sentence",
+    "splice_avoidance": "no splice triggered (po_type not Capital/Consignment, no LINK clicked)",
+    "commit_path_correctness": "POCRTMAINSBT not TRN4 — user said 'don't approve'"
+  }
+}

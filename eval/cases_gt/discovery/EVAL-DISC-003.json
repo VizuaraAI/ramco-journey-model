@@ -1,0 +1,30 @@
+{
+  "id": "EVAL-DISC-003",
+  "title": "User asks for the full list of PO journeys",
+  "covers_journeys": [],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "discovery",
+  "difficulty": "easy",
+  "user_persona": "A power user / admin who wants the complete inventory",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Give me the full list of every purchase-order activity I can perform in this system."
+    },
+    {
+      "turn": 2,
+      "user": "What's PoAcCcUsgMod?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "no transaction",
+    "must_enumerate_information": [
+      "enumerate all 14 user-facing PO journeys with activity names and descriptions: PoCrt, PoCrtQtn, PoCrtSo, PoCrtTen, PoCopy, PoAmnd, PoApp, PoEdt, PoViw, PoMtn, PoHold, PoScl, PoAcCcUsgMod, PoHlp",
+      "explain it changes the Account / Cost-Centre Usage on an existing PO without re-amending the whole document"
+    ]
+  }
+}

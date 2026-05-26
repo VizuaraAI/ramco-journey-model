@@ -1,0 +1,169 @@
+{
+  "activity": "POAMND",
+  "description": "Amend Purchase Order",
+  "main_screen": "POAMNDMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POAMDMAINFTH",
+      "description": "Fetch Amend Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POAMDMAININI",
+      "description": "Initialize Amend Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POAMDMAINSBT",
+      "description": "Amend PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_amnd_hdrchk",
+          "method_name": "poamdmm_met_amnd_hdrchk",
+          "service_name": "poamdmm_ser_amnd",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_amndgrd",
+          "method_name": "poamdmm_met_amndgrd",
+          "service_name": "poamdmm_ser_amnd",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_amnd_hdrsav",
+          "method_name": "poamdmm_met_amnd_hdrsav",
+          "service_name": "poamdmm_ser_amnd",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_amndhref",
+          "method_name": "poamdmm_met_amndHRef",
+          "service_name": "poamdmm_ser_amnd",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poamdmm_sp_amndgrd_out",
+          "method_name": "poamdmm_met_amndgrd_out",
+          "service_name": "poamdmm_ser_amnd",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAMDMAINTRN1",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_defgrd",
+          "method_name": "poamdmm_met_defgrd",
+          "service_name": "poamdmm_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_defgrd_out",
+          "method_name": "poamdmm_met_defgrd_out",
+          "service_name": "poamdmm_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_def_hdrsav",
+          "method_name": "poamdmm_met_def_hdrsav",
+          "service_name": "poamdmm_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAMDMAINTRN4",
+      "description": "Get all Quot Line No",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_qtngrd",
+          "method_name": "poamdmm_met_qtngrd",
+          "service_name": "poamdmm_ser_qtn",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAMDMAINTRN5",
+      "description": "Amend and Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_aprgrd",
+          "method_name": "poamdmm_met_aprgrd",
+          "service_name": "poamdmm_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_apr_hdrsav",
+          "method_name": "poamdmm_met_apr_hdrsav",
+          "service_name": "poamdmm_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_aprhref",
+          "method_name": "poamdmm_met_aprHRef",
+          "service_name": "poamdmm_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_apr_hdrchk",
+          "method_name": "poamdmm_met_apr_hdrchk",
+          "service_name": "poamdmm_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poamdmm_sp_aprgrd_out",
+          "method_name": "poamdmm_met_aprgrd_out",
+          "service_name": "poamdmm_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POMAINSRRETURNTR",
+      "description": "Return PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_ret_hdrsav",
+          "method_name": "poamdmm_met_ret_hdrsav",
+          "service_name": "poamdmm_ser_ret",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poamdmm_sp_ret_href",
+          "method_name": "poamdmm_met_ret_href",
+          "service_name": "poamdmm_ser_ret",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

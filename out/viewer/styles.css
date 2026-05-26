@@ -1,0 +1,43 @@
+:root {
+  --cream:#f4ecdc; --cream-2:#ede2c8;
+  --ink:#2b2620; --ink-2:#4a4238;
+  --muted:#7a6f5e; --muted-2:#a59881;
+  --purple:#6b5b8e; --purple-soft:#c4b8e4; --purple-bg:#ede5f5;
+  --green:#3d5c3d; --terracotta:#c47a5a;
+  --rule:#d8ccb0; --code:#f8f1de;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { background:var(--cream); color:var(--ink); font-family:'Inter',-apple-system,sans-serif; font-size:14px; line-height:1.55; }
+.layout { display:grid; grid-template-columns:260px 1fr; min-height:100vh; }
+.nav { background:#ebe0c6; border-right:1px solid var(--rule); padding:24px 18px; overflow-y:auto; }
+.nav .title { font-family:'Fraunces',serif; font-weight:500; font-size:18px; letter-spacing:-0.01em; margin-bottom:18px; }
+.nav .section { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--muted); margin:18px 0 6px; }
+.nav-item { padding:6px 10px; border-radius:5px; cursor:pointer; font-size:13px; display:flex; justify-content:space-between; align-items:center; }
+.nav-item:hover { background:rgba(196,184,228,0.2); }
+.nav-item.active { background:var(--purple-bg); color:var(--purple); font-weight:500; }
+.nav-item .count { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); }
+.content { padding:40px 56px; max-width:1100px; overflow-x:hidden; }
+h1.page-title { font-family:'Fraunces',serif; font-weight:500; font-size:40px; letter-spacing:-0.02em; margin-bottom:6px; }
+.page-sub { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:32px; }
+h2.section-h { font-family:'Fraunces',serif; font-weight:500; font-size:24px; margin:36px 0 12px; }
+.card { background:#faf3df; border:1px solid var(--rule); border-radius:10px; padding:18px 22px; margin:12px 0; }
+.card.spine-step { display:grid; grid-template-columns:120px 1fr; gap:18px; }
+.card.spine-step .phase { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple); padding-top:4px; }
+.card.spine-step .task { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink); font-weight:500; margin-bottom:4px; }
+.card.spine-step .desc { font-size:13px; color:var(--ink-2); margin-bottom:6px; }
+.sp-chain { margin-top:8px; }
+.sp-chain .sp { display:inline-block; padding:2px 8px; border-radius:10px; background:var(--code); border:1px solid var(--rule); font-family:'JetBrains Mono',monospace; font-size:10px; margin:2px 4px 2px 0; color:var(--purple); }
+.splice-card { padding:10px 14px; border-left:3px solid var(--purple-soft); background:rgba(196,184,228,0.08); border-radius:4px; margin:6px 0; font-size:13px; }
+.splice-card .label { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--purple); letter-spacing:0.08em; text-transform:uppercase; }
+.splice-card .trigger { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--terracotta); }
+.summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0; }
+.summary-grid .stat { background:#faf3df; border:1px solid var(--rule); border-radius:8px; padding:14px 18px; }
+.summary-grid .stat .lbl { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
+.summary-grid .stat .big { font-family:'Fraunces',serif; font-size:28px; font-weight:500; }
+table.slots { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+table.slots th, table.slots td { text-align:left; padding:6px 10px; border-bottom:1px solid var(--rule); }
+table.slots th { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
+.mono { font-family:'JetBrains Mono',monospace; font-size:11px; }
+.loading { color:var(--muted); padding:80px; text-align:center; font-family:'JetBrains Mono',monospace; }
+.edge-row { padding:8px 12px; background:rgba(196,184,228,0.1); border-radius:4px; margin:4px 0; font-size:13px; }
+.edge-row .arrow { color:var(--purple); margin:0 8px; }

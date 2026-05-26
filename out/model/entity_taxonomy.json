@@ -1,0 +1,144 @@
+{
+  "POAMND": {
+    "activity": "POAMND",
+    "description": "Amend Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POAPP": {
+    "activity": "POAPP",
+    "description": "Approve Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POCOPY": {
+    "activity": "POCOPY",
+    "description": "Copy And Create Purchase Order",
+    "entity_produced": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "entity_consumed": {
+      "kind": "SourcePO",
+      "id_slot": "source_po_no"
+    },
+    "role": "producer+consumer"
+  },
+  "POCRT": {
+    "activity": "POCRT",
+    "description": "Create Direct Purchase Order",
+    "entity_produced": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "entity_consumed": null,
+    "role": "producer"
+  },
+  "POCRTQTN": {
+    "activity": "POCRTQTN",
+    "description": "Create Purchase Order From Quotation",
+    "entity_produced": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "entity_consumed": {
+      "kind": "Quotation",
+      "id_slot": "quotation_no"
+    },
+    "role": "producer+consumer"
+  },
+  "POCRTSO": {
+    "activity": "POCRTSO",
+    "description": "Create Purchase Order From Sale Order",
+    "entity_produced": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "entity_consumed": {
+      "kind": "SaleOrder",
+      "id_slot": "sale_order_no"
+    },
+    "role": "producer+consumer"
+  },
+  "POCRTTEN": {
+    "activity": "POCRTTEN",
+    "description": "Create Purchase Order From Tender",
+    "entity_produced": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "entity_consumed": {
+      "kind": "Tender",
+      "id_slot": "tender_no"
+    },
+    "role": "producer+consumer"
+  },
+  "POEDT": {
+    "activity": "POEDT",
+    "description": "Edit Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POHLP": {
+    "activity": "POHLP",
+    "description": "Help On Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POHOLD": {
+    "activity": "POHOLD",
+    "description": "Change Status - Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POMTN": {
+    "activity": "POMTN",
+    "description": "Maintain Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POSCL": {
+    "activity": "POSCL",
+    "description": "Short Close Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  },
+  "POVIW": {
+    "activity": "POVIW",
+    "description": "View Purchase Order",
+    "entity_produced": null,
+    "entity_consumed": {
+      "kind": "PurchaseOrder",
+      "id_slot": "po_number"
+    },
+    "role": "consumer"
+  }
+}

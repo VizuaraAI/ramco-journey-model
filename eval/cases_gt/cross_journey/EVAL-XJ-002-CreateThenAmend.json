@@ -1,0 +1,105 @@
+{
+  "id": "EVAL-XJ-002",
+  "title": "Buyer creates a PO, gets it approved, then amends quantity later \u2014 three journeys",
+  "covers_journeys": [
+    "PoCrt",
+    "PoApp",
+    "PoAmnd"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "cross-journey",
+  "difficulty": "hard",
+  "user_persona": "Buyer who realises mid-way they ordered wrong quantity",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create and approve a PO for SUP-300, USD, today, BUY-5, line ITM-12 100 units at 5. I have approval rights."
+    },
+    {
+      "turn": 2,
+      "user": "Wait, I need to bump that to 150 units."
+    },
+    {
+      "turn": 3,
+      "user": "Amend and approve in one shot."
+    }
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Authorised",
+    "writes": [
+      {
+        "task": "POCRTMAINTRN4",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_apr_hdrchk",
+          "pocrmn_sp_apr_hdrsav",
+          "pocrmn_sp_aprgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail",
+          "po_paytm_linelevel_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {
+          "quantity": 150,
+          "line_no": 1,
+          "supplier_code": "ANY",
+          "currency": "ANY",
+          "po_date": "ANY",
+          "buyer": "ANY",
+          "item_code": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Authorised"
+      },
+      {
+        "task": "POAMDMAINTRN5",
+        "activity": "POAMND",
+        "screen": "PoAmndMain",
+        "via_sp_chain": [
+          "poamdmm_sp_aprgrd",
+          "poamdmm_sp_apr_hdrsav",
+          "poamdmm_sp_aprhref",
+          "poamdmm_sp_apr_hdrchk",
+          "poamdmm_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "mbp_milestone_dtl",
+          "not_discit_flag_dtl",
+          "not_discit_msg_dtl",
+          "not_discit_subj_dtl",
+          "not_notes_dtl",
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_potcd_itemtcd_dtl",
+          "po_powh_allocation_dtl",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {
+          "quantity": 150,
+          "line_no": 1,
+          "supplier_code": "ANY",
+          "currency": "ANY",
+          "po_date": "ANY",
+          "buyer": "ANY",
+          "item_code": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Authorised"
+      }
+    ]
+  }
+}

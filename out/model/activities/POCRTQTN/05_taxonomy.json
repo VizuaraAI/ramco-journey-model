@@ -1,0 +1,13 @@
+{
+  "activity": "POCRTQTN",
+  "description": "Create Purchase Order From Quotation",
+  "entity_produced": {
+    "kind": "PurchaseOrder",
+    "id_slot": "po_number"
+  },
+  "entity_consumed": {
+    "kind": "Quotation",
+    "id_slot": "quotation_no"
+  },
+  "role": "producer+consumer"
+}

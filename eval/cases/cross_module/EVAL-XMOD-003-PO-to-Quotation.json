@@ -1,0 +1,53 @@
+{
+  "id": "EVAL-XMOD-003",
+  "title": "User asks for the source quotation that a PO was created from",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO", "PQ"],
+  "category": "cross-module",
+  "difficulty": "medium",
+  "tags": ["po-source-quotation", "cross-module-read", "audit-trail"],
+  "user_persona": "Buyer reconciling supplier pricing vs the original quote",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO-2026-1300 was created from a quotation. Which one, and show me the quote pricing.",
+      "expected": {
+        "intent": "po_source_quotation",
+        "journey_locked": "PoViw",
+        "covers_modules_acknowledged": ["PO", "PQ"],
+        "slots_extracted": {"po_number": "PO-2026-1300"},
+        "bot_must": [
+          "fetch PO-2026-1300",
+          "read its source reference field — if created via PoCrtQtn, the quotation_no will be in the PO header",
+          "cross-module read to PQ module for quotation_no details",
+          "return quote details: quote number, supplier, lines, prices, validity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Are the PO line prices the same as the quote?",
+      "expected": {
+        "bot_must": [
+          "compare line-by-line: PO cost vs Quote price",
+          "report matches and any discrepancies"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<inspected>",
+    "slots_filled": ["po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "source_lineage_followed": "PO → quotation reference followed to PQ module",
+    "comparison_executed": "line-by-line price comparison run"
+  }
+}

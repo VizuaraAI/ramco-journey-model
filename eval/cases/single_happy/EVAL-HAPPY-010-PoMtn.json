@@ -1,0 +1,64 @@
+{
+  "id": "EVAL-HAPPY-010",
+  "title": "Admin maintains a configured supplier supply order via PoMtn",
+  "covers_journeys": ["PoMtn"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "hard",
+  "tags": ["maintain", "admin-flow", "less-common"],
+  "user_persona": "Procurement admin maintaining a configured supply arrangement",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to maintain the supply order configuration for supplier SUP-MNT-7.",
+      "expected": {
+        "intent": "maintain_purchase_order_config",
+        "journey_locked": "PoMtn",
+        "slots_extracted": {"supplier_code": "SUP-MNT-7"},
+        "bot_must": [
+          "lock PoMtn journey",
+          "explain PoMtn manages supply order configuration (not regular POs)",
+          "offer to Save changes, Approve, Delete, or Default existing settings"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Update the pay terms to NET45 and save.",
+      "expected": {
+        "slots_extracted": {"payment_terms": "NET45"},
+        "trans_invoked": "POMAIN29SAVE1TR",
+        "bot_must": [
+          "fire POMAIN29SAVE1TR (Save)",
+          "confirm payment terms updated"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Now approve the change.",
+      "expected": {
+        "trans_invoked": "POMAIN29AUTHORTR",
+        "bot_must": [
+          "fire POMAIN29AUTHORTR (Approve)",
+          "confirm config is approved and active"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoMtn",
+    "commit_task": "POMAIN29AUTHORTR",
+    "po_status": "Approved (config)",
+    "slots_filled": ["supplier_code", "payment_terms"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "scope_correctness": "bot must distinguish PoMtn (config) from PoAmnd (PO modification)",
+    "two_phase_commit": "Save then Approve, in that order"
+  }
+}

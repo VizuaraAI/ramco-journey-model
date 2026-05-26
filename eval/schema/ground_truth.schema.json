@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ramco-journey-model/eval/ground_truth.schema.json",
+  "title": "Ground-truth eval case (system-effect grading)",
+  "description": "A conversation eval case whose pass/fail is determined by the system effect at the end: which tables get written, which reads fire, what status the entity ends in, what cross-module updates happen. Bot-text quality is NOT graded here.",
+  "type": "object",
+  "required": ["id", "title", "category", "conversation", "ground_truth"],
+  "properties": {
+    "id":          {"type": "string", "pattern": "^EVAL-[A-Z]+-[0-9]{3,}$"},
+    "title":       {"type": "string"},
+    "covers_journeys": {"type": "array", "items": {"type": "string"}},
+    "covers_modules":  {"type": "array", "items": {"type": "string"}},
+    "category":    {"type": "string", "enum": ["discovery", "single-journey-happy-path",
+                                               "single-journey-with-splice", "error-recovery",
+                                               "cross-journey", "lookup", "cross-module"]},
+    "difficulty":  {"type": "string", "enum": ["easy", "medium", "hard"]},
+    "user_persona": {"type": "string"},
+
+    "conversation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["turn", "user"],
+        "properties": {
+          "turn": {"type": "integer"},
+          "user": {"type": "string"}
+        }
+      }
+    },
+
+    "ground_truth": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["commit", "lookup", "discovery", "error_no_commit", "multi_commit"],
+          "description": "What the system should ultimately do for this case."
+        },
+        "writes": {
+          "type": "array",
+          "description": "Ordered list of expected commit actions. For multi-commit cases (Create→Amend) include each in sequence.",
+          "items": {
+            "type": "object",
+            "required": ["task", "tables_required", "slot_values_required"],
+            "properties": {
+              "task":           {"type": "string", "description": "TRANS task name (e.g. POCRTMAINSBT)"},
+              "activity":       {"type": "string", "description": "Activity that owns this task (e.g. POCRT)"},
+              "screen":         {"type": "string", "description": "Screen / ILBO hosting the task"},
+              "via_sp_chain":   {"type": "array", "items": {"type": "string"},
+                                 "description": "Expected SP call chain (informational; derived from catalog)"},
+              "tables_required":{"type": "array", "items": {"type": "string"},
+                                 "description": "Tables that MUST be touched by INSERT/UPDATE/DELETE in this commit"},
+              "slot_values_required": {
+                "type": "object",
+                "description": "Slot name → expected value. EXACT match required. Use 'ANY' for slot must be present with any value. Use 'PLACEHOLDER:<x>' for templated values like dates."
+              },
+              "status_after":   {"type": "string", "description": "Document status after this commit (Draft / Authorised / Hold / Closed)"}
+            }
+          }
+        },
+        "reads": {
+          "type": "array",
+          "description": "Expected read queries (for lookup / view cases).",
+          "items": {
+            "type": "object",
+            "required": ["task", "filter_slots"],
+            "properties": {
+              "task":         {"type": "string", "description": "Read TRANS task name (typically <Act>ENTTRN1 for search)"},
+              "activity":     {"type": "string"},
+              "filter_slots": {"type": "object", "description": "Slot → value used as query filter"},
+              "returns_fields": {"type": "array", "items": {"type": "string"},
+                                 "description": "Fields the bot's reply should surface from the read"}
+            }
+          }
+        },
+        "no_writes_expected": {
+          "type": "boolean",
+          "description": "True for discovery, error-recovery, and pure-lookup cases — bot must NOT fire any TRANS that writes to tables."
+        },
+        "cross_module_writes": {
+          "type": "array",
+          "description": "Cross-module side effects (e.g. PR status flips to Covered when PO covers it).",
+          "items": {
+            "type": "object",
+            "required": ["module", "effect"],
+            "properties": {
+              "module":  {"type": "string", "enum": ["PR", "GR", "PQ", "SIN", "PO"]},
+              "effect":  {"type": "string", "description": "Plain-language description of the effect"},
+              "table":   {"type": "string"},
+              "set_to":  {"type": "string"}
+            }
+          }
+        },
+        "must_enumerate_information": {
+          "type": "array",
+          "description": "For discovery cases: the information set the bot must convey (one of N expected topics/journeys must be named).",
+          "items": {"type": "string"}
+        }
+      }
+    },
+
+    "notes": {"type": "string"}
+  }
+}

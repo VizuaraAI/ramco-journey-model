@@ -1,0 +1,6 @@
+{
+  "activity": "POCRTSO",
+  "description": "Create Purchase Order From Sale Order",
+  "main_screen": "POCRTSOMAIN",
+  "canonical_spine": []
+}

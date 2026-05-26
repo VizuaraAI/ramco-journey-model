@@ -1,0 +1,73 @@
+{
+  "id": "EVAL-ERR-007",
+  "title": "Quality slot omitted but qcchk=1 \u2014 SP refuses commit, bot loops back",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "user_persona": "Buyer who didn't realise the item needed QC attributes",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO for SUP-200, USD, today, buyer BUY-10, item ITM-QC-1, 100 units at 15."
+    },
+    {
+      "turn": 2,
+      "user": "Just create, I'll add quality later."
+    },
+    {
+      "turn": 3,
+      "user": "OK, sample 10%, AQL 1.0, visual + dimensional test."
+    },
+    {
+      "turn": 4,
+      "user": "Now create."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-200",
+          "currency": "USD",
+          "po_date": "<today>",
+          "buyer": "BUY-10",
+          "item_code": "ITM-QC-1",
+          "quantity": 100,
+          "cost": 15,
+          "quality_attributes": {
+            "sample_pct": 10,
+            "aql": 1.0,
+            "test_methods": "visual + dimensional"
+          }
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

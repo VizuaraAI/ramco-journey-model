@@ -1,0 +1,6 @@
+{
+  "activity": "POMTN",
+  "description": "Maintain Purchase Order",
+  "main_screen": "POMTNMAIN",
+  "canonical_spine": []
+}

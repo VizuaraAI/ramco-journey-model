@@ -1,0 +1,42 @@
+{
+  "id": "EVAL-XJ-005",
+  "title": "Approver returns a PO instead of approving \u2014 sends back to creator for fix",
+  "covers_journeys": [
+    "PoApp"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "user_persona": "Approver who finds an issue and bounces the PO back",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to review PO-2026-560 for approval."
+    },
+    {
+      "turn": 2,
+      "user": "The unit price on line 1 looks wrong \u2014 too high vs market. Return this PO with that comment."
+    }
+  ],
+  "ground_truth": {
+    "kind": "lookup",
+    "no_writes_expected": true,
+    "status_after": "Returned",
+    "reads": [
+      {
+        "task": "POAPPENTTRN1",
+        "activity": "POAPP",
+        "filter_slots": {},
+        "returns_fields": []
+      },
+      {
+        "task": "POAPPENTTRN3",
+        "activity": "POAPP",
+        "filter_slots": {},
+        "returns_fields": []
+      }
+    ]
+  }
+}

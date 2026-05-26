@@ -1,0 +1,506 @@
+{
+  "activity": "POVWSYSPAR",
+  "description": "View System Parameters",
+  "is_user_facing": false,
+  "screen_count": 1,
+  "main_screen": "POVWSYSPARMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POMAIN35FTH",
+      "description": "Default Fetch"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    }
+  ],
+  "splice_summary": {
+    "ui_splices": 0,
+    "state_splices": 0,
+    "data_splices": 0,
+    "total": 0
+  },
+  "splices": {
+    "ui_splices": [],
+    "state_splices": [],
+    "data_splices": []
+  },
+  "screens": [
+    {
+      "ilbo_name": "POVWSYSPARMAIN",
+      "ilbo_desc": "View System Parameters",
+      "canonical_services": [],
+      "task_count": 2,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN35FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "INIT": [],
+        "TRANS": [],
+        "LINK": [],
+        "UI": [],
+        "HELP": []
+      },
+      "slot_count": 41,
+      "slots": [
+        {
+          "field_id": "txtchassfrieght",
+          "field_name": "txtchassfrieght",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspdeffreper",
+          "field_name": "dspdeffreper",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtchassinsurance",
+          "field_name": "txtchassinsurance",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspdefinsper",
+          "field_name": "dspdefinsper",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtchasslanding",
+          "field_name": "txtchasslanding",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspdeflanper",
+          "field_name": "dspdeflanper",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtchassmisccharges",
+          "field_name": "txtchassmisccharges",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspdefaultfinancebook",
+          "field_name": "dspdefaultfinancebook",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtchassunloadcomm",
+          "field_name": "txtchassunloadcomm",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_09",
+          "field_name": "dspfiller_09",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_09_2",
+          "field_name": "dspfiller_09_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspintsogen",
+          "field_name": "dspintsogen",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_10",
+          "field_name": "dspfiller_10",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_10_2",
+          "field_name": "dspfiller_10_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "header_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ppsvl1",
+          "field_name": "dspfiller_ppsvl1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "ppsvpo_link_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ppsvl1_2",
+          "field_name": "dspfiller_ppsvl1_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "ppsvpo_link_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ppsvl2",
+          "field_name": "dspfiller_ppsvl2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "ppsvpo_link_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ppsvl2_2",
+          "field_name": "dspfiller_ppsvl2_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "ppsvpo_link_sec",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcreatedby",
+          "field_name": "dspcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_03",
+          "field_name": "dspfiller_03",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_03_2",
+          "field_name": "dspfiller_03_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcreateddate",
+          "field_name": "dspcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspmodifiedby",
+          "field_name": "dspmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_04",
+          "field_name": "dspfiller_04",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_04_2",
+          "field_name": "dspfiller_04_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspmodifieddate",
+          "field_name": "dspmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdncsouinstance",
+          "field_name": "hdncsouinstance",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnfield1",
+          "field_name": "hdnfield1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnfield2",
+          "field_name": "hdnfield2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnfield3",
+          "field_name": "hdnfield3",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnfield4",
+          "field_name": "hdnfield4",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnfield5",
+          "field_name": "hdnfield5",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdncntrl_po",
+          "field_name": "hdnhdncntrl_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_compname",
+          "field_name": "hdnhdn_compname",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_control_1",
+          "field_name": "hdnhdn_control_1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAIN35PPSVPOLK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {
+    "POVwSysParMain.pomain35Fth": [
+      {
+        "sequenceno": 1,
+        "spname": "povwsys_sp_fet_hfet",
+        "method_name": "povwsys_M_fet_hfet",
+        "service_name": "povwsys_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "POVwSysParMain.pomain35PPSVPOLk": [
+      {
+        "sequenceno": 1,
+        "spname": "povwsys_sp_PPSVPO_hrf",
+        "method_name": "povwsys_M_PPSVPO_hrf",
+        "service_name": "povwsys_ser_PPSVPO",
+        "lvl": "0"
+      }
+    ]
+  },
+  "sp_chains_summary": {
+    "screens": [
+      "POVwSysParMain"
+    ],
+    "tasks": [
+      "pomain35Fth",
+      "pomain35PPSVPOLk"
+    ],
+    "sp_count": 2,
+    "method_count": 2,
+    "task_count": 2
+  }
+}

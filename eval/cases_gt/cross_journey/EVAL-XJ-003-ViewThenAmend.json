@@ -1,0 +1,74 @@
+{
+  "id": "EVAL-XJ-003",
+  "title": "Buyer views a PO, then decides to amend a line",
+  "covers_journeys": [
+    "PoViw",
+    "PoAmnd"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "user_persona": "Buyer reviewing a PO they may need to change",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me PO-2026-440."
+    },
+    {
+      "turn": 2,
+      "user": "Line 2 quantity should be 25 not 20. Amend that."
+    },
+    {
+      "turn": 3,
+      "user": "Submit for re-approval."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft (pending re-approval)",
+    "writes": [
+      {
+        "task": "POAMDMAINSBT",
+        "activity": "POAMND",
+        "screen": "PoAmndMain",
+        "via_sp_chain": [
+          "poamdmm_sp_amnd_hdrchk",
+          "poamdmm_sp_amndgrd",
+          "poamdmm_sp_amnd_hdrsav",
+          "poamdmm_sp_amndhref",
+          "poamdmm_sp_amndgrd_out"
+        ],
+        "tables_required": [
+          "mbp_milestone_dtl",
+          "not_discit_flag_dtl",
+          "not_discit_msg_dtl",
+          "not_discit_subj_dtl",
+          "not_notes_dtl",
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_posta_status_detail",
+          "po_potcd_itemtcd_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "line_no": 2,
+          "quantity": 25
+        },
+        "status_after": "Draft (pending re-approval)"
+      }
+    ],
+    "reads": [
+      {
+        "task": "POVWENTTRN1",
+        "activity": "POVIW",
+        "filter_slots": {},
+        "returns_fields": []
+      }
+    ]
+  }
+}

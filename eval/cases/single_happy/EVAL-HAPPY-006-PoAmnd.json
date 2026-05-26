@@ -1,0 +1,68 @@
+{
+  "id": "EVAL-HAPPY-006",
+  "title": "Buyer amends an authorised PO to change quantity, must re-approve",
+  "covers_journeys": ["PoAmnd"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "tags": ["amend", "post-approval-change", "re-approval-required"],
+  "user_persona": "Buyer who needs to revise an already-authorised PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO-2026-300 is approved but I need to bump line 2 quantity from 50 to 75.",
+      "expected": {
+        "intent": "amend_purchase_order",
+        "journey_locked": "PoAmnd",
+        "slots_extracted": {"po_number": "PO-2026-300", "line_no": 2, "quantity": 75},
+        "bot_must": [
+          "lock PoAmnd journey",
+          "fire POAMDENTTRN1 (Search) with po_number=PO-2026-300 on entry screen",
+          "report PO found and current status (Authorised)",
+          "note that amending will move status back to Draft and require re-approval"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Proceed with the amend.",
+      "expected": {
+        "bot_must": [
+          "load main amend screen (POAMDMAIN) with PO data",
+          "apply line 2 quantity change to 75",
+          "compute new line value and total PO value",
+          "ask if user wants to Submit (re-approval needed) or Amend+Approve (if user has rights)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "I have approval rights, do amend and approve in one go.",
+      "expected": {
+        "trans_invoked": "POAMDMAINTRN5",
+        "bot_must": [
+          "fire POAMDMAINTRN5 (Amend and Approve PO)",
+          "report new status (Authorised, amended)",
+          "mention amendment number incremented"
+        ],
+        "bot_must_not": ["fire POAMDMAINSBT — user said amend+approve"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoAmnd",
+    "commit_task": "POAMDMAINTRN5",
+    "po_status": "Authorised",
+    "slots_filled": ["po_number", "line_no", "quantity"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "entry_search_first": "POAMDENTTRN1 fired before main screen",
+    "status_warning_at_turn_1": "bot warns that amend reverts to Draft + needs re-approval",
+    "commit_path_correctness": "POAMDMAINTRN5 not POAMDMAINSBT (user said amend+approve)"
+  }
+}

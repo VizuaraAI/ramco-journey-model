@@ -1,0 +1,59 @@
+{
+  "id": "EVAL-XJ-004",
+  "title": "Buyer creates and approves a PO, then puts it on hold pending supplier confirmation",
+  "covers_journeys": ["PoCrt", "PoHold"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "tags": ["create-then-hold", "status-change-after-approval"],
+  "user_persona": "Buyer who created PO eagerly but wants to pause it",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create and approve PO for SUP-77, USD, today, BUY-4, ITM-22 200 at 8.",
+      "expected": {
+        "journey_locked": "PoCrt",
+        "trans_invoked": "POCRTMAINTRN4",
+        "bot_must": ["fire POCRTMAINTRN4", "report Authorised"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Actually hold off — supplier hasn't confirmed delivery yet. Put it on hold.",
+      "expected": {
+        "intent": "change_po_status",
+        "journey_switched": "PoHold",
+        "context_carried": {"po_number": "<from turn 1>"},
+        "slots_extracted": {"hold_reason": "supplier delivery not confirmed"},
+        "bot_must": [
+          "switch to PoHold",
+          "fire POHLDENTTRN1 with PO number from turn 1",
+          "capture reason"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Confirm hold.",
+      "expected": {
+        "trans_invoked": "POHLDMAINSBT",
+        "bot_must": ["fire POHLDMAINSBT", "status Hold"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoHold",
+    "commit_task": "POHLDMAINSBT",
+    "po_status": "Hold",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost", "po_number", "hold_reason"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoHold (unhold)", "PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "journey_switch_after_commit": "PoCrt completed before PoHold starts",
+    "reason_captured_naturally": "hold_reason extracted from 'supplier hasn't confirmed'"
+  }
+}

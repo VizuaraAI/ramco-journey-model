@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-HAPPY-005",
+  "title": "Buyer copies an existing PO to create a recurring order",
+  "covers_journeys": ["PoCopy"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["copy-po", "recurring-orders"],
+  "user_persona": "Buyer placing the same kind of order they placed last month",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Last month I created PO-2026-118 for office supplies. I want to do the exact same order again. Can I copy it?",
+      "expected": {
+        "intent": "copy_purchase_order",
+        "journey_locked": "PoCopy",
+        "slots_extracted": {"source_po_no": "PO-2026-118"},
+        "bot_must": [
+          "lock PoCopy journey",
+          "fire entry-screen search POCRTCOPYPOTRN1 with source PO number",
+          "explain that copy will clone all slots; user can edit anything before commit"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Yes, same one. Change the PO date to today and bump line 1 quantity from 10 to 15.",
+      "expected": {
+        "slots_extracted": {"po_date": "<today>", "line_no": 1, "quantity": 15},
+        "bot_must": [
+          "apply edits to the copied content",
+          "confirm two changes",
+          "ask if ready to commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Yes, create it.",
+      "expected": {
+        "trans_invoked": "POCRTCOPYPOTRN2",
+        "bot_must": [
+          "fire POCRTCOPYPOTRN2 (Copy and Create PO)",
+          "report new PO number",
+          "note source PO-2026-118 is referenced in the new PO's audit trail"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCopy",
+    "commit_task": "POCRTCOPYPOTRN2",
+    "po_status": "Draft",
+    "slots_filled": ["source_po_no", "po_date", "quantity"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt"]
+  },
+
+  "evaluation_metrics": {
+    "copy_with_edits": "user's mid-flow edits (po_date, line 1 qty) must apply to the copied content before commit",
+    "source_reference_preserved": "new PO's source_po reference points to PO-2026-118"
+  }
+}

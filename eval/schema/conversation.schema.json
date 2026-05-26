@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ramco-journey-model/eval/conversation.schema.json",
+  "title": "Conversation eval case",
+  "description": "A single multi-turn conversation between a user and the chatbot, with per-turn expected state assertions and overall terminal-state expectations. This is the ground truth for chatbot evaluation.",
+  "type": "object",
+  "required": ["id", "title", "covers_journeys", "category", "difficulty", "user_persona", "conversation", "evaluation_metrics"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EVAL-[A-Z]+-[0-9]{3,}$",
+      "description": "Unique case ID. Format: EVAL-<CATEGORY>-<NNN>"
+    },
+    "title": {"type": "string", "description": "Short human-readable title"},
+    "covers_journeys": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Journey activity_name values this case exercises (e.g. ['PoCrt'] or ['PoCrt','PoAmnd'])"
+    },
+    "covers_modules": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["PO", "PR", "GR", "PQ", "SIN"]},
+      "description": "Modules the conversation touches. Defaults to ['PO']."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["discovery", "single-journey-happy-path", "single-journey-with-splice", "error-recovery", "cross-journey", "lookup", "cross-module"]
+    },
+    "difficulty": {"type": "string", "enum": ["easy", "medium", "hard"]},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "user_persona": {"type": "string", "description": "One-line description of the user"},
+    "conversation": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["turn", "user", "expected"],
+        "properties": {
+          "turn": {"type": "integer", "minimum": 1},
+          "user": {"type": "string", "description": "What the user types/says"},
+          "expected": {
+            "type": "object",
+            "description": "Per-turn expectations on the bot's internal state and response. Not exact text — semantic assertions.",
+            "properties": {
+              "intent": {"type": "string", "description": "Expected intent label"},
+              "journey_candidates": {"type": "array", "items": {"type": "string"}, "description": "Set of journeys the bot should consider"},
+              "journey_locked": {"type": "string", "description": "If a single journey should be confirmed after this turn"},
+              "journey_switched": {"type": "string", "description": "If the conversation switches to a new journey at this turn"},
+              "slots_extracted": {"type": "object", "description": "Slot name → expected value (or null if just acknowledgement)"},
+              "slots_carried_forward": {"type": "array", "items": {"type": "string"}, "description": "Slots from prior turns that bot must still know"},
+              "splice_triggered": {"type": "string", "description": "Splice id triggered by this turn's input"},
+              "splice_walked": {"type": "array", "items": {"type": "string"}, "description": "Splices completed by this turn"},
+              "additional_required_slots": {"type": "array", "items": {"type": "string"}, "description": "New required slots that came from a splice trigger"},
+              "next_slot_to_ask": {"type": "string"},
+              "next_slot_group": {"type": "string", "enum": ["header", "lines", "terms", "tcd", "schedule", "budget", "quality", "approval", "any"]},
+              "validation_error_detected": {"type": "boolean"},
+              "trans_invoked": {"type": "string", "description": "TRANS task name fired at this turn (e.g. POCRTMAINSBT)"},
+              "sp_chain_invoked": {"type": "array", "items": {"type": "string"}, "description": "Ordered SP call chain expected for this trans"},
+              "bot_must": {"type": "array", "items": {"type": "string"}, "description": "Conditions the bot response must satisfy (semantic, not exact text)"},
+              "bot_must_not": {"type": "array", "items": {"type": "string"}, "description": "Conditions the bot response must NOT satisfy"},
+              "context_carried": {"type": "object", "description": "Cross-turn context (e.g. po_number from earlier turn)"},
+              "cross_module_query": {"type": "string", "description": "If this turn requires querying another module"}
+            }
+          }
+        }
+      }
+    },
+    "expected_terminal_state": {
+      "type": "object",
+      "description": "What must be true at the end of the conversation",
+      "properties": {
+        "journey": {"type": "string"},
+        "commit_task": {"type": ["string", "null"]},
+        "po_status": {"type": "string"},
+        "slots_filled": {"type": "array", "items": {"type": "string"}},
+        "splices_walked": {"type": "array", "items": {"type": "string"}},
+        "next_possible_journeys": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "evaluation_metrics": {
+      "type": "object",
+      "description": "How a pass/fail is judged for this case. Each entry is a metric name → assertion string.",
+      "additionalProperties": {"type": "string"}
+    },
+    "notes": {"type": "string", "description": "Free-form notes for human reviewers"}
+  }
+}

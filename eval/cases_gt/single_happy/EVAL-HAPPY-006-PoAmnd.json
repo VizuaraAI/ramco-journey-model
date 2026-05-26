@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-HAPPY-006",
+  "title": "Buyer amends an authorised PO to change quantity, must re-approve",
+  "covers_journeys": [
+    "PoAmnd"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "user_persona": "Buyer who needs to revise an already-authorised PO",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO-2026-300 is approved but I need to bump line 2 quantity from 50 to 75."
+    },
+    {
+      "turn": 2,
+      "user": "Proceed with the amend."
+    },
+    {
+      "turn": 3,
+      "user": "I have approval rights, do amend and approve in one go."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Authorised",
+    "writes": [
+      {
+        "task": "POAMDMAINTRN5",
+        "activity": "POAMND",
+        "screen": "PoAmndMain",
+        "via_sp_chain": [
+          "poamdmm_sp_aprgrd",
+          "poamdmm_sp_apr_hdrsav",
+          "poamdmm_sp_aprhref",
+          "poamdmm_sp_apr_hdrchk",
+          "poamdmm_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "mbp_milestone_dtl",
+          "not_discit_flag_dtl",
+          "not_discit_msg_dtl",
+          "not_discit_subj_dtl",
+          "not_notes_dtl",
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_potcd_itemtcd_dtl",
+          "po_powh_allocation_dtl",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {
+          "line_no": 2,
+          "quantity": 75
+        },
+        "status_after": "Authorised"
+      }
+    ]
+  }
+}

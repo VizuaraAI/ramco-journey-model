@@ -1,0 +1,78 @@
+{
+  "id": "EVAL-SPLICE-008",
+  "title": "Buyer covers a PR with this PO — UI splice via POCRTMAINLNK9",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO", "PR"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["pr-coverage", "ui-splice", "lnk9", "cross-module-reference"],
+  "user_persona": "Buyer fulfilling a Purchase Request with a direct PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a direct PO for SUP-101 to cover purchase request PR-2026-220.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-101", "pr_coverage_ref": "PR-2026-220"},
+        "splice_triggered": "user_opens_pr_coverage_lnk9",
+        "bot_must": [
+          "lock PoCrt (user said 'direct PO', not 'create from PR')",
+          "plan to use POCRTMAINLNK9 (PR Coverage) sub-screen to link this PO to PR-2026-220",
+          "ask for PO header + lines first, then walk PR Coverage splice"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Use the PR's line items as is. USD, today, buyer BUY-60.",
+      "expected": {
+        "slots_extracted": {"currency": "USD", "po_date": "<today>", "buyer": "BUY-60"},
+        "bot_must": [
+          "fetch PR-2026-220 line items from PR module",
+          "copy lines into PO",
+          "open POCRTMAINLNK9 sub-screen to link PR coverage",
+          "confirm each PO line is covered against a specific PR line"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Yes all PO lines cover the PR 1-to-1.",
+      "expected": {
+        "splice_walked": ["pr_coverage_via_LNK9"],
+        "bot_must": [
+          "save PR coverage mapping",
+          "return to main, ask to commit"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "fire POCRTMAINSBT with PR coverage attached",
+          "report PO created, PR-2026-220 marked as covered by this PO"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "pr_coverage_ref", "currency", "po_date", "buyer", "item_code", "quantity", "cost"],
+    "splices_walked": ["pr_coverage_via_LNK9"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "journey_disambiguation": "must lock PoCrt not PoCrtQtn or PR-based create since user said 'direct PO'",
+    "pr_lines_fetched": "PR module queried for line items",
+    "coverage_mapping": "1-to-1 line coverage explicitly confirmed"
+  }
+}

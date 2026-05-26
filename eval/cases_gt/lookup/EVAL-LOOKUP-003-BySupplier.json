@@ -1,0 +1,40 @@
+{
+  "id": "EVAL-LOOKUP-003",
+  "title": "User asks for all POs for a specific supplier in a date range",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "lookup",
+  "difficulty": "easy",
+  "user_persona": "Buyer doing a supplier spend review",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me all POs for supplier SUP-100 created in Q1 2026."
+    },
+    {
+      "turn": 2,
+      "user": "What's the total spend across those POs?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "lookup",
+    "no_writes_expected": true,
+    "status_after": "<list view>",
+    "reads": [
+      {
+        "task": "POVWENTTRN1",
+        "activity": "POVIW",
+        "filter_slots": {
+          "supplier_code": "SUP-100",
+          "date_from": "2026-01-01",
+          "date_to": "2026-03-31"
+        },
+        "returns_fields": []
+      }
+    ]
+  }
+}

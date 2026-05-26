@@ -1,0 +1,59 @@
+{
+  "id": "EVAL-XJ-006",
+  "title": "Buyer views a partially-received PO and short-closes the rest",
+  "covers_journeys": [
+    "PoViw",
+    "PoScl"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "user_persona": "Buyer cleaning up old open POs at end of quarter",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me open POs older than 90 days with partial receipt."
+    },
+    {
+      "turn": 2,
+      "user": "Take PO-2026-101. Show details."
+    },
+    {
+      "turn": 3,
+      "user": "Line 2 has 30 of 50 received. Short-close the remaining 20."
+    },
+    {
+      "turn": 4,
+      "user": "Confirm short close."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Open or Closed depending on other lines",
+    "writes": [
+      {
+        "task": "POSCLMAINSBT",
+        "activity": "POSCL",
+        "screen": "PoSclMain",
+        "via_sp_chain": [
+          "posclm_sp_scl_docsav",
+          "posc_wf_sp_iscall",
+          "po_dummy_sp",
+          "po_shcl_sp_Return_State_out"
+        ],
+        "tables_required": [
+          "po_posta_status_detail"
+        ],
+        "slot_values_required": {
+          "short_close_qty": 20,
+          "short_close_reason": "remainder closed at user request",
+          "line_no": 2
+        },
+        "status_after": "Open or Closed depending on other lines"
+      }
+    ]
+  }
+}

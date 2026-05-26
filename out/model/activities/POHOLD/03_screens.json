@@ -1,0 +1,1686 @@
+{
+  "activity": "POHOLD",
+  "screen_count": 2,
+  "screens": [
+    {
+      "ilbo_name": "POHOLDENT",
+      "ilbo_desc": "Select Purchase Order",
+      "canonical_services": [],
+      "task_count": 13,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POHLDENTFTH",
+            "description": "Fetch Change Status Entry Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Change Status Entry Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POHLDENTINI",
+            "description": "Initialize Change Status Entry Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Change Status Entry Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POHLDENTTRN1",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POHLDENTTRN1",
+            "js_success_message": "Search Successfully Completed"
+          },
+          {
+            "name": "POHLDENTTRN2",
+            "description": "Change Status",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POHLDENTTRN2",
+            "js_success_message": "Change Status Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POHLDENTLNK1",
+            "description": "Change Status",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDENTLNK1",
+            "js_success_message": "Change Status Successfully Completed"
+          },
+          {
+            "name": "POHLDENTLNK2",
+            "description": "Change Status",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PONOMLT",
+            "js_success_message": "Change Status Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POHLDENTOSTATUSUI",
+            "description": "Load Hidden control with Class code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ORDERSTATUSHDR",
+            "js_success_message": "Load Hidden control with Class code Successfully Completed"
+          },
+          {
+            "name": "POHLDENTPSTATUSUI",
+            "description": "Load Hidden control with Class code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "PAYMENTSTATUS",
+            "js_success_message": "Load Hidden control with Class code Successfully Completed"
+          },
+          {
+            "name": "POHLDENTRCODE1UI",
+            "description": "Get reason code description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Get reason code description on enter Successfully Completed"
+          },
+          {
+            "name": "POHLDENTRCODE2UI",
+            "description": "Get reason code description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Get reason code description on enter Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POHLDENTRCODEHLP1",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          },
+          {
+            "name": "POHLDENTRCODEHLP2",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 20,
+      "slots": [
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001",
+          "field_name": "filler_001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcls_desc_po",
+          "field_name": "dspcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_cs",
+          "field_name": "dspfiller_cs",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_cs_2",
+          "field_name": "dspfiller_cs_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsubcls_desc_po",
+          "field_name": "dspsubcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_003",
+          "field_name": "filler_003",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_003_2",
+          "field_name": "filler_003_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_002",
+          "field_name": "filler_002",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_002_2",
+          "field_name": "filler_002_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode1",
+          "field_name": "hdnclasscode1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode2",
+          "field_name": "hdnclasscode2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsearchcriteria",
+          "field_name": "txtsearchcriteria",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmultilinename",
+          "field_name": "hdnmultilinename",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poholdent_mainscreen_section02",
+          "caption": "Direct Entry",
+          "label": "Collect Direct Entry",
+          "is_grid": false,
+          "slot_count": 1,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poholdent_mainscreen_section04",
+          "caption": "Search Criteria",
+          "label": "Collect Search Criteria",
+          "is_grid": false,
+          "slot_count": 28,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "frmpono",
+              "text": "From PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topono",
+              "text": "To PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "status",
+              "text": "Order Status",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "frmpodate",
+              "text": "From PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topodate",
+              "text": "To PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeallenum",
+              "text": "PO Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromquonum",
+              "text": "From Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "toquonum",
+              "text": "To Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "originhdr",
+              "text": "Origin",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromsonum",
+              "text": "From SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosonum",
+              "text": "To SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valuefromhr",
+              "text": "PO Value From",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valurtohr",
+              "text": "PO Value To",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "addressidhdr",
+              "text": "Address ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcode",
+              "text": "Item Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcode",
+              "text": "Variant Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcodedesc",
+              "text": "Item Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcodedesc",
+              "text": "Variant Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_po",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_desc_po",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_po",
+              "text": "Sub Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_desc_po",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAIN11CLS_POUI",
+          "POMAIN11SUBCLSUI"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    },
+    {
+      "ilbo_name": "POHOLDMAIN",
+      "ilbo_desc": "Change Status - Purchase Order",
+      "canonical_services": [],
+      "task_count": 30,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POHLDMAINFTH",
+            "description": "Fetch Change Status Main Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Change Status Main Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POHLDMAININI",
+            "description": "Initialize Change Status Main Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Change Status Main Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POHLDMAINSBT",
+            "description": "Change Status",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POHLDMAINSBT",
+            "js_success_message": "Change Status Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POHLDMAINBUYLNK",
+            "description": "View Buyer Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "BUYERHDR",
+            "js_success_message": "View Buyer Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINDISPLNK",
+            "description": "View Disposition Review",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINDISPLNK",
+            "js_success_message": "View Disposition Review Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINEADLNK",
+            "description": "View Earliest Available Date Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINEADLNK",
+            "js_success_message": "View Earliest Available Date Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINFSTKLNK",
+            "description": "View Free Stock Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINFSTKLNK",
+            "js_success_message": "View Free Stock Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINITMLNK",
+            "description": "View Item Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "View Item Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK10",
+            "description": "View PO-SO Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK10",
+            "js_success_message": "View PO-SO Coverage Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK11",
+            "description": "View Notes",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK11",
+            "js_success_message": "View Notes Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK12",
+            "description": "PoHldMainlnk12",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "VATCALC",
+            "js_success_message": "PoHldMainlnk12 Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK2",
+            "description": "View Schedule and Distribution",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK2",
+            "js_success_message": "View Schedule and Distribution Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK3",
+            "description": "View Terms and Condition",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK3",
+            "js_success_message": "View Terms and Condition Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK6",
+            "description": "View Quality Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK6",
+            "js_success_message": "View Quality Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK7",
+            "description": "View Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK7",
+            "js_success_message": "View Budget Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK8",
+            "description": "View Dropship Address",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK8",
+            "js_success_message": "View Dropship Address Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINLNK9",
+            "description": "View PO-PR Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINLNK9",
+            "js_success_message": "View PO-PR Coverage Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINQUOTLNK",
+            "description": "View Quotation Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "REFDOCNOML",
+            "js_success_message": "View Quotation Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINSSROULNK",
+            "description": "View Stock Status Review Details-OU Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINSSROULNK",
+            "js_success_message": "View Stock Status Review Details-OU Wise Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINSSRWHLNK",
+            "description": "View Stock Status Review Details-Warehouse Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINSSRWHLNK",
+            "js_success_message": "View Stock Status Review Details-Warehouse Wise Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINSUPPLNK",
+            "description": "View Supplier Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "View Supplier Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINTAXLNK",
+            "description": "View Tax Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POHLDMAINTAXLNK",
+            "js_success_message": "View Tax Details Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINWHLNK",
+            "description": "View Warehouse Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "View Warehouse Details Successfully Completed"
+          },
+          {
+            "name": "POMAIN12COLLABLK",
+            "description": "Link to Collaborate",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "COLLABORATE"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POHLDMAINOSTATUI",
+            "description": "Load Hidden control with Class code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ORDERSTATUSHDR",
+            "js_success_message": "Load Hidden control with Class code Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINRCODE1UI",
+            "description": "Get reason code description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Get reason code description on enter Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINRCODE2UI",
+            "description": "Get reason code description on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Get reason code description on enter Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POHLDMAINRCODEHLP1",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODE",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          },
+          {
+            "name": "POHLDMAINRCODEHLP2",
+            "description": "Help on Reason Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REASONCODEML",
+            "js_success_message": "Help on Reason Code Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 74,
+      "slots": [
+        {
+          "field_id": "filler_007",
+          "field_name": "filler_007",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_007_2",
+          "field_name": "filler_007_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_008",
+          "field_name": "filler_008",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_008_2",
+          "field_name": "filler_008_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtstatus",
+          "field_name": "txtstatus",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcommittee",
+          "field_name": "txtcommittee",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section01",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpono",
+          "field_name": "txtpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtamdmtno",
+          "field_name": "txtamdmtno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrefquotno",
+          "field_name": "txtrefquotno",
+          "btsynonym": "refdocnoml",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "Ref. Quotation No.",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpodate",
+          "field_name": "txtpodate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttype",
+          "field_name": "txttype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtfolder",
+          "field_name": "txtfolder",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliercode",
+          "field_name": "txtsuppliercode",
+          "btsynonym": "supplier_code",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "Supplier Code",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliername",
+          "field_name": "txtsuppliername",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcontactperson",
+          "field_name": "txtcontactperson",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbuyer",
+          "field_name": "txtbuyer",
+          "btsynonym": "buyerhdr",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "Buyer",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtappdate",
+          "field_name": "txtappdate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_c",
+          "field_name": "dspfiller_c",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_c_2",
+          "field_name": "dspfiller_c_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtremarks",
+          "field_name": "txtremarks",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspauthorisationremarkscs",
+          "field_name": "dspauthorisationremarkscs",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtorderdesc",
+          "field_name": "txtorderdesc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpaydesc",
+          "field_name": "txtpaydesc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillercs",
+          "field_name": "dspfillercs",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfil12356",
+          "field_name": "dspfil12356",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfil12356_2",
+          "field_name": "dspfil12356_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller",
+          "field_name": "dspfiller",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_2",
+          "field_name": "dspfiller_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspshipfromidchange",
+          "field_name": "dspshipfromidchange",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_chgpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerg",
+          "field_name": "dspfillerg",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_chgpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerg_2",
+          "field_name": "dspfillerg_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_chgpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerh",
+          "field_name": "dspfillerh",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_chgpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerh_2",
+          "field_name": "dspfillerh_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_chgpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillera",
+          "field_name": "dspfillera",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillera_2",
+          "field_name": "dspfillera_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerb",
+          "field_name": "dspfillerb",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerb_2",
+          "field_name": "dspfillerb_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerc",
+          "field_name": "dspfillerc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerc_2",
+          "field_name": "dspfillerc_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_chgpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcurrency",
+          "field_name": "txtcurrency",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtexchrate",
+          "field_name": "txtexchrate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbasecurvalue",
+          "field_name": "txtbasecurvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrsvalue",
+          "field_name": "txtrsvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtaddlcharge",
+          "field_name": "txtaddlcharge",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttotalvalue",
+          "field_name": "txttotalvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poholdmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_219d11",
+          "field_name": "f_219d11",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_219d11_2",
+          "field_name": "f_219d11_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9d9d13",
+          "field_name": "f_9d9d13",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9d9d13_2",
+          "field_name": "f_9d9d13_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreatedby",
+          "field_name": "txtcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9d1c12",
+          "field_name": "f_9d1c12",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9d1c12_2",
+          "field_name": "f_9d1c12_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreateddate",
+          "field_name": "txtcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtmodifiedby",
+          "field_name": "txtmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_f7ab22",
+          "field_name": "f_f7ab22",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_f7ab22_2",
+          "field_name": "f_f7ab22_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtmodifieddate",
+          "field_name": "txtmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poholdmain_mainscreen_section10",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnamountdetail",
+          "field_name": "hdnamountdetail",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode1",
+          "field_name": "hdnclasscode1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnclasscode2",
+          "field_name": "hdnclasscode2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnlinedetail",
+          "field_name": "hdnlinedetail",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpodetails",
+          "field_name": "hdnpodetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpono",
+          "field_name": "hdnpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspreasonforreturncs",
+          "field_name": "dspreasonforreturncs",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspshipfromid",
+          "field_name": "dspshipfromid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnvatcalc",
+          "field_name": "hdnvatcalc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poholdmain_mainscreen_section02",
+          "caption": "PO Details",
+          "label": "Collect PO Details",
+          "is_grid": false,
+          "slot_count": 20,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentno",
+              "text": "Amendment No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "refdocnoml",
+              "text": "Ref. Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "podate",
+              "text": "PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "bscotype",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "contactperson",
+              "text": "Contact Person",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "approveddate",
+              "text": "Approved Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "remarks",
+              "text": "Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "authorisationremarkscs",
+              "text": "Authorization Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "orderstatushdr",
+              "text": "Change Order Status To",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "reasoncode",
+              "text": "Reason Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "classcodedescfil",
+              "text": "Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "paymentstatus",
+              "text": "Change Payment Status To",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "reasoncodeml",
+              "text": "Reason Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "classcodedesc",
+              "text": "Desc.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poholdmain_mainscreen_section03",
+          "caption": "Amount  Details",
+          "label": "Collect Amount  Details",
+          "is_grid": false,
+          "slot_count": 6,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "exchangerate",
+              "text": "Exchange Rate",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "basecurrvalue",
+              "text": "Base Currency Value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "povalue",
+              "text": "PO Value [Incl. Discounts]",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "additionalcharge",
+              "text": "Additional Charges",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "totalvalue",
+              "text": "Total Value",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "section_id": "poholdmain_mainscreen_section10",
+          "caption": "Data History",
+          "label": "Collect Data History",
+          "is_grid": false,
+          "slot_count": 4,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "createdby",
+              "text": "Created By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "createddate",
+              "text": "Created Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodby",
+              "text": "Last Modified By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodifieddate",
+              "text": "Last Modified Date",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POHLDMAINLNK4"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ]
+}

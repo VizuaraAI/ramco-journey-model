@@ -1,0 +1,99 @@
+{
+  "node_count": 21,
+  "edge_count": 10,
+  "nodes": [
+    "ACKNOWMBP",
+    "CONFIGPO",
+    "LCMAST",
+    "LCVIEW",
+    "POAMND",
+    "POAPP",
+    "POCOPY",
+    "POCRT",
+    "POCRTQTN",
+    "POCRTSO",
+    "POCRTTEN",
+    "POEDT",
+    "POHLP",
+    "POHOLD",
+    "POMTN",
+    "POSCL",
+    "POSER",
+    "POSETSYSPAR",
+    "POVIW",
+    "POVWSYSPAR",
+    "SPECIFYMBP"
+  ],
+  "edges": [
+    {
+      "from_activity": "CONFIGPO",
+      "from_screen": "MAISUPPREQORD",
+      "via_task": "POMAIN32APPROVLK",
+      "to_activity": "POAPP",
+      "label": "Link to Approve PO"
+    },
+    {
+      "from_activity": "CONFIGPO",
+      "from_screen": "MAISUPPREQORD",
+      "via_task": "POMAIN32EDIT_PLK",
+      "to_activity": "POEDT",
+      "label": "Link to Edit PO"
+    },
+    {
+      "from_activity": "POAMND",
+      "from_screen": "POAMNDMAIN",
+      "via_task": "POMAINSRAPPROELK",
+      "to_activity": "POAPP",
+      "label": "Link to Approve PO"
+    },
+    {
+      "from_activity": "POCOPY",
+      "from_screen": "POCRTCOPYPO",
+      "via_task": "POCRTCOPYPOLNK",
+      "to_activity": "POEDT",
+      "label": "Link to Edit PO Page"
+    },
+    {
+      "from_activity": "POCRT",
+      "from_screen": "POCRTMAIN",
+      "via_task": "POCRTMAINEDTMAINLNK",
+      "to_activity": "POEDT",
+      "label": "Edit PO"
+    },
+    {
+      "from_activity": "POCRT",
+      "from_screen": "POCRTMAIN",
+      "via_task": "POMAICREAPPROELK",
+      "to_activity": "POAPP",
+      "label": "Link to Approve PO"
+    },
+    {
+      "from_activity": "POCRTQTN",
+      "from_screen": "POCRTQTNENT",
+      "via_task": "POCRTQTNLNK1",
+      "to_activity": "POEDT",
+      "label": "Edit PO"
+    },
+    {
+      "from_activity": "POCRTSO",
+      "from_screen": "POCRTSOENT",
+      "via_task": "POCRTSOLNK1",
+      "to_activity": "POEDT",
+      "label": "Edit PO"
+    },
+    {
+      "from_activity": "POCRTTEN",
+      "from_screen": "POCRTTENUI",
+      "via_task": "POMAIN40EDITPOLK",
+      "to_activity": "POEDT",
+      "label": "Link to Edit Po"
+    },
+    {
+      "from_activity": "POEDT",
+      "from_screen": "POEDTMAIN",
+      "via_task": "POMAINS9APPROELK",
+      "to_activity": "POAPP",
+      "label": "Link to Approve PO"
+    }
+  ]
+}

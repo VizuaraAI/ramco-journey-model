@@ -1,0 +1,66 @@
+{
+  "id": "EVAL-ERR-001",
+  "title": "User enters a non-existent supplier code, bot recovers with search",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "tags": ["invalid-input", "supplier-not-found", "help-on-supplier"],
+  "user_persona": "Buyer who mistyped or misremembered a supplier code",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for supplier XYZ-NONEXISTENT, USD, today.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "XYZ-NONEXISTENT", "currency": "USD", "po_date": "<today>"},
+        "bot_must": [
+          "attempt supplier validation (uses POCRTMAINSUPPUI or POCRTMAINHLPSUP for help)",
+          "report supplier not found",
+          "offer to search by partial name / show valid suppliers",
+          "NOT proceed to next slot until valid supplier captured"
+        ],
+        "validation_error_detected": true
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Search for suppliers with 'XYZ' in the name.",
+      "expected": {
+        "bot_must": [
+          "invoke the supplier help/search task with partial match 'XYZ'",
+          "return matching candidates",
+          "ask user to pick"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "OK use XYZ-CORP-001.",
+      "expected": {
+        "slots_extracted": {"supplier_code": "XYZ-CORP-001"},
+        "bot_must": [
+          "validate XYZ-CORP-001 exists and is active",
+          "continue header slot collection (still need buyer, numbering_series, lines)"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": null,
+    "po_status": "header in progress",
+    "slots_filled": ["currency", "po_date", "supplier_code"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoCrt"]
+  },
+
+  "evaluation_metrics": {
+    "validation_failure_detected": "bot detects supplier not found at turn 1",
+    "no_premature_progression": "bot does not move past supplier slot until valid",
+    "graceful_recovery": "bot offers help/search, not just error message"
+  }
+}

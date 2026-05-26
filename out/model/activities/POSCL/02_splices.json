@@ -1,0 +1,456 @@
+{
+  "activity": "POSCL",
+  "splice_summary": {
+    "ui_splices": 24,
+    "state_splices": 0,
+    "data_splices": 7,
+    "total": 31
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLENTLNK1",
+        "description": "Shortclose PO",
+        "hook_screen": "POSCLENT",
+        "trigger": "user_clicks_POSCLENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLENTLNK2",
+        "description": "Shortclose PO",
+        "hook_screen": "POSCLENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN14COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN14VWORDELK",
+        "description": "Link to View Mapped LCs",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_VWORDERLC_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINBUYLNK",
+        "description": "View Buyer Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_BUYERHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINDISPLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINDISPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINEADLNK",
+        "description": "View Earliest Available Date Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINEADLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINFSTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINFSTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINITMLNK",
+        "description": "View item details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK11",
+        "description": "View Notes",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK12",
+        "description": "Posclmainlnk12",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_VATCALC",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK2",
+        "description": "View Schedule and Distribution",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK3",
+        "description": "View Terms and Condition",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINQUOTLNK",
+        "description": "View Quotation Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_REFDOCNOML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSSROULNK",
+        "description": "View Stock Status Review Details-OU Wise",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSSRWHLNK",
+        "description": "View Stock Status Review Details-Warehouse Wise",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINTAXLNK",
+        "description": "V iew Tax Details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_POSCLMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POSCLMAINWHLNK",
+        "description": "view warehouse details",
+        "hook_screen": "POSCLMAIN",
+        "trigger": "user_clicks_WAREHOUSE_CODE_MUL",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@prtype <> DP",
+        "trigger": "@prtype <> DP",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2181,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_mod_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2272,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "temp",
+                "po_prupd_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 2146,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_mod_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status = AM",
+        "trigger": "@status = AM",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 844,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2540,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 829,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@groption = Y",
+        "trigger": "@groption = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 898,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [
+                "po_updproposal_tmp"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 885,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_updproposal_tmp"
+              ],
+              "updates": [
+                "po_updproposal_tmp",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@modeflag <> S",
+        "trigger": "@modeflag <> S",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 1626,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potype <> 3",
+        "trigger": "@potype <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 1697,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_del_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 1656,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_disp_del_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service_in = poscle_ser_scl",
+        "trigger": "@ctxt_service_in = poscle_ser_scl",
+        "sp_occurrences": [
+          {
+            "sp": "poscle_sp_sclgrd",
+            "line": 2471,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service_in = posclm_ser_scl",
+        "trigger": "@ctxt_service_in = posclm_ser_scl",
+        "sp_occurrences": [
+          {
+            "sp": "posclm_sp_scl_docsav",
+            "line": 2430,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "posc_ctrlflag_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-ERR-002",
+  "title": "User tries to commit before all required slots are filled \u2014 bot refuses, lists missing",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "user_persona": "Impatient buyer trying to skip slots",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-100. Just do it, figure out the rest."
+    },
+    {
+      "turn": 2,
+      "user": "Fine. Today, USD, buyer BUY-1, numbering PO/STD/2026, item ITM-50 10 units at 30."
+    },
+    {
+      "turn": 3,
+      "user": "Yes create."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-100",
+          "po_date": "<today>",
+          "currency": "USD",
+          "buyer": "BUY-1",
+          "numbering_series": "PO/STD/2026",
+          "item_code": "ITM-50",
+          "quantity": 10,
+          "cost": 30
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "EVAL-XJ-002",
+  "title": "Buyer creates a PO, gets it approved, then amends quantity later — three journeys",
+  "covers_journeys": ["PoCrt", "PoApp", "PoAmnd"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "hard",
+  "tags": ["create-approve-amend", "three-journey-flow", "post-approval-change"],
+  "user_persona": "Buyer who realises mid-way they ordered wrong quantity",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create and approve a PO for SUP-300, USD, today, BUY-5, line ITM-12 100 units at 5. I have approval rights.",
+      "expected": {
+        "journey_locked": "PoCrt",
+        "trans_invoked": "POCRTMAINTRN4",
+        "bot_must": [
+          "fire POCRTMAINTRN4 (Create and Approve) — user has rights and asked for both",
+          "report PO number, status Authorised"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Wait, I need to bump that to 150 units.",
+      "expected": {
+        "journey_switched": "PoAmnd",
+        "context_carried": {"po_number": "<from turn 1>", "line_no": 1},
+        "slots_extracted": {"quantity": 150},
+        "bot_must": [
+          "switch to PoAmnd journey",
+          "fire POAMDENTTRN1 (entry search) with the PO number from turn 1",
+          "load PoAmnd main screen",
+          "apply quantity change",
+          "warn that amend will move status to Draft and need re-approval"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Amend and approve in one shot.",
+      "expected": {
+        "trans_invoked": "POAMDMAINTRN5",
+        "bot_must": [
+          "fire POAMDMAINTRN5 (Amend and Approve PO)",
+          "report status Authorised, amendment number incremented to 1"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoAmnd",
+    "commit_task": "POAMDMAINTRN5",
+    "po_status": "Authorised",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost", "po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "three_distinct_journeys": "PoCrt (with TRN4) → PoAmnd, executing two TRANS commits",
+    "context_persistence": "po_number and line_no carried across journey switches",
+    "amendment_number": "amendment counter incremented"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "activity": "POVIW",
+  "description": "View Purchase Order",
+  "entity_produced": null,
+  "entity_consumed": {
+    "kind": "PurchaseOrder",
+    "id_slot": "po_number"
+  },
+  "role": "consumer"
+}

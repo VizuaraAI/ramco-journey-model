@@ -1,0 +1,480 @@
+{
+  "activity": "POHOLD",
+  "splice_summary": {
+    "ui_splices": 23,
+    "state_splices": 0,
+    "data_splices": 9,
+    "total": 32
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDENTLNK1",
+        "description": "Change Status",
+        "hook_screen": "POHOLDENT",
+        "trigger": "user_clicks_POHLDENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDENTLNK2",
+        "description": "Change Status",
+        "hook_screen": "POHOLDENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINBUYLNK",
+        "description": "View Buyer Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_BUYERHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINDISPLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINDISPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINEADLNK",
+        "description": "View Earliest Available Date Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINEADLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINFSTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINFSTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK11",
+        "description": "View Notes",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK12",
+        "description": "PoHldMainlnk12",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_VATCALC",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK2",
+        "description": "View Schedule and Distribution",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK3",
+        "description": "View Terms and Condition",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINQUOTLNK",
+        "description": "View Quotation Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_REFDOCNOML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINSSROULNK",
+        "description": "View Stock Status Review Details-OU Wise",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINSSRWHLNK",
+        "description": "View Stock Status Review Details-Warehouse Wise",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINSUPPLNK",
+        "description": "View Supplier Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINTAXLNK",
+        "description": "View Tax Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_POHLDMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POHLDMAINWHLNK",
+        "description": "View Warehouse Details",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_WAREHOUSE_CODE_MUL",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN12COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POHOLDMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status_mlt = OPEN",
+        "trigger": "@status_mlt = OPEN",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 495,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_posta_status_detail"
+              ],
+              "updates": [
+                "po_pomas_pur_order_hdr",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status_mlt = AU",
+        "trigger": "@status_mlt = AU",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 496,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_posta_status_detail"
+              ],
+              "updates": [
+                "po_pomas_pur_order_hdr",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status_mlt = HOLD",
+        "trigger": "@status_mlt = HOLD",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 499,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_posta_status_detail"
+              ],
+              "updates": [
+                "po_pomas_pur_order_hdr",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status_mlt = HD",
+        "trigger": "@status_mlt = HD",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 500,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_posta_status_detail"
+              ],
+              "updates": [
+                "po_pomas_pur_order_hdr",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@paymentstatus = HD",
+        "trigger": "@paymentstatus = HD",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 546,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "231"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 576,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_paytm_doclevel_detail",
+                "the"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 354,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "230"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@paymentstatus = RL",
+        "trigger": "@paymentstatus = RL",
+        "sp_occurrences": [
+          {
+            "sp": "pohlden_sp_chnggrd",
+            "line": 579,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_paytm_doclevel_detail",
+                "the"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 386,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_paytm_doclevel_detail",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@orderstatushdr = RL",
+        "trigger": "@orderstatushdr = RL",
+        "sp_occurrences": [
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 295,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_posta_status_detail"
+              ],
+              "updates": [
+                "po_pomas_pur_order_hdr",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@paymentstatus = HOLD",
+        "trigger": "@paymentstatus = HOLD",
+        "sp_occurrences": [
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 353,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "230"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 390,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_paytm_doclevel_detail",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@paymentstatus = RELEASE",
+        "trigger": "@paymentstatus = RELEASE",
+        "sp_occurrences": [
+          {
+            "sp": "pohldmn_sp_chng_docsav",
+            "line": 385,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_paytm_doclevel_detail",
+                "the"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

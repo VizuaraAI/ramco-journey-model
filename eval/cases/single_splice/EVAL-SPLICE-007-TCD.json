@@ -1,0 +1,78 @@
+{
+  "id": "EVAL-SPLICE-007",
+  "title": "Buyer adds Tax/Charge/Discount via TCD sub-screen — UI splice via POCRTMAINLNK4",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["tcd-splice", "ui-splice", "lnk4", "optional", "tax-charge-discount"],
+  "user_persona": "Buyer who needs to apply a freight charge and a volume discount",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Build a PO for SUP-77, USD, buyer BUY-44. Line: ITM-55 100 units at 20. Add a $200 freight charge and a 5% volume discount.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-77",
+          "currency": "USD",
+          "buyer": "BUY-44",
+          "item_code": "ITM-55",
+          "quantity": 100,
+          "cost": 20
+        },
+        "splice_triggered": "user_opens_tcd_lnk4",
+        "bot_must": [
+          "acknowledge header + line + 2 TCD entries to add",
+          "open TCD sub-screen (POCRTMAINLNK4 → PoCrtTcd)",
+          "ask for tcd_type, tcd_value for each (charge = +200, discount = 5% of line)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Confirm both: Freight charge fixed 200 USD. Volume discount 5% of line value.",
+      "expected": {
+        "slots_extracted": {
+          "tcd_details": [
+            {"type": "charge", "name": "freight", "value": 200, "basis": "fixed"},
+            {"type": "discount", "name": "volume", "value": 5, "basis": "percentage_of_line"}
+          ]
+        },
+        "splice_walked": ["tcd_via_LNK4"],
+        "bot_must": [
+          "compute new line totals: line = 100*20 = 2000, +200 charge -100 discount (5% of 2000) = 2100",
+          "save TCD sub-screen and return to main",
+          "ask to commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Yes create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "fire POCRTMAINSBT with TCD attached",
+          "report total: 2100 USD"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "buyer", "item_code", "quantity", "cost", "tcd_details"],
+    "splices_walked": ["tcd_via_LNK4"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "tcd_extraction": "both charge and discount extracted from one sentence with types",
+    "total_computation": "bot computes correct PO total including TCD"
+  }
+}

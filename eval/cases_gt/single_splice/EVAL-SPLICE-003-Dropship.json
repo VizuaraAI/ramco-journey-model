@@ -1,0 +1,69 @@
+{
+  "id": "EVAL-SPLICE-003",
+  "title": "Buyer creates a direct PO with dropship address \u2014 UI splice via POCRTMAINLNK8",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "user_persona": "Buyer arranging delivery directly to a customer site",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a direct PO for SUP-100, USD, buyer BUY-22, but the goods need to ship directly to our customer CUST-99, not to our warehouse."
+    },
+    {
+      "turn": 2,
+      "user": "ITM-400, 20 units at 25."
+    },
+    {
+      "turn": 3,
+      "user": "Use the customer's default address."
+    },
+    {
+      "turn": 4,
+      "user": "Yes create it."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-100",
+          "currency": "USD",
+          "buyer": "BUY-22",
+          "customer_code": "CUST-99",
+          "item_code": "ITM-400",
+          "quantity": 20,
+          "cost": 25,
+          "dropship_id": "<CUST-99 default>"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

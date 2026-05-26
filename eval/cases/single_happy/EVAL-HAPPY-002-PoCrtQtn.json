@@ -1,0 +1,79 @@
+{
+  "id": "EVAL-HAPPY-002",
+  "title": "Buyer converts an approved quotation into a PO",
+  "covers_journeys": ["PoCrtQtn"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "tags": ["create-from-quotation", "entry-screen-search", "two-screen-flow"],
+  "user_persona": "Buyer who has worked with the supplier through a quotation process",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I have an approved quotation QTN-2024-7821 and I want to turn it into a PO.",
+      "expected": {
+        "intent": "create_purchase_order_from_quotation",
+        "journey_locked": "PoCrtQtn",
+        "slots_extracted": {"quotation_no": "QTN-2024-7821"},
+        "bot_must": [
+          "lock PoCrtQtn journey",
+          "fire entry-screen search POCRTQTNTRN1 with quotation_no=QTN-2024-7821",
+          "report search result"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Yes, that's the right quote. Use all the lines from it.",
+      "expected": {
+        "bot_must": [
+          "load main create-from-quotation screen with quotation defaults",
+          "copy quotation header slots (supplier, currency, payment terms) into PO header",
+          "copy quotation lines as PO lines",
+          "ask user to confirm or modify"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Looks good, but change the need date on line 1 to next Monday.",
+      "expected": {
+        "slots_extracted": {"need_date": "<next Monday>", "line_no": 1},
+        "bot_must": [
+          "update line 1 need_date",
+          "confirm change",
+          "ask if user is ready to create"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create the PO.",
+      "expected": {
+        "trans_invoked": "POCRTQTNSUB",
+        "bot_must": [
+          "fire POCRTQTNSUB (Create PO from Quotation submit)",
+          "report new PO number and that it's in Draft",
+          "mention quotation QTN-2024-7821 is now linked as source"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrtQtn",
+    "commit_task": "POCRTQTNSUB",
+    "po_status": "Draft",
+    "slots_filled": ["quotation_no", "supplier_code", "currency", "item_code", "quantity", "cost", "need_date"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt"]
+  },
+
+  "evaluation_metrics": {
+    "entry_search_fired_at_turn_1": "POCRTQTNTRN1 must be the first task invoked",
+    "header_slot_inheritance": "supplier/currency/payment_terms inherited from quotation, not re-asked",
+    "modification_capability": "user must be able to override quotation slot at turn 3",
+    "commit_task_correctness": "POCRTQTNSUB not POCRTMAINSBT — this is from-quotation flow"
+  }
+}

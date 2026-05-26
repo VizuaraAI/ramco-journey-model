@@ -1,0 +1,66 @@
+{
+  "id": "EVAL-XJ-003",
+  "title": "Buyer views a PO, then decides to amend a line",
+  "covers_journeys": ["PoViw", "PoAmnd"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "tags": ["view-then-act", "journey-switch", "read-then-write"],
+  "user_persona": "Buyer reviewing a PO they may need to change",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me PO-2026-440.",
+      "expected": {
+        "intent": "view_purchase_order",
+        "journey_locked": "PoViw",
+        "trans_invoked": "POVWENTTRN1",
+        "slots_extracted": {"po_number": "PO-2026-440"},
+        "bot_must": ["fire POVWENTTRN1", "return PO details"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Line 2 quantity should be 25 not 20. Amend that.",
+      "expected": {
+        "intent": "amend_purchase_order",
+        "journey_switched": "PoAmnd",
+        "context_carried": {"po_number": "PO-2026-440"},
+        "slots_extracted": {"line_no": 2, "quantity": 25},
+        "bot_must": [
+          "switch to PoAmnd",
+          "carry PO number forward, fire POAMDENTTRN1",
+          "apply line 2 quantity change",
+          "ask whether to submit (re-approval) or amend+approve"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Submit for re-approval.",
+      "expected": {
+        "trans_invoked": "POAMDMAINSBT",
+        "bot_must": [
+          "fire POAMDMAINSBT (not TRN5)",
+          "status Draft pending approval",
+          "note PoApp is the next step"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoAmnd",
+    "commit_task": "POAMDMAINSBT",
+    "po_status": "Draft (pending re-approval)",
+    "slots_filled": ["po_number", "line_no", "quantity"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "view_then_act_pattern": "PoViw → PoAmnd switch with context carry",
+    "commit_choice": "POAMDMAINSBT not TRN5 (user said submit, not amend+approve)"
+  }
+}

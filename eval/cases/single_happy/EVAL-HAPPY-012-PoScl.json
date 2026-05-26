@@ -1,0 +1,61 @@
+{
+  "id": "EVAL-HAPPY-012",
+  "title": "Buyer short-closes a PO line because supplier can't deliver the rest",
+  "covers_journeys": ["PoScl"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "tags": ["short-close", "partial-delivery"],
+  "user_persona": "Buyer closing out a line that won't be fully delivered",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "On PO-2026-805, line 3 we ordered 100 units but supplier can only deliver the 60 already received. Short-close the rest.",
+      "expected": {
+        "intent": "short_close_po_line",
+        "journey_locked": "PoScl",
+        "slots_extracted": {
+          "po_number": "PO-2026-805",
+          "line_no": 3,
+          "ordered_qty": 100,
+          "received_qty": 60,
+          "short_close_reason": "supplier cannot deliver remaining"
+        },
+        "bot_must": [
+          "lock PoScl journey",
+          "fire POSCLENTTRN1 (Search) with po_number=PO-2026-805",
+          "confirm line 3 status: 60 received of 100 ordered",
+          "explain short-close will close the remaining 40, marking line as fully closed"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Yes, close the remaining 40.",
+      "expected": {
+        "trans_invoked": "POSCLMAINSBT",
+        "bot_must": [
+          "fire POSCLMAINSBT (Shortclose PO)",
+          "report line 3 closed",
+          "if all other lines also fully delivered/closed: report PO status now Closed; otherwise: PO status remains Open"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoScl",
+    "commit_task": "POSCLMAINSBT",
+    "po_status": "Open or Closed depending on other lines",
+    "slots_filled": ["po_number", "line_no", "short_close_reason"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "ordered_vs_received_recognised": "bot extracts both quantities",
+    "consequence_explained": "bot says what short-close does",
+    "po_status_implication": "bot reports whether full PO closure follows"
+  }
+}

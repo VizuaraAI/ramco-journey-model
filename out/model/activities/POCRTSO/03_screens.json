@@ -1,0 +1,545 @@
+{
+  "activity": "POCRTSO",
+  "screen_count": 1,
+  "screens": [
+    {
+      "ilbo_name": "POCRTSOENT",
+      "ilbo_desc": "Create Purchase Order From Sale Order",
+      "canonical_services": [],
+      "task_count": 18,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POCRTSOFTH",
+            "description": "Fetch Create Purchase Order from Sale Order page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Create Purchase Order from Sale Order page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POCRTSOINI",
+            "description": "Initialize Create Purchase Order from Sale Order page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Create Purchase Order from Sale Order page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POCRTSOSUB",
+            "description": "Create PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POCRTSOSUB",
+            "js_success_message": "Create PO Successfully Completed"
+          },
+          {
+            "name": "POCRTSOTRN1",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POCRTSOTRN1",
+            "js_success_message": "Search Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POCRTSOBUYLNK",
+            "description": "View Buyer Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOBUYLNK",
+            "js_success_message": "View Buyer Details Successfully Completed"
+          },
+          {
+            "name": "POCRTSODISPLNK",
+            "description": "View Disposition Review",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSODISPLNK",
+            "js_success_message": "View Disposition Review Successfully Completed"
+          },
+          {
+            "name": "POCRTSOEADLNK",
+            "description": "View Earliest Available Date",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOEADLNK",
+            "js_success_message": "View Earliest Available Date Successfully Completed"
+          },
+          {
+            "name": "POCRTSOFSTKLNK",
+            "description": "View Free Stock Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOFSTKLNK",
+            "js_success_message": "View Free Stock Details Successfully Completed"
+          },
+          {
+            "name": "POCRTSOITMLNK",
+            "description": "View Item Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "View Item Details Successfully Completed"
+          },
+          {
+            "name": "POCRTSOLNK1",
+            "description": "Edit PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOLNK1",
+            "js_success_message": "Edit PO Successfully Completed"
+          },
+          {
+            "name": "POCRTSOSOLNK",
+            "description": "View SO Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SONO",
+            "js_success_message": "View SO Details Successfully Completed"
+          },
+          {
+            "name": "POCRTSOSSROULNK",
+            "description": "View Stock Status Review - OU Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOSSROULNK",
+            "js_success_message": "View Stock Status Review - OU Wise Successfully Completed"
+          },
+          {
+            "name": "POCRTSOSSRWHLNK",
+            "description": "View Stock Status Review - Warehouse Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POCRTSOSSRWHLNK",
+            "js_success_message": "View Stock Status Review - Warehouse Wise Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POMAINS7SUPPLIUI",
+            "description": "On Enter of Supplier Code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "On Enter of Supplier Code Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POCRTSODRPHLP",
+            "description": "Help on Dropship Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "DROPSHIPIDMULT",
+            "js_success_message": "Help on Dropship Id Successfully Completed"
+          },
+          {
+            "name": "POCRTSOHLPSUP",
+            "description": "Help on Supplier",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "Help on Supplier Successfully Completed"
+          },
+          {
+            "name": "POCRTSOUOMHLP",
+            "description": "Help on UOM",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "PO_PUOM",
+            "js_success_message": "Help on UOM Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 25,
+      "slots": [
+        {
+          "field_id": "dspfe",
+          "field_name": "dspfe",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspff",
+          "field_name": "dspff",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfg",
+          "field_name": "dspfg",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfh",
+          "field_name": "dspfh",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtamdmtno",
+          "field_name": "txtamdmtno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "pocrtsoent_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfr",
+          "field_name": "dspfr",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliername",
+          "field_name": "txtsuppliername",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspft",
+          "field_name": "dspft",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfy",
+          "field_name": "dspfy",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_ed4911",
+          "field_name": "f_ed4911",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_ed4911_2",
+          "field_name": "f_ed4911_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_502a13",
+          "field_name": "f_502a13",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_502a13_2",
+          "field_name": "f_502a13_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "pocrtsoent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_csou_dim",
+          "field_name": "hdnhdn_csou_dim",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_tranou_dim",
+          "field_name": "hdnhdn_tranou_dim",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdn_trantype_dim",
+          "field_name": "hdnhdn_trantype_dim",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpodetail",
+          "field_name": "hdnpodetail",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsearchcriteria2",
+          "field_name": "txtsearchcriteria2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmultilinename",
+          "field_name": "hdnmultilinename",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "pocrtsoent_mainscreen_section03",
+          "caption": "Search Criteria",
+          "label": "Collect Search Criteria",
+          "is_grid": false,
+          "slot_count": 11,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "frmsono",
+              "text": "From SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosono",
+              "text": "To SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "sa_type",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "frmsodate",
+              "text": "From SO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosodate",
+              "text": "To SO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folderhdr",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "item_code",
+              "text": "Item Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "customercode",
+              "text": "Customer Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cobishiptoname",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "dropshipid",
+              "text": "Drop Ship ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "processingactionsc",
+              "text": "Processing Action",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "pocrtsoent_mainscreen_section03_1",
+          "caption": "PO Details",
+          "label": "Collect PO Details",
+          "is_grid": false,
+          "slot_count": 9,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentno",
+              "text": "Amendment No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "num_series",
+              "text": "Numbering Series",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "podate",
+              "text": "PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeenum",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAINS7SPECIFLK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ]
+}

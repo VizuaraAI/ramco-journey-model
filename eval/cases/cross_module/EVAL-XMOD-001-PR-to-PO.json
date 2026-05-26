@@ -1,0 +1,87 @@
+{
+  "id": "EVAL-XMOD-001",
+  "title": "User starts in PR module, asks to convert to PO — bot navigates module boundary",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PR", "PO"],
+  "category": "cross-module",
+  "difficulty": "medium",
+  "tags": ["pr-to-po-conversion", "module-boundary", "pr-coverage"],
+  "user_persona": "Buyer who has an approved PR and wants to fulfil it via PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I have approved purchase request PR-2026-1100. Convert it to a PO with supplier SUP-100.",
+      "expected": {
+        "intent": "convert_pr_to_po",
+        "journey_locked": "PoCrt",
+        "covers_modules_acknowledged": ["PR", "PO"],
+        "slots_extracted": {"pr_number": "PR-2026-1100", "supplier_code": "SUP-100"},
+        "cross_module_query": "fetch PR-2026-1100 from PR module",
+        "bot_must": [
+          "fetch PR header + lines from PR module (cross-module read)",
+          "validate PR status = Approved (cannot convert if not approved)",
+          "lock PoCrt journey for the PO side",
+          "plan to walk PR Coverage splice (POCRTMAINLNK9) after capturing PO header"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Use the PR's currency and buyer. Today's date.",
+      "expected": {
+        "slots_extracted": {
+          "currency": "<from PR>",
+          "buyer": "<from PR>",
+          "po_date": "<today>"
+        },
+        "bot_must": [
+          "inherit currency and buyer from PR",
+          "ask for numbering_series and any PO-specific fields not in PR",
+          "copy PR lines as PO lines"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Numbering PO/STD/2026. All PR lines map 1-to-1 to PO lines.",
+      "expected": {
+        "slots_extracted": {"numbering_series": "PO/STD/2026"},
+        "bot_must": [
+          "open PR Coverage sub-screen (POCRTMAINLNK9)",
+          "create 1-to-1 PR line → PO line coverage mapping",
+          "save coverage and return to main"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create the PO.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "splice_walked": ["pr_coverage_via_LNK9"],
+        "bot_must": [
+          "fire POCRTMAINSBT with PR coverage attached",
+          "PR-2026-1100 status updated in PR module to 'Covered by PO' (cross-module write — via SP or callback)",
+          "report PO number and confirm PR is now covered"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["pr_number", "supplier_code", "currency", "buyer", "po_date", "numbering_series", "item_code", "quantity", "cost"],
+    "splices_walked": ["pr_coverage_via_LNK9"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "cross_module_read": "PR fetched from PR module",
+    "pr_status_validated": "PR must be Approved before allowing conversion",
+    "cross_module_write": "PR status updated post-PO-creation",
+    "coverage_mapping_persisted": "PR coverage mapping saved via POCRTMAINLNK9"
+  }
+}

@@ -1,0 +1,865 @@
+{
+  "activity": "CONFIGPO",
+  "description": "Config_Purchase_Order",
+  "is_user_facing": false,
+  "screen_count": 1,
+  "main_screen": "CONFIGPOMAIN",
+  "canonical_spine": [],
+  "splice_summary": {
+    "ui_splices": 8,
+    "state_splices": 0,
+    "data_splices": 0,
+    "total": 8
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32APPROELK",
+        "description": "Link to Approve PR",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_APPROVE_PR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32APPROVLK",
+        "description": "Link to Approve PO",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_APPROVEPO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32ATTACHLK",
+        "description": "Link to Attach Notes",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_ATTACHNOTES",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32ATTACNLK",
+        "description": "Link to Attach Notes1",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_ATTACHNOTES1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32EDIT_PLK",
+        "description": "Link to Edit PO",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_EDIT_PO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32EDIT_RLK",
+        "description": "Link to Edit PR",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_EDIT_PR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32POLINKLK",
+        "description": "Link to POLink",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_POLINK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN32PRNOLILK",
+        "description": "Link to PRNOlink",
+        "hook_screen": "MAISUPPREQORD",
+        "trigger": "user_clicks_PRNOLINK",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": []
+  },
+  "screens": [
+    {
+      "ilbo_name": "MAISUPPREQORD",
+      "ilbo_desc": "Maintain Supply Order",
+      "canonical_services": [],
+      "task_count": 52,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN32FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Default Fetch  Successfully completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POMAIN32INIT",
+            "description": "Initialize",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize  Successfully completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POMAIN32AUTHORTR",
+            "description": "Authorise PO",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "AUTHORISEPO",
+            "js_success_message": "Authorise PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32CREATETR",
+            "description": "Create Purchase Order",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "CREATE_PO",
+            "js_success_message": "Create PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32CREATPTR",
+            "description": "Create Purchase Request",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "CREATEPR",
+            "js_success_message": "Create PR  Successfully completed"
+          },
+          {
+            "name": "POMAIN32DELETETR",
+            "description": "Delete PO",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "DELETEPO",
+            "js_success_message": "Delete PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32MAINTATR",
+            "description": "Maintain PO",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "MAINTAINPO",
+            "js_success_message": "Maintain PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRINTOTR",
+            "description": "Print",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "PRINTPO1",
+            "js_success_message": "Print PO1  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRINTPTR",
+            "description": "Print PO",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "PRINTPO",
+            "js_success_message": "Print PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRINTRTR",
+            "description": "Print",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "PRINTPR",
+            "js_success_message": "Print PR  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SAVE11TR",
+            "description": "Save",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "SAVE1",
+            "js_success_message": "Save1  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SAVE1TR",
+            "description": "Save",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "SAVE",
+            "js_success_message": "Save  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SAVE21TR",
+            "description": "Save",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "SAVE2",
+            "js_success_message": "Save2  Successfully completed"
+          },
+          {
+            "name": "POMAIN32TRANSFTR",
+            "description": "Transfer",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "TRANSFER",
+            "js_success_message": "Transfer  Successfully completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POMAIN32APPROELK",
+            "description": "Link to Approve PR",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "APPROVE_PR",
+            "js_success_message": "Link to Approve PR  Successfully completed"
+          },
+          {
+            "name": "POMAIN32APPROVLK",
+            "description": "Link to Approve PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "APPROVEPO",
+            "js_success_message": "Link to Approve PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32ATTACHLK",
+            "description": "Link to Attach Notes",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "ATTACHNOTES",
+            "js_success_message": "Link to Attach Notes  Successfully completed"
+          },
+          {
+            "name": "POMAIN32ATTACNLK",
+            "description": "Link to Attach Notes1",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "ATTACHNOTES1",
+            "js_success_message": "Link to Attach Notes1  Successfully completed"
+          },
+          {
+            "name": "POMAIN32EDIT_PLK",
+            "description": "Link to Edit PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDIT_PO",
+            "js_success_message": "Link to Edit PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32EDIT_RLK",
+            "description": "Link to Edit PR",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDIT_PR",
+            "js_success_message": "Link to Edit PR  Successfully completed"
+          },
+          {
+            "name": "POMAIN32POLINKLK",
+            "description": "Link to POLink",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POLINK",
+            "js_success_message": "Link to POLink  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRNOLILK",
+            "description": "Link to PRNOlink",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PRNOLINK",
+            "js_success_message": "Link to PRNOlink  Successfully completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POMAIN32AC_USAUI",
+            "description": "On Select of AC Usage",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "AC_USAGE",
+            "js_success_message": "On Select of AC Usage  Successfully completed"
+          },
+          {
+            "name": "POMAIN32BASEIEUI",
+            "description": "On Enter of Base Item Code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "BASEITEMCODE",
+            "js_success_message": "On Enter of Base Item Code  Successfully completed"
+          },
+          {
+            "name": "POMAIN32CC_USAUI",
+            "description": "On Select of CC Usage",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "CC_USAGE",
+            "js_success_message": "On Select of CC Usage  Successfully completed"
+          },
+          {
+            "name": "POMAIN32COPY_PUI",
+            "description": "On Enter of Copy PO",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "COPY_PO",
+            "js_success_message": "On Enter of Copy PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32EXCHAGUI",
+            "description": "On Enter of Exchange Rate2",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "EXCHANGERATE2",
+            "js_success_message": "On Enter of Exchange Rate2  Successfully completed"
+          },
+          {
+            "name": "POMAIN32FINANCUI",
+            "description": "On Select of Finance Book",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "FINANCEBOOK",
+            "js_success_message": "On Select of Finance Book  Successfully completed"
+          },
+          {
+            "name": "POMAIN32LINENOUI",
+            "description": "On Enter of Line No.",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "LINENO"
+          },
+          {
+            "name": "POMAIN32MODE1UI",
+            "description": "On Select of Mode",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "MODE",
+            "js_success_message": "On Select of Mode  Successfully completed"
+          },
+          {
+            "name": "POMAIN32NEEDDAUI",
+            "description": "On Enter of Need Date",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "NEEDDATE"
+          },
+          {
+            "name": "POMAIN32PAYTERUI",
+            "description": "On Enter of Pay Term",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "PAYTERM",
+            "js_success_message": "On Enter of Pay Term  Successfully completed"
+          },
+          {
+            "name": "POMAIN32POPRINUI",
+            "description": "On Select of POPrint Langua",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "POPRINTLANGUA",
+            "js_success_message": "On Select of POPrint Langua  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRINTAUI",
+            "description": "On Select of Print Language PR",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "PRINTLANGUAGEPR",
+            "js_success_message": "On Select of Print Language PR  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PRINTLUI",
+            "description": "On Select of Print Languag",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "PRINTLANGUAG",
+            "js_success_message": "On Select of Print Languag  Successfully completed"
+          },
+          {
+            "name": "POMAIN32QUOTNOUI",
+            "description": "On Enter of Quot No",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "QUOTNO",
+            "js_success_message": "On Enter of Quot No  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SUPPLIUI",
+            "description": "On Enter of Supplier Code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "SUPPLIERCODE1",
+            "js_success_message": "On Enter of Supplier Code  Successfully completed"
+          },
+          {
+            "name": "POMAIN32TRANSAUI",
+            "description": "On Enter of TransactionNo",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "TRANSACTIONNO",
+            "js_success_message": "On Enter of TransactionNo  Successfully completed"
+          },
+          {
+            "name": "POMAIN32WAREHOUI",
+            "description": "On Enter of warehouse",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "WAREHOUSE",
+            "js_success_message": "On Enter of warehouse  Successfully completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POMAIN32ANALYIHP",
+            "description": "Help on Analysis Code4",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "ANALYSISCODE4",
+            "js_success_message": "Help on Analysis Code4  Successfully completed"
+          },
+          {
+            "name": "POMAIN32BASEIEHP",
+            "description": "Help on Base Item Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "BASEITEMCODE",
+            "js_success_message": "Help on Base Item Code  Successfully completed"
+          },
+          {
+            "name": "POMAIN32COPY_PHP",
+            "description": "Help on Copy PO",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "COPY_PO",
+            "js_success_message": "Help on Copy PO  Successfully completed"
+          },
+          {
+            "name": "POMAIN32PAYTERHP",
+            "description": "Help on Pay Term",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "PAYTERM",
+            "js_success_message": "Help on Pay Term  Successfully completed"
+          },
+          {
+            "name": "POMAIN32QUOTNOHP",
+            "description": "Help on Quot No",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "QUOTNO",
+            "js_success_message": "Help on Quot No  Successfully completed"
+          },
+          {
+            "name": "POMAIN32RECEIVHP",
+            "description": "Help on Receiving WH4",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "RECEIVING_WH4",
+            "js_success_message": "Help on Receiving WH4  Successfully completed"
+          },
+          {
+            "name": "POMAIN32REQUESHP",
+            "description": "Help on Requester ID",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "REQUESTER_ID",
+            "js_success_message": "Help on Requester ID  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SUBANLHP",
+            "description": "Help on Sub Analysis Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "SUBANALYSISCODE4",
+            "js_success_message": "Help on Sub Analysis Code  Successfully completed"
+          },
+          {
+            "name": "POMAIN32SUPPLIHP",
+            "description": "Help on Supplier Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "SUPPLIERCODE1",
+            "js_success_message": "Help on Supplier Code  Successfully completed"
+          },
+          {
+            "name": "POMAIN32TRANSAHP",
+            "description": "Help on TransactionNo",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "TRANSACTIONNO",
+            "js_success_message": "Help on TransactionNo  Successfully completed"
+          },
+          {
+            "name": "POMAIN32UOM21HP",
+            "description": "Help on UOM",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "UOM2",
+            "js_success_message": "Help on UOM  Successfully completed"
+          },
+          {
+            "name": "POMAIN32WAREHOHP",
+            "description": "Help on warehouse",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "WAREHOUSE",
+            "js_success_message": "Help on warehouse  Successfully completed"
+          }
+        ]
+      },
+      "slot_count": 28,
+      "slots": [
+        {
+          "field_id": "dspstatus1",
+          "field_name": "dspstatus1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "refdocsect",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller003",
+          "field_name": "dspfiller003",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section005",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller003_2",
+          "field_name": "dspfiller003_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section005",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspbaseitem",
+          "field_name": "dspbaseitem",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section006",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspdescription",
+          "field_name": "dspdescription",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section006",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspuom5",
+          "field_name": "dspuom5",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section006",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspvalue",
+          "field_name": "dspvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section006",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller007",
+          "field_name": "dspfiller007",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section007",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller007_2",
+          "field_name": "dspfiller007_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section007",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "polink",
+          "field_name": "polink",
+          "btsynonym": "polink",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "section009",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcreatedby",
+          "field_name": "dspcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller015",
+          "field_name": "dspfiller015",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller015_2",
+          "field_name": "dspfiller015_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcreateddate",
+          "field_name": "dspcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspmodifiedby",
+          "field_name": "dspmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller016",
+          "field_name": "dspfiller016",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller016_2",
+          "field_name": "dspfiller016_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspmodifieddate",
+          "field_name": "dspmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "datahistory",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdncsouinstance",
+          "field_name": "hdncsouinstance",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "prnolink",
+          "field_name": "prnolink",
+          "btsynonym": "prnolink",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspstatus",
+          "field_name": "dspstatus",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "section003",
+          "caption": "Default Values for Document",
+          "label": "Collect Default Values for Document",
+          "is_grid": false,
+          "slot_count": 3,
+          "mandatory_count": 3,
+          "slot_labels": [
+            {
+              "btsynonym": "type1",
+              "text": "Type",
+              "mandatory": true
+            },
+            {
+              "btsynonym": "suppliercode1",
+              "text": "Supplier Code",
+              "mandatory": true
+            },
+            {
+              "btsynonym": "payterm",
+              "text": "Pay Term",
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "section007",
+          "caption": "Default values for line",
+          "label": "Collect Default values for line",
+          "is_grid": false,
+          "slot_count": 5,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "needdate",
+              "text": "Need Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehouse",
+              "text": "Warehouse",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "financebook",
+              "text": "Finance Book",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ac_usage",
+              "text": "AC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cc_usage",
+              "text": "CC Usage",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {},
+  "sp_chains_summary": {}
+}

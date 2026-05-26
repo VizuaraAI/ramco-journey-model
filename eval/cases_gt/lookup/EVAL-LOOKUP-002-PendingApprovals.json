@@ -1,0 +1,55 @@
+{
+  "id": "EVAL-LOOKUP-002",
+  "title": "Approver asks for all POs pending their approval",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "lookup",
+  "difficulty": "medium",
+  "user_persona": "Department head reviewing their approval queue",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me all POs pending my approval."
+    },
+    {
+      "turn": 2,
+      "user": "Sort by value descending."
+    },
+    {
+      "turn": 3,
+      "user": "Approve PO-2026-700 from that list."
+    },
+    {
+      "turn": 4,
+      "user": "Approve."
+    }
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Authorised",
+    "writes": [
+      {
+        "task": "POAPPMAINSBT",
+        "activity": "",
+        "screen": "",
+        "via_sp_chain": [],
+        "tables_required": [],
+        "slot_values_required": {},
+        "status_after": "Authorised"
+      }
+    ],
+    "reads": [
+      {
+        "task": "POAPPENTTRN1",
+        "activity": "",
+        "filter_slots": {},
+        "returns_fields": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "activity": "POCRTTEN",
+  "sp_chains": {
+    "PoCrtTenUi.pomain40ComputTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComput_HdrChk",
+        "method_name": "pomain40_MComput_HdrChk",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputLineDe",
+        "method_name": "pomain40_MComputLineDe",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComput_HdrSav",
+        "method_name": "pomain40_MComput_HdrSav",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputhlp",
+        "method_name": "pomain40_MComputhlp",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spComputLineDe_out",
+        "method_name": "pomain40_MComputLineDe_Out_",
+        "service_name": "pomain40_serComput",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40CreateTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreatehlp",
+        "method_name": "pomain40_MCreatehlp",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreate_HdrChk",
+        "method_name": "pomain40_MCreate_HdrChk",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreateLineDe",
+        "method_name": "pomain40_MCreateLineDe",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreate_HdrSav",
+        "method_name": "pomain40_MCreate_HdrSav",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spCreateLineDe_out",
+        "method_name": "pomain40_MCreateLineDe_Out_",
+        "service_name": "pomain40_serCreate",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40Init": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spinitContrt",
+        "method_name": "pomain40_MinitContrt",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain40_spinitNumber",
+        "method_name": "pomain40_MinitNumber",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "pomain40_spinitPOType",
+        "method_name": "pomain40_MinitPOType",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "pomain40_spinitTender",
+        "method_name": "pomain40_MinitTender",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "pomain40_spinitACusag",
+        "method_name": "pomain40_MinitACusag",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "pomain40_spinitAdhocl",
+        "method_name": "pomain40_MinitAdhocl",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "pomain40_spinitCCusag",
+        "method_name": "pomain40_MinitCCusag",
+        "service_name": "pomain40_serinit",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40Fth": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spfet_hfet",
+        "method_name": "pomain40_Mfet_hfet",
+        "service_name": "pomain40_serfet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain40_spfetLineDe",
+        "method_name": "pomain40_MfetLineDe",
+        "service_name": "pomain40_serfet",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtTenUi.pomain40SearchTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spSearchLineDe_out",
+        "method_name": "pomain40_MSearchLineDe_Out_",
+        "service_name": "pomain40_serSearch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain40_spSearchhlp",
+        "method_name": "pomain40_MSearchhlp",
+        "service_name": "pomain40_serSearch",
+        "lvl": "0"
+      }
+    ]
+  },
+  "summary": {
+    "screens": [
+      "PoCrtTenUi"
+    ],
+    "tasks": [
+      "pomain40ComputTr",
+      "pomain40CreateTr",
+      "pomain40Fth",
+      "pomain40Init",
+      "pomain40SearchTr"
+    ],
+    "sp_count": 21,
+    "method_count": 21,
+    "task_count": 5
+  }
+}

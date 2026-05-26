@@ -1,0 +1,47 @@
+{
+  "id": "EVAL-XMOD-002",
+  "title": "Buyer asks about the goods receipt status for a PO \u2014 PO module queries GR module",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO",
+    "GR"
+  ],
+  "category": "cross-module",
+  "difficulty": "medium",
+  "user_persona": "Buyer checking on goods receipt against an approved PO",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Has the goods receipt been done for PO-2026-1200?"
+    },
+    {
+      "turn": 2,
+      "user": "Which lines are still pending receipt?"
+    },
+    {
+      "turn": 3,
+      "user": "Show me the GR documents themselves."
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<inspected; cross-module data also pulled>",
+    "cross_module_writes": [
+      {
+        "module": "GR",
+        "effect": "fetch GR records for po_number=PO-2026-1200"
+      },
+      {
+        "module": "GR",
+        "effect": "list GR documents linked to PO-2026-1200"
+      }
+    ],
+    "must_enumerate_information": [
+      "list lines with received < ordered (or zero received)",
+      "list GR numbers with date, warehouse, line summary"
+    ]
+  }
+}

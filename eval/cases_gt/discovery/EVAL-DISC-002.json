@@ -1,0 +1,43 @@
+{
+  "id": "EVAL-DISC-002",
+  "title": "User asks how to create a purchase order \u2014 must disambiguate which kind",
+  "covers_journeys": [],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "discovery",
+  "difficulty": "easy",
+  "user_persona": "A buyer who knows they want to create something but doesn't know which create journey",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "How do I create a purchase order?"
+    },
+    {
+      "turn": 2,
+      "user": "I have a quote from a supplier already, I want to convert that"
+    },
+    {
+      "turn": 3,
+      "user": "Quote number is QTN-2024-7821"
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "search complete, main not yet entered",
+    "writes": [
+      {
+        "task": "POCRTQTNTRN1",
+        "activity": "",
+        "screen": "",
+        "via_sp_chain": [],
+        "tables_required": [],
+        "slot_values_required": {
+          "quotation_no": "QTN-2024-7821"
+        },
+        "status_after": "search complete, main not yet entered"
+      }
+    ]
+  }
+}

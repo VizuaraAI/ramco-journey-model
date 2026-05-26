@@ -1,0 +1,69 @@
+{
+  "id": "EVAL-HAPPY-002",
+  "title": "Buyer converts an approved quotation into a PO",
+  "covers_journeys": [
+    "PoCrtQtn"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "user_persona": "Buyer who has worked with the supplier through a quotation process",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I have an approved quotation QTN-2024-7821 and I want to turn it into a PO."
+    },
+    {
+      "turn": 2,
+      "user": "Yes, that's the right quote. Use all the lines from it."
+    },
+    {
+      "turn": 3,
+      "user": "Looks good, but change the need date on line 1 to next Monday."
+    },
+    {
+      "turn": 4,
+      "user": "Create the PO."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTQTNSUB",
+        "activity": "POCRTQTN",
+        "screen": "PoCrtQtnEnt",
+        "via_sp_chain": [
+          "pocrqn_sp_qnpo_hdrchk",
+          "pocrqn_sp_qnpo_hdrsav",
+          "pocrqn_sp_qnpogrd",
+          "pocrqn_sp_qnpogrd_out"
+        ],
+        "tables_required": [
+          "not_notes_attachdoc",
+          "not_notes_dtl",
+          "not_notes_hdr",
+          "po_paytm_linelevel_detail",
+          "po_podoc_otherdoctcd_dtl",
+          "po_pomas_pur_order_hdr",
+          "po_potcd_doclevel_detail"
+        ],
+        "slot_values_required": {
+          "quotation_no": "QTN-2024-7821",
+          "need_date": "<next Monday>",
+          "line_no": 1,
+          "supplier_code": "ANY",
+          "currency": "ANY",
+          "item_code": "ANY",
+          "quantity": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

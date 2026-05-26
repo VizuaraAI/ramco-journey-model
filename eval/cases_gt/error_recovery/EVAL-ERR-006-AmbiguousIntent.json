@@ -1,0 +1,31 @@
+{
+  "id": "EVAL-ERR-006",
+  "title": "User request is ambiguous between PR and PO \u2014 bot asks before acting",
+  "covers_journeys": [],
+  "covers_modules": [
+    "PO",
+    "PR"
+  ],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "user_persona": "User who uses 'order' loosely",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to place an order for SUP-100."
+    },
+    {
+      "turn": 2,
+      "user": "Just a PO, I have authority to commit."
+    },
+    {
+      "turn": 3,
+      "user": "Direct one."
+    }
+  ],
+  "ground_truth": {
+    "kind": "error_no_commit",
+    "no_writes_expected": true,
+    "status_after": "header collection started"
+  }
+}

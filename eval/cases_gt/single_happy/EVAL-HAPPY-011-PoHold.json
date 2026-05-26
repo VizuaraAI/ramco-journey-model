@@ -1,0 +1,47 @@
+{
+  "id": "EVAL-HAPPY-011",
+  "title": "Buyer puts a PO on hold due to a supplier dispute",
+  "covers_journeys": [
+    "PoHold"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "user_persona": "Buyer pausing a PO while a dispute is resolved",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Put PO-2026-702 on hold \u2014 there's a quality issue we need to investigate."
+    },
+    {
+      "turn": 2,
+      "user": "Confirm hold."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Hold",
+    "writes": [
+      {
+        "task": "POHLDMAINSBT",
+        "activity": "POHOLD",
+        "screen": "PoHoldMain",
+        "via_sp_chain": [
+          "pohldmn_sp_chng_docsav"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail",
+          "po_pomas_pur_order_hdr",
+          "po_posta_status_detail"
+        ],
+        "slot_values_required": {
+          "hold_reason": "quality issue under investigation"
+        },
+        "status_after": "Hold"
+      }
+    ]
+  }
+}

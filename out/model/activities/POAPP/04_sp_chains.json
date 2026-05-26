@@ -1,0 +1,977 @@
+{
+  "activity": "POAPP",
+  "sp_chains": {
+    "PoAppMain.PoAppMainAnalHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainanalhlp_sp",
+        "method_name": "poappmainanalhlp_Met",
+        "service_name": "poappmainanalhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainBudHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainbudhlp_sp",
+        "method_name": "poappmainbudhlp_Met",
+        "service_name": "poappmainbudhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.poAppmaincusthlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaincusthlp_sp",
+        "method_name": "poappmaincusthlp_Met",
+        "service_name": "poappmaincusthlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainDispnLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaindispnlnk_sp",
+        "method_name": "poappmaindispnlnk_Met",
+        "service_name": "poappmaindispnlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainEarAvlblDtLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainearavlbldtlnk_sp",
+        "method_name": "poappmainearavlbldtlnk_Met",
+        "service_name": "poappmainearavlbldtlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainFreeStkLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainfreestklnk_sp",
+        "method_name": "poappmainfreestklnk_Met",
+        "service_name": "poappmainfreestklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpDrop": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpdrop_sp",
+        "method_name": "poappmainhlpdrop_Met",
+        "service_name": "poappmainhlpdrop_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpItm": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpitm_sp",
+        "method_name": "poappmainhlpitm_Met",
+        "service_name": "poappmainhlpitm_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpUom": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpuom_sp",
+        "method_name": "poappmainhlpuom_Met",
+        "service_name": "poappmainhlpuom_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk12": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk12_sp",
+        "method_name": "poappmainlnk12_Met",
+        "service_name": "poappmainlnk12_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk15": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk15_sp",
+        "method_name": "poappmainlnk15_Met",
+        "service_name": "poappmainlnk15_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk14": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk14_sp",
+        "method_name": "poappmainlnk14_Met",
+        "service_name": "poappmainlnk14_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk13": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk13_sp",
+        "method_name": "poappmainlnk13_Met",
+        "service_name": "poappmainlnk13_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainPropslhlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainpropslhlp_sp",
+        "method_name": "poappmainpropslhlp_Met",
+        "service_name": "poappmainpropslhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSsrOuLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainssroulnk_sp",
+        "method_name": "poappmainssroulnk_Met",
+        "service_name": "poappmainssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainPropslLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainpropsllnk_sp",
+        "method_name": "poappmainpropsllnk_Met",
+        "service_name": "poappmainpropsllnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSsrWhLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainssrwhlnk_sp",
+        "method_name": "poappmainssrwhlnk_Met",
+        "service_name": "poappmainssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhHlp1": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainwhhlp1_sp",
+        "method_name": "poappmainwhhlp1_Met",
+        "service_name": "poappmainwhhlp1_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainsuppHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainsupphlp_sp",
+        "method_name": "PoAppmainsuppHlp_Met",
+        "service_name": "PoAppmainsuppHlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTaxLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaintaxlnk_sp",
+        "method_name": "PoAppMainTaxLnk_Met",
+        "service_name": "PoAppMainTaxLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_fet_hdrfet",
+        "method_name": "poapren_met_fet_hdrfet",
+        "service_name": "poapren_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhHlp2": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainwhhlp2_sp",
+        "method_name": "poappmainwhhlp2_Met",
+        "service_name": "poappmainwhhlp2_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_cbiusecrtat",
+        "method_name": "poapren_met_CbIUsecrtat",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamden_sp_cbiusestat",
+        "method_name": "poamden_met_CbIUsestat",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poapren_sp_cbiuselvl",
+        "method_name": "poapren_met_CbIUselvl",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poamden_sp_cbiuseorgn",
+        "method_name": "poamden_met_CbIUseorgn",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poeent_SP_init_cls",
+        "method_name": "poeent_met_init_cls",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poeent_SP_init_subcls",
+        "method_name": "poeent_met_init_subcls",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "poamden_sp_CbIUseloi",
+        "method_name": "poamden_met_CbIUseloi",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "Po_apren_sp_init_acunit",
+        "method_name": "Po_apren_met_init_acunit",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "Po_apren_sp_init_whcode",
+        "method_name": "Po_apren_met_init_whcode",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntLvlUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvlucddefault",
+        "method_name": "poapren_met_lvlUCDefault",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvlstat",
+        "method_name": "poapren_met_lvlstat",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvluihdr",
+        "method_name": "poapren_met_lvlUiHdr",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_srch_hdrfet",
+        "method_name": "poapren_met_srch_hdrfet",
+        "service_name": "poapren_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poapren_sp_srchgrd",
+        "method_name": "poapren_met_srchgrd",
+        "service_name": "poapren_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincracusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poaprmn_ser_acusage",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrmn_SP_AC_href",
+        "method_name": "pocrmn_met_AC_href",
+        "service_name": "poaprmn_ser_acusage",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainApDateUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apdbyr",
+        "method_name": "poaprmn_met_apdbyr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apdhref",
+        "method_name": "poaprmn_met_apdHRef",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apducddefault",
+        "method_name": "poaprmn_met_apdUCDefault",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apduihdr",
+        "method_name": "poaprmn_met_apdUiHdr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_apdfld",
+        "method_name": "poaprmn_met_apdfld",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poaprmn_sp_apdcurr",
+        "method_name": "poaprmn_met_apdcurr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainCurrUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_curruihdr",
+        "method_name": "poaprmn_met_currUiHdr",
+        "service_name": "poaprmn_ser_curr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_currhref",
+        "method_name": "poaprmn_met_currHRef",
+        "service_name": "poaprmn_ser_curr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_addid_lst",
+        "method_name": "poaprmn_met_addid_lst",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_fet_hdrfet",
+        "method_name": "poaprmn_met_fet_hdrfet",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_fetgrd",
+        "method_name": "poaprmn_met_fetgrd",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "po_lstedt_sp_supcode",
+        "method_name": "po_lstedt_Mt_supcode",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_def_grd",
+        "method_name": "poaprmn_met_def_grd",
+        "service_name": "poaprmn_ser_def",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_defgrd",
+        "method_name": "poaprmn_met_defgrd",
+        "service_name": "poaprmn_ser_def",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_cbiuseacunt",
+        "method_name": "poamdmm_met_CbIUseacunt",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamdmm_sp_cbiuseacusg",
+        "method_name": "poamdmm_met_CbIUseacusg",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poamdmm_sp_cbiusegrou",
+        "method_name": "poamdmm_met_CbIUsegrou",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poamdmm_sp_cbiusemlcb14",
+        "method_name": "poamdmm_met_CbIUsemlcb14",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poamdmm_sp_cbiusemlcb18",
+        "method_name": "poamdmm_met_CbIUsemlcb18",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "poamdmm_sp_cbiusemlcb10",
+        "method_name": "poamdmm_met_CbIUsemlcb10",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "povwmn_sp_initlang",
+        "method_name": "povwmn_met_initlang",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainItemUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_itmumgrd",
+        "method_name": "poaprmn_met_itmUMgrd",
+        "service_name": "poaprmn_ser_itm",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn4": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_qtngrd",
+        "method_name": "poaprmn_met_qtngrd",
+        "service_name": "poaprmn_ser_qtn",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainQtyUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_qtyumgrd",
+        "method_name": "poaprmn_met_qtyUMgrd",
+        "service_name": "poaprmn_ser_qty",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn3": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd_out",
+        "method_name": "poapren_met_aprgrd_out",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrsav",
+        "method_name": "poapren_met_apr_hdrsav",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_ret_hdrchk",
+        "method_name": "poapren_met_ret_hdrchk",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_retgrd",
+        "method_name": "poapren_met_retgrd",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSuppUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_addid_lst_sc",
+        "method_name": "poaprmn_met_addid_lst_sc",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_suphref",
+        "method_name": "poaprmn_met_supHRef",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_supuihdr",
+        "method_name": "poaprmn_met_supUiHdr",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainUomUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_uomumgrd",
+        "method_name": "poaprmn_met_uomUMgrd",
+        "service_name": "poaprmn_ser_uom",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainItemVarUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_varumgrd",
+        "method_name": "poaprmn_met_varUMgrd",
+        "service_name": "poaprmn_ser_var",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrViewQuLk": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ViewQu_hrf",
+        "method_name": "poaprmn_M_ViewQu_hrf",
+        "service_name": "poaprmn_ser_ViewQu",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn5": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_Mt_Del_HRef",
+        "method_name": "poaprmn_Mt_Del_HRef",
+        "service_name": "poaprmn_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ret_docsav",
+        "method_name": "poaprmn_met_ret_docsav",
+        "service_name": "poaprmn_ser_ret",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrWarehuUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_Sp_whmlUMwhml",
+        "method_name": "poaprmn_Mt_whmlUMwhml",
+        "service_name": "poaprmn_Ser_whml",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_whumgrd",
+        "method_name": "poaprmn_met_whUMgrd",
+        "service_name": "poaprmn_ser_wh",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhacusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_achlp",
+        "method_name": "pocrmn_M_Hp_achlp",
+        "service_name": "pocrmn_ser_Hp_ac",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhccusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_cchlp",
+        "method_name": "pocrmn_M_Hp_cchlp",
+        "service_name": "pocrmn_ser_Hp_cc",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSbt": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_aprgrd",
+        "method_name": "poaprmn_met_aprgrd",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apr_hdrchk",
+        "method_name": "poaprmn_met_apr_hdrchk",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_aprhref",
+        "method_name": "poaprmn_met_aprHRef",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apr_hdrsav",
+        "method_name": "poaprmn_met_apr_hdrsav",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_aprgrd_out",
+        "method_name": "poaprmn_met_aprgrd_out",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd",
+        "method_name": "poapren_met_aprgrd",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrchk",
+        "method_name": "poapren_met_apr_hdrchk",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd_out",
+        "method_name": "poapren_met_aprgrd_out",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrsav",
+        "method_name": "poapren_met_apr_hdrsav",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrccusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_ccusag_hrf",
+        "method_name": "pomaincr_M_ccusag_hrf",
+        "service_name": "pomaincr_ser_ccusag",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhccusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ccusag_ref",
+        "method_name": "pomaincr_M_ccusmlUMccusml",
+        "service_name": "pomaincr_ser_ccusml",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrSpeci_Lk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_DIM_hrf",
+        "method_name": "pomaincr_M_DIM_hrf",
+        "service_name": "pomaincr_ser_DIM",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrfolderUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_folder_hrf",
+        "method_name": "pomaincr_M_folder_hrf",
+        "service_name": "pomaincr_ser_folder",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhacusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_ccusag_ref",
+        "method_name": "pomaincr_M_hacusaUMhacusa",
+        "service_name": "pomaincr_ser_hacusa",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrShipFoUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_ShipFo_hrf",
+        "method_name": "pomaincr_M_ShipFo_hrf",
+        "service_name": "pomaincr_ser_ShipFo",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrTCAL_dLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_TCAL_d_hrf",
+        "method_name": "pomaincr_M_TCAL_d_hrf",
+        "service_name": "pomaincr_ser_TCAL_d",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrShipf_Ui": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_Shipf__hrf",
+        "method_name": "pomaincr_M_Shipf__hrf",
+        "service_name": "pomaincr_ser_Shipf_",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrvew_puLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_vew_pu_hrf",
+        "method_name": "pomaincr_M_vew_pu_hrf",
+        "service_name": "pomaincr_ser_vew_pu",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.pomainsnCls_poUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_clsuisubui",
+        "method_name": "pomains8_M_clsuisubui",
+        "service_name": "pomainsn_ser_clsui",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomainsn_sp_clsui_hrf",
+        "method_name": "pomainsn_M_clsui_hrf",
+        "service_name": "pomainsn_ser_clsui",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.pomainsnSubclsUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomainsn_sp_subui_hrf",
+        "method_name": "pomainsn_M_subui_hrf",
+        "service_name": "pomainsn_ser_subui",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.poappmainprint": [
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_sp_ft",
+        "method_name": "po_povwmn_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_Sp_email_Ft",
+        "method_name": "po_povwmn_Mt_email_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "po_povwmnsub_sp_ft",
+        "method_name": "po_povwmnsub_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrAppPurLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_price_his_lnk_sp",
+        "method_name": "po_price_his_lnk_mt",
+        "service_name": "po_price_his_lnk_ser",
+        "lvl": "0"
+      }
+    ]
+  },
+  "summary": {
+    "screens": [
+      "PoAppEnt",
+      "PoAppMain"
+    ],
+    "tasks": [
+      "PoAppEntFth",
+      "PoAppEntIni",
+      "PoAppEntLvlUI",
+      "PoAppEntTrn1",
+      "PoAppEntTrn2",
+      "PoAppEntTrn3",
+      "PoAppMainAnalHlp",
+      "PoAppMainBudHlp",
+      "PoAppMainDispnLnk",
+      "PoAppMainEarAvlblDtLnk",
+      "PoAppMainFreeStkLnk",
+      "PoAppMainFth",
+      "PoAppMainHlpDrop",
+      "PoAppMainHlpItm",
+      "PoAppMainHlpUom",
+      "PoAppMainIni",
+      "PoAppMainItemUi",
+      "PoAppMainItemVarUI",
+      "PoAppMainLnk12",
+      "PoAppMainLnk13",
+      "PoAppMainLnk14",
+      "PoAppMainLnk15",
+      "PoAppMainPropslLnk",
+      "PoAppMainQtyUI",
+      "PoAppMainSbt",
+      "PoAppMainSsrOuLnk",
+      "PoAppMainSsrWhLnk",
+      "PoAppMainSuppUI",
+      "PoAppMainTaxLnk",
+      "PoAppMainTrn1",
+      "PoAppMainTrn4",
+      "PoAppMainTrn5",
+      "PoAppMainUomUI",
+      "PoAppMainWhHlp1",
+      "PoAppMainWhHlp2",
+      "PoAppMainWhUI",
+      "PoAppmainApDateUI",
+      "PoAppmainCurrUI",
+      "PoAppmainPropslhlp",
+      "PoAppmainsuppHlp",
+      "poAppmaincusthlp",
+      "poappmainprint",
+      "pomaincrAppPurLk",
+      "pomaincrShipFoUi",
+      "pomaincrShipf_Ui",
+      "pomaincrSpeci_Lk",
+      "pomaincrTCAL_dLk",
+      "pomaincrViewQuLk",
+      "pomaincrWarehuUi",
+      "pomaincracusagUi",
+      "pomaincrccusagUi",
+      "pomaincrfolderUi",
+      "pomaincrhacusaHp",
+      "pomaincrhacusaUi",
+      "pomaincrhccusaHp",
+      "pomaincrhccusaUi",
+      "pomaincrvew_puLk",
+      "pomainsnCls_poUi",
+      "pomainsnSubclsUi"
+    ],
+    "sp_count": 105,
+    "method_count": 105,
+    "task_count": 59
+  }
+}

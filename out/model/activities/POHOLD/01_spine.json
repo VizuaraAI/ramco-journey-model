@@ -1,0 +1,36 @@
+{
+  "activity": "POHOLD",
+  "description": "Change Status - Purchase Order",
+  "main_screen": "POHOLDMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POHLDMAINFTH",
+      "description": "Fetch Change Status Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POHLDMAININI",
+      "description": "Initialize Change Status Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POHLDMAINSBT",
+      "description": "Change Status",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "pohldmn_sp_chng_docsav",
+          "method_name": "pohldmn_met_chng_docsav",
+          "service_name": "pohldmn_ser_chng",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

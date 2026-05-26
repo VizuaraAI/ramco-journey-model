@@ -1,0 +1,81 @@
+{
+  "id": "EVAL-SPLICE-002",
+  "title": "Buyer creates a Consignment PO — data-triggered splice triggers consignment-rule selector",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "tags": ["consignment-po", "po-type-splice", "consignment-rule"],
+  "user_persona": "Stockroom buyer setting up consignment stock with a strategic supplier",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a consignment PO with supplier SUP-CONS-5 for our regular consumables.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"po_type": "Consignment", "supplier_code": "SUP-CONS-5"},
+        "splice_triggered": "po_type==Consignment",
+        "additional_required_slots": ["consignment_rule_id"],
+        "bot_must": [
+          "acknowledge Consignment PO",
+          "explain consignment means stock sits at our warehouse but supplier owns it until consumed",
+          "ask for the consignment rule (governs billing trigger, ownership transfer point)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Use the standard consignment rule, CONS-RULE-STD.",
+      "expected": {
+        "slots_extracted": {"consignment_rule_id": "CONS-RULE-STD"},
+        "bot_must": [
+          "validate consignment rule exists",
+          "continue with standard header collection"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "PO date today, USD, buyer BUY-50, ship from WH-A. Lines: ITM-300 100 units at 5, ITM-301 200 units at 3.",
+      "expected": {
+        "slots_extracted": {
+          "po_date": "<today>",
+          "currency": "USD",
+          "buyer": "BUY-50",
+          "ship_from_id": "WH-A"
+        },
+        "bot_must": [
+          "acknowledge header + 2 lines extracted",
+          "compute total value (500 + 600 = 1100 USD)",
+          "ask if ready to commit"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create it.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "splice_walked": ["po_type==Consignment"],
+        "bot_must": ["fire POCRTMAINSBT", "report PO number, Draft status"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["po_type", "supplier_code", "consignment_rule_id", "po_date", "currency", "buyer", "ship_from_id", "item_code", "quantity", "cost"],
+    "splices_walked": ["po_type==Consignment"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "splice_detection": "Consignment splice triggered from 'consignment PO' phrase",
+    "rule_required": "consignment_rule_id asked before commit",
+    "multi_line_extraction": "2 line items extracted from one sentence"
+  }
+}

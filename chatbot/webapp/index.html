@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ramco PO Chatbot · interactive test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- LEFT: trace panel -->
+  <aside class="trace-pane" id="trace-pane">
+    <header class="trace-header">
+      <div class="kicker">INTERNAL TRACE</div>
+      <h1>What the bot is doing</h1>
+      <p class="lede">Every turn shows: intent classified, journey locked, slots extracted, splice triggered, validation status, TRANS task fired, SP chain that would run, tables that would be written.</p>
+    </header>
+    <div class="trace-empty" id="trace-empty">
+      <div class="muted">Send a message to see the bot's internal trace here →</div>
+    </div>
+    <div id="trace-stream"></div>
+  </aside>
+
+  <!-- RIGHT: chat -->
+  <main class="chat-pane">
+    <header class="chat-header">
+      <div class="status-row">
+        <span class="status-dot"></span>
+        <span class="status-text" id="status-text">Bot v6 · 68% eval pass · idle</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-ghost" id="btn-scenarios">↗ Scenarios</button>
+        <button class="btn-ghost" id="btn-reset">⟲ Reset</button>
+      </div>
+    </header>
+
+    <div class="messages" id="messages">
+      <div class="msg msg-system">
+        <div class="msg-body">
+          <p>Hi. This is the Ramco PO chatbot test environment. Try a multi-turn conversation — describe what you want in natural language. Click <b>Scenarios</b> to see 10 ready-made test conversations.</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="composer" id="composer">
+      <textarea id="composer-input" placeholder="Type your message and press ⏎ (Shift+⏎ for newline)..." rows="2"></textarea>
+      <button type="submit" id="composer-send">Send</button>
+    </form>
+  </main>
+
+</div>
+
+
+<!-- Files-referenced popup -->
+<div class="popup-backdrop" id="popup-backdrop">
+  <div class="popup" id="popup">
+    <header class="popup-header">
+      <h2 id="popup-title">Files referenced</h2>
+      <button class="popup-close" id="popup-close">×</button>
+    </header>
+    <div class="popup-body" id="popup-body"></div>
+  </div>
+</div>
+
+
+<!-- Scenarios popup -->
+<div class="popup-backdrop" id="scenarios-backdrop">
+  <div class="popup popup-wide">
+    <header class="popup-header">
+      <h2>Ten multi-turn test scenarios</h2>
+      <button class="popup-close" id="scenarios-close">×</button>
+    </header>
+    <div class="popup-body" id="scenarios-body">
+      <p class="muted">Loading…</p>
+    </div>
+  </div>
+</div>
+
+<script src="static/app.js"></script>
+</body>
+</html>

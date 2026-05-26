@@ -1,0 +1,67 @@
+{
+  "id": "EVAL-HAPPY-008",
+  "title": "Buyer edits a draft PO before submitting for approval",
+  "covers_journeys": ["PoEdt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["edit", "draft-modification"],
+  "user_persona": "Buyer correcting a mistake in a not-yet-approved PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I made a mistake on PO-2026-501, draft status. Need to change the buyer.",
+      "expected": {
+        "intent": "edit_purchase_order",
+        "journey_locked": "PoEdt",
+        "slots_extracted": {"po_number": "PO-2026-501"},
+        "bot_must": [
+          "lock PoEdt journey",
+          "fire POEDTENTTRN1 (Search)",
+          "confirm PO is in Draft (PoEdt only allowed on draft POs)",
+          "ask what the new buyer should be"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Change buyer from BUY-77 to BUY-88.",
+      "expected": {
+        "slots_extracted": {"buyer": "BUY-88"},
+        "bot_must": [
+          "load POEDTMAIN with PO data",
+          "apply buyer change",
+          "confirm change and ask if user wants to save (POEDTMAINSBT) or save+approve (POEDTMAINTRN7)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Just save, I'll get it approved separately.",
+      "expected": {
+        "trans_invoked": "POEDTMAINSBT",
+        "bot_must": [
+          "fire POEDTMAINSBT (Edit PO)",
+          "report saved, status remains Draft",
+          "remind user that PoApp is the next step"
+        ],
+        "bot_must_not": ["fire POEDTMAINTRN7"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoEdt",
+    "commit_task": "POEDTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["po_number", "buyer"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "draft_only_check": "bot must check PO is in Draft before allowing edit",
+    "commit_path_correctness": "POEDTMAINSBT not TRN7 — user said 'just save'"
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "activity": "POMTN",
+  "splice_summary": {
+    "ui_splices": 8,
+    "state_splices": 20,
+    "data_splices": 4,
+    "total": 32
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29ORDERLLK",
+        "description": "Link to Order LCMap Lnk",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_ORDERLCMAP_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29SPECI_LK",
+        "description": "Link to Specify Tax Details",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_SPECIFY_TAX_DETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29ATTACHLK",
+        "description": "Link to Attach Notes",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_ATTACH_NOTES",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29OPERATLK",
+        "description": "Link to Operational Checklist",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_OPERATIONALCHECKLIST",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29SPECIFLK",
+        "description": "Link to Specify Tax Charges Discount",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_SPECIFY_TAX_CHARGES_DISCOUNT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29SPECIYLK",
+        "description": "Link to Specify PO PR Coverage",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_SPECIFY_PO_PR_COVERAGE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN29TAX_CALK",
+        "description": "Link to Tax Calculation Summary",
+        "hook_screen": "POMTN",
+        "trigger": "user_clicks_TAX_CALCULATION_SUMMARY",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29authortr.project_details_off_wf_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29authortr",
+        "trigger": "project_details_off_wf_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29authortr.project_details_on_wf_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29authortr",
+        "trigger": "project_details_on_wf_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29authortr.state_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29authortr",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29authortr.state_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29authortr",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29deletetr.project_details_off_wf_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29deletetr",
+        "trigger": "project_details_off_wf_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29deletetr.project_details_on_wf_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29deletetr",
+        "trigger": "project_details_on_wf_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29deletetr.state_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29deletetr",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29deletetr.state_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29deletetr",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29fth.project_details_off_wf_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29fth",
+        "trigger": "project_details_off_wf_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29fth.project_details_on_wf_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29fth",
+        "trigger": "project_details_on_wf_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29fth.state_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29fth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29fth.state_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29fth",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29po_no1ui.project_details_off_wf_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29po_no1ui",
+        "trigger": "project_details_off_wf_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29po_no1ui.project_details_on_wf_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29po_no1ui",
+        "trigger": "project_details_on_wf_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29po_no1ui.state_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29po_no1ui",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29po_no1ui.state_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29po_no1ui",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29save1tr.project_details_off_wf_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29save1tr",
+        "trigger": "project_details_off_wf_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29save1tr.project_details_on_wf_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29save1tr",
+        "trigger": "project_details_on_wf_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29save1tr.state_off",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29save1tr",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POMTN.pomain29save1tr.state_on",
+        "hook_screen": "POMTN",
+        "hook_service": "pomain29save1tr",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

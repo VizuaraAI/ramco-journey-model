@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-XMOD-002",
+  "title": "Buyer asks about the goods receipt status for a PO — PO module queries GR module",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO", "GR"],
+  "category": "cross-module",
+  "difficulty": "medium",
+  "tags": ["po-gr-status", "cross-module-read", "receipt-status"],
+  "user_persona": "Buyer checking on goods receipt against an approved PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Has the goods receipt been done for PO-2026-1200?",
+      "expected": {
+        "intent": "po_gr_status",
+        "journey_locked": "PoViw",
+        "covers_modules_acknowledged": ["PO", "GR"],
+        "slots_extracted": {"po_number": "PO-2026-1200"},
+        "cross_module_query": "fetch GR records for po_number=PO-2026-1200",
+        "bot_must": [
+          "fetch PO-2026-1200 from PO (PoViw)",
+          "fetch any GR records linked to this PO (cross-module read into GR module)",
+          "report: 'X of Y lines received, latest GR was GR-NNN on DATE', or 'no GR yet'"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Which lines are still pending receipt?",
+      "expected": {
+        "bot_must": [
+          "compute per-line received vs ordered",
+          "list lines with received < ordered (or zero received)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Show me the GR documents themselves.",
+      "expected": {
+        "cross_module_query": "list GR documents linked to PO-2026-1200",
+        "bot_must": [
+          "list GR numbers with date, warehouse, line summary",
+          "offer to drill into a specific GR (which would mean switching to GR module's view journey)"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<inspected; cross-module data also pulled>",
+    "slots_filled": ["po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw", "GR-View"]
+  },
+
+  "evaluation_metrics": {
+    "cross_module_query_acknowledged": "bot says it's querying GR module, not just inventing data",
+    "per_line_received_compute": "follows GR line records back to PO lines",
+    "drill_in_offered": "bot offers to switch to GR module view for detail"
+  }
+}

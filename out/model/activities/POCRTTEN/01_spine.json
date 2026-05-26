@@ -1,0 +1,6 @@
+{
+  "activity": "POCRTTEN",
+  "description": "Create Purchase Order From Tender",
+  "main_screen": "POCRTTENMAIN",
+  "canonical_spine": []
+}

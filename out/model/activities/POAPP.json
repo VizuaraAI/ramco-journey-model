@@ -1,0 +1,5618 @@
+{
+  "activity": "POAPP",
+  "description": "Approve Purchase Order",
+  "is_user_facing": true,
+  "screen_count": 3,
+  "main_screen": "POAPPMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POAPPMAINFTH",
+      "description": "Fetch Approve Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POAPPMAININI",
+      "description": "Initialize Approve Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINSBT",
+      "description": "Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_aprgrd",
+          "method_name": "poaprmn_met_aprgrd",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_apr_hdrchk",
+          "method_name": "poaprmn_met_apr_hdrchk",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_aprhref",
+          "method_name": "poaprmn_met_aprHRef",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_apr_hdrsav",
+          "method_name": "poaprmn_met_apr_hdrsav",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poaprmn_sp_aprgrd_out",
+          "method_name": "poaprmn_met_aprgrd_out",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN1",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_def_grd",
+          "method_name": "poaprmn_met_def_grd",
+          "service_name": "poaprmn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poaprmn_sp_defgrd",
+          "method_name": "poaprmn_met_defgrd",
+          "service_name": "poaprmn_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN4",
+      "description": "Get All Quote Line No.",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_qtngrd",
+          "method_name": "poaprmn_met_qtngrd",
+          "service_name": "poaprmn_ser_qtn",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN5",
+      "description": "Return PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_Mt_Del_HRef",
+          "method_name": "poaprmn_Mt_Del_HRef",
+          "service_name": "poaprmn_ser_ret",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_ret_docsav",
+          "method_name": "poaprmn_met_ret_docsav",
+          "service_name": "poaprmn_ser_ret",
+          "lvl": "0"
+        }
+      ]
+    }
+  ],
+  "splice_summary": {
+    "ui_splices": 28,
+    "state_splices": 16,
+    "data_splices": 56,
+    "total": 100
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPENTLNK1",
+        "description": "Approve PO",
+        "hook_screen": "POAPPENT",
+        "trigger": "user_clicks_POAPPENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPENTMAINLNK2",
+        "description": "Approve PO",
+        "hook_screen": "POAPPENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINBUDDETAILLNK",
+        "description": "View Budget Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINBUDDETAILLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINDISPNLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINDISPNLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINEARAVLBLDTLNK",
+        "description": "View Earliest Available Date",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINEARAVLBLDTLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINFREESTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINFREESTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK10",
+        "description": "Specify PO-SO Coverage",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK11",
+        "description": "Attach Notes",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK12",
+        "description": "View Item Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK12",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK13",
+        "description": "View Supplier Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK13",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK14",
+        "description": "View Buyer Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK14",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK15",
+        "description": "View Warehouse Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK15",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK2",
+        "description": "Specify Schedule and Distribution",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK3",
+        "description": "Specify Terms and Condition",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK6",
+        "description": "Specify Quality Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK7",
+        "description": "Specify Budget Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK8",
+        "description": "Specify Dropship Address",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINLNK9",
+        "description": "Specify PO-PR Coverage",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINPROPSLLNK",
+        "description": "View Proposal Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINPROPSLLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINSSROULNK",
+        "description": "View Stock Status Review - OU Wise",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINSSRWHLNK",
+        "description": "View Stock Status Review - Warehouse Wise",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POAPPMAINTAXLNK",
+        "description": "Specify Tax Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_POAPPMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRCOLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCROPERATLK",
+        "description": "Link to Operational Checklist",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_OPERATIONALCHECKLIST",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRPRINTPLK",
+        "description": "Link to Print Purchase Order",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_PRINTPURCHASEORDER",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRSPECIFLK",
+        "description": "Link to Specify Retention Details",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_SPECIFYRETENTIONDETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRSPECIYLK",
+        "description": "Link to Specify Milestone",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_SPECIFYMILESTONE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINCRVIEW_PLK",
+        "description": "Link to View PO",
+        "hook_screen": "POAPPMAIN",
+        "trigger": "user_clicks_VIEW_PO",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainapdateui.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainapdateui",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainfth.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainfth",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmainsbt.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmainsbt",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.project_details_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.project_details_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.state_off",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POAPPMAIN.poappmaintrn5.state_on",
+        "hook_screen": "POAPPMAIN",
+        "hook_service": "poappmaintrn5",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@fgbase_yes_no = YES",
+        "trigger": "@fgbase_yes_no = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 855,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 862,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "341"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@imports = 1",
+        "trigger": "@imports = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 668,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "29"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2379,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "30"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "85"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status = OP",
+        "trigger": "@status = OP",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 682,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1001"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@workflow_app = Y",
+        "trigger": "@workflow_app = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_srchgrd",
+            "line": 1259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loi = 1",
+        "trigger": "@loi = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1457,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2032"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@part_cov_pr_flag = YES",
+        "trigger": "@part_cov_pr_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2124,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tran_rights_flag = Y",
+        "trigger": "@tran_rights_flag = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_fet_hdrfet",
+            "line": 494,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1600"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@mbp_ms_level = DOC",
+        "trigger": "@mbp_ms_level = DOC",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1328,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "85"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@budchk = Y",
+        "trigger": "@budchk = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 758,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 878,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 720,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 519,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 746,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = STAG",
+        "trigger": "@sched_typeml = STAG",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 977,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "133"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@presampling_flag = YES",
+        "trigger": "@presampling_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1025,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "301"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml <> SI",
+        "trigger": "@sched_typeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1968,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2010"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@modeflag = D",
+        "trigger": "@modeflag = D",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1279,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2013"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = YES",
+        "trigger": "@useroption = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2132,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml > @prqty",
+        "trigger": "@qtyml > @prqty",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 1605,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2160,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitem = NONE",
+        "trigger": "@adhocitem = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2168,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype = SI",
+        "trigger": "@schtype = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2170,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2219,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1710"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@catchweightitem = 1",
+        "trigger": "@catchweightitem = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3583,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@uommult = @alternate_uom_tmp",
+        "trigger": "@uommult = @alternate_uom_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3597,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml <> NONE",
+        "trigger": "@adhocitemclassml <> NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 2392,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "31"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> floor",
+        "trigger": "@qtyml <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 305,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 400,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SN",
+        "trigger": "@itemtype = SN",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3778,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "itm_sp_chk_sundrystock",
+                "itm_sp_get_uomconvfactor",
+                "uom_sp_get_convfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> FLOOR",
+        "trigger": "@qty_stockuom <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3853,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SR",
+        "trigger": "@itemtype = SR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4275,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5451,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 2",
+        "trigger": "@potypeenum = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4114,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4895,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5461,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 1",
+        "trigger": "@potypeenum = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4094,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4947,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 5523,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = LT",
+        "trigger": "@rate_mismatch = LT",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3366,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "58"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val <> 2460367",
+        "trigger": "@return_val <> 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 346,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 2460367",
+        "trigger": "@return_val = 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3260,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 347,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 900016203",
+        "trigger": "@return_val = 900016203",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3287,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "503"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 370,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> FLOOR",
+        "trigger": "@qtyml <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3753,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = SI",
+        "trigger": "@sched_typeml = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6136,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6528,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl",
+                "po_poshd_schedule_dtl"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@flag_yesno = YES",
+        "trigger": "@flag_yesno = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4273,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4637,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "21"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml = NONE",
+        "trigger": "@adhocitemclassml = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 6604,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 7541,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@variantno = ##",
+        "trigger": "@variantno = ##",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_itmumgrd",
+            "line": 829,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = BLTRAN",
+        "trigger": "@response = BLTRAN",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_qtyumgrd",
+            "line": 406,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> floor",
+        "trigger": "@qty_stockuom <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 327,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 416,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@approvaldate > dbo",
+        "trigger": "@approvaldate > dbo",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 639,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025202"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loiml = Y",
+        "trigger": "@loiml = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 798,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 670,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorderml = Y",
+        "trigger": "@loitoorderml = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_aprgrd",
+            "line": 803,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 675,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_purchase_order_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status <> FR",
+        "trigger": "@status <> FR",
+        "sp_occurrences": [
+          {
+            "sp": "poapren_sp_retgrd",
+            "line": 470,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "364"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_ret_docsav",
+            "line": 259,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "364"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_old <> @pocurrency_new",
+        "trigger": "@pocurrency_old <> @pocurrency_new",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 434,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_new = @tcdcurrency",
+        "trigger": "@pocurrency_new = @tcdcurrency",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 473,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 558,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tcd_basis = F",
+        "trigger": "@tcd_basis = F",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 509,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 593,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_doclevel_detail"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorder = Y",
+        "trigger": "@loitoorder = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrchk",
+            "line": 873,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "not_checklist_lineno_swap_cmn_sp"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_pomas_pur_order_hdr"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@currencycode <> @currency_tbl",
+        "trigger": "@currencycode <> @currency_tbl",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1320,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loitoorder = 1",
+        "trigger": "@loitoorder = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_apr_hdrsav",
+            "line": 1463,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2032"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 4",
+        "trigger": "@potypeenum = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3481,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_consrule_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@execflag = 2",
+        "trigger": "@execflag = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 3699,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1106"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum <> 3",
+        "trigger": "@potypeenum <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_aprgrd",
+            "line": 4140,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_transaction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@stockuom <> @uommult_tmp",
+        "trigger": "@stockuom <> @uommult_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poaprmn_sp_uomumgrd",
+            "line": 274,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  },
+  "screens": [
+    {
+      "ilbo_name": "POAPPENT",
+      "ilbo_desc": "Select Purchase Order",
+      "canonical_services": [],
+      "task_count": 9,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POAPPENTFTH",
+            "description": "Fetch Approve Entry Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Approve Entry Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POAPPENTINI",
+            "description": "Initialize Approve Entry Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Approve Entry Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POAPPENTTRN1",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPENTTRN1",
+            "js_success_message": "Search Successfully Completed"
+          },
+          {
+            "name": "POAPPENTTRN2",
+            "description": "Approve PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPENTTRN2",
+            "js_success_message": "Approve PO Successfully Completed"
+          },
+          {
+            "name": "POAPPENTTRN3",
+            "description": "Return PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPENTTRN3",
+            "js_success_message": "Return PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POAPPENTLNK1",
+            "description": "Approve PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPENTLNK1",
+            "js_success_message": "Approve PO Successfully Completed"
+          },
+          {
+            "name": "POAPPENTMAINLNK2",
+            "description": "Approve PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PONOMLT",
+            "js_success_message": "Approve PO Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POAPPENTLVLUI",
+            "description": "Populate Status on select of level",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "CONTACT_LEVEL",
+            "js_success_message": "Populate Status on select of level Successfully Completed"
+          }
+        ],
+        "HELP": []
+      },
+      "slot_count": 33,
+      "slots": [
+        {
+          "field_id": "dspfiller_005",
+          "field_name": "dspfiller_005",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_005_2",
+          "field_name": "dspfiller_005_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_d50612",
+          "field_name": "f_d50612",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_d50612_2",
+          "field_name": "f_d50612_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_ddb613",
+          "field_name": "f_ddb613",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_ddb613_2",
+          "field_name": "f_ddb613_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_002",
+          "field_name": "filler_002",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_003",
+          "field_name": "filler_003",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcls_desc_po",
+          "field_name": "dspcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfilcls_app_ent",
+          "field_name": "dspfilcls_app_ent",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfilcls_app_ent_2",
+          "field_name": "dspfilcls_app_ent_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsubcls_desc_po",
+          "field_name": "dspsubcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfilsub_cls_app_ent",
+          "field_name": "dspfilsub_cls_app_ent",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfilsub_cls_app_ent_2",
+          "field_name": "dspfilsub_cls_app_ent_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller001",
+          "field_name": "dspfiller001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller001_2",
+          "field_name": "dspfiller001_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section05",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000_2",
+          "field_name": "filler_000_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_5a1911",
+          "field_name": "f_5a1911",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_5a1911_2",
+          "field_name": "f_5a1911_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001",
+          "field_name": "filler_001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001_2",
+          "field_name": "filler_001_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappent_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtapprovallimit",
+          "field_name": "txtapprovallimit",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsearchcriteria",
+          "field_name": "txtsearchcriteria",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmultilinename",
+          "field_name": "hdnmultilinename",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnwfdockey",
+          "field_name": "hdnhdnwfdockey",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnwfdockeyvw",
+          "field_name": "hdnwfdockeyvw",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnwforgunit",
+          "field_name": "hdnhdnwforgunit",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poappent_mainscreen_section02",
+          "caption": "Direct Entry",
+          "label": "Collect Direct Entry",
+          "is_grid": false,
+          "slot_count": 1,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poappent_mainscreen_section05",
+          "caption": "Search Criteria",
+          "label": "Collect Search Criteria",
+          "is_grid": false,
+          "slot_count": 36,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "frmpono",
+              "text": "From PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topono",
+              "text": "To PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "status_fltr",
+              "text": "PO Status",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "frmpodate",
+              "text": "From PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topodate",
+              "text": "To PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeallenum",
+              "text": "PO Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "quotnumber",
+              "text": "From Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromquoto",
+              "text": "To Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "createdatouhdr",
+              "text": "PR Created At",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromsonum",
+              "text": "From SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosonum",
+              "text": "To SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "contact_level",
+              "text": "Level",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valuefromhr",
+              "text": "PO Value From",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "valurtohr",
+              "text": "PO Value To",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "addressidhdr",
+              "text": "Address ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcode",
+              "text": "Item Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcode",
+              "text": "Variant Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcodedesc",
+              "text": "Item Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcodedesc",
+              "text": "Variant Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "originhdr",
+              "text": "Origin",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_po",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_desc_po",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_po",
+              "text": "Sub Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_desc_po",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "project_code",
+              "text": "Project Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loienuall",
+              "text": "LOI",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loitoorderenuall",
+              "text": "LOI to Order",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "accounting_unit",
+              "text": "Accounting Unit",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehouse_code",
+              "text": "Warehouse Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "propnohdr",
+              "text": "Proposal No.",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAINSNCLS_POUI",
+          "POMAINSNSUBCLSUI",
+          "POMAINSNWORKFLLK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    },
+    {
+      "ilbo_name": "POAPPMAIN",
+      "ilbo_desc": "Approve Purchase Order",
+      "canonical_services": [
+        {
+          "service_name": "poaprmn_ser_apd",
+          "taskname": "poappmainapdateui",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poaprmn_ser_fet",
+          "taskname": "poappmainfth",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poaprmn_ser_apr",
+          "taskname": "poappmainsbt",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poaprmn_ser_ret",
+          "taskname": "poappmaintrn5",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        }
+      ],
+      "task_count": 56,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POAPPMAINFTH",
+            "description": "Fetch Approve Main Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Approve Main Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POAPPMAININI",
+            "description": "Initialize Approve Main Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Approve Main Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POAPPMAINSBT",
+            "description": "Approve PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPMAINSBT",
+            "js_success_message": "Approve PO Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINTRN1",
+            "description": "Default",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPMAINTRN1",
+            "js_success_message": "Default Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINTRN4",
+            "description": "Get All Quote Line No.",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPMAINTRN4",
+            "js_success_message": "Get All Quot Line No. Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINTRN5",
+            "description": "Return PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POAPPMAINTRN5",
+            "js_success_message": "Return PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POAPPMAINBUDDETAILLNK",
+            "description": "View Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINBUDDETAILLNK",
+            "js_success_message": "View Budget Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINDISPNLNK",
+            "description": "View Disposition Review",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINDISPNLNK",
+            "js_success_message": "View Disposition Review Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINEARAVLBLDTLNK",
+            "description": "View Earliest Available Date",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINEARAVLBLDTLNK",
+            "js_success_message": "View Earliest Available Date Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINFREESTKLNK",
+            "description": "View Free Stock Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINFREESTKLNK",
+            "js_success_message": "View Free Stock Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK10",
+            "description": "Specify PO-SO Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK10",
+            "js_success_message": "Specify PO-SO Coverage Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK11",
+            "description": "Attach Notes",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK11",
+            "js_success_message": "Attach Notes Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK12",
+            "description": "View Item Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK12",
+            "js_success_message": "View Item Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK13",
+            "description": "View Supplier Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK13",
+            "js_success_message": "View Supplier Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK14",
+            "description": "View Buyer Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK14",
+            "js_success_message": "View Buyer Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK15",
+            "description": "View Warehouse Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK15",
+            "js_success_message": "View Warehouse Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK2",
+            "description": "Specify Schedule and Distribution",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK2",
+            "js_success_message": "Specify Schedule and Distribution Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK3",
+            "description": "Specify Terms and Condition",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK3",
+            "js_success_message": "Specify Terms and Condition Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK6",
+            "description": "Specify Quality Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK6",
+            "js_success_message": "Specify Quality Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK7",
+            "description": "Specify Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK7",
+            "js_success_message": "Specify Budget Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK8",
+            "description": "Specify Dropship Address",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK8",
+            "js_success_message": "Specify Dropship Address Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINLNK9",
+            "description": "Specify PO-PR Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINLNK9",
+            "js_success_message": "Specify PO-PR Coverage Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINPROPSLLNK",
+            "description": "View Proposal Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINPROPSLLNK",
+            "js_success_message": "View Proposal Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINSSROULNK",
+            "description": "View Stock Status Review - OU Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINSSROULNK",
+            "js_success_message": "View Stock Status Review - OU Wise Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINSSRWHLNK",
+            "description": "View Stock Status Review - Warehouse Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINSSRWHLNK",
+            "js_success_message": "View Stock Status Review - Warehouse Wise Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINTAXLNK",
+            "description": "Specify Tax Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POAPPMAINTAXLNK",
+            "js_success_message": "Specify Tax Details Successfully Completed"
+          },
+          {
+            "name": "POMAINCRCOLLABLK",
+            "description": "Link to Collaborate",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "COLLABORATE"
+          },
+          {
+            "name": "POMAINCROPERATLK",
+            "description": "Link to Operational Checklist",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "OPERATIONALCHECKLIST"
+          },
+          {
+            "name": "POMAINCRPRINTPLK",
+            "description": "Link to Print Purchase Order",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PRINTPURCHASEORDER",
+            "js_success_message": "Link to Print Purchase Order  Successfully completed"
+          },
+          {
+            "name": "POMAINCRSPECIFLK",
+            "description": "Link to Specify Retention Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SPECIFYRETENTIONDETAILS"
+          },
+          {
+            "name": "POMAINCRSPECIYLK",
+            "description": "Link to Specify Milestone",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SPECIFYMILESTONE"
+          },
+          {
+            "name": "POMAINCRVIEW_PLK",
+            "description": "Link to View PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "VIEW_PO",
+            "js_success_message": "Link to View PO Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POAPPMAINAPDATEUI",
+            "description": "Fetch details on enter of Po Approval date",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "APPROVALDATE",
+            "js_success_message": "Fetch details on enter of Po Approval date Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINCURRUI",
+            "description": "Get Exchange Rate",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "CURRENCYCODE",
+            "js_success_message": "Get Exchange Rate Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINITEMUI",
+            "description": "Item validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "Item validation on enter Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINITEMVARUI",
+            "description": "Item variant validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "VARIANTNO",
+            "js_success_message": "Item variant validation on enter Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINQTYUI",
+            "description": "Qty validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "QTYML",
+            "js_success_message": "Qty validation on enter Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINSUPPUI",
+            "description": "Get Supplier Details",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "Get Supplier Details Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINUOMUI",
+            "description": "UOM validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "UOMMULT",
+            "js_success_message": "UOM validation on enter Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINWHUI",
+            "description": "Warehouse validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "RECEIPTATOUMLT",
+            "js_success_message": "Warehouse validation on enter Successfully Completed"
+          },
+          {
+            "name": "POMAINCRACUSAGUI",
+            "description": "On Select of AC Usage",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ACUSAGE"
+          },
+          {
+            "name": "POMAINCRWAREHUUI",
+            "description": "On Enter of Warehouse Code",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "On Enter of Warehouse Code Successfully Completed"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POAPPMAINANALHLP",
+            "description": "Help on Analysis Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "ANALYSISCODE",
+            "js_success_message": "Help on Analysis Code Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINBUDHLP",
+            "description": "Help on Budget Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "BUDGETID",
+            "js_success_message": "Help on Budget Id Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINCUSTHLP",
+            "description": "Help on Customer Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "CUST_CODE",
+            "js_success_message": "Help on Customer Code Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINHLPDROP",
+            "description": "Help On Dropship Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "DRPSHPID",
+            "js_success_message": "Help On Dropship Id Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINHLPITM",
+            "description": "Help On Item",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "Help On Item Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINHLPUOM",
+            "description": "Help On UOM",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "UOMMULT",
+            "js_success_message": "Help On UOM Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINPROPSLHLP",
+            "description": "Help on Proposal Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "PRPSLIDHDR",
+            "js_success_message": "Help on Proposal Id Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINSUPPHLP",
+            "description": "Help on suppliercode",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "Help on supplier code Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINWHHLP1",
+            "description": "Help on Warehouse Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "WAREHOUSE_CODE",
+            "js_success_message": "Help on Warehouse Code Successfully Completed"
+          },
+          {
+            "name": "POAPPMAINWHHLP2",
+            "description": "Help on Warehouse Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "Help on Warehouse Code Successfully Completed"
+          },
+          {
+            "name": "POMAINCRHACUSAHP",
+            "description": "Help on AC Usage",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "HACUSAGE1"
+          },
+          {
+            "name": "POMAINCRHCCUSAHP",
+            "description": "Help on CC Usage",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "HCCUSAGE1"
+          }
+        ]
+      },
+      "slot_count": 95,
+      "slots": [
+        {
+          "field_id": "dspfiller201",
+          "field_name": "dspfiller201",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller201_2",
+          "field_name": "dspfiller201_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller202",
+          "field_name": "dspfiller202",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller202_2",
+          "field_name": "dspfiller202_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspapp_wfstatus",
+          "field_name": "dspapp_wfstatus",
+          "btsynonym": "app_wfstatus",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "Workflow Status",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_010",
+          "field_name": "filler_010",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_010_2",
+          "field_name": "filler_010_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_013",
+          "field_name": "filler_013",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_013_2",
+          "field_name": "filler_013_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtstatus",
+          "field_name": "txtstatus",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpono",
+          "field_name": "txtpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "po_indicator_hdr",
+          "field_name": "po_indicator_hdr",
+          "btsynonym": "po_indicator_hdr",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtamdmtno",
+          "field_name": "txtamdmtno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrefquotno",
+          "field_name": "txtrefquotno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfolderdescriptionapr",
+          "field_name": "dspfolderdescriptionapr",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspamendmentdateapr",
+          "field_name": "dspamendmentdateapr",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliername",
+          "field_name": "txtsuppliername",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtloitoorder",
+          "field_name": "txtloitoorder",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspclsfyctn_app",
+          "field_name": "dspclsfyctn_app",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspclsfyctn_app_desc",
+          "field_name": "dspclsfyctn_app_desc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_fl",
+          "field_name": "dspfiller_fl",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_fl_2",
+          "field_name": "dspfiller_fl_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsub_clsfyctn_app",
+          "field_name": "dspsub_clsfyctn_app",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsub_clsfyctn_app_desc",
+          "field_name": "dspsub_clsfyctn_app_desc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_app_2",
+          "field_name": "dspfiller_app_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_app_2_2",
+          "field_name": "dspfiller_app_2_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_aa",
+          "field_name": "dspfiller_aa",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_apppo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_aa_2",
+          "field_name": "dspfiller_aa_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_apppo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_x",
+          "field_name": "dspfiller_x",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_apppo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_x_2",
+          "field_name": "dspfiller_x_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_apppo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_app",
+          "field_name": "dspfiller_app",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_app_2",
+          "field_name": "dspfiller_app_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ap",
+          "field_name": "dspfiller_ap",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ap_2",
+          "field_name": "dspfiller_ap_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_a",
+          "field_name": "dspfiller_a",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_a_2",
+          "field_name": "dspfiller_a_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_apppo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsuppliertaxregion",
+          "field_name": "dspsuppliertaxregion",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section15",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dsptaxregnno",
+          "field_name": "dsptaxregnno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section15",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspowntaxregion",
+          "field_name": "dspowntaxregion",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section15",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpovalue",
+          "field_name": "txtpovalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poappmain_mainscreen_section03_9",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtaddlcharge",
+          "field_name": "txtaddlcharge",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poappmain_mainscreen_section03_9",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttotalvalue",
+          "field_name": "txttotalvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poappmain_mainscreen_section03_9",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbasecurvalue",
+          "field_name": "txtbasecurvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poappmain_mainscreen_section03_9",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspacusagedescriptionapr",
+          "field_name": "dspacusagedescriptionapr",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_56",
+          "field_name": "dspfiller_56",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_56_2",
+          "field_name": "dspfiller_56_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspccusagedescriptionapr",
+          "field_name": "dspccusagedescriptionapr",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_007",
+          "field_name": "filler_007",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_007_2",
+          "field_name": "filler_007_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_012",
+          "field_name": "filler_012",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_012_2",
+          "field_name": "filler_012_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_015",
+          "field_name": "filler_015",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_014",
+          "field_name": "filler_014",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_30d613",
+          "field_name": "f_30d613",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_30d613_2",
+          "field_name": "f_30d613_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_new11",
+          "field_name": "dspfiller_new11",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_new12",
+          "field_name": "dspfiller_new12",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_new12_2",
+          "field_name": "dspfiller_new12_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_new3",
+          "field_name": "dspfiller_new3",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_new3_2",
+          "field_name": "dspfiller_new3_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill45",
+          "field_name": "dspfill45",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill45_2",
+          "field_name": "dspfill45_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill46",
+          "field_name": "dspfill46",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill46_2",
+          "field_name": "dspfill46_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section08",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreatedby",
+          "field_name": "txtcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_41c312",
+          "field_name": "f_41c312",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_41c312_2",
+          "field_name": "f_41c312_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreateddate",
+          "field_name": "txtcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlastmodifiedby",
+          "field_name": "txtlastmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_b45022",
+          "field_name": "f_b45022",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_b45022_2",
+          "field_name": "f_b45022_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlastmodifieddate",
+          "field_name": "txtlastmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poappmain_mainscreen_section14",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtquopoamount",
+          "field_name": "txtquopoamount",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnappord_recp_det_dcub",
+          "field_name": "hdnappord_recp_det_dcub",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnapppomain_pono_ou_guid",
+          "field_name": "hdnapppomain_pono_ou_guid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtdefaultentries",
+          "field_name": "txtdefaultentries",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtguid",
+          "field_name": "txtguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnou",
+          "field_name": "hdnhdnou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnproptype",
+          "field_name": "hdnhdnproptype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdntrantype",
+          "field_name": "hdnhdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttextcontrol1",
+          "field_name": "txttextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttextcontrol2",
+          "field_name": "txttextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlinedetails",
+          "field_name": "txtlinedetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtquotationdetail",
+          "field_name": "txtquotationdetail",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpono",
+          "field_name": "hdnpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcommittee",
+          "field_name": "txtcommittee",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttimestamp",
+          "field_name": "txttimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntxtcsou",
+          "field_name": "hdntxtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnvatcalc",
+          "field_name": "hdnvatcalc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnwfdockey",
+          "field_name": "hdnhdnwfdockey",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnwforgunit",
+          "field_name": "hdnhdnwforgunit",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poappmain_mainscreen_section03_3",
+          "caption": "PO Details",
+          "label": "Collect PO Details",
+          "is_grid": false,
+          "slot_count": 24,
+          "mandatory_count": 2,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentno",
+              "text": "Amendment No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "refdocnoml",
+              "text": "Ref. Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "podate",
+              "text": "PO Date",
+              "mandatory": true
+            },
+            {
+              "btsynonym": "potypeenum",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "approvaldate",
+              "text": "Approval Date",
+              "mandatory": true
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folderdescriptionapr",
+              "text": "Folder Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentdateapr",
+              "text": "Amendment Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "contactperson",
+              "text": "Contact Person",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loi",
+              "text": "LOI",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loitoorder",
+              "text": "LOI To Order",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "chkbx2",
+              "text": "Hold",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "remarks",
+              "text": "Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "authorisationremarksvw",
+              "text": "Authorization Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "reasonforreturnappr",
+              "text": "Reason For Return",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "clsfyctn_app",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "clsfyctn_app_desc",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "sub_clsfyctn_app",
+              "text": "SubClassification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "sub_clsfyctn_app_desc",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poappmain_mainscreen_section03_9",
+          "caption": "Amount Details",
+          "label": "Collect Amount Details",
+          "is_grid": false,
+          "slot_count": 6,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "povalue",
+              "text": "PO Value [Incl. Discounts]",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "additionalcharge",
+              "text": "Additional Charges",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "totalvalue",
+              "text": "Total Value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "exchangerate",
+              "text": "Exchange Rate",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "basecurrvalue",
+              "text": "Base Currency Value",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "section_id": "poappmain_mainscreen_section03",
+          "caption": "Default Entries",
+          "label": "Collect Default Entries",
+          "is_grid": false,
+          "slot_count": 14,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "receiptatou",
+              "text": "Receipt At",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "needdatehdr",
+              "text": "Need Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehouse_code",
+              "text": "Warehouse Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "acusage",
+              "text": "AC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "acusagedescriptionapr",
+              "text": "AC Usage Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ccusage",
+              "text": "CC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ccusagedescriptionapr",
+              "text": "CC Usage Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "accunit",
+              "text": "Accounting Unit",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "analysiscode",
+              "text": "Analysis Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subanalysiscode",
+              "text": "Sub Analysis Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "budgetid",
+              "text": "Budget ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "prpslidhdr",
+              "text": "Proposal No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cust_code",
+              "text": "Customer Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "drpshpid",
+              "text": "Drop Ship ID",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "section_id": "poappmain_mainscreen_section14",
+          "caption": "Data History",
+          "label": "Collect Data History",
+          "is_grid": false,
+          "slot_count": 4,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "createdby",
+              "text": "Created By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "createddate",
+              "text": "Created Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodby",
+              "text": "Last Modified By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodifieddate",
+              "text": "Last Modified Date",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POAPPMAINLNK4",
+          "POMAINCRAPPPURLK",
+          "POMAINCRAPP_WFLK",
+          "POMAINCRCCUSAGUI",
+          "POMAINCRFOLDERUI",
+          "POMAINCRHACUSAUI",
+          "POMAINCRHCCUSAUI",
+          "POMAINCRITEM_DLK",
+          "POMAINCRPO_INDLK",
+          "POMAINCRSHIPFOUI",
+          "POMAINCRSHIPFRUI",
+          "POMAINCRSHIPF_UI",
+          "POMAINCRSPECI_LK",
+          "POMAINCRTCAL_DLK",
+          "POMAINCRVEW_PULK",
+          "POMAINCRVIEWQULK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    },
+    {
+      "ilbo_name": "POAPPREP",
+      "ilbo_desc": "Purchase Order Report",
+      "canonical_services": [],
+      "task_count": 2,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN31FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Default Fetch  Successfully completed"
+          }
+        ],
+        "INIT": [],
+        "TRANS": [],
+        "LINK": [],
+        "UI": [],
+        "HELP": []
+      },
+      "slot_count": 6,
+      "slots": [
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnprintlanguage",
+          "field_name": "hdnprintlanguage",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranono",
+          "field_name": "hdntranono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {
+    "PoAppMain.PoAppMainAnalHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainanalhlp_sp",
+        "method_name": "poappmainanalhlp_Met",
+        "service_name": "poappmainanalhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainBudHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainbudhlp_sp",
+        "method_name": "poappmainbudhlp_Met",
+        "service_name": "poappmainbudhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.poAppmaincusthlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaincusthlp_sp",
+        "method_name": "poappmaincusthlp_Met",
+        "service_name": "poappmaincusthlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainDispnLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaindispnlnk_sp",
+        "method_name": "poappmaindispnlnk_Met",
+        "service_name": "poappmaindispnlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainEarAvlblDtLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainearavlbldtlnk_sp",
+        "method_name": "poappmainearavlbldtlnk_Met",
+        "service_name": "poappmainearavlbldtlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainFreeStkLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainfreestklnk_sp",
+        "method_name": "poappmainfreestklnk_Met",
+        "service_name": "poappmainfreestklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpDrop": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpdrop_sp",
+        "method_name": "poappmainhlpdrop_Met",
+        "service_name": "poappmainhlpdrop_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpItm": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpitm_sp",
+        "method_name": "poappmainhlpitm_Met",
+        "service_name": "poappmainhlpitm_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainHlpUom": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainhlpuom_sp",
+        "method_name": "poappmainhlpuom_Met",
+        "service_name": "poappmainhlpuom_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk12": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk12_sp",
+        "method_name": "poappmainlnk12_Met",
+        "service_name": "poappmainlnk12_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk15": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk15_sp",
+        "method_name": "poappmainlnk15_Met",
+        "service_name": "poappmainlnk15_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk14": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk14_sp",
+        "method_name": "poappmainlnk14_Met",
+        "service_name": "poappmainlnk14_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainLnk13": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainlnk13_sp",
+        "method_name": "poappmainlnk13_Met",
+        "service_name": "poappmainlnk13_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainPropslhlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainpropslhlp_sp",
+        "method_name": "poappmainpropslhlp_Met",
+        "service_name": "poappmainpropslhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSsrOuLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainssroulnk_sp",
+        "method_name": "poappmainssroulnk_Met",
+        "service_name": "poappmainssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainPropslLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainpropsllnk_sp",
+        "method_name": "poappmainpropsllnk_Met",
+        "service_name": "poappmainpropsllnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSsrWhLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainssrwhlnk_sp",
+        "method_name": "poappmainssrwhlnk_Met",
+        "service_name": "poappmainssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhHlp1": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainwhhlp1_sp",
+        "method_name": "poappmainwhhlp1_Met",
+        "service_name": "poappmainwhhlp1_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainsuppHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainsupphlp_sp",
+        "method_name": "PoAppmainsuppHlp_Met",
+        "service_name": "PoAppmainsuppHlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTaxLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmaintaxlnk_sp",
+        "method_name": "PoAppMainTaxLnk_Met",
+        "service_name": "PoAppMainTaxLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_fet_hdrfet",
+        "method_name": "poapren_met_fet_hdrfet",
+        "service_name": "poapren_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhHlp2": [
+      {
+        "sequenceno": 1,
+        "spname": "poappmainwhhlp2_sp",
+        "method_name": "poappmainwhhlp2_Met",
+        "service_name": "poappmainwhhlp2_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_cbiusecrtat",
+        "method_name": "poapren_met_CbIUsecrtat",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamden_sp_cbiusestat",
+        "method_name": "poamden_met_CbIUsestat",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poapren_sp_cbiuselvl",
+        "method_name": "poapren_met_CbIUselvl",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poamden_sp_cbiuseorgn",
+        "method_name": "poamden_met_CbIUseorgn",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poeent_SP_init_cls",
+        "method_name": "poeent_met_init_cls",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poeent_SP_init_subcls",
+        "method_name": "poeent_met_init_subcls",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "poamden_sp_CbIUseloi",
+        "method_name": "poamden_met_CbIUseloi",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "Po_apren_sp_init_acunit",
+        "method_name": "Po_apren_met_init_acunit",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "Po_apren_sp_init_whcode",
+        "method_name": "Po_apren_met_init_whcode",
+        "service_name": "poapren_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntLvlUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvlucddefault",
+        "method_name": "poapren_met_lvlUCDefault",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvlstat",
+        "method_name": "poapren_met_lvlstat",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_lvluihdr",
+        "method_name": "poapren_met_lvlUiHdr",
+        "service_name": "poapren_ser_lvl",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_srch_hdrfet",
+        "method_name": "poapren_met_srch_hdrfet",
+        "service_name": "poapren_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poapren_sp_srchgrd",
+        "method_name": "poapren_met_srchgrd",
+        "service_name": "poapren_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincracusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poaprmn_ser_acusage",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrmn_SP_AC_href",
+        "method_name": "pocrmn_met_AC_href",
+        "service_name": "poaprmn_ser_acusage",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainApDateUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apdbyr",
+        "method_name": "poaprmn_met_apdbyr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apdhref",
+        "method_name": "poaprmn_met_apdHRef",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apducddefault",
+        "method_name": "poaprmn_met_apdUCDefault",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apduihdr",
+        "method_name": "poaprmn_met_apdUiHdr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_apdfld",
+        "method_name": "poaprmn_met_apdfld",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poaprmn_sp_apdcurr",
+        "method_name": "poaprmn_met_apdcurr",
+        "service_name": "poaprmn_ser_apd",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppmainCurrUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_curruihdr",
+        "method_name": "poaprmn_met_currUiHdr",
+        "service_name": "poaprmn_ser_curr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_currhref",
+        "method_name": "poaprmn_met_currHRef",
+        "service_name": "poaprmn_ser_curr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_addid_lst",
+        "method_name": "poaprmn_met_addid_lst",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_fet_hdrfet",
+        "method_name": "poaprmn_met_fet_hdrfet",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_fetgrd",
+        "method_name": "poaprmn_met_fetgrd",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "po_lstedt_sp_supcode",
+        "method_name": "po_lstedt_Mt_supcode",
+        "service_name": "poaprmn_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_def_grd",
+        "method_name": "poaprmn_met_def_grd",
+        "service_name": "poaprmn_ser_def",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_defgrd",
+        "method_name": "poaprmn_met_defgrd",
+        "service_name": "poaprmn_ser_def",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_cbiuseacunt",
+        "method_name": "poamdmm_met_CbIUseacunt",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamdmm_sp_cbiuseacusg",
+        "method_name": "poamdmm_met_CbIUseacusg",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poamdmm_sp_cbiusegrou",
+        "method_name": "poamdmm_met_CbIUsegrou",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poamdmm_sp_cbiusemlcb14",
+        "method_name": "poamdmm_met_CbIUsemlcb14",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poamdmm_sp_cbiusemlcb18",
+        "method_name": "poamdmm_met_CbIUsemlcb18",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "poamdmm_sp_cbiusemlcb10",
+        "method_name": "poamdmm_met_CbIUsemlcb10",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "povwmn_sp_initlang",
+        "method_name": "povwmn_met_initlang",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poaprmn_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainItemUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_itmumgrd",
+        "method_name": "poaprmn_met_itmUMgrd",
+        "service_name": "poaprmn_ser_itm",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn4": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_qtngrd",
+        "method_name": "poaprmn_met_qtngrd",
+        "service_name": "poaprmn_ser_qtn",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainQtyUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_qtyumgrd",
+        "method_name": "poaprmn_met_qtyUMgrd",
+        "service_name": "poaprmn_ser_qty",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn3": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd_out",
+        "method_name": "poapren_met_aprgrd_out",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrsav",
+        "method_name": "poapren_met_apr_hdrsav",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_ret_hdrchk",
+        "method_name": "poapren_met_ret_hdrchk",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_retgrd",
+        "method_name": "poapren_met_retgrd",
+        "service_name": "poapren_ser_ret",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSuppUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_addid_lst_sc",
+        "method_name": "poaprmn_met_addid_lst_sc",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_suphref",
+        "method_name": "poaprmn_met_supHRef",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_supuihdr",
+        "method_name": "poaprmn_met_supUiHdr",
+        "service_name": "poaprmn_ser_sup",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainUomUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_uomumgrd",
+        "method_name": "poaprmn_met_uomUMgrd",
+        "service_name": "poaprmn_ser_uom",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainItemVarUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_varumgrd",
+        "method_name": "poaprmn_met_varUMgrd",
+        "service_name": "poaprmn_ser_var",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrViewQuLk": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ViewQu_hrf",
+        "method_name": "poaprmn_M_ViewQu_hrf",
+        "service_name": "poaprmn_ser_ViewQu",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainTrn5": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_Mt_Del_HRef",
+        "method_name": "poaprmn_Mt_Del_HRef",
+        "service_name": "poaprmn_ser_ret",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ret_docsav",
+        "method_name": "poaprmn_met_ret_docsav",
+        "service_name": "poaprmn_ser_ret",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrWarehuUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_Sp_whmlUMwhml",
+        "method_name": "poaprmn_Mt_whmlUMwhml",
+        "service_name": "poaprmn_Ser_whml",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainWhUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_whumgrd",
+        "method_name": "poaprmn_met_whUMgrd",
+        "service_name": "poaprmn_ser_wh",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhacusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_achlp",
+        "method_name": "pocrmn_M_Hp_achlp",
+        "service_name": "pocrmn_ser_Hp_ac",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhccusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_cchlp",
+        "method_name": "pocrmn_M_Hp_cchlp",
+        "service_name": "pocrmn_ser_Hp_cc",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.PoAppMainSbt": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_aprgrd",
+        "method_name": "poaprmn_met_aprgrd",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apr_hdrchk",
+        "method_name": "poaprmn_met_apr_hdrchk",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_aprhref",
+        "method_name": "poaprmn_met_aprHRef",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_apr_hdrsav",
+        "method_name": "poaprmn_met_apr_hdrsav",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poaprmn_sp_aprgrd_out",
+        "method_name": "poaprmn_met_aprgrd_out",
+        "service_name": "poaprmn_ser_apr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.PoAppEntTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd",
+        "method_name": "poapren_met_aprgrd",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrchk",
+        "method_name": "poapren_met_apr_hdrchk",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_aprgrd_out",
+        "method_name": "poapren_met_aprgrd_out",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poapren_sp_apr_hdrsav",
+        "method_name": "poapren_met_apr_hdrsav",
+        "service_name": "poapren_ser_apr",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrccusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_ccusag_hrf",
+        "method_name": "pomaincr_M_ccusag_hrf",
+        "service_name": "pomaincr_ser_ccusag",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhccusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_ccusag_ref",
+        "method_name": "pomaincr_M_ccusmlUMccusml",
+        "service_name": "pomaincr_ser_ccusml",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrSpeci_Lk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_DIM_hrf",
+        "method_name": "pomaincr_M_DIM_hrf",
+        "service_name": "pomaincr_ser_DIM",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrfolderUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poaprmn_sp_folder_hrf",
+        "method_name": "pomaincr_M_folder_hrf",
+        "service_name": "pomaincr_ser_folder",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrhacusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_ccusag_ref",
+        "method_name": "pomaincr_M_hacusaUMhacusa",
+        "service_name": "pomaincr_ser_hacusa",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrShipFoUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_ShipFo_hrf",
+        "method_name": "pomaincr_M_ShipFo_hrf",
+        "service_name": "pomaincr_ser_ShipFo",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrTCAL_dLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_TCAL_d_hrf",
+        "method_name": "pomaincr_M_TCAL_d_hrf",
+        "service_name": "pomaincr_ser_TCAL_d",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrShipf_Ui": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_Shipf__hrf",
+        "method_name": "pomaincr_M_Shipf__hrf",
+        "service_name": "pomaincr_ser_Shipf_",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrvew_puLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomaincr_sp_vew_pu_hrf",
+        "method_name": "pomaincr_M_vew_pu_hrf",
+        "service_name": "pomaincr_ser_vew_pu",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.pomainsnCls_poUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_clsuisubui",
+        "method_name": "pomains8_M_clsuisubui",
+        "service_name": "pomainsn_ser_clsui",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomainsn_sp_clsui_hrf",
+        "method_name": "pomainsn_M_clsui_hrf",
+        "service_name": "pomainsn_ser_clsui",
+        "lvl": "0"
+      }
+    ],
+    "PoAppEnt.pomainsnSubclsUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomainsn_sp_subui_hrf",
+        "method_name": "pomainsn_M_subui_hrf",
+        "service_name": "pomainsn_ser_subui",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.poappmainprint": [
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_sp_ft",
+        "method_name": "po_povwmn_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_Sp_email_Ft",
+        "method_name": "po_povwmn_Mt_email_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "po_povwmnsub_sp_ft",
+        "method_name": "po_povwmnsub_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      }
+    ],
+    "PoAppMain.pomaincrAppPurLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_price_his_lnk_sp",
+        "method_name": "po_price_his_lnk_mt",
+        "service_name": "po_price_his_lnk_ser",
+        "lvl": "0"
+      }
+    ]
+  },
+  "sp_chains_summary": {
+    "screens": [
+      "PoAppEnt",
+      "PoAppMain"
+    ],
+    "tasks": [
+      "PoAppEntFth",
+      "PoAppEntIni",
+      "PoAppEntLvlUI",
+      "PoAppEntTrn1",
+      "PoAppEntTrn2",
+      "PoAppEntTrn3",
+      "PoAppMainAnalHlp",
+      "PoAppMainBudHlp",
+      "PoAppMainDispnLnk",
+      "PoAppMainEarAvlblDtLnk",
+      "PoAppMainFreeStkLnk",
+      "PoAppMainFth",
+      "PoAppMainHlpDrop",
+      "PoAppMainHlpItm",
+      "PoAppMainHlpUom",
+      "PoAppMainIni",
+      "PoAppMainItemUi",
+      "PoAppMainItemVarUI",
+      "PoAppMainLnk12",
+      "PoAppMainLnk13",
+      "PoAppMainLnk14",
+      "PoAppMainLnk15",
+      "PoAppMainPropslLnk",
+      "PoAppMainQtyUI",
+      "PoAppMainSbt",
+      "PoAppMainSsrOuLnk",
+      "PoAppMainSsrWhLnk",
+      "PoAppMainSuppUI",
+      "PoAppMainTaxLnk",
+      "PoAppMainTrn1",
+      "PoAppMainTrn4",
+      "PoAppMainTrn5",
+      "PoAppMainUomUI",
+      "PoAppMainWhHlp1",
+      "PoAppMainWhHlp2",
+      "PoAppMainWhUI",
+      "PoAppmainApDateUI",
+      "PoAppmainCurrUI",
+      "PoAppmainPropslhlp",
+      "PoAppmainsuppHlp",
+      "poAppmaincusthlp",
+      "poappmainprint",
+      "pomaincrAppPurLk",
+      "pomaincrShipFoUi",
+      "pomaincrShipf_Ui",
+      "pomaincrSpeci_Lk",
+      "pomaincrTCAL_dLk",
+      "pomaincrViewQuLk",
+      "pomaincrWarehuUi",
+      "pomaincracusagUi",
+      "pomaincrccusagUi",
+      "pomaincrfolderUi",
+      "pomaincrhacusaHp",
+      "pomaincrhacusaUi",
+      "pomaincrhccusaHp",
+      "pomaincrhccusaUi",
+      "pomaincrvew_puLk",
+      "pomainsnCls_poUi",
+      "pomainsnSubclsUi"
+    ],
+    "sp_count": 105,
+    "method_count": 105,
+    "task_count": 59
+  }
+}

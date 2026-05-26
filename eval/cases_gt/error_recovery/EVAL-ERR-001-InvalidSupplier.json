@@ -1,0 +1,32 @@
+{
+  "id": "EVAL-ERR-001",
+  "title": "User enters a non-existent supplier code, bot recovers with search",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "user_persona": "Buyer who mistyped or misremembered a supplier code",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for supplier XYZ-NONEXISTENT, USD, today."
+    },
+    {
+      "turn": 2,
+      "user": "Search for suppliers with 'XYZ' in the name."
+    },
+    {
+      "turn": 3,
+      "user": "OK use XYZ-CORP-001."
+    }
+  ],
+  "ground_truth": {
+    "kind": "error_no_commit",
+    "no_writes_expected": true,
+    "status_after": "header in progress"
+  }
+}

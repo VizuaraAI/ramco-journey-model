@@ -1,0 +1,88 @@
+{
+  "id": "EVAL-SPLICE-010",
+  "title": "Buyer specifies quality attributes — UI splice via POCRTMAINLNK6 + qcchk data splice",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "hard",
+  "tags": ["quality-splice", "ui-splice", "lnk6", "qcchk-data-splice"],
+  "user_persona": "Buyer ordering an item that requires incoming-quality inspection",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-MED-1 for medical-grade item ITM-MED-X, 1000 units at 5 USD. This item needs quality inspection on receipt.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-MED-1",
+          "item_code": "ITM-MED-X",
+          "quantity": 1000,
+          "cost": 5,
+          "currency": "USD"
+        },
+        "splice_triggered": "qcchk==1 (item requires QC) AND user_opens_quality_lnk6",
+        "bot_must": [
+          "recognise quality intent and that ITM-MED-X is QC-applicable (qcchk=1) — verify via item master lookup",
+          "note that the SP hdrchk has IF @qcchk = 1 → quality slots become mandatory",
+          "plan to walk POCRTMAINLNK6 (Specify Quality Details) sub-screen",
+          "ask for quality attributes (sample size, AQL, test methods)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Sample 5%, AQL 0.65, standard pharma test methods.",
+      "expected": {
+        "slots_extracted": {
+          "quality_attributes": {
+            "sample_pct": 5,
+            "aql": 0.65,
+            "test_methods": "standard pharma"
+          }
+        },
+        "splice_walked": ["quality_via_LNK6"],
+        "bot_must": [
+          "save quality sub-screen data",
+          "return to main",
+          "ask for remaining header slots"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Buyer BUY-MED, today, numbering PO/MED/2026.",
+      "expected": {
+        "slots_extracted": {"buyer": "BUY-MED", "po_date": "<today>", "numbering_series": "PO/MED/2026"},
+        "bot_must": ["acknowledge", "ask to commit"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create the PO.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "fire POCRTMAINSBT with quality data — must succeed because qcchk=1 mandatory slots are filled",
+          "report PO created"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "item_code", "quantity", "cost", "currency", "quality_attributes", "buyer", "po_date", "numbering_series"],
+    "splices_walked": ["quality_via_LNK6"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "qcchk_data_splice_detection": "bot identifies qcchk=1 from item master, knows quality slots are required",
+    "lnk6_invoked": "Quality sub-screen entered",
+    "validation_pass": "since user filled the required quality slots, the SP IF @qcchk=1 branch passes"
+  }
+}

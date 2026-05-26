@@ -1,0 +1,58 @@
+{
+  "id": "EVAL-LOOKUP-005",
+  "title": "Buyer asks where a specific item is on order across all open POs",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "lookup",
+  "difficulty": "medium",
+  "tags": ["filtered-list", "by-item", "open-pos-only"],
+  "user_persona": "Buyer or planner checking commitments for an item",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Where is item ITM-300 currently on order? I need every open PO that has it on a line.",
+      "expected": {
+        "intent": "po_lines_by_item",
+        "journey_locked": "PoViw",
+        "slots_extracted": {"item_code": "ITM-300", "status_filter": "Open"},
+        "bot_must": [
+          "query for PO lines where item_code=ITM-300 AND PO status in (Open/Authorised/Hold) and line not fully received/short-closed",
+          "return list: PO number, supplier, ordered qty, received qty, balance qty, need date"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "What's the total open quantity I have on order?",
+      "expected": {
+        "bot_must": ["sum balance_qty across results", "report total"]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Show me the oldest one.",
+      "expected": {
+        "bot_must": [
+          "sort by po_date ascending",
+          "return the top entry (oldest PO with open balance for this item)"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<list view>",
+    "slots_filled": ["item_code", "status_filter"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "item_centric_query": "query at line level, not header level",
+    "balance_qty_compute": "balance = ordered - received - short_closed",
+    "aggregate_and_sort": "follow-ups for total and oldest both work"
+  }
+}

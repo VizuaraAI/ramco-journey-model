@@ -1,0 +1,82 @@
+{
+  "id": "EVAL-ERR-005",
+  "title": "User changes their mind mid-conversation — bot retracts splice cleanly",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "tags": ["mid-flow-change", "splice-retraction", "state-management"],
+  "user_persona": "Buyer who started thinking they needed Capital but changed their mind",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a Capital PO for SUP-CAP-2.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"po_type": "Capital", "supplier_code": "SUP-CAP-2"},
+        "splice_triggered": "po_type==Capital",
+        "additional_required_slots": ["capital_proposal_id"],
+        "bot_must": ["acknowledge Capital", "ask for capital proposal"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Actually, this is just a standard expense, not Capital. Never mind.",
+      "expected": {
+        "slots_extracted": {"po_type": "Standard"},
+        "splice_walked": [],
+        "bot_must": [
+          "retract the Capital splice",
+          "drop capital_proposal_id from required slots",
+          "confirm switch to standard PO and resume slot collection"
+        ],
+        "bot_must_not": [
+          "keep asking for capital_proposal_id",
+          "lose previously captured supplier_code"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "USD, today, buyer BUY-9, numbering PO/STD/2026. Line ITM-1 50 at 10.",
+      "expected": {
+        "slots_extracted": {
+          "currency": "USD",
+          "po_date": "<today>",
+          "buyer": "BUY-9",
+          "numbering_series": "PO/STD/2026",
+          "item_code": "ITM-1",
+          "quantity": 50,
+          "cost": 10
+        },
+        "slots_carried_forward": ["supplier_code"],
+        "bot_must": ["acknowledge slots and that supplier_code SUP-CAP-2 is still captured", "ask to commit"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT", "no Capital metadata attached", "PO created as standard"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "po_type", "currency", "po_date", "buyer", "numbering_series", "item_code", "quantity", "cost"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "splice_retraction": "Capital splice retracted at turn 2, capital_proposal_id no longer required",
+    "context_preservation": "supplier_code captured at turn 1 must persist to turn 3",
+    "no_residual_metadata": "final PO does not carry capital_proposal_id or capital flag"
+  }
+}

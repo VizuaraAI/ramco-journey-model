@@ -1,0 +1,57 @@
+{
+  "id": "EVAL-HAPPY-005",
+  "title": "Buyer copies an existing PO to create a recurring order",
+  "covers_journeys": [
+    "PoCopy"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "user_persona": "Buyer placing the same kind of order they placed last month",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Last month I created PO-2026-118 for office supplies. I want to do the exact same order again. Can I copy it?"
+    },
+    {
+      "turn": 2,
+      "user": "Yes, same one. Change the PO date to today and bump line 1 quantity from 10 to 15."
+    },
+    {
+      "turn": 3,
+      "user": "Yes, create it."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTCOPYPOTRN2",
+        "activity": "POCOPY",
+        "screen": "PoCrtCopyPo",
+        "via_sp_chain": [
+          "pocrcpy_sp_cpygrd",
+          "pocrcpy_sp_cpy_hdrchk",
+          "pocrcpy_sp_cpy_hdrsav",
+          "pocrcpy_sp_cpygrd_out"
+        ],
+        "tables_required": [
+          "not_notes_attachdoc",
+          "not_notes_dtl",
+          "not_notes_hdr"
+        ],
+        "slot_values_required": {
+          "source_po_no": "PO-2026-118",
+          "po_date": "<today>",
+          "line_no": 1,
+          "quantity": 15
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

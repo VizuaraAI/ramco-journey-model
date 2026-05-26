@@ -1,0 +1,44 @@
+{
+  "id": "EVAL-XMOD-004",
+  "title": "User asks why a PO can't be closed \u2014 bot diagnoses a pending GR",
+  "covers_journeys": [
+    "PoViw",
+    "PoScl"
+  ],
+  "covers_modules": [
+    "PO",
+    "GR"
+  ],
+  "category": "cross-module",
+  "difficulty": "hard",
+  "user_persona": "Buyer frustrated that a PO won't close at quarter end",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Why can't I close PO-2026-1450? I tried short close and it said no."
+    },
+    {
+      "turn": 2,
+      "user": "There's a draft GR? Where?"
+    },
+    {
+      "turn": 3,
+      "user": "If I cancel that draft GR can I then short close?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<diagnosed, not changed>",
+    "cross_module_writes": [
+      {
+        "module": "GR",
+        "effect": "GR-search by status=Draft and source PO=PO-2026-1450"
+      }
+    ],
+    "must_enumerate_information": [
+      "list the draft GR(s) by GR number, warehouse, who created",
+      "explain user needs to either post the draft GR (in GR module) or cancel it before short-close will work"
+    ]
+  }
+}

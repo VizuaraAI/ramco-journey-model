@@ -1,0 +1,136 @@
+{
+  "activity": "POCRTTEN",
+  "screen_count": 1,
+  "screens": [
+    {
+      "ilbo_name": "POCRTTENUI",
+      "ilbo_desc": "Create Purchase Order From Tender",
+      "canonical_services": [],
+      "task_count": 10,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN40FTH",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POMAIN40INIT",
+            "description": "Initialize",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POMAIN40COMPUTTR",
+            "description": "Compute",
+            "type": "TRANS",
+            "pattern": "TRANS1",
+            "primary_control_bt": "COMPUTE"
+          },
+          {
+            "name": "POMAIN40CREATETR",
+            "description": "Create PO",
+            "type": "TRANS",
+            "pattern": "TRANS1",
+            "primary_control_bt": "CREATEPO1"
+          },
+          {
+            "name": "POMAIN40SEARCHTR",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS",
+            "primary_control_bt": "SEARCH"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POMAIN40EDITBPLK",
+            "description": "Link to Edit BPo",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDITBPO"
+          },
+          {
+            "name": "POMAIN40EDITPOLK",
+            "description": "Link to Edit Po",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "EDITPO"
+          }
+        ],
+        "UI": [],
+        "HELP": [
+          {
+            "name": "POMAIN40FROMTEHP",
+            "description": "Help on From Tender No",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "FROMTENDERNO"
+          },
+          {
+            "name": "POMAIN40TOTENDHP",
+            "description": "Help on To Tender No",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "TOTENDERNO"
+          }
+        ]
+      },
+      "slot_count": 4,
+      "slots": [
+        {
+          "field_id": "txtsuppliercode1",
+          "field_name": "txtsuppliercode1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsuppliername1",
+          "field_name": "dspsuppliername1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcontactperson",
+          "field_name": "txtcontactperson",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "contractdetails",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnprj_hdn_ctrl",
+          "field_name": "hdnprj_hdn_ctrl",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,2582 @@
+{
+  "activity": "POEDT",
+  "splice_summary": {
+    "ui_splices": 28,
+    "state_splices": 16,
+    "data_splices": 70,
+    "total": 114
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTENTLNK1",
+        "description": "Edit PO",
+        "hook_screen": "POEDTENT",
+        "trigger": "user_clicks_POEDTENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTENTLNK2",
+        "description": "Edit PO",
+        "hook_screen": "POEDTENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINBUDDETAILLNK",
+        "description": "View Budget Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINBUDDETAILLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINBULNK",
+        "description": "View Buyer Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINBULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINDISPNLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINDISPNLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINEARAVLBLDTLNK",
+        "description": "View Earliest Available Date",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINEARAVLBLDTLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINFREESTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINFREESTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINITMLNK",
+        "description": "View Item Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINITMLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK10",
+        "description": "Specify PO-SO Coverage",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK11",
+        "description": "Attach Notes",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK2",
+        "description": "Specify Schedule and Distribution",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK3",
+        "description": "Specify Terms and Condition",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK6",
+        "description": "Specify Quality Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK7",
+        "description": "Specify Budget Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK8",
+        "description": "Specify Dropship Address",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK9",
+        "description": "Specify PO-PR Coverage",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINPROPSLLNK",
+        "description": "View Proposal Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINPROPSLLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSSROULNK",
+        "description": "View Stock Status Review - OU Wise",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSSRWHLNK",
+        "description": "View Stock Status Review - Warehouse Wise",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSUPPLNK",
+        "description": "View Supplier Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSUPPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINTAXLNK",
+        "description": "Specify Tax Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINWHLNK",
+        "description": "View Warehouse Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9APPROELK",
+        "description": "Link to Approve PO",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_APPROVE_PO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9OPERATLK",
+        "description": "Link to Operational Checklist",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_OPERATIONALCHECKLIST",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9SPECIFLK",
+        "description": "Link to Specify Retention Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_SPECIFYRETENTIONDETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9SPECIYLK",
+        "description": "Link to Specify Milestone",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_SPECIFYMILESTONE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9VIEW_PLK",
+        "description": "Link to View PO",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_VIEW_PO",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@fgbase_yes_no = YES",
+        "trigger": "@fgbase_yes_no = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 827,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 835,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "341"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@imports = 1",
+        "trigger": "@imports = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 805,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "29"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1555,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "31"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2251,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "30"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@workflow_app = Y",
+        "trigger": "@workflow_app = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 780,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1101"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 1993,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": [
+                "classification_user_acc_wise_tmp"
+              ]
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@part_cov_pr_flag = YES",
+        "trigger": "@part_cov_pr_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6832,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tran_rights_flag = Y",
+        "trigger": "@tran_rights_flag = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_fet_hdrfet",
+            "line": 669,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1600"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@budchk = Y",
+        "trigger": "@budchk = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1822,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 2068,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 561,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrsav",
+            "line": 567,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = STAG",
+        "trigger": "@sched_typeml = STAG",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 863,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "133"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3503,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "staggered"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml <> SI",
+        "trigger": "@sched_typeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7281,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = YES",
+        "trigger": "@useroption = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6840,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml > @prqty",
+        "trigger": "@qtyml > @prqty",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1591,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6871,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitem = NONE",
+        "trigger": "@adhocitem = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6881,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype = SI",
+        "trigger": "@schtype = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6883,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6929,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1712"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@catchweightitem = 1",
+        "trigger": "@catchweightitem = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3032,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@uommult = @alternate_uom_tmp",
+        "trigger": "@uommult = @alternate_uom_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3046,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> floor",
+        "trigger": "@qtyml <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 875,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SN",
+        "trigger": "@itemtype = SN",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3273,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "itm_sp_chk_sundrystock",
+                "itm_sp_get_uomconvfactor",
+                "uom_sp_get_convfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> FLOOR",
+        "trigger": "@qty_stockuom <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3357,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SR",
+        "trigger": "@itemtype = SR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3808,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4485,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 2",
+        "trigger": "@potypeenum = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3689,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4492,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4676,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": [
+                "ard_is_account_tmp"
+              ]
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 1",
+        "trigger": "@potypeenum = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3667,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4547,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = LT",
+        "trigger": "@rate_mismatch = LT",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2722,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "58"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val <> 2460367",
+        "trigger": "@return_val <> 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2609,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2942,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_itemrate_curr_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 365,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 2460367",
+        "trigger": "@return_val = 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2610,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 366,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 900016203",
+        "trigger": "@return_val = 900016203",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2646,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "503"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 390,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> FLOOR",
+        "trigger": "@qtyml <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3245,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@flag_yesno = YES",
+        "trigger": "@flag_yesno = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3806,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4186,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "21"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml = NONE",
+        "trigger": "@adhocitemclassml = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8381,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poqly_quality_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8541,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poqly_quality_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 9060,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 1",
+        "trigger": "@error = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 600,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5805,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@variantno = ##",
+        "trigger": "@variantno = ##",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_itmumgrd",
+            "line": 991,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 984,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1800"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_varumgrd",
+            "line": 794,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = BLTRAN",
+        "trigger": "@response = BLTRAN",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 426,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = ROUNDUPQTY",
+        "trigger": "@response = ROUNDUPQTY",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 445,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = ROUNDDOWNQTY",
+        "trigger": "@response = ROUNDDOWNQTY",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 451,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> floor",
+        "trigger": "@qty_stockuom <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 897,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_old <> @pocurrency_new",
+        "trigger": "@pocurrency_old <> @pocurrency_new",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1359,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1438,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tcd_basis = F",
+        "trigger": "@tcd_basis = F",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1443,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1532,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_doclevel_detail"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1523,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@currencycode <> @currency_tbl",
+        "trigger": "@currencycode <> @currency_tbl",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 991,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrsav",
+            "line": 884,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 4",
+        "trigger": "@potypeenum = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2841,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_consrule_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@execflag = 2",
+        "trigger": "@execflag = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3193,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1106"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum <> 3",
+        "trigger": "@potypeenum <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3708,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_transaction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@stockuom <> @uommult_tmp",
+        "trigger": "@stockuom <> @uommult_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 845,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 2",
+        "trigger": "@error = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5812,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 3",
+        "trigger": "@error = 3",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5745,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 4",
+        "trigger": "@error = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5819,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10504",
+                "10512"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 5",
+        "trigger": "@error = 5",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5753,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 6",
+        "trigger": "@error = 6",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5759,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 7",
+        "trigger": "@error = 7",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5766,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502",
+                "10504"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 8",
+        "trigger": "@error = 8",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5773,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502",
+                "10509",
+                "10504"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 9",
+        "trigger": "@error = 9",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5778,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10510",
+                "10504",
+                "10502",
+                "10509"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5826,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10512",
+                "10513"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 10",
+        "trigger": "@error = 10",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5784,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10510",
+                "10504",
+                "10502",
+                "10509"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5833,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10512",
+                "10513"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 11",
+        "trigger": "@error = 11",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5790,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5841,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10512",
+                "10513",
+                "10511",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 12",
+        "trigger": "@error = 12",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5796,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5849,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10512",
+                "10513",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml <> SI",
+        "trigger": "@schedtypeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1193,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2010"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@temp_paymode = LC",
+        "trigger": "@temp_paymode = LC",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_edtgrd",
+            "line": 434,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "235"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_del_docsav",
+            "line": 272,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "235"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@originhdr <> %",
+        "trigger": "@originhdr <> %",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 572,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status <> %",
+        "trigger": "@status <> %",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 581,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype_cur = SI",
+        "trigger": "@schtype_cur = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 911,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1006,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@supplier_code_old <> @supplier_code_tmp",
+        "trigger": "@supplier_code_old <> @supplier_code_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 976,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2012"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service = poemn_ser_apr",
+        "trigger": "@ctxt_service = poemn_ser_apr",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4952,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025210"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 9058,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 13",
+        "trigger": "@error = 13",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5856,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10513",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 14",
+        "trigger": "@error = 14",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5863,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@lineno_old <> @fprowno_tmp",
+        "trigger": "@lineno_old <> @fprowno_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6558,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "not_checklist_lineno_swap_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml <> @schtype",
+        "trigger": "@schedtypeml <> @schtype",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7105,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml = SI",
+        "trigger": "@schedtypeml = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7107,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7183,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8205,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = @schtype",
+        "trigger": "@sched_typeml = @schtype",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7181,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service = pdt_mpo_ser_pdel",
+        "trigger": "@ctxt_service = pdt_mpo_ser_pdel",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_del_docsav",
+            "line": 214,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1705"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

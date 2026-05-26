@@ -1,0 +1,66 @@
+{
+  "id": "EVAL-HAPPY-003",
+  "title": "Buyer creates a dropship PO from a sale order",
+  "covers_journeys": ["PoCrtSo"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "tags": ["create-from-so", "dropship-implied", "entry-screen-search"],
+  "user_persona": "Order management buyer handling a dropship sale",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Customer placed sale order SO-2026-441 and we need to dropship from supplier SUP-DROP-3. Create the PO.",
+      "expected": {
+        "intent": "create_purchase_order_from_sale_order",
+        "journey_locked": "PoCrtSo",
+        "slots_extracted": {"sale_order_no": "SO-2026-441", "supplier_code": "SUP-DROP-3"},
+        "bot_must": [
+          "lock PoCrtSo journey",
+          "fire entry-screen search POCRTSOTRN1 with sale_order_no=SO-2026-441",
+          "note this is a dropship flow (PoCrtSo inherently dropships from supplier to customer)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Yes, found it. Use everything from the SO and just confirm.",
+      "expected": {
+        "bot_must": [
+          "load main screen with SO defaults",
+          "copy customer address as dropship address (no PoCrtDrpshp sub-screen needed — PoCrtSo handles this implicitly)",
+          "ask user to confirm before commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "All confirmed. Create and approve in one go.",
+      "expected": {
+        "trans_invoked": "POCRTSOSUB",
+        "bot_must": [
+          "fire POCRTSOSUB",
+          "if user has approval rights: result is Approved status; if not: result is Draft pending approval",
+          "report new PO number and link to source SO"
+        ],
+        "notes_for_evaluator": "PoCrtSo has POCRTSOSUB as commit. There is no separate Approve task in PoCrtSo's TRANS set (only Search + Submit). Approval is via PoApp."
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrtSo",
+    "commit_task": "POCRTSOSUB",
+    "po_status": "Draft",
+    "slots_filled": ["sale_order_no", "supplier_code", "customer_code", "dropship_id"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp", "PoEdt"]
+  },
+
+  "evaluation_metrics": {
+    "entry_search_at_turn_1": "POCRTSOTRN1 fired",
+    "dropship_inherent": "bot must NOT navigate PoCrtDrpshp splice — PoCrtSo handles dropship implicitly",
+    "commit_task_correctness": "POCRTSOSUB"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "EVAL-HAPPY-012",
+  "title": "Buyer short-closes a PO line because supplier can't deliver the rest",
+  "covers_journeys": [
+    "PoScl"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "user_persona": "Buyer closing out a line that won't be fully delivered",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "On PO-2026-805, line 3 we ordered 100 units but supplier can only deliver the 60 already received. Short-close the rest."
+    },
+    {
+      "turn": 2,
+      "user": "Yes, close the remaining 40."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Open or Closed depending on other lines",
+    "writes": [
+      {
+        "task": "POSCLMAINSBT",
+        "activity": "POSCL",
+        "screen": "PoSclMain",
+        "via_sp_chain": [
+          "posclm_sp_scl_docsav",
+          "posc_wf_sp_iscall",
+          "po_dummy_sp",
+          "po_shcl_sp_Return_State_out"
+        ],
+        "tables_required": [
+          "po_posta_status_detail"
+        ],
+        "slot_values_required": {
+          "line_no": 3,
+          "ordered_qty": 100,
+          "received_qty": 60,
+          "short_close_reason": "supplier cannot deliver remaining"
+        },
+        "status_after": "Open or Closed depending on other lines"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1313 @@
+{
+  "activity": "POVIW",
+  "splice_summary": {
+    "ui_splices": 128,
+    "state_splices": 10,
+    "data_splices": 8,
+    "total": 146
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN16BUDGETLK",
+        "description": "Link to Budget Id",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_BUDGETID_ML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN16COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN16PRPSLILK",
+        "description": "Link to Proposal Id",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_PRPSLIDMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDBUDLNK",
+        "description": "View Budget Id Details",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDBUDLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDITMLNK",
+        "description": "View item details",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDPROPSLLNK",
+        "description": "View Proposal Id Details",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_POVWBUDPROPSLLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWBUDSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWBUD",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN17COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPDRPLNK",
+        "description": "View Dropship Id Details",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_CUSTOMERCODE_ML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_POVWDRPSHPLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_POVWDRPSHPLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_POVWDRPSHPLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWDRPSHPSUPPLNK",
+        "description": "View Supplier Details",
+        "hook_screen": "POVIWDRPSHP",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWENTLNK1",
+        "description": "View PO",
+        "hook_screen": "POVIWENT",
+        "trigger": "user_clicks_POVWENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWENTLNK2",
+        "description": "View PO",
+        "hook_screen": "POVIWENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19PRINTPLK",
+        "description": "Link to Print Purchase Order",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_PRINTPURCHASEORDER",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19SPECIFLK",
+        "description": "Link to Specify Milestone",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_SPECIFYMILESTONE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19VIEWCHLK",
+        "description": "Link to View Checklist Lnk",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_VIEWCHECKLISTLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19VIEWRELK",
+        "description": "Link to View Retention Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_VIEWRETENTIONDETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN19VWORDELK",
+        "description": "Link to View Mapped LCs",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_VWORDERLC_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINBUYLNK",
+        "description": "View Buyer Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_BUYERHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINDISPLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINDISPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINEADLNK",
+        "description": "View Earliest Available Date Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINEADLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINFSTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINFSTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK2",
+        "description": "View Schedule and Distribution",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK3",
+        "description": "View Terms and Condition",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINQUOTNLNK",
+        "description": "View Quotation Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_REFDOCNOML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINSSROULNK",
+        "description": "View Stock Status Review Details-OU Wise",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINSSRWHLNK",
+        "description": "View Stock Status Review Details-Warehouse Wise",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINSUPPLNK",
+        "description": "View Supplier Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINTAXLNK",
+        "description": "View Tax Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_POVWMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWMAINWHLNK",
+        "description": "View Warehouse Details",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_WAREHOUSE_CODE_MUL",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "PSADDMAINLNK2",
+        "description": "View File",
+        "hook_screen": "POVIWMAIN",
+        "trigger": "user_clicks_FILENAME1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWNOTESITMLNK",
+        "description": "View item details",
+        "hook_screen": "POVIWNOTES",
+        "trigger": "user_clicks_ITEM_CODEHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWNOTESSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWNOTES",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN21COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVITMLNK",
+        "description": "View item details",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_ITEM_CODEHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_POVWPRCOVLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_POVWPRCOVLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVPRLNK",
+        "description": "View PR Details",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_PR_NO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWPRCOVWHLNK",
+        "description": "View warehouse Details",
+        "hook_screen": "POVIWPRCOV",
+        "trigger": "user_clicks_POVWPRCOVWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN22COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_POVWQLTYLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_POVWQLTYLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_POVWQLTYLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_POVWQLTYLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_POVWQLTYLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWQLTYSUPPLNK",
+        "description": "View Supplier Details",
+        "hook_screen": "POVIWQLTY",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN23COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHITMLNK",
+        "description": "View item details",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_ITEM_CODEHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK3",
+        "description": "View Terms and Condition",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_POVWSCHLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSCHWHLNK",
+        "description": "view warehouse details",
+        "hook_screen": "POVIWSCH",
+        "trigger": "user_clicks_WAREHOUSE_CODE_MUL",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN24COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSOCOVITMLNK",
+        "description": "View item details",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_ITEM_CODEHDR",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSOCOVLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_POVWSOCOVLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSOCOVSOLNK",
+        "description": "View SO Details",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_SO_NO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSOCOVSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSOCOVWHLNK",
+        "description": "View warehouse Details",
+        "hook_screen": "POVIWSOCOV",
+        "trigger": "user_clicks_WAREHOUSE_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN25COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN25VIEW_TLK",
+        "description": "Link to View TCD Apportionment",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_VIEW_TCD_APPORTIONMENT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_SUPPLIER",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK12",
+        "description": "PovwTcdLnk12",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_VATCALC",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK5",
+        "description": "View Other Tax and Charge",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK5",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDSUPPTCDLNK",
+        "description": "View Supplier Item TCD Mapping Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_SUPPLIERCODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDTAXLNK",
+        "description": "View Tax Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_POVWTCDTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDTCDLNK",
+        "description": "View TCD Details",
+        "hook_screen": "POVIWTCD",
+        "trigger": "user_clicks_TCDCODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN26COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_POVWTCDOTHLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHSUPPLNK",
+        "description": "View Supplier Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_SUPPLIER",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHSUPPTCDLNK",
+        "description": "View Supplier Item TCD Mapping Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_SUPPLIERCODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTCDOTHTCDLNK",
+        "description": "View TCD Details",
+        "hook_screen": "POVIWTCDOTH",
+        "trigger": "user_clicks_TCDCODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN27COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN27MNT_ICLK",
+        "description": "Link to Mnt ICO Vw",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_MNT_ICO_VW",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN27VWORDELK",
+        "description": "Link to Vw Order LC Lnk",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_VWORDERLC_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN27VWORDRLK",
+        "description": "Link to Vw Order BG Lnk",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_VWORDERBG_LNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK10",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK11",
+        "description": "View Notes",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK6",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK7",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK8",
+        "description": "View Dropship Address",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMLNK9",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_POVWTRMLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMPTLNK",
+        "description": "View Payterm Details",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_PAYTERM",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVWTRMSUPPLNK",
+        "description": "View Supplier details",
+        "hook_screen": "POVIWTRM",
+        "trigger": "user_clicks_SUPPLIER_CODE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAIN28COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATBUDLNK",
+        "description": "View Budget Details",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATBUDLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATDRPLNK",
+        "description": "View Dropship Details",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATDRPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATITMLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATNOTESLNK",
+        "description": "View Notes",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATNOTESLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATPRCOVLNK",
+        "description": "View PO-PR Coverage",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATPRCOVLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATQLTYLNK",
+        "description": "View Quality Details",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATQLTYLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATSOCOVLNK",
+        "description": "View PO-SO Coverage",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATSOCOVLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POVIWVATTCDLNK",
+        "description": "View TCD Details",
+        "hook_screen": "POVIWVAT",
+        "trigger": "user_clicks_POVIWVATTCDLNK",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWENT.povwentfth.workflow_off",
+        "hook_screen": "POVIWENT",
+        "hook_service": "povwentfth",
+        "trigger": "workflow_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWENT.povwentfth.workflow_on",
+        "hook_screen": "POVIWENT",
+        "hook_service": "povwentfth",
+        "trigger": "workflow_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainamdmtui.project_details_off",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainamdmtui",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainamdmtui.project_details_on",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainamdmtui",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainamdmtui.state_off",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainamdmtui",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainamdmtui.state_on",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainamdmtui",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainfth.project_details_off",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainfth",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainfth.project_details_on",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainfth",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainfth.state_off",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainfth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POVIWMAIN.povwmainfth.state_on",
+        "hook_screen": "POVIWMAIN",
+        "hook_service": "povwmainfth",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tran_rights_flag = Y",
+        "trigger": "@tran_rights_flag = Y",
+        "sp_occurrences": [
+          {
+            "sp": "povwmn_sp_fet_hdrfet",
+            "line": 936,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1600"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclass = ALL",
+        "trigger": "@adhocitemclass = ALL",
+        "sp_occurrences": [
+          {
+            "sp": "povwe_sp_srchgrd",
+            "line": 1341,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_pur_ord_srchtmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@wbsparam = N",
+        "trigger": "@wbsparam = N",
+        "sp_occurrences": [
+          {
+            "sp": "povwe_sp_srchgrd",
+            "line": 2826,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t1"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@wbsparam = Y",
+        "trigger": "@wbsparam = Y",
+        "sp_occurrences": [
+          {
+            "sp": "povwe_sp_srchgrd",
+            "line": 2858,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t1"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@loi = N",
+        "trigger": "@loi = N",
+        "sp_occurrences": [
+          {
+            "sp": "povwmn_sp_fet_hdrfet",
+            "line": 519,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "povwmn_sp_ui8href",
+            "line": 317,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

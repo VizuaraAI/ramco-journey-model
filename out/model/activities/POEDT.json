@@ -1,0 +1,5981 @@
+{
+  "activity": "POEDT",
+  "description": "Edit Purchase Order",
+  "is_user_facing": true,
+  "screen_count": 2,
+  "main_screen": "POEDTMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POEDTMAINFTH",
+      "description": "Fetch Edit Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POEDTMAININI",
+      "description": "Initialize Edit Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINSBT",
+      "description": "Edit PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edthref",
+          "method_name": "poemn_met_edtHRef",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edt_hdrchk",
+          "method_name": "poemn_met_edt_hdrchk",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edt_hdrsav",
+          "method_name": "poemn_met_edt_hdrsav",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprgrd",
+          "method_name": "poemn_met_aprgrd",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poemn_sp_aprgrd_out",
+          "method_name": "poemn_met_aprgrd_out",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN2",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_defgrd",
+          "method_name": "poemn_met_defgrd",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_defgrd_out",
+          "method_name": "poemn_met_defgrd_out",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_def_hdrsav",
+          "method_name": "poemn_met_def_hdrsav",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN5",
+      "description": "Get All Quot Line No.",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_qtngrd",
+          "method_name": "poemn_met_qtngrd",
+          "service_name": "poemn_ser_qtn",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN6",
+      "description": "Delete PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_del_docsav",
+          "method_name": "poemn_met_del_docsav",
+          "service_name": "poemn_ser_del",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_Del_HRef",
+          "method_name": "poemn_Mt_Del_HRef",
+          "service_name": "poemn_ser_del",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN7",
+      "description": "Edit and Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprgrd",
+          "method_name": "poemn_met_aprgrd",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprhref",
+          "method_name": "poemn_met_aprHRef",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_apr_hdrsav",
+          "method_name": "poemn_met_apr_hdrsav",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_apr_hdrchk",
+          "method_name": "poemn_met_apr_hdrchk",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poemn_sp_aprgrd_out",
+          "method_name": "poemn_met_aprgrd_out",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    }
+  ],
+  "splice_summary": {
+    "ui_splices": 28,
+    "state_splices": 16,
+    "data_splices": 70,
+    "total": 114
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTENTLNK1",
+        "description": "Edit PO",
+        "hook_screen": "POEDTENT",
+        "trigger": "user_clicks_POEDTENTLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTENTLNK2",
+        "description": "Edit PO",
+        "hook_screen": "POEDTENT",
+        "trigger": "user_clicks_PONOMLT",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINBUDDETAILLNK",
+        "description": "View Budget Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINBUDDETAILLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINBULNK",
+        "description": "View Buyer Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINBULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINDISPNLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINDISPNLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINEARAVLBLDTLNK",
+        "description": "View Earliest Available Date",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINEARAVLBLDTLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINFREESTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINFREESTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINITMLNK",
+        "description": "View Item Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINITMLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK10",
+        "description": "Specify PO-SO Coverage",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK10",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK11",
+        "description": "Attach Notes",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK11",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK2",
+        "description": "Specify Schedule and Distribution",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK2",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK3",
+        "description": "Specify Terms and Condition",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK3",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK6",
+        "description": "Specify Quality Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK6",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK7",
+        "description": "Specify Budget Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK7",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK8",
+        "description": "Specify Dropship Address",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK8",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINLNK9",
+        "description": "Specify PO-PR Coverage",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINLNK9",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINPROPSLLNK",
+        "description": "View Proposal Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINPROPSLLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSSROULNK",
+        "description": "View Stock Status Review - OU Wise",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSSRWHLNK",
+        "description": "View Stock Status Review - Warehouse Wise",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSSRWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINSUPPLNK",
+        "description": "View Supplier Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINSUPPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINTAXLNK",
+        "description": "Specify Tax Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINTAXLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POEDTMAINWHLNK",
+        "description": "View Warehouse Detail",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_POEDTMAINWHLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9APPROELK",
+        "description": "Link to Approve PO",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_APPROVE_PO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9COLLABLK",
+        "description": "Link to Collaborate",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_COLLABORATE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9OPERATLK",
+        "description": "Link to Operational Checklist",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_OPERATIONALCHECKLIST",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9SPECIFLK",
+        "description": "Link to Specify Retention Details",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_SPECIFYRETENTIONDETAILS",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9SPECIYLK",
+        "description": "Link to Specify Milestone",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_SPECIFYMILESTONE",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POMAINS9VIEW_PLK",
+        "description": "Link to View PO",
+        "hook_screen": "POEDTMAIN",
+        "trigger": "user_clicks_VIEW_PO",
+        "optional": true
+      }
+    ],
+    "state_splices": [
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainfth.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainfth",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmainsbt.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmainsbt",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn6.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn6",
+        "trigger": "state_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.project_details_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "project_details_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.project_details_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "project_details_on",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.state_off",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "state_off",
+        "optional": false
+      },
+      {
+        "kind": "state_machine",
+        "splice_id": "POEDTMAIN.poedtmaintrn7.state_on",
+        "hook_screen": "POEDTMAIN",
+        "hook_service": "poedtmaintrn7",
+        "trigger": "state_on",
+        "optional": false
+      }
+    ],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@fgbase_yes_no = YES",
+        "trigger": "@fgbase_yes_no = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 827,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 835,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "341"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@imports = 1",
+        "trigger": "@imports = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 805,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "29"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1555,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "31"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2251,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "30"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@workflow_app = Y",
+        "trigger": "@workflow_app = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 780,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1101"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 1993,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": [
+                "classification_user_acc_wise_tmp"
+              ]
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@part_cov_pr_flag = YES",
+        "trigger": "@part_cov_pr_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6832,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = 1",
+        "trigger": "@useroption = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1198,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@taxstatus = A",
+        "trigger": "@taxstatus = A",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 1301,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_report_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@count = 1",
+        "trigger": "@count = 1",
+        "sp_occurrences": [
+          {
+            "sp": "po_povwmn_sp_ft",
+            "line": 2047,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "t"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tran_rights_flag = Y",
+        "trigger": "@tran_rights_flag = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_fet_hdrfet",
+            "line": 669,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1600"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@budchk = Y",
+        "trigger": "@budchk = Y",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1822,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 2068,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "tskgrp_itm_prosl_cmnvalidate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 561,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrsav",
+            "line": 567,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = STAG",
+        "trigger": "@sched_typeml = STAG",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 863,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "133"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3503,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "staggered"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml <> SI",
+        "trigger": "@sched_typeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7281,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@useroption = YES",
+        "trigger": "@useroption = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6840,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml > @prqty",
+        "trigger": "@qtyml > @prqty",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1591,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6871,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025221"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitem = NONE",
+        "trigger": "@adhocitem = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6881,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype = SI",
+        "trigger": "@schtype = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6883,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1709"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6929,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1712"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@catchweightitem = 1",
+        "trigger": "@catchweightitem = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3032,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@uommult = @alternate_uom_tmp",
+        "trigger": "@uommult = @alternate_uom_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3046,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "23"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> floor",
+        "trigger": "@qtyml <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 875,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SN",
+        "trigger": "@itemtype = SN",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3273,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "itm_sp_chk_sundrystock",
+                "itm_sp_get_uomconvfactor",
+                "uom_sp_get_convfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> FLOOR",
+        "trigger": "@qty_stockuom <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3357,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@itemtype = SR",
+        "trigger": "@itemtype = SR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3808,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4485,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 2",
+        "trigger": "@potypeenum = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3689,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4492,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4676,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_raise_success"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": [
+                "ard_is_account_tmp"
+              ]
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 1",
+        "trigger": "@potypeenum = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3667,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_wh_capital"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4547,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "105"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = LT",
+        "trigger": "@rate_mismatch = LT",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2722,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "58"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val <> 2460367",
+        "trigger": "@return_val <> 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2609,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2942,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_itemrate_curr_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 365,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 2460367",
+        "trigger": "@return_val = 2460367",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2610,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 366,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_maxordqty_chk",
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@return_val = 900016203",
+        "trigger": "@return_val = 900016203",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2646,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "503"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 390,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_ordmult_chk"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qtyml <> FLOOR",
+        "trigger": "@qtyml <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3245,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@flag_yesno = YES",
+        "trigger": "@flag_yesno = YES",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3806,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "88"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4186,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "21"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml = NONE",
+        "trigger": "@adhocitemclassml = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8381,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poqly_quality_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8541,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poqly_quality_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 9060,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 1",
+        "trigger": "@error = 1",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 600,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5805,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@variantno = ##",
+        "trigger": "@variantno = ##",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_itmumgrd",
+            "line": 991,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 984,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1800"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_varumgrd",
+            "line": 794,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = BLTRAN",
+        "trigger": "@response = BLTRAN",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 426,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = ROUNDUPQTY",
+        "trigger": "@response = ROUNDUPQTY",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 445,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@response = ROUNDDOWNQTY",
+        "trigger": "@response = ROUNDDOWNQTY",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_qtyumgrd",
+            "line": 451,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_costdtls_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@qty_stockuom <> floor",
+        "trigger": "@qty_stockuom <> floor",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 897,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pocurrency_old <> @pocurrency_new",
+        "trigger": "@pocurrency_old <> @pocurrency_new",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1359,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1438,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "erate_sysact_spgetexcgrate"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@tcd_basis = F",
+        "trigger": "@tcd_basis = F",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1443,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 1532,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_doclevel_detail"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1523,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@currencycode <> @currency_tbl",
+        "trigger": "@currencycode <> @currency_tbl",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 991,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrsav",
+            "line": 884,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2061"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum = 4",
+        "trigger": "@potypeenum = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 2841,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sup_sp_consrule_get"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@execflag = 2",
+        "trigger": "@execflag = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3193,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1106"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potypeenum <> 3",
+        "trigger": "@potypeenum <> 3",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 3708,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "sa_sp_chk_transaction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@stockuom <> @uommult_tmp",
+        "trigger": "@stockuom <> @uommult_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_uomumgrd",
+            "line": 845,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 2",
+        "trigger": "@error = 2",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5812,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 3",
+        "trigger": "@error = 3",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5745,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "112"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 4",
+        "trigger": "@error = 4",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5819,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10504",
+                "10512"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 5",
+        "trigger": "@error = 5",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5753,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 6",
+        "trigger": "@error = 6",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5759,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 7",
+        "trigger": "@error = 7",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5766,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502",
+                "10504"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 8",
+        "trigger": "@error = 8",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5773,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10502",
+                "10509",
+                "10504"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 9",
+        "trigger": "@error = 9",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5778,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10510",
+                "10504",
+                "10502",
+                "10509"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5826,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10512",
+                "10513"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 10",
+        "trigger": "@error = 10",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5784,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10510",
+                "10504",
+                "10502",
+                "10509"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5833,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10511",
+                "10510",
+                "10514",
+                "10512",
+                "10513"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 11",
+        "trigger": "@error = 11",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5790,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5841,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10512",
+                "10513",
+                "10511",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 12",
+        "trigger": "@error = 12",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5796,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10501",
+                "10511",
+                "10510",
+                "10504",
+                "10502"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5849,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10512",
+                "10513",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml <> SI",
+        "trigger": "@schedtypeml <> SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 1193,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2010"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@temp_paymode = LC",
+        "trigger": "@temp_paymode = LC",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_edtgrd",
+            "line": 434,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "235"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_del_docsav",
+            "line": 272,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "235"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@originhdr <> %",
+        "trigger": "@originhdr <> %",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 572,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@status <> %",
+        "trigger": "@status <> %",
+        "sp_occurrences": [
+          {
+            "sp": "poeent_sp_srchgrd",
+            "line": 581,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schtype_cur = SI",
+        "trigger": "@schtype_cur = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrchk",
+            "line": 911,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_edt_hdrchk",
+            "line": 1006,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@supplier_code_old <> @supplier_code_tmp",
+        "trigger": "@supplier_code_old <> @supplier_code_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_apr_hdrsav",
+            "line": 976,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2012"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service = poemn_ser_apr",
+        "trigger": "@ctxt_service = poemn_ser_apr",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 4952,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025210"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 9058,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "supp_item_itemmap"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 13",
+        "trigger": "@error = 13",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5856,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10513",
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 14",
+        "trigger": "@error = 14",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 5863,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "10514"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@lineno_old <> @fprowno_tmp",
+        "trigger": "@lineno_old <> @fprowno_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 6558,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "not_checklist_lineno_swap_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml <> @schtype",
+        "trigger": "@schedtypeml <> @schtype",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7105,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@schedtypeml = SI",
+        "trigger": "@schedtypeml = SI",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7107,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7183,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 8205,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_powh_allocation_dtl_tmp",
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sched_typeml = @schtype",
+        "trigger": "@sched_typeml = @schtype",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_aprgrd",
+            "line": 7181,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poshd_schedule_dtl_tmp"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@ctxt_service = pdt_mpo_ser_pdel",
+        "trigger": "@ctxt_service = pdt_mpo_ser_pdel",
+        "sp_occurrences": [
+          {
+            "sp": "poemn_sp_del_docsav",
+            "line": 214,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1705"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  },
+  "screens": [
+    {
+      "ilbo_name": "POEDTENT",
+      "ilbo_desc": "Select Purchase Order",
+      "canonical_services": [],
+      "task_count": 7,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POEDTENTFTH",
+            "description": "Fetch Edit Entry Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Edit Entry Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POEDTENTINI",
+            "description": "Initialize Edit Entry Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Edit Entry Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POEDTENTTRN1",
+            "description": "Search",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POEDTENTTRN1",
+            "js_success_message": "Search Successfully Completed"
+          },
+          {
+            "name": "POEDTENTTRN2",
+            "description": "Delete PO",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POEDTENTTRN2",
+            "js_success_message": "Delete PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POEDTENTLNK1",
+            "description": "Edit PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTENTLNK1",
+            "js_success_message": "Edit PO Successfully Completed"
+          },
+          {
+            "name": "POEDTENTLNK2",
+            "description": "Edit PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "PONOMLT",
+            "js_success_message": "Edit PO Successfully Completed"
+          }
+        ],
+        "UI": [],
+        "HELP": []
+      },
+      "slot_count": 18,
+      "slots": [
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000_2",
+          "field_name": "filler_000_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspcls_desc_po",
+          "field_name": "dspcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsubcls_desc_po",
+          "field_name": "dspsubcls_desc_po",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller002",
+          "field_name": "dspfiller002",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller002_2",
+          "field_name": "dspfiller002_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section04",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_b60511",
+          "field_name": "f_b60511",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_b60511_2",
+          "field_name": "f_b60511_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_c71b13",
+          "field_name": "f_c71b13",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_c71b13_2",
+          "field_name": "f_c71b13_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtent_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnguid",
+          "field_name": "hdnguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol1",
+          "field_name": "hdntextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntextcontrol2",
+          "field_name": "hdntextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsearchcriteria",
+          "field_name": "txtsearchcriteria",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmultilinename",
+          "field_name": "hdnmultilinename",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntimestamp",
+          "field_name": "hdntimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype_epoent",
+          "field_name": "hdntrantype_epoent",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poedtent_mainscreen_section02",
+          "caption": "Direct Entry",
+          "label": "Collect Direct Entry",
+          "is_grid": false,
+          "slot_count": 1,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poedtent_mainscreen_section04",
+          "caption": "Search Criteria",
+          "label": "Collect Search Criteria",
+          "is_grid": false,
+          "slot_count": 38,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "frmpono",
+              "text": "From PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topono",
+              "text": "To PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "status",
+              "text": "Order Status",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "frmpodate",
+              "text": "From PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "topodate",
+              "text": "To PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeallenum",
+              "text": "PO Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromprno",
+              "text": "From PR No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "toprno",
+              "text": "To PR No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "prtype",
+              "text": "PR Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "quotnumber",
+              "text": "From Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "toquotenum",
+              "text": "To Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "originhdr",
+              "text": "Origin",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "fromsonum",
+              "text": "From SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosonum",
+              "text": "To SO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "identification",
+              "text": "Pay To ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcode",
+              "text": "Item Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcode",
+              "text": "Variant Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loitoorderen",
+              "text": "LOI to Order",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "itemcodedesc",
+              "text": "Item Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "variantcodedesc",
+              "text": "Variant Code Desc",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loien",
+              "text": "LOI",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "povaluefrm",
+              "text": "From PO value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "povalueto",
+              "text": "To PO value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "project_code",
+              "text": "Project Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_po",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cls_desc_po",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ecc_usage_pohdr",
+              "text": "CC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_po",
+              "text": "Sub Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subcls_desc_po",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "accounting_unit",
+              "text": "Accounting Unit",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehouse_code",
+              "text": "Warehouse Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "propnohdr",
+              "text": "Proposal No.",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POMAINS8CLS_POUI",
+          "POMAINS8ECC_UAHP",
+          "POMAINS8SUBCLSUI",
+          "POMAINS8WORKFLLK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    },
+    {
+      "ilbo_name": "POEDTMAIN",
+      "ilbo_desc": "Edit Purchase Order",
+      "canonical_services": [
+        {
+          "service_name": "poemn_ser_fet",
+          "taskname": "poedtmainfth",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poemn_ser_edt",
+          "taskname": "poedtmainsbt",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poemn_ser_del",
+          "taskname": "poedtmaintrn6",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        },
+        {
+          "service_name": "poemn_ser_apr",
+          "taskname": "poedtmaintrn7",
+          "states": [
+            "project_details_off",
+            "project_details_on",
+            "state_off",
+            "state_on"
+          ]
+        }
+      ],
+      "task_count": 57,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POEDTMAINFTH",
+            "description": "Fetch Edit Main Page",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Fetch Edit Main Page Successfully Completed"
+          }
+        ],
+        "INIT": [
+          {
+            "name": "POEDTMAININI",
+            "description": "Initialize Edit Main Page",
+            "type": "INIT",
+            "pattern": "INITIALIZE",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Initialize Edit Main Page Successfully Completed"
+          }
+        ],
+        "TRANS": [
+          {
+            "name": "POEDTMAINSBT",
+            "description": "Edit PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POEDTMAINSBT",
+            "js_success_message": "Edit PO Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINTRN2",
+            "description": "Default",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POEDTMAINTRN2",
+            "js_success_message": "Default Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINTRN5",
+            "description": "Get All Quot Line No.",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POEDTMAINTRN5",
+            "js_success_message": "Get All Quot Line No. Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINTRN6",
+            "description": "Delete PO",
+            "type": "TRANS",
+            "pattern": "TRANS_TSKCFRM",
+            "primary_control_bt": "POEDTMAINTRN6",
+            "js_success_message": "Delete PO Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINTRN7",
+            "description": "Edit and Approve PO",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POEDTMAINTRN7",
+            "js_success_message": "Edit and Approve PO Successfully Completed"
+          }
+        ],
+        "LINK": [
+          {
+            "name": "POEDTMAINBUDDETAILLNK",
+            "description": "View Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINBUDDETAILLNK",
+            "js_success_message": "View Budget Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINBULNK",
+            "description": "View Buyer Detail",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINBULNK",
+            "js_success_message": "View Buyer Detail Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINDISPNLNK",
+            "description": "View Disposition Review",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINDISPNLNK",
+            "js_success_message": "View Disposition Review Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINEARAVLBLDTLNK",
+            "description": "View Earliest Available Date",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINEARAVLBLDTLNK",
+            "js_success_message": "View Earliest Available Date Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINFREESTKLNK",
+            "description": "View Free Stock Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINFREESTKLNK",
+            "js_success_message": "View Free Stock Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINITMLNK",
+            "description": "View Item Detail",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINITMLNK",
+            "js_success_message": "View Item Detail Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK10",
+            "description": "Specify PO-SO Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK10",
+            "js_success_message": "Specify PO-SO Coverage Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK11",
+            "description": "Attach Notes",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK11",
+            "js_success_message": "Attach Notes Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK2",
+            "description": "Specify Schedule and Distribution",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK2",
+            "js_success_message": "Specify Schedule and Distribution Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK3",
+            "description": "Specify Terms and Condition",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK3",
+            "js_success_message": "Specify Terms and Condition Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK6",
+            "description": "Specify Quality Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK6",
+            "js_success_message": "Specify Quality Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK7",
+            "description": "Specify Budget Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK7",
+            "js_success_message": "Specify Budget Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK8",
+            "description": "Specify Dropship Address",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK8",
+            "js_success_message": "Specify Dropship Address Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINLNK9",
+            "description": "Specify PO-PR Coverage",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINLNK9",
+            "js_success_message": "Specify PO-PR Coverage Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINPROPSLLNK",
+            "description": "View Proposal Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINPROPSLLNK",
+            "js_success_message": "View Proposal Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINSSROULNK",
+            "description": "View Stock Status Review - OU Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINSSROULNK",
+            "js_success_message": "View Stock Status Review - OU Wise Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINSSRWHLNK",
+            "description": "View Stock Status Review - Warehouse Wise",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINSSRWHLNK",
+            "js_success_message": "View Stock Status Review - Warehouse Wise Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINSUPPLNK",
+            "description": "View Supplier Detail",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINSUPPLNK",
+            "js_success_message": "View Supplier Detail Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINTAXLNK",
+            "description": "Specify Tax Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINTAXLNK",
+            "js_success_message": "Specify Tax Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINWHLNK",
+            "description": "View Warehouse Detail",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "POEDTMAINWHLNK",
+            "js_success_message": "View Warehouse Detail Successfully Completed"
+          },
+          {
+            "name": "POMAINS9APPROELK",
+            "description": "Link to Approve PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "APPROVE_PO",
+            "js_success_message": "Link to Approve PO Successfully Completed"
+          },
+          {
+            "name": "POMAINS9COLLABLK",
+            "description": "Link to Collaborate",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "COLLABORATE"
+          },
+          {
+            "name": "POMAINS9OPERATLK",
+            "description": "Link to Operational Checklist",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "OPERATIONALCHECKLIST"
+          },
+          {
+            "name": "POMAINS9SPECIFLK",
+            "description": "Link to Specify Retention Details",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SPECIFYRETENTIONDETAILS"
+          },
+          {
+            "name": "POMAINS9SPECIYLK",
+            "description": "Link to Specify Milestone",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "SPECIFYMILESTONE"
+          },
+          {
+            "name": "POMAINS9VIEW_PLK",
+            "description": "Link to View PO",
+            "type": "LINK",
+            "pattern": "LINK",
+            "primary_control_bt": "VIEW_PO",
+            "js_success_message": "Link to View PO Successfully Completed"
+          }
+        ],
+        "UI": [
+          {
+            "name": "POEDTMAINCURRUI",
+            "description": "Get Exchange Rate",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "CURRENCYCODE",
+            "js_success_message": "Get Exchange Rate Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINITEMUI",
+            "description": "Item validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "Item validation on enter Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINITEMVARUI",
+            "description": "Item variant validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "VARIANTNO",
+            "js_success_message": "Item variant validation on enter Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINPODATEUI",
+            "description": "Fetch details on enter of Po date",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "PODATE",
+            "js_success_message": "Fetch details on enter of Po date Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINQTYUI",
+            "description": "Qty validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "QTYML",
+            "js_success_message": "Qty validation on enter Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINSUPPUI",
+            "description": "Get Supplier Details",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "Get Supplier Details Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINUOMUI",
+            "description": "UOM validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "UOMMULT",
+            "js_success_message": "UOM validation on enter Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINWHUI",
+            "description": "Warehouse validation on enter",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "Warehouse validation on enter Successfully Completed"
+          },
+          {
+            "name": "POMAINS9ACUSAGUI",
+            "description": "On Select of AC Usage",
+            "type": "UI",
+            "pattern": "UI",
+            "primary_control_bt": "ACUSAGE"
+          }
+        ],
+        "HELP": [
+          {
+            "name": "POEDTMAINANALHLP",
+            "description": "Help on Analysis Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "ANALYSISCODE",
+            "js_success_message": "Help on Analysis Code Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINBUDHLP",
+            "description": "Help on Budget Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "BUDGETID",
+            "js_success_message": "Help on Budget Id Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINCUSTHLP",
+            "description": "Help on Customer Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "CUST_CODE",
+            "js_success_message": "Help on Customer Code Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINHLPDROP",
+            "description": "Help On Dropship Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "DRPSHPID",
+            "js_success_message": "Help On Dropship Id Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINHLPITM",
+            "description": "Help On Item",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "ITEM_CODEML",
+            "js_success_message": "Help On Item Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINHLPSUP",
+            "description": "Help On Supplier",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "SUPPLIER_CODE",
+            "js_success_message": "Help On Supplier Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINHLPUOM",
+            "description": "Help On UOM",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "UOMMULT",
+            "js_success_message": "Help On UOM Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINWHHLP1",
+            "description": "Help on Warehouse Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "WAREHOUSECODE",
+            "js_success_message": "Help on Warehouse Code Successfully Completed"
+          },
+          {
+            "name": "POEDTMAINWHHLP2",
+            "description": "Help on Warehouse Code",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "WAREHOUSE_CODE_MUL",
+            "js_success_message": "Help on Warehouse Code Successfully Completed"
+          },
+          {
+            "name": "POMAINS9HACUSAHP",
+            "description": "Help on AC Usage",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "HACUSAGE1"
+          },
+          {
+            "name": "POMAINS9HCCUSAHP",
+            "description": "Help on CC Usage",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "HCCUSAGE_ML"
+          },
+          {
+            "name": "POMAINS9PROJECHP",
+            "description": "Help on Project Code",
+            "type": "HELP",
+            "pattern": "UI",
+            "primary_control_bt": "PROJECT_CODE"
+          },
+          {
+            "name": "PRPSLI_POEDTMAINPROPSLHLP",
+            "description": "Help on Proposal Id",
+            "type": "HELP",
+            "pattern": "HELP",
+            "primary_control_bt": "PRPSLIDHDR",
+            "js_success_message": "Help on Proposal Id Successfully Completed"
+          }
+        ]
+      },
+      "slot_count": 89,
+      "slots": [
+        {
+          "field_id": "dspfiller401",
+          "field_name": "dspfiller401",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller401_2",
+          "field_name": "dspfiller401_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller402",
+          "field_name": "dspfiller402",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller402_2",
+          "field_name": "dspfiller402_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspeditwfstatus",
+          "field_name": "dspeditwfstatus",
+          "btsynonym": "editwfstatus",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "workflowsection",
+          "display_label": "Workflow Status",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_008",
+          "field_name": "filler_008",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_008_2",
+          "field_name": "filler_008_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_009",
+          "field_name": "filler_009",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_009_2",
+          "field_name": "filler_009_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtstatus",
+          "field_name": "txtstatus",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section02",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpono",
+          "field_name": "txtpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "po_indicator_hdr",
+          "field_name": "po_indicator_hdr",
+          "btsynonym": "po_indicator_hdr",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtamdmtno",
+          "field_name": "txtamdmtno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtrefquotno",
+          "field_name": "txtrefquotno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_r",
+          "field_name": "dspfiller_r",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_r_2",
+          "field_name": "dspfiller_r_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfolderdesced",
+          "field_name": "dspfolderdesced",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_d",
+          "field_name": "dspfiller_d",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_d_2",
+          "field_name": "dspfiller_d_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtsuppliername",
+          "field_name": "txtsuppliername",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtloitoorder",
+          "field_name": "txtloitoorder",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtreasonforreturnedt",
+          "field_name": "txtreasonforreturnedt",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspclassfyctn_edt_desc",
+          "field_name": "dspclassfyctn_edt_desc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller",
+          "field_name": "dspfiller",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_2",
+          "field_name": "dspfiller_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspsubclassfyctn_edt_desc",
+          "field_name": "dspsubclassfyctn_edt_desc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_edt_2",
+          "field_name": "dspfiller_edt_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_edt_2_2",
+          "field_name": "dspfiller_edt_2_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillera",
+          "field_name": "dspfillera",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_edtpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillera_2",
+          "field_name": "dspfillera_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_edtpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerx",
+          "field_name": "dspfillerx",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_edtpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillerx_2",
+          "field_name": "dspfillerx_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressid_edtpo",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ue",
+          "field_name": "dspfiller_ue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_ue_2",
+          "field_name": "dspfiller_ue_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_1",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillere",
+          "field_name": "dspfillere",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfillere_2",
+          "field_name": "dspfillere_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_2",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_s",
+          "field_name": "dspfiller_s",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_s_2",
+          "field_name": "dspfiller_s_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "addressdetsec_edtpo_3",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dsptaxregnno",
+          "field_name": "dsptaxregnno",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section21",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtpovalue",
+          "field_name": "txtpovalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poedtmain_mainscreen_section03_6",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtaddlcharge",
+          "field_name": "txtaddlcharge",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poedtmain_mainscreen_section03_6",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttotalvalue",
+          "field_name": "txttotalvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poedtmain_mainscreen_section03_6",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtbasecurvalue",
+          "field_name": "txtbasecurvalue",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "numeric",
+          "section": "poedtmain_mainscreen_section03_6",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspacusagedescriptioned",
+          "field_name": "dspacusagedescriptioned",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_p",
+          "field_name": "dspfiller_p",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller_p_2",
+          "field_name": "dspfiller_p_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspccusagedescriptioned",
+          "field_name": "dspccusagedescriptioned",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000",
+          "field_name": "filler_000",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_000_2",
+          "field_name": "filler_000_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001",
+          "field_name": "filler_001",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "filler_001_2",
+          "field_name": "filler_001_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section03",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill32",
+          "field_name": "dspfill32",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill32_2",
+          "field_name": "dspfill32_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill33",
+          "field_name": "dspfill33",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill33_2",
+          "field_name": "dspfill33_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section06",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill35",
+          "field_name": "dspfill35",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfill36",
+          "field_name": "dspfill36",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section07",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller1048",
+          "field_name": "dspfiller1048",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section20",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "dspfiller1048_2",
+          "field_name": "dspfiller1048_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section20",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreatedby",
+          "field_name": "txtcreatedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_1ced12",
+          "field_name": "f_1ced12",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_1ced12_2",
+          "field_name": "f_1ced12_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcreateddate",
+          "field_name": "txtcreateddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlastmodifiedby",
+          "field_name": "txtlastmodifiedby",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_0c3722",
+          "field_name": "f_0c3722",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_0c3722_2",
+          "field_name": "f_0c3722_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlastmodifieddate",
+          "field_name": "txtlastmodifieddate",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "date",
+          "section": "poedtmain_mainscreen_section18",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpoamount",
+          "field_name": "hdnpoamount",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcsou",
+          "field_name": "txtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdndefaultentries",
+          "field_name": "hdndefaultentries",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnedt_doc_key",
+          "field_name": "hdnedt_doc_key",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtguid",
+          "field_name": "txtguid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnproptype",
+          "field_name": "hdnhdnproptype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdntranou",
+          "field_name": "hdnhdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdntrantype",
+          "field_name": "hdnhdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttextcontrol1",
+          "field_name": "txttextcontrol1",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttextcontrol2",
+          "field_name": "txttextcontrol2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtlinedetails",
+          "field_name": "txtlinedetails",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmodford_recp_det_dcub",
+          "field_name": "hdnmodford_recp_det_dcub",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnmodfpomain_pono_ou_guid",
+          "field_name": "hdnmodfpomain_pono_ou_guid",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntranou",
+          "field_name": "hdntranou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpodetail",
+          "field_name": "hdnpodetail",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnpono",
+          "field_name": "hdnpono",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txtcommittee",
+          "field_name": "txtcommittee",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "txttimestamp",
+          "field_name": "txttimestamp",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntrantype",
+          "field_name": "hdntrantype",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdntxtcsou",
+          "field_name": "hdntxtcsou",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "integer",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnvatcalc",
+          "field_name": "hdnvatcalc",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [
+        {
+          "step": 1,
+          "section_id": "poedtmain_mainscreen_section03_1",
+          "caption": "PO Details",
+          "label": "Collect PO Details",
+          "is_grid": false,
+          "slot_count": 23,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "ponohdr",
+              "text": "PO No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "amendmentno",
+              "text": "Amendment No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "refdocnoml",
+              "text": "Ref. Quotation No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "podate",
+              "text": "PO Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "potypeenum",
+              "text": "Type",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folder",
+              "text": "Folder",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "folderdesced",
+              "text": "Folder Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "supplier_code",
+              "text": "Supplier Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "tosuppliername",
+              "text": "Name",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "contactperson",
+              "text": "Contact Person",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "buyerhdr",
+              "text": "Buyer",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loi",
+              "text": "LOI",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "loitoorder",
+              "text": "LOI To Order",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "approvaldate",
+              "text": "Approval Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "chkbx2",
+              "text": "Hold",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "imports",
+              "text": "Imports",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "authorisationremarks_edit",
+              "text": "Authorization Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "remarks",
+              "text": "Remarks",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "reasonforreturnedt",
+              "text": "Reason For Return",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "classfyctn_edt",
+              "text": "Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "classfyctn_edt_desc",
+              "text": "Classification Desc.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subclassfyctn_edt",
+              "text": "Sub Classification",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subclassfyctn_edt_desc",
+              "text": "Sub Classification Desc.",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "section_id": "poedtmain_mainscreen_section03_6",
+          "caption": "Amount Details",
+          "label": "Collect Amount Details",
+          "is_grid": false,
+          "slot_count": 6,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "povalue",
+              "text": "PO Value [Incl. Discounts]",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "additionalcharge",
+              "text": "Additional Charges",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "totalvalue",
+              "text": "Total Value",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "currencycode",
+              "text": "Currency",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "exchangerate",
+              "text": "Exchange Rate",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "basecurrvalue",
+              "text": "Base Currency Value",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "section_id": "poedtmain_mainscreen_section03",
+          "caption": "Default Entries",
+          "label": "Collect Default Entries",
+          "is_grid": false,
+          "slot_count": 14,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "receiptatou",
+              "text": "Receipt At",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "needdatehdr",
+              "text": "Need Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "warehousecode",
+              "text": "Warehouse Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "acusage",
+              "text": "AC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "acusagedescriptioned",
+              "text": "AC Usage Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ccusage",
+              "text": "CC Usage",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "ccusagedescriptioned",
+              "text": "CC Usage Description",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "accunit",
+              "text": "Accounting Unit",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "analysiscode",
+              "text": "Analysis Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "subanalysiscode",
+              "text": "Sub Analysis Code",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "budgetid",
+              "text": "Budget ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "prpslidhdr",
+              "text": "Proposal No.",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "drpshpid",
+              "text": "Drop Ship ID",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "cust_code",
+              "text": "Customer Code",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "section_id": "poedtmain_mainscreen_section20",
+          "caption": "Print Document",
+          "label": "Collect Print Document",
+          "is_grid": false,
+          "slot_count": 1,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "poedtmain_printlang",
+              "text": "Print Language",
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "section_id": "poedtmain_mainscreen_section18",
+          "caption": "Data History",
+          "label": "Collect Data History",
+          "is_grid": false,
+          "slot_count": 4,
+          "mandatory_count": 0,
+          "slot_labels": [
+            {
+              "btsynonym": "createdby",
+              "text": "Created By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "createddate",
+              "text": "Created Date",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodby",
+              "text": "Last Modified By",
+              "mandatory": false
+            },
+            {
+              "btsynonym": "lastmodifieddate",
+              "text": "Last Modified Date",
+              "mandatory": false
+            }
+          ]
+        }
+      ],
+      "discrepancies": {
+        "tasks_only_in_form": [
+          "POEDTMAINLNK4",
+          "POMAINS9CCUSAGUI",
+          "POMAINS9CLASSFUI",
+          "POMAINS9EDITWFLK",
+          "POMAINS9EDTPURLK",
+          "POMAINS9FOLDERUI",
+          "POMAINS9HACUSAUI",
+          "POMAINS9HCCUSAUI",
+          "POMAINS9ITEM_DLK",
+          "POMAINS9PO_INDLK",
+          "POMAINS9SHIPFOUI",
+          "POMAINS9SHIPF_UI",
+          "POMAINS9SPECI_LK",
+          "POMAINS9SUBCLAUI",
+          "POMAINS9SUPPLEUI",
+          "POMAINS9TCAL_DLK",
+          "POMAINS9VIEWQULK",
+          "POMAINS9VIEW_ULK"
+        ],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {
+    "PoEdtMain.pomains9hacusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_achlp",
+        "method_name": "pocrmn_M_Hp_achlp",
+        "service_name": "pocrmn_ser_Hp_ac",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9hccusaHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_Hp_cchlp",
+        "method_name": "pocrmn_M_Hp_cchlp",
+        "service_name": "pocrmn_ser_Hp_cc",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainBudDetailLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainbuddetaillnk_sp",
+        "method_name": "PoEdtMainBudDetailLnk_Met",
+        "service_name": "PoEdtMainBudDetailLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainAnalHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainanalhlp_sp",
+        "method_name": "poedtmainanalhlp_Met",
+        "service_name": "poedtmainanalhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainBudHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainbudhlp_sp",
+        "method_name": "poedtmainbudhlp_Met",
+        "service_name": "poedtmainbudhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainBuLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainbulnk_sp",
+        "method_name": "poedtmainbulnk_Met",
+        "service_name": "poedtmainbulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.poedtmaincusthlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmaincusthlp_sp",
+        "method_name": "poedtmaincusthlp_Met",
+        "service_name": "poedtmaincusthlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainDispnLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmaindispnlnk_sp",
+        "method_name": "poedtmaindispnlnk_Met",
+        "service_name": "poedtmaindispnlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainEarAvlblDtLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainearavlbldtlnk_sp",
+        "method_name": "poedtmainearavlbldtlnk_Met",
+        "service_name": "poedtmainearavlbldtlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainFreeStkLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainfreestklnk_sp",
+        "method_name": "poedtmainfreestklnk_Met",
+        "service_name": "poedtmainfreestklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainHlpDrop": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainhlpdrop_sp",
+        "method_name": "poedtmainhlpdrop_Met",
+        "service_name": "poedtmainhlpdrop_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainHlpItm": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainhlpitm_sp",
+        "method_name": "poedtmainhlpitm_Met",
+        "service_name": "poedtmainhlpitm_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainHlpSup": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainhlpsup_sp",
+        "method_name": "poedtmainhlpsup_Met",
+        "service_name": "poedtmainhlpsup_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainItmLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainitmlnk_sp",
+        "method_name": "poedtmainitmlnk_Met",
+        "service_name": "poedtmainitmlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainHlpUom": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainhlpuom_sp",
+        "method_name": "poedtmainhlpuom_Met",
+        "service_name": "poedtmainhlpuom_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainPropslLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainpropsllnk_sp",
+        "method_name": "poedtmainpropsllnk_Met",
+        "service_name": "poedtmainpropsllnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainSsrOuLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainssroulnk_sp",
+        "method_name": "poedtmainssroulnk_Met",
+        "service_name": "poedtmainssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.prpslI_PoEdtmainPropslhlp": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainpropslhlp_sp",
+        "method_name": "poedtmainpropslhlp_Met",
+        "service_name": "poedtmainpropslhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainTaxLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmaintaxlnk_sp",
+        "method_name": "PoEdtMainTaxLnk_Met",
+        "service_name": "PoEdtMainTaxLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainsuppLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainsupplnk_sp",
+        "method_name": "poedtmainsupplnk_Met",
+        "service_name": "poedtmainsupplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainWhHlp2": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainwhhlp2_sp",
+        "method_name": "poedtmainwhhlp2_Met",
+        "service_name": "poedtmainwhhlp2_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainWhHlp1": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainwhhlp1_sp",
+        "method_name": "poedtmainwhhlp1_Met",
+        "service_name": "poedtmainwhhlp1_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainSsrWhLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainssrwhlnk_sp",
+        "method_name": "poedtmainssrwhlnk_Met",
+        "service_name": "poedtmainssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.PoEdtEntFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_fet_hdrfet",
+        "method_name": "poeent_met_fet_hdrfet",
+        "service_name": "poeent_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainWhLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "poedtmainwhlnk_sp",
+        "method_name": "poedtmainwhlnk_Met",
+        "service_name": "poedtmainwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.PoEdtEntIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_initstat",
+        "method_name": "poeent_met_initstat",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiuseorgn",
+        "method_name": "poamden_met_CbIUseorgn",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poeent_SP_init_ptyp",
+        "method_name": "poeent_met_init_ptyp",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poeent_SP_init_cls",
+        "method_name": "poeent_met_init_cls",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poeent_SP_init_subcls",
+        "method_name": "poeent_met_init_subcls",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poamden_sp_CbIUseloi",
+        "method_name": "poamden_met_CbIUseloi",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "Po_eent_sp_init_acunit",
+        "method_name": "Po_eent_met_init_acunit",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "Po_eent_sp_init_whcode",
+        "method_name": "Po_eent_met_init_whcode",
+        "service_name": "poeent_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.PoEdtEntTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_srch_hdrfet",
+        "method_name": "poeent_met_srch_hdrfet",
+        "service_name": "poeent_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poeent_sp_srchgrd",
+        "method_name": "poeent_met_srchgrd",
+        "service_name": "poeent_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9acusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poemn_ser_acusage",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrmn_SP_AC_href",
+        "method_name": "pocrmn_met_AC_href",
+        "service_name": "poemn_ser_acusage",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.PoEdtEntTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_edtgrd",
+        "method_name": "poeent_met_edtgrd",
+        "service_name": "poeent_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_edt_hdrchk",
+        "method_name": "poeent_met_edt_hdrchk",
+        "service_name": "poeent_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_edtgrd_out",
+        "method_name": "poeent_met_edtgrd_out",
+        "service_name": "poeent_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poeent_sp_edt_hdrsav",
+        "method_name": "poeent_met_edt_hdrsav",
+        "service_name": "poeent_ser_edt",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_defgrd",
+        "method_name": "poemn_met_defgrd",
+        "service_name": "poemn_ser_def",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_defgrd_out",
+        "method_name": "poemn_met_defgrd_out",
+        "service_name": "poemn_ser_def",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_def_hdrsav",
+        "method_name": "poemn_met_def_hdrsav",
+        "service_name": "poemn_ser_def",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainTrn6": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_del_docsav",
+        "method_name": "poemn_met_del_docsav",
+        "service_name": "poemn_ser_del",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_Del_HRef",
+        "method_name": "poemn_Mt_Del_HRef",
+        "service_name": "poemn_ser_del",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_fet_hdrfet",
+        "method_name": "poemn_met_fet_hdrfet",
+        "service_name": "poemn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_addid_lst",
+        "method_name": "poemn_met_addid_lst",
+        "service_name": "poemn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poemn_sp_fetgrd",
+        "method_name": "poemn_met_fetgrd",
+        "service_name": "poemn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "po_lstedt_sp_supcode",
+        "method_name": "po_lstedt_Mt_supcode",
+        "service_name": "poemn_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poamden_sp_cbiusecurr",
+        "method_name": "poamden_met_CbIUsecurr",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poamdmm_sp_cbiuseacunt",
+        "method_name": "poamdmm_met_CbIUseacunt",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamdmm_sp_cbiuseacusg",
+        "method_name": "poamdmm_met_CbIUseacusg",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamdmm_sp_cbiuseccusg",
+        "method_name": "poamdmm_met_CbIUseccusg",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamdmm_sp_cbiusegrou",
+        "method_name": "poamdmm_met_CbIUsegrou",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "poamdmm_sp_cbiusemlcb14",
+        "method_name": "poamdmm_met_CbIUsemlcb14",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "poamdmm_sp_cbiusemlcb18",
+        "method_name": "poamdmm_met_CbIUsemlcb18",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 10,
+        "spname": "poamdmm_sp_cbiusemlcb10",
+        "method_name": "poamdmm_met_CbIUsemlcb10",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 11,
+        "spname": "pohdr_Sp_intPlang",
+        "method_name": "pohdr_Mt_intPlang",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "pocrmn_Sp_init_ProjOU",
+        "method_name": "pocrmn_Mt_init_ProjOU",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 13,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 14,
+        "spname": "poemn_Sp_init_suptxreg",
+        "method_name": "poemn_Mt_init_Suptxreg",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 15,
+        "spname": "poemn_Sp_init_Owntxreg",
+        "method_name": "poemn_Mt_init_Owntxreg",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 16,
+        "spname": "poamden_sp_Cbclassification",
+        "method_name": "poamden_met_Cbclassification",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 17,
+        "spname": "poamden_sp_CbSubclassification",
+        "method_name": "poamden_met_CbSubclassification",
+        "service_name": "poemn_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainSbt": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_edthref",
+        "method_name": "poemn_met_edtHRef",
+        "service_name": "poemn_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_edt_hdrchk",
+        "method_name": "poemn_met_edt_hdrchk",
+        "service_name": "poemn_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_edt_hdrsav",
+        "method_name": "poemn_met_edt_hdrsav",
+        "service_name": "poemn_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_aprgrd",
+        "method_name": "poemn_met_aprgrd",
+        "service_name": "poemn_ser_edt",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poemn_sp_aprgrd_out",
+        "method_name": "poemn_met_aprgrd_out",
+        "service_name": "poemn_ser_edt",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainItemUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_itmumgrd",
+        "method_name": "poemn_met_itmUMgrd",
+        "service_name": "poemn_ser_itm",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtmainPoDateUI": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_podbyr",
+        "method_name": "pocrmn_met_podbyr",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_poducddefault",
+        "method_name": "poemn_met_podUCDefault",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_poduihdr",
+        "method_name": "pocrmn_met_podUiHdr",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_podhref",
+        "method_name": "pocrmn_met_podHRef",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrmn_sp_podcurr",
+        "method_name": "pocrmn_met_podcurr",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "pocrmn_sp_podfld",
+        "method_name": "pocrmn_met_podfld",
+        "service_name": "poemn_ser_pod",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainTrn5": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_qtngrd",
+        "method_name": "poemn_met_qtngrd",
+        "service_name": "poemn_ser_qtn",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainQtyUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_qtyumgrd",
+        "method_name": "poemn_met_qtyUMgrd",
+        "service_name": "poemn_ser_qty",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainSuppUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_addid_lst_sc",
+        "method_name": "poemn_met_addid_lst_sc",
+        "service_name": "poemn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_Sp_init_suptxreg",
+        "method_name": "poemn_Mt_init_Suptxreg",
+        "service_name": "poemn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poamden_Sp_CmbShipfrm",
+        "method_name": "poamden_met_CmbShipfrm",
+        "service_name": "poemn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrmn_sp_supuihdr",
+        "method_name": "pocrmn_met_supUiHdr",
+        "service_name": "poemn_ser_sup",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrmn_sp_suphref",
+        "method_name": "pocrmn_met_supHRef",
+        "service_name": "poemn_ser_sup",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainCurrUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_ui6href",
+        "method_name": "poemn_met_ui6HRef",
+        "service_name": "poemn_ser_ui6",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_ui6uihdr",
+        "method_name": "poemn_met_ui6UiHdr",
+        "service_name": "poemn_ser_ui6",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainUomUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_uomumgrd",
+        "method_name": "poemn_met_uomUMgrd",
+        "service_name": "poemn_ser_uom",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainItemVarUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_varumgrd",
+        "method_name": "poemn_met_varUMgrd",
+        "service_name": "poemn_ser_var",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainWhUI": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_whumgrd",
+        "method_name": "poemn_met_whUMgrd",
+        "service_name": "poemn_ser_wh",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.PoEdtMainTrn7": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_aprgrd",
+        "method_name": "poemn_met_aprgrd",
+        "service_name": "poemn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_aprhref",
+        "method_name": "poemn_met_aprHRef",
+        "service_name": "poemn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_apr_hdrsav",
+        "method_name": "poemn_met_apr_hdrsav",
+        "service_name": "poemn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_apr_hdrchk",
+        "method_name": "poemn_met_apr_hdrchk",
+        "service_name": "poemn_ser_apr",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poemn_sp_aprgrd_out",
+        "method_name": "poemn_met_aprgrd_out",
+        "service_name": "poemn_ser_apr",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.pomains8Cls_poUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_clsuisubui",
+        "method_name": "pomains8_M_clsuisubui",
+        "service_name": "pomains8_ser_clsui",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomains8_sp_clsui_hrf",
+        "method_name": "pomains8_M_clsui_hrf",
+        "service_name": "pomains8_ser_clsui",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9ccusagUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_ccusag_hrf",
+        "method_name": "pomains9_M_ccusag_hrf",
+        "service_name": "pomains9_ser_ccusag",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtEnt.pomains8SubclsUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_subui_hrf",
+        "method_name": "pomains8_M_subui_hrf",
+        "service_name": "pomains8_ser_subui",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9ClassfUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_ClassfsubCla",
+        "method_name": "pomains9_M_ClassfsubCla",
+        "service_name": "pomains9_ser_Classf",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_Classf_hrf",
+        "method_name": "pomains9_M_Classf_hrf",
+        "service_name": "pomains9_ser_Classf",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9Speci_Lk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_DIM_hrf",
+        "method_name": "pomains9_M_DIM_hrf",
+        "service_name": "pomains9_ser_DIM",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9folderUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_sp_folder_hrf",
+        "method_name": "pomains9_M_folder_hrf",
+        "service_name": "pomains9_ser_folder",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9hacusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_SP_AC_href",
+        "method_name": "pomains9_M_hacusaUMhacusa",
+        "service_name": "pomains9_ser_hacusa",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9Shipf_Ui": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_Shipf__hrf",
+        "method_name": "pomains9_M_Shipf__hrf",
+        "service_name": "pomains9_ser_Shipf_",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9ProjecHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_Hp_Projechlp",
+        "method_name": "pomains9_M_Hp_Projechlp",
+        "service_name": "pomains9_ser_Hp_Projec",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9hccusaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poemn_SP_CC_ref",
+        "method_name": "pomains9_M_hccusaUMhccusa",
+        "service_name": "pomains9_ser_hccusa",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9ShipFoUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_ShipFo_hrf",
+        "method_name": "pomains9_M_ShipFo_hrf",
+        "service_name": "pomains9_ser_ShipFo",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9TCAL_dLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_TCAL_d_hrf",
+        "method_name": "pomains9_M_TCAL_d_hrf",
+        "service_name": "pomains9_ser_TCAL_d",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9subClaUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_subCla_hrf",
+        "method_name": "pomains9_M_subCla_hrf",
+        "service_name": "pomains9_ser_subCla",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9ViewQuLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_ViewQu_hrf",
+        "method_name": "pomains9_M_ViewQu_hrf",
+        "service_name": "pomains9_ser_ViewQu",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9view_uLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_view_u_hrf",
+        "method_name": "pomains9_M_view_u_hrf",
+        "service_name": "pomains9_ser_view_u",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9SuppleUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains9_sp_SupTax_hrf",
+        "method_name": "pomains9_M_SupTax_hrf",
+        "service_name": "pomains9_ser_SupTax",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9PoEdtaTr": [
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_sp_ft",
+        "method_name": "po_povwmn_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "po_povwmn_Sp_email_Ft",
+        "method_name": "po_povwmn_Mt_email_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "po_povwmnsub_sp_ft",
+        "method_name": "po_povwmnsub_Mt_Ft",
+        "service_name": "po_povwmn_sv_ft",
+        "lvl": "0"
+      }
+    ],
+    "PoEdtMain.pomains9EdtPurLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_price_his_lnk_sp",
+        "method_name": "po_price_his_lnk_mt",
+        "service_name": "po_price_his_lnk_ser",
+        "lvl": "0"
+      }
+    ]
+  },
+  "sp_chains_summary": {
+    "screens": [
+      "PoEdtEnt",
+      "PoEdtMain"
+    ],
+    "tasks": [
+      "PoEdtEntFth",
+      "PoEdtEntIni",
+      "PoEdtEntTrn1",
+      "PoEdtEntTrn2",
+      "PoEdtMainAnalHlp",
+      "PoEdtMainBuLnk",
+      "PoEdtMainBudDetailLnk",
+      "PoEdtMainBudHlp",
+      "PoEdtMainCurrUi",
+      "PoEdtMainDispnLnk",
+      "PoEdtMainEarAvlblDtLnk",
+      "PoEdtMainFreeStkLnk",
+      "PoEdtMainFth",
+      "PoEdtMainHlpDrop",
+      "PoEdtMainHlpItm",
+      "PoEdtMainHlpSup",
+      "PoEdtMainHlpUom",
+      "PoEdtMainIni",
+      "PoEdtMainItemUi",
+      "PoEdtMainItemVarUI",
+      "PoEdtMainItmLnk",
+      "PoEdtMainPropslLnk",
+      "PoEdtMainQtyUI",
+      "PoEdtMainSbt",
+      "PoEdtMainSsrOuLnk",
+      "PoEdtMainSsrWhLnk",
+      "PoEdtMainSuppUI",
+      "PoEdtMainTaxLnk",
+      "PoEdtMainTrn2",
+      "PoEdtMainTrn5",
+      "PoEdtMainTrn6",
+      "PoEdtMainTrn7",
+      "PoEdtMainUomUI",
+      "PoEdtMainWhHlp1",
+      "PoEdtMainWhHlp2",
+      "PoEdtMainWhLnk",
+      "PoEdtMainWhUI",
+      "PoEdtMainsuppLnk",
+      "PoEdtmainPoDateUI",
+      "poedtmaincusthlp",
+      "pomains8Cls_poUi",
+      "pomains8SubclsUi",
+      "pomains9ClassfUi",
+      "pomains9EdtPurLk",
+      "pomains9PoEdtaTr",
+      "pomains9ProjecHp",
+      "pomains9ShipFoUi",
+      "pomains9Shipf_Ui",
+      "pomains9Speci_Lk",
+      "pomains9SuppleUi",
+      "pomains9TCAL_dLk",
+      "pomains9ViewQuLk",
+      "pomains9acusagUi",
+      "pomains9ccusagUi",
+      "pomains9folderUi",
+      "pomains9hacusaHp",
+      "pomains9hacusaUi",
+      "pomains9hccusaHp",
+      "pomains9hccusaUi",
+      "pomains9subClaUi",
+      "pomains9view_uLk",
+      "prpslI_PoEdtmainPropslhlp"
+    ],
+    "sp_count": 113,
+    "method_count": 113,
+    "task_count": 62
+  }
+}

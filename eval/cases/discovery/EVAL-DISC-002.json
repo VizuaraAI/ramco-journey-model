@@ -1,0 +1,68 @@
+{
+  "id": "EVAL-DISC-002",
+  "title": "User asks how to create a purchase order — must disambiguate which kind",
+  "covers_journeys": [],
+  "covers_modules": ["PO"],
+  "category": "discovery",
+  "difficulty": "easy",
+  "tags": ["disambiguation", "create-variants"],
+  "user_persona": "A buyer who knows they want to create something but doesn't know which create journey",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "How do I create a purchase order?",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_candidates": ["PoCrt", "PoCrtQtn", "PoCrtSo", "PoCrtTen", "PoCopy"],
+        "bot_must": [
+          "list the 5 create variants with one-line explanations: PoCrt (direct, no source doc), PoCrtQtn (from a quotation), PoCrtSo (from a sale order, dropship), PoCrtTen (from a tender), PoCopy (clone an existing PO)",
+          "ask which one the user wants"
+        ],
+        "bot_must_not": [
+          "default to PoCrt without asking",
+          "start collecting slots"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "I have a quote from a supplier already, I want to convert that",
+      "expected": {
+        "journey_locked": "PoCrtQtn",
+        "bot_must": [
+          "confirm PoCrtQtn",
+          "explain the first step is a search on the entry screen — bot will ask for either quotation_no or a search filter (supplier, status=Approved)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Quote number is QTN-2024-7821",
+      "expected": {
+        "slots_extracted": {"quotation_no": "QTN-2024-7821"},
+        "trans_invoked": "POCRTQTNTRN1",
+        "bot_must": [
+          "run the entry-screen search (POCRTQTNTRN1)",
+          "if found: report quotation found and ask which line(s) to include in the PO; if not found: say so and offer to widen the search"
+        ]
+      },
+      "notes": "POCRTQTNTRN1 is the Search task on the entry screen — fires before main create"
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrtQtn",
+    "commit_task": null,
+    "po_status": "search complete, main not yet entered",
+    "slots_filled": ["quotation_no"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoCrtQtn"]
+  },
+
+  "evaluation_metrics": {
+    "disambiguation_at_turn_1": "bot must enumerate >=4 of 5 create variants before locking any",
+    "journey_lock_correctness": "PoCrtQtn locked only at turn 2 after user's explicit signal",
+    "entry_search_invoked": "POCRTQTNTRN1 fired at turn 3"
+  }
+}

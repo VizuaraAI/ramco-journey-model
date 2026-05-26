@@ -1,0 +1,6 @@
+{
+  "activity": "POCOPY",
+  "description": "Copy And Create Purchase Order",
+  "main_screen": "POCOPYMAIN",
+  "canonical_spine": []
+}

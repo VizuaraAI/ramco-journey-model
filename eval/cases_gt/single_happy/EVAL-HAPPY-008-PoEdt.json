@@ -1,0 +1,65 @@
+{
+  "id": "EVAL-HAPPY-008",
+  "title": "Buyer edits a draft PO before submitting for approval",
+  "covers_journeys": [
+    "PoEdt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "user_persona": "Buyer correcting a mistake in a not-yet-approved PO",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I made a mistake on PO-2026-501, draft status. Need to change the buyer."
+    },
+    {
+      "turn": 2,
+      "user": "Change buyer from BUY-77 to BUY-88."
+    },
+    {
+      "turn": 3,
+      "user": "Just save, I'll get it approved separately."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POEDTMAINSBT",
+        "activity": "POEDT",
+        "screen": "PoEdtMain",
+        "via_sp_chain": [
+          "poemn_sp_edthref",
+          "poemn_sp_edt_hdrchk",
+          "poemn_sp_edt_hdrsav",
+          "poemn_sp_aprgrd",
+          "poemn_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "lc_ord_map",
+          "not_notes_dtl",
+          "po_dtcd_docitem_tcd",
+          "po_paytm_doclevel_detail",
+          "po_podoc_otherdoctcd_dtl",
+          "po_poprq_poprcovg_detail",
+          "po_poshd_schedule_dtl",
+          "po_potcd_doclevel_detail",
+          "po_potcd_itemtcd_dtl",
+          "so_order_item_dtl",
+          "staggered",
+          "starts",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {
+          "buyer": "BUY-88"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

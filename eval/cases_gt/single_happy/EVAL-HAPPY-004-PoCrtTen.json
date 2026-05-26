@@ -1,0 +1,57 @@
+{
+  "id": "EVAL-HAPPY-004",
+  "title": "Buyer creates a PO from a tender after Compute",
+  "covers_journeys": [
+    "PoCrtTen"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "user_persona": "Procurement buyer who has run a tender and chosen a winning bidder",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Tender TEN-2025-09 has closed. The winning bidder is supplier SUP-200. Create the PO."
+    },
+    {
+      "turn": 2,
+      "user": "Found. SUP-200 won lines 1, 2, and 3."
+    },
+    {
+      "turn": 3,
+      "user": "Looks right. Create the PO."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POMAIN40CREATETR",
+        "activity": "POCRTTEN",
+        "screen": "PoCrtTenUi",
+        "via_sp_chain": [
+          "pomain40_spCreatehlp",
+          "pomain40_spCreate_HdrChk",
+          "pomain40_spCreateLineDe",
+          "pomain40_spCreate_HdrSav",
+          "pomain40_spCreateLineDe_out"
+        ],
+        "tables_required": [
+          "bpo_bpoh_bpoheader_hdr",
+          "po_pomas_pur_order_hdr",
+          "po_potcd_doclevel_detail",
+          "po_tender_map_dtl"
+        ],
+        "slot_values_required": {
+          "tender_no": "TEN-2025-09",
+          "supplier_code": "SUP-200"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

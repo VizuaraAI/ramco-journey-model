@@ -1,0 +1,63 @@
+{
+  "id": "EVAL-HAPPY-004",
+  "title": "Buyer creates a PO from a tender after Compute",
+  "covers_journeys": ["PoCrtTen"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "medium",
+  "tags": ["create-from-tender", "compute-step"],
+  "user_persona": "Procurement buyer who has run a tender and chosen a winning bidder",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Tender TEN-2025-09 has closed. The winning bidder is supplier SUP-200. Create the PO.",
+      "expected": {
+        "intent": "create_purchase_order_from_tender",
+        "journey_locked": "PoCrtTen",
+        "slots_extracted": {"tender_no": "TEN-2025-09", "supplier_code": "SUP-200"},
+        "bot_must": [
+          "lock PoCrtTen journey",
+          "fire entry-screen search POMAIN40SEARCHTR with tender_no=TEN-2025-09"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Found. SUP-200 won lines 1, 2, and 3.",
+      "expected": {
+        "bot_must": [
+          "fire POMAIN40COMPUTTR (Compute) to calculate the PO content from the tender + winning bidder",
+          "show computed lines, quantities, prices for review"
+        ]
+      },
+      "notes": "PoCrtTen has 3 TRANS tasks: Search, Compute, Create. Compute is required before Create — it materialises the PO content from the tender award."
+    },
+    {
+      "turn": 3,
+      "user": "Looks right. Create the PO.",
+      "expected": {
+        "trans_invoked": "POMAIN40CREATETR",
+        "bot_must": [
+          "fire POMAIN40CREATETR (Create PO from tender)",
+          "report PO number and that it's in Draft",
+          "mention tender TEN-2025-09 is now closed against this PO"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrtTen",
+    "commit_task": "POMAIN40CREATETR",
+    "po_status": "Draft",
+    "slots_filled": ["tender_no", "supplier_code"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "three_phase_flow": "Search → Compute → Create — all three must fire in order",
+    "compute_before_create": "POMAIN40CREATETR cannot fire before POMAIN40COMPUTTR"
+  }
+}

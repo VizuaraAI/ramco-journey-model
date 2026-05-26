@@ -1,0 +1,87 @@
+{
+  "id": "EVAL-ERR-007",
+  "title": "Quality slot omitted but qcchk=1 — SP refuses commit, bot loops back",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "tags": ["sp-validation-reject", "qcchk-mandatory", "loop-back-to-slot"],
+  "user_persona": "Buyer who didn't realise the item needed QC attributes",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO for SUP-200, USD, today, buyer BUY-10, item ITM-QC-1, 100 units at 15.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-200",
+          "currency": "USD",
+          "po_date": "<today>",
+          "buyer": "BUY-10",
+          "item_code": "ITM-QC-1",
+          "quantity": 100,
+          "cost": 15
+        },
+        "bot_must": [
+          "validate item ITM-QC-1 in item master",
+          "discover qcchk=1 for this item — quality slots are mandatory",
+          "warn user before attempting commit",
+          "open Quality splice (POCRTMAINLNK6) and ask for required quality attributes"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Just create, I'll add quality later.",
+      "expected": {
+        "bot_must": [
+          "refuse to commit — explain SP hdrchk will reject because qcchk=1 mandatory slots are empty (this matches the IF @qcchk = 1 branch in pocrmn_sp_crt_hdrchk.sql)",
+          "say without quality slots the create will fail with validation error",
+          "offer to either: (a) fill quality now, or (b) switch to a non-QC item"
+        ],
+        "bot_must_not": [
+          "fire POCRTMAINSBT and let it fail server-side — must catch the precondition client-side"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "OK, sample 10%, AQL 1.0, visual + dimensional test.",
+      "expected": {
+        "slots_extracted": {
+          "quality_attributes": {
+            "sample_pct": 10,
+            "aql": 1.0,
+            "test_methods": "visual + dimensional"
+          }
+        },
+        "splice_walked": ["quality_via_LNK6"],
+        "bot_must": ["save quality data", "return to main", "ask to commit"]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Now create.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT — now passes since qcchk=1 mandatory slots filled", "PO created"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost", "quality_attributes"],
+    "splices_walked": ["quality_via_LNK6"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "precondition_caught_client_side": "qcchk=1 mandatory check enforced before commit — no roundtrip to failed SP",
+    "splice_walked_on_demand": "Quality splice opened only because user attempted to skip it"
+  }
+}

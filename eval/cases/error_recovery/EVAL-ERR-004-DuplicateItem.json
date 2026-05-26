@@ -1,0 +1,86 @@
+{
+  "id": "EVAL-ERR-004",
+  "title": "User adds same item on two lines — SP raises duplicate error, bot offers fix",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "tags": ["duplicate-line-error", "sp-raiserror-1025311"],
+  "user_persona": "Buyer who tries to split an item across two lines for different need dates",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-100, USD, today, buyer BUY-5. Lines: ITM-200 50 units at 10 needed next week, and ITM-200 30 units at 10 needed next month.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-100",
+          "currency": "USD",
+          "po_date": "<today>",
+          "buyer": "BUY-5"
+        },
+        "bot_must": [
+          "capture both lines",
+          "warn that SP hdrchk has duplicate-item check (matches the IF EXISTS po_poitm_item_detail branch) — same item code on two lines will raise error 1025311",
+          "offer alternatives: combine into one line, or use a schedule (POCRTMAINLNK2) to split delivery by date"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "What's the schedule option?",
+      "expected": {
+        "bot_must": [
+          "explain Schedule sub-screen (POCRTMAINLNK2 → PoCrtSch): keeps one line but splits the quantity across multiple delivery dates",
+          "say this is the right pattern for staggered delivery of the same item"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Use schedule. One line ITM-200, 80 total. Schedule 50 next week, 30 next month.",
+      "expected": {
+        "slots_extracted": {
+          "item_code": "ITM-200",
+          "quantity": 80,
+          "cost": 10,
+          "schedule": [
+            {"qty": 50, "need_date": "<next week>"},
+            {"qty": 30, "need_date": "<next month>"}
+          ]
+        },
+        "splice_walked": ["schedule_via_LNK2"],
+        "bot_must": [
+          "open Schedule sub-screen",
+          "save the two schedule entries",
+          "return to main and ask to commit"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Create.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT — no duplicate error since only one line", "report PO created"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost", "schedule"],
+    "splices_walked": ["schedule_via_LNK2"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "duplicate_detected_pre_commit": "bot warns before commit, not after SP error",
+    "alternative_offered": "Schedule splice presented as the right pattern",
+    "splice_walked": "Schedule sub-screen used to split delivery"
+  }
+}

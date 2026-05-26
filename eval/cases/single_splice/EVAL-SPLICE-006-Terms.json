@@ -1,0 +1,77 @@
+{
+  "id": "EVAL-SPLICE-006",
+  "title": "Buyer adds payment terms via Terms sub-screen — UI splice via POCRTMAINLNK3",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-with-splice",
+  "difficulty": "easy",
+  "tags": ["terms-splice", "ui-splice", "lnk3", "optional"],
+  "user_persona": "Buyer who wants to specify non-default payment terms",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-50, USD, buyer BUY-30, line ITM-90 50 units at 40 each. I also want to set custom payment terms.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-50",
+          "currency": "USD",
+          "buyer": "BUY-30",
+          "item_code": "ITM-90",
+          "quantity": 50,
+          "cost": 40
+        },
+        "splice_triggered": "user_opens_terms_lnk3",
+        "bot_must": [
+          "acknowledge header + line collected",
+          "open Terms splice (POCRTMAINLNK3 → PoCrtTrm) since user asked",
+          "ask for payment terms details"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Pay terms: 30% advance, 70% NET-45. Incoterm DAP.",
+      "expected": {
+        "slots_extracted": {
+          "payment_terms": "30% advance + 70% NET-45",
+          "incoterm": "DAP"
+        },
+        "splice_walked": ["terms_via_LNK3"],
+        "bot_must": [
+          "save Terms sub-screen data via POCRTTRMTRN1 (or similar Terms commit)",
+          "return to main screen",
+          "ask to commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Create the PO.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": [
+          "fire POCRTMAINSBT with Terms data attached",
+          "report PO created with custom payment terms"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "buyer", "item_code", "quantity", "cost", "payment_terms", "incoterm"],
+    "splices_walked": ["terms_via_LNK3"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "splice_optional": "Terms splice is optional and user-initiated — only walked because user asked",
+    "lnk3_invoked": "POCRTMAINLNK3 fired to open Terms sub-screen",
+    "return_to_main": "after Terms commit, bot returns to main and continues"
+  }
+}

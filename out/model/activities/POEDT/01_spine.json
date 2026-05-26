@@ -1,0 +1,169 @@
+{
+  "activity": "POEDT",
+  "description": "Edit Purchase Order",
+  "main_screen": "POEDTMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POEDTMAINFTH",
+      "description": "Fetch Edit Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POEDTMAININI",
+      "description": "Initialize Edit Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINSBT",
+      "description": "Edit PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edthref",
+          "method_name": "poemn_met_edtHRef",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edt_hdrchk",
+          "method_name": "poemn_met_edt_hdrchk",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_edt_hdrsav",
+          "method_name": "poemn_met_edt_hdrsav",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprgrd",
+          "method_name": "poemn_met_aprgrd",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poemn_sp_aprgrd_out",
+          "method_name": "poemn_met_aprgrd_out",
+          "service_name": "poemn_ser_edt",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN2",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_defgrd",
+          "method_name": "poemn_met_defgrd",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_defgrd_out",
+          "method_name": "poemn_met_defgrd_out",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_def_hdrsav",
+          "method_name": "poemn_met_def_hdrsav",
+          "service_name": "poemn_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN5",
+      "description": "Get All Quot Line No.",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_qtngrd",
+          "method_name": "poemn_met_qtngrd",
+          "service_name": "poemn_ser_qtn",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN6",
+      "description": "Delete PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_del_docsav",
+          "method_name": "poemn_met_del_docsav",
+          "service_name": "poemn_ser_del",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_Del_HRef",
+          "method_name": "poemn_Mt_Del_HRef",
+          "service_name": "poemn_ser_del",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POEDTMAINTRN7",
+      "description": "Edit and Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprgrd",
+          "method_name": "poemn_met_aprgrd",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_aprhref",
+          "method_name": "poemn_met_aprHRef",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_apr_hdrsav",
+          "method_name": "poemn_met_apr_hdrsav",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poemn_sp_apr_hdrchk",
+          "method_name": "poemn_met_apr_hdrchk",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poemn_sp_aprgrd_out",
+          "method_name": "poemn_met_aprgrd_out",
+          "service_name": "poemn_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

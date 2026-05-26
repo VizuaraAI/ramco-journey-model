@@ -1,0 +1,61 @@
+{
+  "id": "EVAL-XJ-001",
+  "title": "Buyer creates a PO and then approves it as a separate journey",
+  "covers_journeys": ["PoCrt", "PoApp"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "tags": ["create-then-approve", "two-journey-handoff"],
+  "user_persona": "Buyer who has both create and approve rights and uses two separate flows",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Quick PO for SUP-100, USD, today, BUY-1, ITM-50 10 at 30. Just save it.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT", "report new PO number (e.g. PO-2026-X)"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Now approve the one I just created.",
+      "expected": {
+        "intent": "approve_purchase_order",
+        "journey_switched": "PoApp",
+        "context_carried": {"po_number": "<from turn 1>"},
+        "bot_must": [
+          "recognise journey switch from PoCrt → PoApp",
+          "carry forward the PO number from turn 1 without re-asking",
+          "fire POAPPENTTRN1 (entry search) with that PO number",
+          "load PoApp main screen"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Yes approve.",
+      "expected": {
+        "trans_invoked": "POAPPMAINSBT",
+        "bot_must": ["fire POAPPMAINSBT", "report status Authorised"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoApp",
+    "commit_task": "POAPPMAINSBT",
+    "po_status": "Authorised",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost", "po_number", "approval_date"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "journey_switch_detected": "PoCrt → PoApp at turn 2",
+    "context_carried_across_journeys": "po_number from turn 1 used at turn 2 without re-asking",
+    "two_distinct_trans": "POCRTMAINSBT then POAPPMAINSBT (not the combined POCRTMAINTRN4)"
+  }
+}

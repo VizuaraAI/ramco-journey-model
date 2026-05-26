@@ -1,0 +1,63 @@
+{
+  "id": "EVAL-HAPPY-009",
+  "title": "Buyer looks up details of an existing PO",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["view", "read-only", "no-commit"],
+  "user_persona": "Buyer checking on a PO they made earlier",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me PO-2026-610.",
+      "expected": {
+        "intent": "view_purchase_order",
+        "journey_locked": "PoViw",
+        "slots_extracted": {"po_number": "PO-2026-610"},
+        "bot_must": [
+          "lock PoViw journey",
+          "fire POVWENTTRN1 (search)",
+          "return: supplier, currency, status, total value, created date, buyer, line count"
+        ],
+        "bot_must_not": [
+          "offer to modify — this is read-only",
+          "fire any TRANS task other than POVWENTTRN1"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Show me the line items.",
+      "expected": {
+        "bot_must": [
+          "list line items: item_code, quantity, uom, cost, need_date, status per line"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Any notes attached?",
+      "expected": {
+        "bot_must": [
+          "check Notes splice (POVWBUDLNK11 or equivalent view-side notes link) and return attached notes if any, or say 'no notes'"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<reported, not changed>",
+    "slots_filled": ["po_number"],
+    "splices_walked": ["view_notes"],
+    "next_possible_journeys": ["PoViw", "PoAmnd", "PoEdt"]
+  },
+
+  "evaluation_metrics": {
+    "read_only_enforcement": "no modifying TRANS fired",
+    "only_search_invoked": "POVWENTTRN1 is the only TRANS task on PoViw and must be the only one fired"
+  }
+}

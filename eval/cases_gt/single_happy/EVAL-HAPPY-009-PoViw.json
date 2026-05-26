@@ -1,0 +1,35 @@
+{
+  "id": "EVAL-HAPPY-009",
+  "title": "Buyer looks up details of an existing PO",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "user_persona": "Buyer checking on a PO they made earlier",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me PO-2026-610."
+    },
+    {
+      "turn": 2,
+      "user": "Show me the line items."
+    },
+    {
+      "turn": 3,
+      "user": "Any notes attached?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<reported, not changed>",
+    "must_enumerate_information": [
+      "list line items: item_code, quantity, uom, cost, need_date, status per line"
+    ]
+  }
+}

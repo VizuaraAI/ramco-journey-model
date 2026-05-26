@@ -1,0 +1,53 @@
+{
+  "id": "EVAL-HAPPY-011",
+  "title": "Buyer puts a PO on hold due to a supplier dispute",
+  "covers_journeys": ["PoHold"],
+  "covers_modules": ["PO"],
+  "category": "single-journey-happy-path",
+  "difficulty": "easy",
+  "tags": ["status-change", "hold"],
+  "user_persona": "Buyer pausing a PO while a dispute is resolved",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Put PO-2026-702 on hold — there's a quality issue we need to investigate.",
+      "expected": {
+        "intent": "change_po_status",
+        "journey_locked": "PoHold",
+        "slots_extracted": {"po_number": "PO-2026-702", "hold_reason": "quality issue under investigation"},
+        "bot_must": [
+          "lock PoHold journey",
+          "fire POHLDENTTRN1 (Search) with po_number=PO-2026-702",
+          "ask user to confirm the hold and capture reason"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Confirm hold.",
+      "expected": {
+        "trans_invoked": "POHLDMAINSBT",
+        "bot_must": [
+          "fire POHLDMAINSBT (Change Status to Hold)",
+          "report status is now Hold",
+          "explain consequences: receipts and amendments blocked until unhold"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoHold",
+    "commit_task": "POHLDMAINSBT",
+    "po_status": "Hold",
+    "slots_filled": ["po_number", "hold_reason"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoHold", "PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "reason_captured": "hold_reason slot extracted from natural language",
+    "consequences_explained": "bot warns about downstream blocking (receipt, amend)"
+  }
+}

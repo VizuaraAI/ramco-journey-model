@@ -1,0 +1,176 @@
+[
+  {
+    "title": "Simple direct PO end-to-end",
+    "covers": "PoCrt happy-path",
+    "difficulty": "easy",
+    "context": "You're a buyer who knows the supplier code and just needs a quick PO. Test that the bot picks the right journey, extracts all slots from natural language, and fires POCRTMAINSBT (not the combined POCRTMAINTRN4).",
+    "turns": [
+      "I need to create a direct purchase order.",
+      "Supplier is SUP-100, numbering series PO/STD/2026, today, USD, buyer BUY-77.",
+      "Add one line: ITM-200, 10 units at 50 USD each, need date 30 days from now.",
+      "Just create it, don't approve yet."
+    ],
+    "check": [
+      "Journey locked = PoCrt at turn 1",
+      "All slots extracted with correct values (supplier_code=SUP-100, currency=USD, etc.)",
+      "Final TRANS = POCRTMAINSBT (NOT POCRTMAINTRN4 — user said 'don't approve')",
+      "SP chain shows pocrmn_sp_crt_hdrsav → hdrchk → crtgrd → init_suptxreg → aprhref → crtgrd_out",
+      "Session memory mints a po_number (PO-NEW-001) after the commit"
+    ]
+  },
+  {
+    "title": "Create from quotation (two-screen flow)",
+    "covers": "PoCrtQtn, entry-screen search",
+    "difficulty": "medium",
+    "context": "Test that the bot recognizes 'I have a quotation' as PoCrtQtn (not PoCrt), fires the entry-screen search first, then the main commit.",
+    "turns": [
+      "I have an approved quotation, QTN-2024-7821, that I want to turn into a PO.",
+      "Yes, use all the lines from it as-is.",
+      "Create the PO."
+    ],
+    "check": [
+      "Journey locked = PoCrtQtn (NOT PoCrt)",
+      "Entry-search POCRTQTNTRN1 fires (look for the read chip in trace)",
+      "Final commit = POCRTQTNSUB",
+      "quotation_no slot = QTN-2024-7821"
+    ]
+  },
+  {
+    "title": "Capital PO with proposal (data-triggered splice)",
+    "covers": "PoCrt + Capital splice",
+    "difficulty": "medium",
+    "context": "Test the bot's splice detection: 'Capital PO' should trigger po_type==Capital splice, which requires capital_proposal_id as additional slot.",
+    "turns": [
+      "Create a Capital PO for supplier SUP-CAP-1 — buying a new milling machine.",
+      "The capital proposal is CAP-PROP-2026-04.",
+      "Buyer is BUY-77, numbering PO/CAP/2026, USD, today. One line: ITM-MILL-X, 1 unit at 75000.",
+      "Create it for approval."
+    ],
+    "check": [
+      "splice_triggered = po_type==Capital (appears in trace from turn 1)",
+      "additional_required_slots includes capital_proposal_id",
+      "Bot picks POCRTMAINSBT (not TRN4) — 'for approval' means submit + someone else approves later",
+      "capital_proposal_id slot = CAP-PROP-2026-04"
+    ]
+  },
+  {
+    "title": "Cross-journey: create → amend (session memory)",
+    "covers": "PoCrt → PoAmnd, multi-commit, context carry",
+    "difficulty": "hard",
+    "context": "Critical test for session memory. After bot creates a PO and mints a po_number, when the user says 'now amend it' the bot should switch journeys AND carry the synthetic po_number forward — no need to provide it explicitly.",
+    "turns": [
+      "Create and approve a PO for SUP-300, USD, today, BUY-5, ITM-12 100 units at 5. I have approval rights.",
+      "Wait, I need to bump that quantity to 150.",
+      "Amend and approve it in one shot."
+    ],
+    "check": [
+      "Turn 1: journey=PoCrt, fires POCRTMAINTRN4 (user explicitly asked for create AND approve)",
+      "Session memory shows PO-NEW-001 produced",
+      "Turn 2: journey switches to PoAmnd",
+      "Turn 3: fires POAMDENTTRN1 (entry-search) and POAMDMAINTRN5 (amend+approve)",
+      "po_number slot is auto-filled from session memory (PO-NEW-001) — user never typed it"
+    ]
+  },
+  {
+    "title": "Approve an existing PO",
+    "covers": "PoApp, search-then-act flow",
+    "difficulty": "medium",
+    "context": "Test that the bot recognizes 'approve PO-X' as PoApp, fires entry-search first to load, then the approve commit.",
+    "turns": [
+      "I need to approve PO-2026-410.",
+      "Yes, show me the details before I approve.",
+      "All looks fine, approve it."
+    ],
+    "check": [
+      "Journey locked = PoApp at turn 1",
+      "po_number slot = PO-2026-410",
+      "Entry-search POAPPENTTRN1 fires",
+      "Final commit = POAPPMAINSBT (NOT POAPPMAINTRN4 — TRN4 in PoApp means 'Get Quote Line No', a completely different task)"
+    ]
+  },
+  {
+    "title": "Lookup-only: view PO status",
+    "covers": "PoViw, lookup-only journey",
+    "difficulty": "easy",
+    "context": "Test that the bot recognizes a question as lookup (not a commit). Should fire ONLY POVWENTTRN1, no main-screen TRANS.",
+    "turns": [
+      "What's the status of PO-2026-820?",
+      "When was it approved and by whom?"
+    ],
+    "check": [
+      "Journey locked = PoViw",
+      "TRANS fired = POVWENTTRN1 (a READ, marked as 'read' kind in trace)",
+      "NO write-kind TRANS fires (PoViw is read-only)",
+      "Bot's response asks no clarification — it has the po_number"
+    ]
+  },
+  {
+    "title": "Hold a PO with reason (free-text slot)",
+    "covers": "PoHold, free-text reason matching",
+    "difficulty": "easy",
+    "context": "Test free-text slot extraction. The reason for the hold is conversational; bot should capture it cleanly.",
+    "turns": [
+      "Put PO-2026-702 on hold — there's a quality issue we need to investigate.",
+      "Confirm the hold."
+    ],
+    "check": [
+      "Journey locked = PoHold",
+      "Entry-search POHLDENTTRN1 fires (load the PO)",
+      "Final commit = POHLDMAINSBT (Change Status)",
+      "hold_reason slot is captured with the quality-issue phrasing"
+    ]
+  },
+  {
+    "title": "Short-close after partial delivery",
+    "covers": "PoScl, partial-line short close",
+    "difficulty": "medium",
+    "context": "Test that bot recognizes a partial-delivery scenario. Multiple slots in one sentence (PO number, line, quantities, reason).",
+    "turns": [
+      "On PO-2026-805, line 3 we ordered 100 units but supplier can only deliver the 60 already received. Short-close the rest.",
+      "Yes, close the remaining 40."
+    ],
+    "check": [
+      "Journey locked = PoScl",
+      "Slots extracted: po_number=PO-2026-805, line_no=3, ordered_qty=100, received_qty=60",
+      "short_close_reason captured (free-text)",
+      "Final commit = POSCLMAINSBT"
+    ]
+  },
+  {
+    "title": "Mid-flow change of mind (splice retraction)",
+    "covers": "PoCrt, splice retraction",
+    "difficulty": "hard",
+    "context": "Test that the bot can retract a splice cleanly when the user changes their mind. Started as Capital PO, switches to standard.",
+    "turns": [
+      "Create a Capital PO for SUP-CAP-2.",
+      "Actually, this is just a standard expense, not Capital. Never mind.",
+      "USD, today, buyer BUY-9, numbering PO/STD/2026. Line: ITM-1, 50 units at 10.",
+      "Create it."
+    ],
+    "check": [
+      "Turn 1: splice_triggered = po_type==Capital",
+      "Turn 2: splice retraction — splice_triggered becomes None, capital_proposal_id no longer required",
+      "supplier_code (SUP-CAP-2) is PRESERVED from turn 1 — bot doesn't lose context",
+      "Final commit fires successfully without capital_proposal_id"
+    ]
+  },
+  {
+    "title": "Cross-module: PR to PO conversion",
+    "covers": "PoCrt + cross-module PR reference + PR Coverage splice",
+    "difficulty": "hard",
+    "context": "Test cross-module awareness. User wants to create a PO that covers a Purchase Request. Bot should recognize PR-2026-220 references the PR module and walk the PR-Coverage splice.",
+    "turns": [
+      "I have approved purchase request PR-2026-220. Create a direct PO for SUP-101 to cover it.",
+      "Use the PR's line items as-is. USD, today, buyer BUY-60. Numbering PO/STD/2026.",
+      "Yes, all PO lines cover the PR 1-to-1.",
+      "Create the PO."
+    ],
+    "check": [
+      "Journey locked = PoCrt (NOT a PR journey — user explicitly said 'direct PO')",
+      "PR Coverage splice opens (ui_splice_requested=pr_cov or splice_walked includes pr_coverage_via_LNK9)",
+      "pr_coverage_ref or pr_number slot captured = PR-2026-220",
+      "Final commit = POCRTMAINSBT",
+      "Files-referenced popup should mention this is a cross-module touch"
+    ]
+  }
+]

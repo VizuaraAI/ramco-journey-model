@@ -1,0 +1,39 @@
+{
+  "id": "EVAL-DISC-001",
+  "title": "Brand new user asks what the PO module can do",
+  "covers_journeys": [],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "discovery",
+  "difficulty": "easy",
+  "user_persona": "A buyer who has just been given access and has never used the system",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Hi, I just got access to this system. What can I do with purchase orders here?"
+    },
+    {
+      "turn": 2,
+      "user": "What's the difference between Create Direct and Create from Quotation?"
+    },
+    {
+      "turn": 3,
+      "user": "OK, I want to try Direct. What do I need to know before I start?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "not yet started",
+    "must_enumerate_information": [
+      "enumerate at least 6 of the 14 user-facing PO journeys (e.g., create direct, create from quotation, amend, approve, view, hold, short-close)",
+      "explain that Direct (PoCrt) collects all header + line slots manually",
+      "explain that From Quotation (PoCrtQtn) starts from a search of approved supplier quotations, copies slots from the chosen quotation, then commits with task POCRTQTNSUB",
+      "mention the entry-point difference (no source document vs. pick a quotation first)",
+      "list the required header slots: numbering_series, po_date, supplier_code, currency, buyer (or note bot will infer where it can)",
+      "mention that optional sub-screens exist (Terms, TCD, Budget, Dropship) and the user can skip them",
+      "explain the two commit options: Create (saves as Draft) vs Create & Approve (creates and authorises in one action)"
+    ]
+  }
+}

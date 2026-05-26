@@ -1,0 +1,71 @@
+{
+  "id": "EVAL-ERR-008",
+  "title": "User types an ambiguous date, bot disambiguates",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "tags": ["date-ambiguity", "input-validation", "clarification"],
+  "user_persona": "Non-US user who writes dates DD/MM/YYYY",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "PO for SUP-100, USD, po date 03/04/2026, buyer BUY-8, line ITM-1 50 at 10.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {
+          "supplier_code": "SUP-100",
+          "currency": "USD",
+          "buyer": "BUY-8",
+          "item_code": "ITM-1",
+          "quantity": 50,
+          "cost": 10
+        },
+        "bot_must": [
+          "detect ambiguous date 03/04/2026 (3 April vs 4 March)",
+          "ask user to disambiguate (DD/MM vs MM/DD), or offer both interpretations"
+        ],
+        "bot_must_not": [
+          "silently assume one interpretation",
+          "fire commit"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "DD/MM. So 3 April 2026.",
+      "expected": {
+        "slots_extracted": {"po_date": "2026-04-03"},
+        "bot_must": [
+          "lock the date in ISO 2026-04-03",
+          "confirm and ask to commit"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Create.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT", "PO created"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "po_date", "buyer", "item_code", "quantity", "cost"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "date_ambiguity_detected": "ambiguous date (both components <=12) prompts disambiguation",
+    "ISO_normalised": "final po_date stored in ISO YYYY-MM-DD",
+    "no_silent_assumption": "bot does not guess"
+  }
+}

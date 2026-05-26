@@ -1,0 +1,59 @@
+{
+  "activity": "POHLP",
+  "splice_summary": {
+    "ui_splices": 0,
+    "state_splices": 0,
+    "data_splices": 2,
+    "total": 2
+  },
+  "splices": {
+    "ui_splices": [],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@workflow_app = Y",
+        "trigger": "@workflow_app = Y",
+        "sp_occurrences": [
+          {
+            "sp": "popohlp_sp_srchgrd",
+            "line": 976,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": [
+                "classification_user_acc_wise_tmp"
+              ]
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@error = 1",
+        "trigger": "@error = 1",
+        "sp_occurrences": [
+          {
+            "sp": "popohlp_sp_srchgrd",
+            "line": 488,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "classification_sp_user_acc"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

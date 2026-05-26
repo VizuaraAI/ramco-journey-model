@@ -1,0 +1,52 @@
+{
+  "activity": "POSCL",
+  "description": "Short Close Purchase Order",
+  "main_screen": "POSCLMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POSCLMAINFTH",
+      "description": "Fetch Shortclose Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POSCLMAINSBT",
+      "description": "Shortclose PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "posclm_sp_scl_docsav",
+          "method_name": "posclm_met_scl_docsav",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 3,
+          "spname": "posc_wf_sp_iscall",
+          "method_name": "posc_wf_mt_iscall",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 12,
+          "spname": "po_dummy_sp",
+          "method_name": "po_dummy_met",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 13,
+          "spname": "po_shcl_sp_Return_State_out",
+          "method_name": "po_shcl_M_Return_State_Out_",
+          "service_name": "posclm_ser_scl",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "activity": "POVIW",
+  "description": "View Purchase Order",
+  "main_screen": "POVIWMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POVWMAINFTH",
+      "description": "Fetch View Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POVWMAININI",
+      "description": "Initialize View Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    }
+  ]
+}

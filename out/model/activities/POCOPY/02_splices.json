@@ -1,0 +1,184 @@
+{
+  "activity": "POCOPY",
+  "splice_summary": {
+    "ui_splices": 1,
+    "state_splices": 0,
+    "data_splices": 6,
+    "total": 7
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTCOPYPOLNK",
+        "description": "Link to Edit PO Page",
+        "hook_screen": "POCRTCOPYPO",
+        "trigger": "user_clicks_POCRTCOPYPOLNK",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@modeflag = Z",
+        "trigger": "@modeflag = Z",
+        "sp_occurrences": [
+          {
+            "sp": "pocrcpy_sp_cpygrd",
+            "line": 363,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp",
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [
+                "1025167"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pocrcpy_sp_cpygrd",
+            "line": 399,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "1025167"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "pocrcpy_sp_cpygrd",
+            "line": 369,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp",
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [
+                "1025167"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = LT",
+        "trigger": "@rate_mismatch = LT",
+        "sp_occurrences": [
+          {
+            "sp": "pocrcpy_sp_cpygrd",
+            "line": 727,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "58"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sogenflag = REQ",
+        "trigger": "@sogenflag = REQ",
+        "sp_occurrences": [
+          {
+            "sp": "pocrcpy_sp_cpy_hdrchk",
+            "line": 280,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "ict_saleorder_upd"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@rate_mismatch = EQ",
+        "trigger": "@rate_mismatch = EQ",
+        "sp_occurrences": [
+          {
+            "sp": "pocrcpy_sp_cpygrd",
+            "line": 764,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "59"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

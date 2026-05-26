@@ -1,0 +1,365 @@
+{
+  "activity": "POCRTSO",
+  "splice_summary": {
+    "ui_splices": 9,
+    "state_splices": 0,
+    "data_splices": 11,
+    "total": 20
+  },
+  "splices": {
+    "ui_splices": [
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOBUYLNK",
+        "description": "View Buyer Details",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOBUYLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSODISPLNK",
+        "description": "View Disposition Review",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSODISPLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOEADLNK",
+        "description": "View Earliest Available Date",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOEADLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOFSTKLNK",
+        "description": "View Free Stock Details",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOFSTKLNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOITMLNK",
+        "description": "View Item Details",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_ITEM_CODEML",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOLNK1",
+        "description": "Edit PO",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOLNK1",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOSOLNK",
+        "description": "View SO Details",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_SONO",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOSSROULNK",
+        "description": "View Stock Status Review - OU Wise",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOSSROULNK",
+        "optional": true
+      },
+      {
+        "kind": "ui_link",
+        "splice_id": "POCRTSOSSRWHLNK",
+        "description": "View Stock Status Review - Warehouse Wise",
+        "hook_screen": "POCRTSOENT",
+        "trigger": "user_clicks_POCRTSOSSRWHLNK",
+        "optional": true
+      }
+    ],
+    "state_splices": [],
+    "data_splices": [
+      {
+        "kind": "data_triggered",
+        "splice_id": "@pps_po_combo_default_flag = YES",
+        "trigger": "@pps_po_combo_default_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "po_lstedt_sp_supcode",
+            "line": 75,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "into"
+              ],
+              "updates": [
+                "rank"
+              ],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@back_dated_flag = YES",
+        "trigger": "@back_dated_flag = YES",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopo_hdrsav",
+            "line": 320,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "backdated_scm_tran_validation"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@adhocitemclassml = NONE",
+        "trigger": "@adhocitemclassml = NONE",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 1661,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_potcd_itemtcd_dtl"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@sogenflag = REQ",
+        "trigger": "@sogenflag = REQ",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopo_hdrsav",
+            "line": 482,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "fin_german_raiserror_sp"
+              ],
+              "raiserrors": [
+                "2031"
+              ],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@supclass = IN",
+        "trigger": "@supclass = IN",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopo_hdrchk",
+            "line": 723,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "ict_saleorder_upd"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@num_series <> ~MANUAL~",
+        "trigger": "@num_series <> ~MANUAL~",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopo_hdrsav",
+            "line": 649,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "dnm_gen_tranno_sp"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@po_puom <> @souom_tmp",
+        "trigger": "@po_puom <> @souom_tmp",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 770,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@convflag = 1",
+        "trigger": "@convflag = 1",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 782,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 794,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_get_convfactor",
+                "itm_sp_get_uomconvfactor"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@order_quantity_mul <> FLOOR",
+        "trigger": "@order_quantity_mul <> FLOOR",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 896,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "uom_sp_chk_fraction"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@potype = 3",
+        "trigger": "@potype = 3",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 1163,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [
+                "po_poshd_schedule_dtl"
+              ],
+              "deletes": []
+            }
+          },
+          {
+            "sp": "pocrtso_sp_sopogrd",
+            "line": 1430,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [],
+              "raiserrors": [],
+              "inserts": [
+                "po_poitm_item_detail"
+              ],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      },
+      {
+        "kind": "data_triggered",
+        "splice_id": "@hdn_processingaction = ALL",
+        "trigger": "@hdn_processingaction = ALL",
+        "sp_occurrences": [
+          {
+            "sp": "pocrtso_sp_srchgrd",
+            "line": 273,
+            "kind": "if_binary",
+            "consequences": {
+              "execs": [
+                "scm_get_emod_details"
+              ],
+              "raiserrors": [],
+              "inserts": [],
+              "updates": [],
+              "deletes": []
+            }
+          }
+        ],
+        "optional": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "activity": "POAPP",
+  "description": "Approve Purchase Order",
+  "main_screen": "POAPPMAIN",
+  "canonical_spine": [
+    {
+      "phase": "fetch",
+      "task": "POAPPMAINFTH",
+      "description": "Fetch Approve Main Page"
+    },
+    {
+      "phase": "init",
+      "task": "POAPPMAININI",
+      "description": "Initialize Approve Main Page"
+    },
+    {
+      "phase": "fill",
+      "task": null,
+      "description": "User fills the form (implicit; bot's responsibility)"
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINSBT",
+      "description": "Approve PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_aprgrd",
+          "method_name": "poaprmn_met_aprgrd",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_apr_hdrchk",
+          "method_name": "poaprmn_met_apr_hdrchk",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_aprhref",
+          "method_name": "poaprmn_met_aprHRef",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_apr_hdrsav",
+          "method_name": "poaprmn_met_apr_hdrsav",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poaprmn_sp_aprgrd_out",
+          "method_name": "poaprmn_met_aprgrd_out",
+          "service_name": "poaprmn_ser_apr",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN1",
+      "description": "Default",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_def_grd",
+          "method_name": "poaprmn_met_def_grd",
+          "service_name": "poaprmn_ser_def",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 2,
+          "spname": "poaprmn_sp_defgrd",
+          "method_name": "poaprmn_met_defgrd",
+          "service_name": "poaprmn_ser_def",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN4",
+      "description": "Get All Quote Line No.",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_qtngrd",
+          "method_name": "poaprmn_met_qtngrd",
+          "service_name": "poaprmn_ser_qtn",
+          "lvl": "0"
+        }
+      ]
+    },
+    {
+      "phase": "commit",
+      "task": "POAPPMAINTRN5",
+      "description": "Return PO",
+      "sp_chain": [
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_Mt_Del_HRef",
+          "method_name": "poaprmn_Mt_Del_HRef",
+          "service_name": "poaprmn_ser_ret",
+          "lvl": "0"
+        },
+        {
+          "sequenceno": 1,
+          "spname": "poaprmn_sp_ret_docsav",
+          "method_name": "poaprmn_met_ret_docsav",
+          "service_name": "poaprmn_ser_ret",
+          "lvl": "0"
+        }
+      ]
+    }
+  ]
+}

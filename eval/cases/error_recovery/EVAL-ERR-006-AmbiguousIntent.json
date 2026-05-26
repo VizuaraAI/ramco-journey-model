@@ -1,0 +1,60 @@
+{
+  "id": "EVAL-ERR-006",
+  "title": "User request is ambiguous between PR and PO — bot asks before acting",
+  "covers_journeys": [],
+  "covers_modules": ["PO", "PR"],
+  "category": "error-recovery",
+  "difficulty": "easy",
+  "tags": ["ambiguous-intent", "clarification", "module-disambiguation"],
+  "user_persona": "User who uses 'order' loosely",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to place an order for SUP-100.",
+      "expected": {
+        "intent": "ambiguous_order",
+        "bot_must": [
+          "recognise ambiguity: 'order' could mean Purchase Order (PO module, immediate procurement) or Purchase Request (PR module, request to buy)",
+          "ask clarifying question: 'Do you want to place a Purchase Order (commit to buy now) or raise a Purchase Request (request approval to buy)?'"
+        ],
+        "bot_must_not": [
+          "pick one and start collecting slots"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Just a PO, I have authority to commit.",
+      "expected": {
+        "journey_candidates": ["PoCrt", "PoCrtQtn", "PoCrtSo", "PoCrtTen", "PoCopy"],
+        "bot_must": [
+          "lock module to PO",
+          "ask which kind of PO (since 5 create variants exist)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Direct one.",
+      "expected": {
+        "journey_locked": "PoCrt",
+        "bot_must": ["start collecting Direct PO header slots"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": null,
+    "po_status": "header collection started",
+    "slots_filled": ["supplier_code"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoCrt"]
+  },
+
+  "evaluation_metrics": {
+    "ambiguity_detection": "'order' triggers clarification, not a guess",
+    "two_stage_disambiguation": "module first (PO vs PR), then variant within PO"
+  }
+}

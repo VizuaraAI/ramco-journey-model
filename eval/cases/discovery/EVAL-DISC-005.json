@@ -1,0 +1,68 @@
+{
+  "id": "EVAL-DISC-005",
+  "title": "User asks about the full lifecycle — from creation to receipt",
+  "covers_journeys": [],
+  "covers_modules": ["PO", "GR"],
+  "category": "discovery",
+  "difficulty": "medium",
+  "tags": ["lifecycle", "cross-module-overview"],
+  "user_persona": "A buyer who wants to understand the end-to-end flow before starting",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Walk me through what happens to a PO from the moment I create it to when the goods arrive. What are the stages?",
+      "expected": {
+        "intent": "explain_lifecycle",
+        "bot_must": [
+          "describe stages: Draft (PoCrt) → Pending Approval → Authorised (PoApp) → Goods Received (GR module) → Closed",
+          "mention optional intermediate journeys: Amend (PoAmnd) re-opens, Edit (PoEdt) for minor fixes, Hold (PoHold) pauses, Short-Close (PoScl) ends early",
+          "note that GR is a separate module"
+        ],
+        "bot_must_not": [
+          "skip the GR step",
+          "start any journey"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Who can authorise it? Can I do it myself if I created it?",
+      "expected": {
+        "intent": "explain_authorization_policy",
+        "bot_must": [
+          "explain that PoApp is a separate activity from PoCrt — authorisation is a discrete journey",
+          "note that whether the creator can self-approve depends on configured authorisation rules / role permissions (this is configured per-tenant, not hard-coded)",
+          "mention that PoCrt has a TRN4 task (Create and Approve PO) which combines both — only usable by users with authorisation rights"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "What if I make a mistake after it's approved?",
+      "expected": {
+        "intent": "explain_post_approval_changes",
+        "bot_must": [
+          "explain PoAmnd (Amend Purchase Order) is the path for changes after approval — opens the PO for modification",
+          "note POAMDMAINTRN5 (Amend and Approve) re-approves in one shot if user has rights, otherwise POAMDMAINSBT submits for re-approval",
+          "mention that some structural changes (e.g., supplier change) may require PoScl + new PoCrt instead of amend"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": null,
+    "commit_task": null,
+    "po_status": "no transaction",
+    "slots_filled": [],
+    "splices_walked": [],
+    "next_possible_journeys": []
+  },
+
+  "evaluation_metrics": {
+    "lifecycle_completeness": "stages include Draft, Authorised, GR, Closed at minimum",
+    "cross_module_acknowledged": "GR mentioned as separate module",
+    "amend_path_explained": "PoAmnd correctly described as post-approval modification path"
+  }
+}

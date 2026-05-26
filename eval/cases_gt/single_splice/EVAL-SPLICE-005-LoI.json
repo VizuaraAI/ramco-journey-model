@@ -1,0 +1,71 @@
+{
+  "id": "EVAL-SPLICE-005",
+  "title": "Buyer creates a Letter-of-Intent PO (LoI flag)",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "user_persona": "Buyer issuing an LoI ahead of full PO terms",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to issue a Letter of Intent purchase order to SUP-LOI-9 to lock in pricing while we finalize terms. Quantity is not final yet."
+    },
+    {
+      "turn": 2,
+      "user": "Item ITM-LOI-1, indicative qty 1000, price locked at 12 USD, valid 60 days."
+    },
+    {
+      "turn": 3,
+      "user": "Currency USD, buyer BUY-15, numbering PO/LOI/2026, today."
+    },
+    {
+      "turn": 4,
+      "user": "Create the LoI."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft (LoI)",
+    "writes": [
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-LOI-9",
+          "loi_flag": true,
+          "item_code": "ITM-LOI-1",
+          "quantity": 1000,
+          "cost": 12,
+          "loi_validity_days": 60,
+          "currency": "USD",
+          "buyer": "BUY-15",
+          "numbering_series": "PO/LOI/2026",
+          "po_date": "<today>"
+        },
+        "status_after": "Draft (LoI)"
+      }
+    ]
+  }
+}

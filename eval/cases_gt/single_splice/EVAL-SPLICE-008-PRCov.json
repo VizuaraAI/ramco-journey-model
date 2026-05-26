@@ -1,0 +1,70 @@
+{
+  "id": "EVAL-SPLICE-008",
+  "title": "Buyer covers a PR with this PO \u2014 UI splice via POCRTMAINLNK9",
+  "covers_journeys": [
+    "PoCrt"
+  ],
+  "covers_modules": [
+    "PO",
+    "PR"
+  ],
+  "category": "single-journey-with-splice",
+  "difficulty": "medium",
+  "user_persona": "Buyer fulfilling a Purchase Request with a direct PO",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a direct PO for SUP-101 to cover purchase request PR-2026-220."
+    },
+    {
+      "turn": 2,
+      "user": "Use the PR's line items as is. USD, today, buyer BUY-60."
+    },
+    {
+      "turn": 3,
+      "user": "Yes all PO lines cover the PR 1-to-1."
+    },
+    {
+      "turn": 4,
+      "user": "Create it."
+    }
+  ],
+  "ground_truth": {
+    "kind": "commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_linelevel_detail",
+          "po_poitm_item_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-101",
+          "pr_coverage_ref": "PR-2026-220",
+          "currency": "USD",
+          "po_date": "<today>",
+          "buyer": "BUY-60",
+          "item_code": "ANY",
+          "quantity": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

@@ -1,0 +1,529 @@
+{
+  "activity": "POSER",
+  "description": "Purchase Order Services",
+  "is_user_facing": false,
+  "screen_count": 1,
+  "main_screen": "POSERMAIN",
+  "canonical_spine": [],
+  "splice_summary": {
+    "ui_splices": 0,
+    "state_splices": 0,
+    "data_splices": 0,
+    "total": 0
+  },
+  "splices": {
+    "ui_splices": [],
+    "state_splices": [],
+    "data_splices": []
+  },
+  "screens": [
+    {
+      "ilbo_name": "POSERDUMMYUI",
+      "ilbo_desc": "Dummy UI For PO Services",
+      "canonical_services": [],
+      "task_count": 15,
+      "tasks_by_type": {
+        "FETCH": [
+          {
+            "name": "POMAIN15FET",
+            "description": "Default Fetch",
+            "type": "FETCH",
+            "pattern": "FETCH",
+            "primary_control_bt": "[NONE]",
+            "js_success_message": "Default Fetch Successfully Completed"
+          }
+        ],
+        "INIT": [],
+        "TRANS": [
+          {
+            "name": "POGRSER01",
+            "description": "Line No existence check",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER01",
+            "js_success_message": "Line No existence check Successfully Completed"
+          },
+          {
+            "name": "POGRSER02",
+            "description": "Line no validity check",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER02",
+            "js_success_message": "Line no validity check Successfully Completed"
+          },
+          {
+            "name": "POGRSER03",
+            "description": "Single row details check for Line No",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER03",
+            "js_success_message": "Single row details check for Line No Successfully Completed"
+          },
+          {
+            "name": "POGRSER04",
+            "description": "Fetch Line No Details",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER04",
+            "js_success_message": "Fetch Line No Details Successfully Completed"
+          },
+          {
+            "name": "POGRSER05",
+            "description": "Fetch PO Details",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER05",
+            "js_success_message": "Fetch PO Details Successfully Completed"
+          },
+          {
+            "name": "POGRSER06",
+            "description": "Update Ord Line No",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POGRSER06",
+            "js_success_message": "Update Ord Line No Successfully Completed"
+          },
+          {
+            "name": "POSERNOTE1",
+            "description": "Return PO Notes",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERNOTE1",
+            "js_success_message": "Return PO Notes Successfully Completed"
+          },
+          {
+            "name": "POSERV003",
+            "description": "Return PO Details",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV003",
+            "js_success_message": "Return PO Details Successfully Completed"
+          },
+          {
+            "name": "POSERV004",
+            "description": "PO category check",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV004",
+            "js_success_message": "PO category check Successfully Completed"
+          },
+          {
+            "name": "POSERV005",
+            "description": "PO Initial information",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV005",
+            "js_success_message": "PO Initial information Successfully Completed"
+          },
+          {
+            "name": "POSERV006",
+            "description": "Return Matching type",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV006",
+            "js_success_message": "Return Matching type Successfully Completed"
+          },
+          {
+            "name": "POSERV007",
+            "description": "Return Item details",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV007",
+            "js_success_message": "Return Item details Successfully Completed"
+          },
+          {
+            "name": "POSERV010",
+            "description": "Search task for PO help",
+            "type": "TRANS",
+            "pattern": "TRANS_DS_YES",
+            "primary_control_bt": "POSERV010",
+            "js_success_message": "Search task for PO help Successfully Completed"
+          }
+        ],
+        "LINK": [],
+        "UI": [],
+        "HELP": []
+      },
+      "slot_count": 37,
+      "slots": [
+        {
+          "field_id": "f_d6ce81",
+          "field_name": "f_d6ce81",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_d6ce81_2",
+          "field_name": "f_d6ce81_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_a36751",
+          "field_name": "f_a36751",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_a36751_2",
+          "field_name": "f_a36751_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_088571",
+          "field_name": "f_088571",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_088571_2",
+          "field_name": "f_088571_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9bf441",
+          "field_name": "f_9bf441",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_9bf441_2",
+          "field_name": "f_9bf441_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_931191",
+          "field_name": "f_931191",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_931191_2",
+          "field_name": "f_931191_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_11e521",
+          "field_name": "f_11e521",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_11e521_2",
+          "field_name": "f_11e521_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_efdf11",
+          "field_name": "f_efdf11",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_efdf11_2",
+          "field_name": "f_efdf11_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_7d5331",
+          "field_name": "f_7d5331",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_7d5331_2",
+          "field_name": "f_7d5331_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_927161",
+          "field_name": "f_927161",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_927161_2",
+          "field_name": "f_927161_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_778d63",
+          "field_name": "f_778d63",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_778d63_2",
+          "field_name": "f_778d63_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_05cd13",
+          "field_name": "f_05cd13",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_05cd13_2",
+          "field_name": "f_05cd13_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_138633",
+          "field_name": "f_138633",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_138633_2",
+          "field_name": "f_138633_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_371693",
+          "field_name": "f_371693",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_371693_2",
+          "field_name": "f_371693_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_4b1c83",
+          "field_name": "f_4b1c83",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_4b1c83_2",
+          "field_name": "f_4b1c83_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_896343",
+          "field_name": "f_896343",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_896343_2",
+          "field_name": "f_896343_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_495a73",
+          "field_name": "f_495a73",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_495a73_2",
+          "field_name": "f_495a73_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_540753",
+          "field_name": "f_540753",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_540753_2",
+          "field_name": "f_540753_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_4cef23",
+          "field_name": "f_4cef23",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "f_4cef23_2",
+          "field_name": "f_4cef23_2",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "msnwbtnsc",
+          "display_label": "",
+          "mandatory": false
+        },
+        {
+          "field_id": "hdnhdnrt_stcontrol",
+          "field_name": "hdnhdnrt_stcontrol",
+          "btsynonym": "",
+          "input_type": "displayonly",
+          "datatype": "char",
+          "section": "prjhdnsection",
+          "display_label": "",
+          "mandatory": false
+        }
+      ],
+      "collect_steps": [],
+      "discrepancies": {
+        "tasks_only_in_form": [],
+        "tasks_only_in_manifest": []
+      }
+    }
+  ],
+  "sp_chains": {},
+  "sp_chains_summary": {}
+}

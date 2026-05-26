@@ -1,0 +1,91 @@
+{
+  "id": "EVAL-XJ-004",
+  "title": "Buyer creates and approves a PO, then puts it on hold pending supplier confirmation",
+  "covers_journeys": [
+    "PoCrt",
+    "PoHold"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "user_persona": "Buyer who created PO eagerly but wants to pause it",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create and approve PO for SUP-77, USD, today, BUY-4, ITM-22 200 at 8."
+    },
+    {
+      "turn": 2,
+      "user": "Actually hold off \u2014 supplier hasn't confirmed delivery yet. Put it on hold."
+    },
+    {
+      "turn": 3,
+      "user": "Confirm hold."
+    }
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Hold",
+    "writes": [
+      {
+        "task": "POCRTMAINTRN4",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_apr_hdrchk",
+          "pocrmn_sp_apr_hdrsav",
+          "pocrmn_sp_aprgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail",
+          "po_paytm_linelevel_detail",
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl",
+          "supp_item_itemmap"
+        ],
+        "slot_values_required": {
+          "hold_reason": "supplier delivery not confirmed",
+          "supplier_code": "ANY",
+          "currency": "ANY",
+          "po_date": "ANY",
+          "buyer": "ANY",
+          "item_code": "ANY",
+          "quantity": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Hold"
+      },
+      {
+        "task": "POHLDMAINSBT",
+        "activity": "POHOLD",
+        "screen": "PoHoldMain",
+        "via_sp_chain": [
+          "pohldmn_sp_chng_docsav"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail",
+          "po_pomas_pur_order_hdr",
+          "po_posta_status_detail"
+        ],
+        "slot_values_required": {
+          "hold_reason": "supplier delivery not confirmed",
+          "supplier_code": "ANY",
+          "currency": "ANY",
+          "po_date": "ANY",
+          "buyer": "ANY",
+          "item_code": "ANY",
+          "quantity": "ANY",
+          "cost": "ANY"
+        },
+        "status_after": "Hold"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "EVAL-LOOKUP-004",
+  "title": "User asks for the full workflow history of a PO",
+  "covers_journeys": [
+    "PoViw"
+  ],
+  "covers_modules": [
+    "PO"
+  ],
+  "category": "lookup",
+  "difficulty": "medium",
+  "user_persona": "Auditor reviewing PO lifecycle",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Give me the full history of PO-2026-900 \u2014 every action taken, by whom, when."
+    },
+    {
+      "turn": 2,
+      "user": "Was it ever returned or held?"
+    },
+    {
+      "turn": 3,
+      "user": "Who currently has it for action?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "<inspected, not changed>",
+    "must_enumerate_information": [
+      "return chronological list: created by X at T1, edited by Y at T2, approved by Z at T3, etc."
+    ]
+  }
+}

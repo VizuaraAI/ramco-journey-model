@@ -1,0 +1,299 @@
+{
+  "activity": "POCRTQTN",
+  "sp_chains": {
+    "PoCrtQtnEnt.PoCrtQtnFth": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_fet_hdrfet",
+        "method_name": "pocrqn_met_fet_hdrfet",
+        "service_name": "pocrqn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "po_lstedt_sp_supcode",
+        "method_name": "po_lstedt_Mt_supcode",
+        "service_name": "pocrqn_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "po_lstedt_sp_supcode_poqt",
+        "method_name": "po_lstedt_Mt_supcode_poqt",
+        "service_name": "pocrqn_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrqn_sp_inithfld",
+        "method_name": "pocrqn_met_inithfld",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "pocrqn_sp_initbyr",
+        "method_name": "pocrqn_met_initbyr",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "pocrqn_sp_inittyp",
+        "method_name": "pocrqn_met_inittyp",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "pocrcpy_sp_cbiusentn",
+        "method_name": "pocrcpy_met_CbIUsentn",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poamdmm_sp_cbiusemlcb10",
+        "method_name": "poamdmm_met_CbIUsemlcb10",
+        "service_name": "pocrqn_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnSub": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_qnpo_hdrchk",
+        "method_name": "pocrqn_met_qnpo_hdrchk",
+        "service_name": "pocrqn_ser_qnpo",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_qnpo_hdrsav",
+        "method_name": "pocrqn_met_qnpo_hdrsav",
+        "service_name": "pocrqn_ser_qnpo",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_qnpogrd",
+        "method_name": "pocrqn_met_qnpogrd",
+        "service_name": "pocrqn_ser_qnpo",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_qnpogrd_out",
+        "method_name": "pocrqn_met_qnpogrd_out",
+        "service_name": "pocrqn_ser_qnpo",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrqn_sp_srch_hdrfet",
+        "method_name": "pocrqn_met_srch_hdrfet",
+        "service_name": "pocrqn_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pocrqn_sp_srchgrd",
+        "method_name": "pocrqn_met_srchgrd",
+        "service_name": "pocrqn_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnBuylnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnbuylnk_sp",
+        "method_name": "pocrtqtnbuylnk_Met",
+        "service_name": "pocrtqtnbuylnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnDisplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtndisplnk_sp",
+        "method_name": "pocrtqtndisplnk_Met",
+        "service_name": "pocrtqtndisplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtqtnDrphlp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtndrphlp_sp",
+        "method_name": "pocrtqtndrphlp_Met",
+        "service_name": "pocrtqtndrphlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnEadlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtneadlnk_sp",
+        "method_name": "pocrtqtneadlnk_Met",
+        "service_name": "pocrtqtneadlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnItemlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnitemlnk_sp",
+        "method_name": "pocrtqtnitemlnk_Met",
+        "service_name": "pocrtqtnitemlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnFstklnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnfstklnk_sp",
+        "method_name": "pocrtqtnfstklnk_Met",
+        "service_name": "pocrtqtnfstklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnqtnLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnqtnlnk_sp",
+        "method_name": "pocrtqtnqtnlnk_Met",
+        "service_name": "pocrtqtnqtnlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnSsrOulnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnssroulnk_sp",
+        "method_name": "pocrtqtnssroulnk_Met",
+        "service_name": "pocrtqtnssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnSsrWhlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnssrwhlnk_sp",
+        "method_name": "pocrtqtnssrwhlnk_Met",
+        "service_name": "pocrtqtnssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtqtnSupplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnsupplnk_sp",
+        "method_name": "pocrtqtnsupplnk_Met",
+        "service_name": "pocrtqtnsupplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnSupHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnsuphlp_sp",
+        "method_name": "PoCrtQtnSupHlp_Met",
+        "service_name": "PoCrtQtnSupHlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.PoCrtQtnUomHlp": [
+      {
+        "sequenceno": 1,
+        "spname": "pocrtqtnuomhlp_sp",
+        "method_name": "pocrtqtnuomhlp_Met",
+        "service_name": "pocrtqtnuomhlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.pomains6SuppliUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomainSpSc_UiHdrRef",
+        "method_name": "pomainMtSc_UiHdrRef",
+        "service_name": "pomainSrSc_Ui",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.pomains6Item_CHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain_sp_Hp_Item_Chlp",
+        "method_name": "pomain_M_Hp_Item_Chlp",
+        "service_name": "pomain_ser_Hp_Item_C",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.pomains6SuppleHp": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain_sp_Hp_Supphlp",
+        "method_name": "pomain_M_Hp_Supphlp",
+        "service_name": "pomain_ser_Hp_Supp",
+        "lvl": "0"
+      }
+    ],
+    "PoCrtQtnEnt.pomains6ViewQuLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain_sp_ViewQu_hrf",
+        "method_name": "pomain_M_ViewQu_hrf",
+        "service_name": "pomain_ser_ViewQu",
+        "lvl": "0"
+      }
+    ]
+  },
+  "summary": {
+    "screens": [
+      "PoCrtQtnEnt"
+    ],
+    "tasks": [
+      "PoCrtQtnBuylnk",
+      "PoCrtQtnDisplnk",
+      "PoCrtQtnEadlnk",
+      "PoCrtQtnFstklnk",
+      "PoCrtQtnFth",
+      "PoCrtQtnIni",
+      "PoCrtQtnItemlnk",
+      "PoCrtQtnSsrOulnk",
+      "PoCrtQtnSsrWhlnk",
+      "PoCrtQtnSub",
+      "PoCrtQtnSupHlp",
+      "PoCrtQtnTrn1",
+      "PoCrtQtnUomHlp",
+      "PoCrtQtnqtnLnk",
+      "PoCrtqtnDrphlp",
+      "PoCrtqtnSupplnk",
+      "pomains6Item_CHp",
+      "pomains6SuppleHp",
+      "pomains6SuppliUi",
+      "pomains6ViewQuLk"
+    ],
+    "sp_count": 32,
+    "method_count": 32,
+    "task_count": 20
+  }
+}

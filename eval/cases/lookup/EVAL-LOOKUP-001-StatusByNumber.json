@@ -1,0 +1,53 @@
+{
+  "id": "EVAL-LOOKUP-001",
+  "title": "User asks for the status of a specific PO",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "lookup",
+  "difficulty": "easy",
+  "tags": ["status-query", "single-po"],
+  "user_persona": "Buyer checking a specific PO",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "What's the status of PO-2026-820?",
+      "expected": {
+        "intent": "po_status_lookup",
+        "journey_locked": "PoViw",
+        "slots_extracted": {"po_number": "PO-2026-820"},
+        "trans_invoked": "POVWENTTRN1",
+        "bot_must": [
+          "fire POVWENTTRN1 with po_number=PO-2026-820",
+          "return status (Draft/Authorised/Hold/Closed) plus key metadata (supplier, total, created date)"
+        ],
+        "bot_must_not": ["start any modifying journey"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "When was it approved and by whom?",
+      "expected": {
+        "bot_must": [
+          "return approval_date and approver (these come from the PO's audit trail or the PoApp transaction record)",
+          "if not yet approved, say so"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<reported, not changed>",
+    "slots_filled": ["po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "status_accuracy": "status string matches actual PO state",
+    "metadata_completeness": "supplier, total, created date returned",
+    "audit_trail_query": "approval info pulled from audit/transaction record"
+  }
+}

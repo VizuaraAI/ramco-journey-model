@@ -1,0 +1,464 @@
+{
+  "activity": "POSCL",
+  "sp_chains": {
+    "PoSclEnt.pomain13Cls_poUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomains8_sp_clsuisubui",
+        "method_name": "pomains8_M_clsuisubui",
+        "service_name": "pomain13_ser_clsui",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pomain13_sp_clsui_hrf",
+        "method_name": "pomain13_M_clsui_hrf",
+        "service_name": "pomain13_ser_clsui",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13SubclsUi": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_subui_hrf",
+        "method_name": "pomain13_M_subui_hrf",
+        "service_name": "pomain13_ser_subui",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13WorkflLk": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Workfl_hrf",
+        "method_name": "pomain13_M_Workfl_hrf",
+        "service_name": "pomain13_ser_Workfl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.pomain13ReturnTr": [
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Returnmltpos_out",
+        "method_name": "pomain13_M_Returnmltpos_Out_",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Return_HdrChk",
+        "method_name": "pomain13_M_Return_HdrChk",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Return_HdrSav",
+        "method_name": "pomain13_M_Return_HdrSav",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "pomain13_sp_Returnmltpos",
+        "method_name": "pomain13_M_Returnmltpos",
+        "service_name": "pomain13_ser_Return",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclentRcodehlp": [
+      {
+        "sequenceno": 1,
+        "spname": "posclentrcodehlp_sp",
+        "method_name": "posclentrcodehlp_Met",
+        "service_name": "posclentrcodehlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntFth": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_fet_hdrfet",
+        "method_name": "poscle_met_fet_hdrfet",
+        "service_name": "poscle_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntIni": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_initcurr",
+        "method_name": "poscle_met_initcurr",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poscle_sp_initstat",
+        "method_name": "poscle_met_initstat",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "poamden_sp_cbiusebyr",
+        "method_name": "poamden_met_CbIUsebyr",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 4,
+        "spname": "poamden_sp_cbiusefld",
+        "method_name": "poamden_met_CbIUsefld",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 5,
+        "spname": "poamden_sp_cbiuseorgn",
+        "method_name": "poamden_met_CbIUseorgn",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 6,
+        "spname": "poeent_SP_init_cls",
+        "method_name": "poeent_met_init_cls",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 7,
+        "spname": "poeent_SP_init_subcls",
+        "method_name": "poeent_met_init_subcls",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 8,
+        "spname": "Po_scle_sp_init_acunit",
+        "method_name": "Po_scle_met_init_acunit",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 9,
+        "spname": "Po_scle_sp_init_whcode",
+        "method_name": "Po_scle_met_init_whcode",
+        "service_name": "poscle_ser_init",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclentRcodeUi": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_rcumgrd",
+        "method_name": "poscle_met_rcUMgrd",
+        "service_name": "poscle_ser_rc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntTrn1": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_srch_hdrfet",
+        "method_name": "poscle_met_srch_hdrfet",
+        "service_name": "poscle_ser_srch",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "poscle_sp_srchgrd",
+        "method_name": "poscle_met_srchgrd",
+        "service_name": "poscle_ser_srch",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainbuylnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainbuylnk_sp",
+        "method_name": "posclmainbuylnk_Met",
+        "service_name": "posclmainbuylnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMaindisplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaindisplnk_sp",
+        "method_name": "posclmaindisplnk_Met",
+        "service_name": "posclmaindisplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainfstklnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainfstklnk_sp",
+        "method_name": "posclmainfstklnk_Met",
+        "service_name": "posclmainfstklnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMaineadlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaineadlnk_sp",
+        "method_name": "posclmaineadlnk_Met",
+        "service_name": "posclmaineadlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainitmlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainitmlnk_sp",
+        "method_name": "posclmainitmlnk_Met",
+        "service_name": "posclmainitmlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainQuotlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainquotlnk_sp",
+        "method_name": "posclmainquotlnk_Met",
+        "service_name": "posclmainquotlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.posclmainrcodehlp": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainrcodehlp_sp",
+        "method_name": "posclmainrcodehlp_Met",
+        "service_name": "posclmainrcodehlp_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainssrwhlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainssrwhlnk_sp",
+        "method_name": "posclmainssrwhlnk_Met",
+        "service_name": "posclmainssrwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainssroulnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainssroulnk_sp",
+        "method_name": "posclmainssroulnk_Met",
+        "service_name": "posclmainssroulnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainTaxLnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmaintaxlnk_sp",
+        "method_name": "PoSclMainTaxLnk_Met",
+        "service_name": "PoSclMainTaxLnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainsupplnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainsupplnk_sp",
+        "method_name": "posclmainsupplnk_Met",
+        "service_name": "posclmainsupplnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainwhlnk": [
+      {
+        "sequenceno": 1,
+        "spname": "posclmainwhlnk_sp",
+        "method_name": "posclmainwhlnk_Met",
+        "service_name": "posclmainwhlnk_Ser",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainFth": [
+      {
+        "sequenceno": 1,
+        "spname": "posclm_sp_fet_hdrfet",
+        "method_name": "posclm_met_fet_hdrfet",
+        "service_name": "posclm_ser_fet",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "posclm_sp_fetgrd",
+        "method_name": "posclm_met_fetgrd",
+        "service_name": "posclm_ser_fet",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclmainRcodeUI": [
+      {
+        "sequenceno": 1,
+        "spname": "pohldmn_sp_rc1uihdr",
+        "method_name": "pohldmn_met_rc1UiHdr",
+        "service_name": "posclm_ser_rc",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 2,
+        "spname": "pohldmn_sp_rc1href",
+        "method_name": "pohldmn_met_rc1HRef",
+        "service_name": "posclm_ser_rc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclEnt.PoSclEntTrn2": [
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_scl_hdrchk",
+        "method_name": "poscle_met_scl_hdrchk",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_sclgrd_out",
+        "method_name": "poscle_met_sclgrd_out",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_scl_hdrsav",
+        "method_name": "poscle_met_scl_hdrsav",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "poscle_sp_sclgrd",
+        "method_name": "poscle_met_sclgrd",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "posc_wf_sp_iscall",
+        "method_name": "posc_wf_mt_iscall",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "po_dummy_sp",
+        "method_name": "po_dummy_met",
+        "service_name": "poscle_ser_scl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.PoSclMainSbt": [
+      {
+        "sequenceno": 1,
+        "spname": "posclm_sp_scl_docsav",
+        "method_name": "posclm_met_scl_docsav",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 3,
+        "spname": "posc_wf_sp_iscall",
+        "method_name": "posc_wf_mt_iscall",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 12,
+        "spname": "po_dummy_sp",
+        "method_name": "po_dummy_met",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 13,
+        "spname": "po_shcl_sp_Return_State_out",
+        "method_name": "po_shcl_M_Return_State_Out_",
+        "service_name": "posclm_ser_scl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14VwOrdeLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_vordlc_hlp",
+        "method_name": "po_shcl_M_vordlc_hlp",
+        "service_name": "po_shcl_ser_vordlc",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14WorkflLk": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Workfl_hrf",
+        "method_name": "po_shcl_M_Workfl_hrf",
+        "service_name": "po_shcl_ser_Workfl",
+        "lvl": "0"
+      }
+    ],
+    "PoSclMain.pomain14ReturnTr": [
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Return_State_out",
+        "method_name": "po_shcl_M_Return_State_Out_",
+        "service_name": "po_shcl_ser_Return",
+        "lvl": "0"
+      },
+      {
+        "sequenceno": 1,
+        "spname": "po_shcl_sp_Return_hrf",
+        "method_name": "po_shcl_M_Return_hrf",
+        "service_name": "po_shcl_ser_Return",
+        "lvl": "0"
+      }
+    ]
+  },
+  "summary": {
+    "screens": [
+      "PoSclEnt",
+      "PoSclMain"
+    ],
+    "tasks": [
+      "PoSclEntFth",
+      "PoSclEntIni",
+      "PoSclEntTrn1",
+      "PoSclEntTrn2",
+      "PoSclMainFth",
+      "PoSclMainQuotlnk",
+      "PoSclMainSbt",
+      "PoSclMainTaxLnk",
+      "PoSclMainbuylnk",
+      "PoSclMaindisplnk",
+      "PoSclMaineadlnk",
+      "PoSclMainfstklnk",
+      "PoSclMainitmlnk",
+      "PoSclMainssroulnk",
+      "PoSclMainssrwhlnk",
+      "PoSclMainsupplnk",
+      "PoSclMainwhlnk",
+      "PoSclentRcodeUi",
+      "PoSclentRcodehlp",
+      "PoSclmainRcodeUI",
+      "pomain13Cls_poUi",
+      "pomain13ReturnTr",
+      "pomain13SubclsUi",
+      "pomain13WorkflLk",
+      "pomain14ReturnTr",
+      "pomain14VwOrdeLk",
+      "pomain14WorkflLk",
+      "posclmainrcodehlp"
+    ],
+    "sp_count": 49,
+    "method_count": 49,
+    "task_count": 28
+  }
+}

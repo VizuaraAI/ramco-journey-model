@@ -1,0 +1,82 @@
+{
+  "id": "EVAL-ERR-003",
+  "title": "Supplier's preferred currency differs from PO currency — exchange rate fetch needed",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "tags": ["currency-mismatch", "exchange-rate-splice", "sp-if-branch", "computed-splice"],
+  "user_persona": "Buyer ordering from a foreign supplier in a different currency",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Create a PO for SUP-EU-1 in USD.",
+      "expected": {
+        "intent": "create_purchase_order",
+        "journey_locked": "PoCrt",
+        "slots_extracted": {"supplier_code": "SUP-EU-1", "currency": "USD"},
+        "bot_must": [
+          "fire POCRTMAINSUPPUI to fetch supplier details",
+          "detect supplier's base currency is EUR, not USD",
+          "trigger the computed splice (matches SP IF @sup_currency != @currencycode)",
+          "fire exchange rate fetch (erate_sysact_spgetexcgrate via the SP path)",
+          "report exchange rate to user before proceeding"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "What's the rate?",
+      "expected": {
+        "bot_must": [
+          "report current EUR→USD exchange rate (e.g., '1 EUR = 1.08 USD as of today')",
+          "ask user to confirm proceed or change currency to EUR"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Use USD with that rate. Continue.",
+      "expected": {
+        "slots_extracted": {"exchange_rate": "<fetched>"},
+        "splice_walked": ["exchange_rate_fetch_via_sup_currency_mismatch"],
+        "bot_must": [
+          "lock the rate",
+          "ask for remaining header slots"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Buyer BUY-3, today, numbering PO/INT/2026, line ITM-77 5 at 100 USD.",
+      "expected": {
+        "slots_extracted": {"buyer": "BUY-3", "po_date": "<today>", "numbering_series": "PO/INT/2026", "item_code": "ITM-77", "quantity": 5, "cost": 100},
+        "bot_must": ["acknowledge", "ask to commit"]
+      }
+    },
+    {
+      "turn": 5,
+      "user": "Yes.",
+      "expected": {
+        "trans_invoked": "POCRTMAINSBT",
+        "bot_must": ["fire POCRTMAINSBT", "PO created with rate locked"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoCrt",
+    "commit_task": "POCRTMAINSBT",
+    "po_status": "Draft",
+    "slots_filled": ["supplier_code", "currency", "exchange_rate", "buyer", "po_date", "numbering_series", "item_code", "quantity", "cost"],
+    "splices_walked": ["exchange_rate_fetch_via_sup_currency_mismatch"],
+    "next_possible_journeys": ["PoApp"]
+  },
+
+  "evaluation_metrics": {
+    "computed_splice_triggered": "exchange rate fetch fired automatically because sup_currency != po_currency",
+    "rate_disclosed": "bot tells user the rate before commit",
+    "sp_branch_correspondence": "this is the SP IF @sup_currency = @currencycode ELSE EXEC erate path in pocrmn_sp_crt_hdrchk.sql"
+  }
+}

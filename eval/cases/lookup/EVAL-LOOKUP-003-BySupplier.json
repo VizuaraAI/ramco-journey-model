@@ -1,0 +1,55 @@
+{
+  "id": "EVAL-LOOKUP-003",
+  "title": "User asks for all POs for a specific supplier in a date range",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "lookup",
+  "difficulty": "easy",
+  "tags": ["filtered-list", "by-supplier", "date-range"],
+  "user_persona": "Buyer doing a supplier spend review",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me all POs for supplier SUP-100 created in Q1 2026.",
+      "expected": {
+        "intent": "po_list_filtered",
+        "journey_locked": "PoViw",
+        "slots_extracted": {
+          "supplier_code": "SUP-100",
+          "date_from": "2026-01-01",
+          "date_to": "2026-03-31"
+        },
+        "trans_invoked": "POVWENTTRN1",
+        "bot_must": [
+          "fire POVWENTTRN1 with supplier + date range filter",
+          "return list with sum of total values"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "What's the total spend across those POs?",
+      "expected": {
+        "bot_must": [
+          "compute aggregate total across the returned POs (in base currency, handling exchange where needed)",
+          "report total value with currency"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<list view>",
+    "slots_filled": ["supplier_code", "date_from", "date_to"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "date_range_extraction": "Q1 2026 correctly mapped to 2026-01-01 → 2026-03-31",
+    "aggregate_compute": "total spend computed across filtered results"
+  }
+}

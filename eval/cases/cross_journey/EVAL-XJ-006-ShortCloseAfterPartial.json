@@ -1,0 +1,70 @@
+{
+  "id": "EVAL-XJ-006",
+  "title": "Buyer views a partially-received PO and short-closes the rest",
+  "covers_journeys": ["PoViw", "PoScl"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "tags": ["view-then-short-close", "partial-delivery-handling"],
+  "user_persona": "Buyer cleaning up old open POs at end of quarter",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Show me open POs older than 90 days with partial receipt.",
+      "expected": {
+        "intent": "view_purchase_orders_filtered",
+        "journey_locked": "PoViw",
+        "bot_must": [
+          "fire POVWENTTRN1 with filter (status=Open, age>90d, partially_received=true)",
+          "return list of matching POs with PO number, supplier, value, % received"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Take PO-2026-101. Show details.",
+      "expected": {
+        "slots_extracted": {"po_number": "PO-2026-101"},
+        "bot_must": ["show PO-2026-101 detail with per-line ordered/received quantities"]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Line 2 has 30 of 50 received. Short-close the remaining 20.",
+      "expected": {
+        "intent": "short_close_po_line",
+        "journey_switched": "PoScl",
+        "context_carried": {"po_number": "PO-2026-101", "line_no": 2},
+        "slots_extracted": {"short_close_qty": 20, "short_close_reason": "remainder closed at user request"},
+        "bot_must": [
+          "switch to PoScl",
+          "fire POSCLENTTRN1 with PO-2026-101",
+          "confirm line 2 short-close of remaining 20"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "user": "Confirm short close.",
+      "expected": {
+        "trans_invoked": "POSCLMAINSBT",
+        "bot_must": ["fire POSCLMAINSBT", "report line 2 closed"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoScl",
+    "commit_task": "POSCLMAINSBT",
+    "po_status": "Open or Closed depending on other lines",
+    "slots_filled": ["po_number", "line_no", "short_close_qty", "short_close_reason"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "filtered_view_supported": "PoViw must support filter parameters (status, age, partial_receipt)",
+    "journey_switch": "PoViw → PoScl with PO context carried"
+  }
+}

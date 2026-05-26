@@ -1,0 +1,39 @@
+{
+  "id": "EVAL-DISC-005",
+  "title": "User asks about the full lifecycle \u2014 from creation to receipt",
+  "covers_journeys": [],
+  "covers_modules": [
+    "PO",
+    "GR"
+  ],
+  "category": "discovery",
+  "difficulty": "medium",
+  "user_persona": "A buyer who wants to understand the end-to-end flow before starting",
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Walk me through what happens to a PO from the moment I create it to when the goods arrive. What are the stages?"
+    },
+    {
+      "turn": 2,
+      "user": "Who can authorise it? Can I do it myself if I created it?"
+    },
+    {
+      "turn": 3,
+      "user": "What if I make a mistake after it's approved?"
+    }
+  ],
+  "ground_truth": {
+    "kind": "discovery",
+    "no_writes_expected": true,
+    "status_after": "no transaction",
+    "must_enumerate_information": [
+      "describe stages: Draft (PoCrt) \u2192 Pending Approval \u2192 Authorised (PoApp) \u2192 Goods Received (GR module) \u2192 Closed",
+      "mention optional intermediate journeys: Amend (PoAmnd) re-opens, Edit (PoEdt) for minor fixes, Hold (PoHold) pauses, Short-Close (PoScl) ends early",
+      "explain that PoApp is a separate activity from PoCrt \u2014 authorisation is a discrete journey",
+      "mention that PoCrt has a TRN4 task (Create and Approve PO) which combines both \u2014 only usable by users with authorisation rights",
+      "explain PoAmnd (Amend Purchase Order) is the path for changes after approval \u2014 opens the PO for modification",
+      "mention that some structural changes (e.g., supplier change) may require PoScl + new PoCrt instead of amend"
+    ]
+  }
+}

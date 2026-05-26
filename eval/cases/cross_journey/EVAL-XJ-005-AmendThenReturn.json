@@ -1,0 +1,54 @@
+{
+  "id": "EVAL-XJ-005",
+  "title": "Approver returns a PO instead of approving — sends back to creator for fix",
+  "covers_journeys": ["PoApp"],
+  "covers_modules": ["PO"],
+  "category": "cross-journey",
+  "difficulty": "medium",
+  "tags": ["approval-return", "return-trans", "rejection-flow"],
+  "user_persona": "Approver who finds an issue and bounces the PO back",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "I need to review PO-2026-560 for approval.",
+      "expected": {
+        "intent": "approve_purchase_order",
+        "journey_locked": "PoApp",
+        "slots_extracted": {"po_number": "PO-2026-560"},
+        "trans_invoked": "POAPPENTTRN1",
+        "bot_must": ["fire POAPPENTTRN1", "show PO details"]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "The unit price on line 1 looks wrong — too high vs market. Return this PO with that comment.",
+      "expected": {
+        "slots_extracted": {
+          "return_reason": "unit price on line 1 above market rate"
+        },
+        "trans_invoked": "POAPPENTTRN3",
+        "bot_must": [
+          "fire POAPPENTTRN3 (Return PO)",
+          "attach reason as note",
+          "report PO returned to creator (status Returned or Draft depending on config)"
+        ],
+        "bot_must_not": ["fire POAPPMAINSBT — user said return, not approve"]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoApp",
+    "commit_task": "POAPPENTTRN3",
+    "po_status": "Returned",
+    "slots_filled": ["po_number", "return_reason"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoEdt", "PoAmnd"]
+  },
+
+  "evaluation_metrics": {
+    "return_vs_approve": "POAPPENTTRN3 not POAPPMAINSBT — bot must distinguish return from approve",
+    "reason_captured": "return_reason extracted as note for creator"
+  }
+}

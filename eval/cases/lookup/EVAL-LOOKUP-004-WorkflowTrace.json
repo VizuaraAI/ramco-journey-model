@@ -1,0 +1,60 @@
+{
+  "id": "EVAL-LOOKUP-004",
+  "title": "User asks for the full workflow history of a PO",
+  "covers_journeys": ["PoViw"],
+  "covers_modules": ["PO"],
+  "category": "lookup",
+  "difficulty": "medium",
+  "tags": ["audit-trail", "workflow-history"],
+  "user_persona": "Auditor reviewing PO lifecycle",
+
+  "conversation": [
+    {
+      "turn": 1,
+      "user": "Give me the full history of PO-2026-900 — every action taken, by whom, when.",
+      "expected": {
+        "intent": "po_audit_trail",
+        "journey_locked": "PoViw",
+        "slots_extracted": {"po_number": "PO-2026-900"},
+        "bot_must": [
+          "fire POVWENTTRN1",
+          "fetch workflow status / audit trail (Ramco stores this in audit tables linked to the PO)",
+          "return chronological list: created by X at T1, edited by Y at T2, approved by Z at T3, etc."
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "user": "Was it ever returned or held?",
+      "expected": {
+        "bot_must": [
+          "filter the audit trail for Return / Hold events and report yes/no with details if present"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "user": "Who currently has it for action?",
+      "expected": {
+        "bot_must": [
+          "report current pending action: e.g. 'awaiting approval by <name>' or 'no pending action; PO is closed'"
+        ]
+      }
+    }
+  ],
+
+  "expected_terminal_state": {
+    "journey": "PoViw",
+    "commit_task": "POVWENTTRN1",
+    "po_status": "<inspected, not changed>",
+    "slots_filled": ["po_number"],
+    "splices_walked": [],
+    "next_possible_journeys": ["PoViw"]
+  },
+
+  "evaluation_metrics": {
+    "audit_completeness": "all workflow events returned in order",
+    "filterable_audit": "follow-up filter (Return/Hold) executed correctly",
+    "pending_action_detection": "current pending action identified"
+  }
+}

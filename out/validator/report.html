@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Validator report</title>
+<style>
+body { background:#f4ecdc; color:#2b2620; font-family:-apple-system,sans-serif; padding:32px; }
+h1 { font-family:Georgia,serif; font-weight:500; }
+table { border-collapse:collapse; background:#faf3df; border:1px solid #d8ccb0; border-radius:6px; margin:16px 0; }
+th,td { text-align:left; padding:8px 14px; border-bottom:1px solid #d8ccb0; font-size:13px; }
+th { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#7a6f5e; background:#f4ecdc; }
+.card { background:#faf3df; border:1px solid #d8ccb0; border-radius:8px; padding:16px 22px; margin:8px 0; }
+.mono { font-family:'JetBrains Mono',monospace; }
+</style></head>
+<body>
+<h1>Validator report</h1>
+
+<div class="card">
+  <h2>Determinism lint</h2>
+  <p class="mono">✓ clean</p>
+</div>
+
+<h2>v01 — Coverage per user-facing journey</h2>
+<table>
+<tr><th>Activity</th><th>Slots</th><th>% Labelled</th><th>TRANS</th><th>Splices</th><th>Commit SP attach %</th></tr>
+<tr><td>POAMND</td><td>150</td><td>2.7%</td><td>10</td><td>124</td><td>100.0%</td></tr><tr><td>POAPP</td><td>134</td><td>0.7%</td><td>7</td><td>100</td><td>100.0%</td></tr><tr><td>POCOPY</td><td>29</td><td>0.0%</td><td>2</td><td>7</td><td>0.0%</td></tr><tr><td>POCRT</td><td>549</td><td>2.9%</td><td>34</td><td>273</td><td>100.0%</td></tr><tr><td>POCRTQTN</td><td>31</td><td>0.0%</td><td>2</td><td>17</td><td>0.0%</td></tr><tr><td>POCRTSO</td><td>25</td><td>0.0%</td><td>2</td><td>20</td><td>0.0%</td></tr><tr><td>POCRTTEN</td><td>4</td><td>0.0%</td><td>3</td><td>2</td><td>0.0%</td></tr><tr><td>POEDT</td><td>107</td><td>0.9%</td><td>7</td><td>114</td><td>100.0%</td></tr><tr><td>POHLP</td><td>13</td><td>0.0%</td><td>1</td><td>2</td><td>100.0%</td></tr><tr><td>POHOLD</td><td>94</td><td>3.2%</td><td>3</td><td>32</td><td>100.0%</td></tr><tr><td>POMTN</td><td>117</td><td>0.9%</td><td>5</td><td>32</td><td>0.0%</td></tr><tr><td>POSCL</td><td>103</td><td>3.9%</td><td>3</td><td>31</td><td>100.0%</td></tr><tr><td>POVIW</td><td>500</td><td>4.8%</td><td>1</td><td>146</td><td>0.0%</td></tr>
+</table>
+
+<h2>v02 — Gaps</h2>
+<div class="card">
+  <p>Slots without display labels: <b>1,802</b></p>
+  <p>Activities with no commit task on spine: <b>POCOPY, POCRTQTN, POCRTSO, POCRTTEN, POMTN, POVIW</b></p>
+</div>
+
+<h2>v03 — Manifest vs Form .htm discrepancies</h2>
+<p>Screens with mismatched task lists: <b>26</b></p>
+<table>
+<tr><th>Activity</th><th>Screen</th><th>Only in .htm meta</th><th>Only in PO_info.xml</th></tr>
+<tr><td>POAMND</td><td>POAMNDENT</td><td>POMAINSCCLS_POUI, POMAINSCSUBCLSUI, POMAINSCWORKFLLK</td><td></td></tr><tr><td>POAMND</td><td>POAMNDMAIN</td><td>POAMDMAINLNK4, POMAINSRAMDPURLK, POMAINSRAMD_WFLK, POMAINSRCCUSAGUI, POMAINSRCLASSFUI</td><td></td></tr><tr><td>POAMND</td><td>POAMNDSCH</td><td>POAMDSCHLNK4, POMAINSEACUSAEUI, POMAINSECCUSAEUI, POMAINSECCUSAGUI</td><td></td></tr><tr><td>POAPP</td><td>POAPPENT</td><td>POMAINSNCLS_POUI, POMAINSNSUBCLSUI, POMAINSNWORKFLLK</td><td></td></tr><tr><td>POAPP</td><td>POAPPMAIN</td><td>POAPPMAINLNK4, POMAINCRAPPPURLK, POMAINCRAPP_WFLK, POMAINCRCCUSAGUI, POMAINCRFOLDERUI</td><td></td></tr><tr><td>POCOPY</td><td>POCRTCOPYPO</td><td>POMAINRECLS_POUI, POMAINRESUBCLSUI, POMAINRESUPPLIUI, POMAINREVIEWQULK</td><td></td></tr><tr><td>POCRT</td><td>POCRTMAIN</td><td>POCRTMAINLNK4, POMAICRECCUSAGUI, POMAICRECLASSFUI, POMAICRECREATWLK, POMAICRECRTPURLK</td><td></td></tr><tr><td>POCRT</td><td>POCRTQLTY</td><td>POMACREEPEN_BNHP, POMACREEPEN_BOHP</td><td></td></tr><tr><td>POCRT</td><td>POCRTSCH</td><td>POCRTSCHLNK4, POMAREENACUSAEUI, POMAREENCCUSAEUI, POMAREENCCUSAGUI, POMAREENTCAL_SLK</td><td></td></tr><tr><td>POCRT</td><td>POCRTSOCOV</td><td>POCRTSOCOVPOLINEUI</td><td></td></tr>
+</table>
+
+</body></html>
