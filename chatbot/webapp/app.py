@@ -209,10 +209,16 @@ def history():
 
 
 if __name__ == "__main__":
+    import os
+    # Honour HF Spaces / Render / etc.'s PORT injection. Bind to 0.0.0.0 in
+    # production so external traffic reaches the app; bind to 127.0.0.1 locally
+    # so we don't get firewall prompts.
+    port = int(os.environ.get("PORT", "5050"))
+    host = "0.0.0.0" if os.environ.get("PORT") else "127.0.0.1"
     print("\n" + "=" * 64)
     print("Ramco PO chatbot · interactive test environment")
     print("=" * 64)
-    print(f"Open http://127.0.0.1:5050 in your browser.")
+    print(f"Listening on http://{host}:{port}")
     print(f"Bot:  v8   |   Sessions stored in memory; restart server = reset all")
     print("=" * 64 + "\n")
-    app.run(host="127.0.0.1", port=5050, debug=False, threaded=True)
+    app.run(host=host, port=port, debug=False, threaded=True)
