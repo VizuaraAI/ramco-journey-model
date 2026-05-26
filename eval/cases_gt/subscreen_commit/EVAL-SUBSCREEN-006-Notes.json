@@ -1,0 +1,52 @@
+{
+  "id": "EVAL-SUBSCREEN-006",
+  "title": "Sub-screen commit — Notes must fire POCRTNOTESTRN3",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "easy",
+  "user_persona": "Buyer attaching a free-text note to the PO header.",
+  "rationale": "po_podn_docnotes + po_poln_itemnotes are orphaned unless POCRTNOTESTRN3 fires.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-09, USD, buyer BUY-3, line ITM-LBL 10 units at 5."},
+    {"turn": 2, "user": "Attach a note: Urgent — required for trade show on the 18th."},
+    {"turn": 3, "user": "Save the PO as draft."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTNOTESTRN3",
+        "activity": "POCRT",
+        "screen": "PoCrtNotes",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_podn_docnotes"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-09",
+          "notes_text": "ANY"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-09",
+          "currency": "USD",
+          "buyer": "BUY-3"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

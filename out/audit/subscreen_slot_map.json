@@ -1,0 +1,154 @@
+{
+  "PoAmnd": {
+    "PoAmndsch": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poprq_poprcovg_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_powh_allocation_dtl"
+      ]
+    }
+  },
+  "PoCopy": {
+    "PoCrtCopyPo": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr"
+      ]
+    }
+  },
+  "PoCrt": {
+    "PoCrtNotes": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_podn_docnotes",
+        "po_poln_itemnotes"
+      ]
+    },
+    "PoCrtSch": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poprq_poprcovg_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_powh_allocation_dtl"
+      ]
+    },
+    "PoCrtTcdOth": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_podoc_otherdoctcd_dtl",
+        "po_pomas_pur_order_hdr",
+        "po_potcd_otherlinetcd_dtl"
+      ]
+    },
+    "PoCrtPrCov": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_poitm_item_detail",
+        "po_poprq_poprcovg_detail",
+        "prjdet_mr_po_det"
+      ]
+    },
+    "PoCrtSoCov": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_poitm_item_detail",
+        "po_poso_posocovg_detail"
+      ]
+    },
+    "PoCrtQlty": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poqly_quality_detail"
+      ]
+    },
+    "PoCrtTcd": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_dtcd_docitem_tcd",
+        "po_potcd_doclevel_detail",
+        "po_potcd_itemtcd_dtl",
+        "po_tcd_order"
+      ]
+    },
+    "PoCrtTrm": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_paytm_doclevel_detail",
+        "po_paytm_linelevel_detail",
+        "po_pomas_pur_order_hdr"
+      ]
+    }
+  },
+  "PoCrtQtn": {
+    "PoCrtQtnEnt": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr",
+        "po_paytm_linelevel_detail",
+        "po_podoc_otherdoctcd_dtl",
+        "po_pomas_pur_order_hdr",
+        "po_potcd_doclevel_detail"
+      ]
+    }
+  },
+  "PoCrtSo": {
+    "PoCrtSoEnt": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr",
+        "po_podoc_otherdoctcd_dtl",
+        "po_poitm_item_detail",
+        "po_poqly_quality_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_potcd_doclevel_detail",
+        "po_potcd_itemtcd_dtl",
+        "po_powh_allocation_dtl"
+      ]
+    }
+  },
+  "PoEdt": {
+    "PoEdtEnt": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_poso_posocovg_detail"
+      ]
+    }
+  },
+  "PoHold": {
+    "PoHoldEnt": {
+      "owned_btsynonyms": [],
+      "display_labels": [],
+      "writes_tables": [
+        "po_paytm_doclevel_detail",
+        "po_pomas_pur_order_hdr",
+        "po_posta_status_detail"
+      ]
+    }
+  }
+}

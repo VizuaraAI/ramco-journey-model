@@ -1,0 +1,361 @@
+{
+  "PoAmnd": {
+    "PoAmndsch": {
+      "save": {
+        "task": "PoamdSchTrn2",
+        "chain_key": "PoAmnd|PoAmndsch|PoamdSchTrn2",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poprq_poprcovg_detail",
+          "po_poshd_schedule_dtl",
+          "po_poso_posocovg_detail",
+          "po_powh_allocation_dtl"
+        ],
+        "description": "Specify Schedule"
+      },
+      "approve": {
+        "task": "PoamdSchTrn3",
+        "chain_key": "PoAmnd|PoAmndsch|PoamdSchTrn3",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poprq_poprcovg_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_powh_allocation_dtl"
+      ]
+    }
+  },
+  "PoCopy": {
+    "PoCrtCopyPo": {
+      "save": {
+        "task": "PoCrtCopyPoTrn2",
+        "chain_key": "PoCopy|PoCrtCopyPo|PoCrtCopyPoTrn2",
+        "tables": [
+          "not_notes_attachdoc",
+          "not_notes_dtl",
+          "not_notes_hdr"
+        ],
+        "description": "Copy and Create PO"
+      },
+      "approve": null,
+      "all_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr"
+      ]
+    }
+  },
+  "PoCrt": {
+    "PoCrtNotes": {
+      "save": {
+        "task": "PoCrtNotesTrn3",
+        "chain_key": "PoCrt|PoCrtNotes|PoCrtNotesTrn3",
+        "tables": [
+          "po_podn_docnotes",
+          "po_poln_itemnotes"
+        ],
+        "description": "Attach Notes"
+      },
+      "approve": null,
+      "all_tables": [
+        "po_podn_docnotes",
+        "po_poln_itemnotes"
+      ]
+    },
+    "PoCrtSch": {
+      "save": {
+        "task": "PoCrtSchTran4",
+        "chain_key": "PoCrt|PoCrtSch|PoCrtSchTran4",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poprq_poprcovg_detail",
+          "po_poshd_schedule_dtl",
+          "po_poso_posocovg_detail",
+          "po_powh_allocation_dtl"
+        ],
+        "description": "Specify Schedule"
+      },
+      "approve": {
+        "task": "PoCrtSchTrn3",
+        "chain_key": "PoCrt|PoCrtSch|PoCrtSchTrn3",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poprq_poprcovg_detail",
+          "po_poshd_schedule_dtl",
+          "po_poso_posocovg_detail",
+          "po_powh_allocation_dtl"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poprq_poprcovg_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_powh_allocation_dtl"
+      ]
+    },
+    "PoCrtTcdOth": {
+      "save": {
+        "task": "PoCrtTcdOthTran3",
+        "chain_key": "PoCrt|PoCrtTcdOth|PoCrtTcdOthTran3",
+        "tables": [
+          "po_podoc_otherdoctcd_dtl",
+          "po_potcd_otherlinetcd_dtl"
+        ],
+        "description": "Specify Taxes and Charges"
+      },
+      "approve": {
+        "task": "PoCrtTcdOthTrn1",
+        "chain_key": "PoCrt|PoCrtTcdOth|PoCrtTcdOthTrn1",
+        "tables": [
+          "po_podoc_otherdoctcd_dtl",
+          "po_pomas_pur_order_hdr",
+          "po_potcd_otherlinetcd_dtl"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_podoc_otherdoctcd_dtl",
+        "po_pomas_pur_order_hdr",
+        "po_potcd_otherlinetcd_dtl"
+      ]
+    },
+    "PoCrtPrCov": {
+      "save": {
+        "task": "PoCrtPrCovTran2",
+        "chain_key": "PoCrt|PoCrtPrCov|PoCrtPrCovTran2",
+        "tables": [
+          "po_poitm_item_detail",
+          "po_poprq_poprcovg_detail",
+          "prjdet_mr_po_det"
+        ],
+        "description": "Cover PR"
+      },
+      "approve": {
+        "task": "PoCrtPrCovTrn1",
+        "chain_key": "PoCrt|PoCrtPrCov|PoCrtPrCovTrn1",
+        "tables": [
+          "prjdet_mr_po_det"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_poitm_item_detail",
+        "po_poprq_poprcovg_detail",
+        "prjdet_mr_po_det"
+      ]
+    },
+    "PoCrtSoCov": {
+      "save": {
+        "task": "PoCrtSoCovTran2",
+        "chain_key": "PoCrt|PoCrtSoCov|PoCrtSoCovTran2",
+        "tables": [
+          "po_poitm_item_detail",
+          "po_poso_posocovg_detail"
+        ],
+        "description": "Cover SO"
+      },
+      "approve": {
+        "task": "PoCrtSoCovTran1",
+        "chain_key": "PoCrt|PoCrtSoCov|PoCrtSoCovTran1",
+        "tables": [
+          "po_poitm_item_detail",
+          "po_poso_posocovg_detail"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_poitm_item_detail",
+        "po_poso_posocovg_detail"
+      ]
+    },
+    "PoCrtQlty": {
+      "save": {
+        "task": "PoCrtQltyTran3",
+        "chain_key": "PoCrt|PoCrtQlty|PoCrtQltyTran3",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poqly_quality_detail"
+        ],
+        "description": "Specify Quality Attributes"
+      },
+      "approve": {
+        "task": "PoCrtQltyTrn1",
+        "chain_key": "PoCrt|PoCrtQlty|PoCrtQltyTrn1",
+        "tables": [
+          "po_pomas_pur_order_hdr",
+          "po_poqly_quality_detail"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_pomas_pur_order_hdr",
+        "po_poqly_quality_detail"
+      ]
+    },
+    "PoCrtTcd": {
+      "save": {
+        "task": "PoCrtTcdTran3",
+        "chain_key": "PoCrt|PoCrtTcd|PoCrtTcdTran3",
+        "tables": [
+          "po_dtcd_docitem_tcd",
+          "po_potcd_doclevel_detail",
+          "po_potcd_itemtcd_dtl",
+          "po_tcd_order"
+        ],
+        "description": "Specify TCD Detail"
+      },
+      "approve": {
+        "task": "PocrtTcdTrn1",
+        "chain_key": "PoCrt|PoCrtTcd|PocrtTcdTrn1",
+        "tables": [
+          "po_dtcd_docitem_tcd",
+          "po_potcd_doclevel_detail",
+          "po_potcd_itemtcd_dtl",
+          "po_tcd_order"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_dtcd_docitem_tcd",
+        "po_potcd_doclevel_detail",
+        "po_potcd_itemtcd_dtl",
+        "po_tcd_order"
+      ]
+    },
+    "PoCrtTrm": {
+      "save": {
+        "task": "PoCrtTrmTran",
+        "chain_key": "PoCrt|PoCrtTrm|PoCrtTrmTran",
+        "tables": [
+          "po_paytm_doclevel_detail",
+          "po_paytm_linelevel_detail"
+        ],
+        "description": "Specify Terms and Condition"
+      },
+      "approve": {
+        "task": "PoCrtTrmTrn3",
+        "chain_key": "PoCrt|PoCrtTrm|PoCrtTrmTrn3",
+        "tables": [
+          "po_paytm_doclevel_detail",
+          "po_paytm_linelevel_detail",
+          "po_pomas_pur_order_hdr"
+        ],
+        "description": "Approve"
+      },
+      "all_tables": [
+        "po_paytm_doclevel_detail",
+        "po_paytm_linelevel_detail",
+        "po_pomas_pur_order_hdr"
+      ]
+    }
+  },
+  "PoCrtQtn": {
+    "PoCrtQtnEnt": {
+      "save": {
+        "task": "PoCrtQtnSub",
+        "chain_key": "PoCrtQtn|PoCrtQtnEnt|PoCrtQtnSub",
+        "tables": [
+          "not_notes_attachdoc",
+          "not_notes_dtl",
+          "not_notes_hdr",
+          "po_paytm_linelevel_detail",
+          "po_podoc_otherdoctcd_dtl",
+          "po_pomas_pur_order_hdr",
+          "po_potcd_doclevel_detail"
+        ],
+        "description": "Create PO"
+      },
+      "approve": null,
+      "all_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr",
+        "po_paytm_linelevel_detail",
+        "po_podoc_otherdoctcd_dtl",
+        "po_pomas_pur_order_hdr",
+        "po_potcd_doclevel_detail"
+      ]
+    }
+  },
+  "PoCrtSo": {
+    "PoCrtSoEnt": {
+      "save": {
+        "task": "PoCrtSoSub",
+        "chain_key": "PoCrtSo|PoCrtSoEnt|PoCrtSoSub",
+        "tables": [
+          "not_notes_attachdoc",
+          "not_notes_dtl",
+          "not_notes_hdr",
+          "po_podoc_otherdoctcd_dtl",
+          "po_poitm_item_detail",
+          "po_poqly_quality_detail",
+          "po_poshd_schedule_dtl",
+          "po_poso_posocovg_detail",
+          "po_potcd_doclevel_detail",
+          "po_potcd_itemtcd_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "description": "Create PO"
+      },
+      "approve": null,
+      "all_tables": [
+        "not_notes_attachdoc",
+        "not_notes_dtl",
+        "not_notes_hdr",
+        "po_podoc_otherdoctcd_dtl",
+        "po_poitm_item_detail",
+        "po_poqly_quality_detail",
+        "po_poshd_schedule_dtl",
+        "po_poso_posocovg_detail",
+        "po_potcd_doclevel_detail",
+        "po_potcd_itemtcd_dtl",
+        "po_powh_allocation_dtl"
+      ]
+    }
+  },
+  "PoEdt": {
+    "PoEdtEnt": {
+      "save": {
+        "task": "PoEdtEntTrn2",
+        "chain_key": "PoEdt|PoEdtEnt|PoEdtEntTrn2",
+        "tables": [
+          "po_poso_posocovg_detail"
+        ],
+        "description": "Delete PO"
+      },
+      "approve": null,
+      "all_tables": [
+        "po_poso_posocovg_detail"
+      ]
+    }
+  },
+  "PoHold": {
+    "PoHoldEnt": {
+      "save": {
+        "task": "PoHldEntTrn2",
+        "chain_key": "PoHold|PoHoldEnt|PoHldEntTrn2",
+        "tables": [
+          "po_paytm_doclevel_detail",
+          "po_pomas_pur_order_hdr",
+          "po_posta_status_detail"
+        ],
+        "description": "Change Status"
+      },
+      "approve": null,
+      "all_tables": [
+        "po_paytm_doclevel_detail",
+        "po_pomas_pur_order_hdr",
+        "po_posta_status_detail"
+      ]
+    }
+  }
+}

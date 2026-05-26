@@ -1,0 +1,52 @@
+{
+  "id": "EVAL-SUBSCREEN-005",
+  "title": "Sub-screen commit — Quality must fire POCRTQLTYTRAN3",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "medium",
+  "user_persona": "QC-conscious buyer attaching an inspection plan to a PO.",
+  "rationale": "po_poqly_quality_detail is orphaned unless POCRTQLTYTRAN3 fires.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-77, USD, buyer BUY-9, line ITM-AISTL 80 units at 22."},
+    {"turn": 2, "user": "Quality plan: incoming inspection AQL 2.5 required on receipt."},
+    {"turn": 3, "user": "Save the PO."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTQLTYTRAN3",
+        "activity": "POCRT",
+        "screen": "PoCrtQlty",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_poqly_quality_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-77",
+          "quality_attributes": "ANY"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-77",
+          "currency": "USD",
+          "buyer": "BUY-9"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

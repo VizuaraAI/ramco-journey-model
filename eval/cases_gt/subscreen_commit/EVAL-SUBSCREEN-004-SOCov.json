@@ -1,0 +1,52 @@
+{
+  "id": "EVAL-SUBSCREEN-004",
+  "title": "Sub-screen commit — SO Coverage must fire POCRTSOCOVTRAN2",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "medium",
+  "user_persona": "Dropship-style buyer creating a PO to cover an existing Sale Order.",
+  "rationale": "po_poso_posocovg_detail is orphaned unless POCRTSOCOVTRAN2 fires.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-21, USD, buyer BUY-12, line ITM-501 30 units at 80."},
+    {"turn": 2, "user": "Link it to cover Sale Order SO-2026-114, line 1."},
+    {"turn": 3, "user": "Submit the PO."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTSOCOVTRAN2",
+        "activity": "POCRT",
+        "screen": "PoCrtSoCov",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_poso_posocovg_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-21",
+          "so_coverage": "ANY"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-21",
+          "currency": "USD",
+          "buyer": "BUY-12"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@ sys.path.insert(0, str(PROJECT / "chatbot"))
 sys.path.insert(0, str(PROJECT / "eval" / "runner"))
 
 from flask import Flask, request, jsonify, send_from_directory
-from bot_v8 import ChatbotV8
+from bot_v9 import ChatbotV9
 from bot_v1 import REVERSE_MAP
 
 # Pre-load reference data for the trace panel
@@ -34,7 +34,7 @@ def index():
 @app.route("/reset", methods=["POST"])
 def reset():
     sid = request.json.get("session_id") or str(uuid.uuid4())
-    SESSIONS[sid] = {"bot": ChatbotV8(), "turn": 0, "history": []}
+    SESSIONS[sid] = {"bot": ChatbotV9(), "turn": 0, "history": []}
     SESSIONS[sid]["bot"].reset()
     return jsonify({"session_id": sid})
 
@@ -151,6 +151,14 @@ def chat():
     current_step       = getattr(bot, "state", {}).get("current_step")
     mandatory_progress = getattr(bot, "state", {}).get("mandatory_progress")
 
+    # v9: sub-screen commits this turn + cumulative this session
+    subscreen_dispatched_this_turn = (
+        getattr(bot, "state", {}).get("_subscreen_dispatched_this_turn") or []
+    )
+    subscreen_commits_fired = (
+        getattr(bot, "state", {}).get("subscreen_commits_fired") or []
+    )
+
     # Files this turn would have referenced
     files_referenced = []
     if upper_act:
@@ -193,6 +201,8 @@ def chat():
             "post_commit_context": post_commit,
             "current_step": current_step,
             "mandatory_progress": mandatory_progress,
+            "subscreen_dispatched_this_turn": subscreen_dispatched_this_turn,
+            "subscreen_commits_fired": subscreen_commits_fired,
         },
         "files_referenced": files_referenced,
     }

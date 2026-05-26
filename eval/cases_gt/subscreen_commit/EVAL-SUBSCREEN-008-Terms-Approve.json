@@ -1,0 +1,58 @@
+{
+  "id": "EVAL-SUBSCREEN-008",
+  "title": "Sub-screen commit — Create & Approve must fire approve-variant Terms TRANS (POCRTTRMTRN3)",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "hard",
+  "user_persona": "Buyer creating AND approving a PO with custom terms — proves the approve-variant routing.",
+  "rationale": "When main commit is POCRTMAINTRN4 (create+approve), the Terms sub-screen TRANS should be its APPROVE variant POCRTTRMTRN3, not the save variant POCRTTRMTRAN.",
+  "conversation": [
+    {"turn": 1, "user": "Create and approve a PO for SUP-65, USD, buyer BUY-18, line ITM-200 60 units at 30."},
+    {"turn": 2, "user": "Payment terms 50% advance, 50% NET-30. Incoterm CIF."},
+    {"turn": 3, "user": "Create and approve."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Approved",
+    "writes": [
+      {
+        "task": "POCRTTRMTRN3",
+        "activity": "POCRT",
+        "screen": "PoCrtTrm",
+        "via_sp_chain": [
+          "poterm_sp_aprhref",
+          "poterm_sp_apr_hdrchk",
+          "poterm_sp_apr_hdrsav",
+          "poterm_sp_aprgrd",
+          "poterm_sp_aprgrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-65",
+          "payment_terms": "ANY",
+          "incoterm": "CIF"
+        },
+        "status_after": "Approved"
+      },
+      {
+        "task": "POCRTMAINTRN4",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-65",
+          "currency": "USD",
+          "buyer": "BUY-18"
+        },
+        "status_after": "Approved"
+      }
+    ]
+  }
+}

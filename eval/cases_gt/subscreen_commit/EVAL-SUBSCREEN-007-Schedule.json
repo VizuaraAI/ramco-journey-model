@@ -1,0 +1,52 @@
+{
+  "id": "EVAL-SUBSCREEN-007",
+  "title": "Sub-screen commit — Schedule must fire POCRTSCHTRAN4 for split deliveries",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "medium",
+  "user_persona": "Buyer requiring multiple delivery dates on a PO.",
+  "rationale": "Even though main commit also writes po_poshd_schedule_dtl, the sub-screen Schedule TRANS is where the per-schedule logic actually persists; firing it ensures alignment with Ramco's real commit flow.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-18, USD, buyer BUY-44, line ITM-PAK 200 units at 9."},
+    {"turn": 2, "user": "Split delivery: 100 units on Monday, 100 units the following Monday. Receive at WH-NORTH."},
+    {"turn": 3, "user": "Submit the PO."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTSCHTRAN4",
+        "activity": "POCRT",
+        "screen": "PoCrtSch",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_poshd_schedule_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-18",
+          "warehouse_code": "ANY"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-18",
+          "currency": "USD",
+          "buyer": "BUY-44"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

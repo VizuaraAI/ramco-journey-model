@@ -1,0 +1,53 @@
+{
+  "id": "EVAL-SUBSCREEN-003",
+  "title": "Sub-screen commit — PR Coverage must fire POCRTPRCOVTRAN2",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "medium",
+  "user_persona": "Buyer creating a PO to cover an existing Purchase Request; expects PR-coverage table to be linked.",
+  "rationale": "po_poprq_poprcovg_detail + prjdet_mr_po_det are orphaned unless POCRTPRCOVTRAN2 fires.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-15, USD, buyer BUY-40, line ITM-200 200 units at 12."},
+    {"turn": 2, "user": "Link it to cover PR PR-2026-220, line 1."},
+    {"turn": 3, "user": "Submit the PO."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTPRCOVTRAN2",
+        "activity": "POCRT",
+        "screen": "PoCrtPrCov",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_poprq_poprcovg_detail",
+          "prjdet_mr_po_det"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-15",
+          "pr_coverage": "ANY"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-15",
+          "currency": "USD",
+          "buyer": "BUY-40"
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}

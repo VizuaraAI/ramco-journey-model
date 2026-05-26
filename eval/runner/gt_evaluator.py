@@ -429,6 +429,9 @@ def _bot_factory(bot_name: str):
     if bot_name == "v8":
         from bot_v8 import ChatbotV8
         return lambda: ChatbotV8()
+    if bot_name == "v9":
+        from bot_v9 import ChatbotV9
+        return lambda: ChatbotV9()
     raise RuntimeError(f"unknown bot {bot_name}")
 
 

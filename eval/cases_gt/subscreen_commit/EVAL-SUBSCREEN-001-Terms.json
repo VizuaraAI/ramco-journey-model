@@ -1,0 +1,72 @@
+{
+  "id": "EVAL-SUBSCREEN-001",
+  "title": "Sub-screen commit — Terms must fire POCRTTRMTRAN to write doc-level paytm",
+  "covers_journeys": ["PoCrt"],
+  "covers_modules": ["PO"],
+  "category": "subscreen-commit",
+  "difficulty": "medium",
+  "user_persona": "Buyer specifying non-default payment terms; expects doc-level paytm table to be written.",
+  "rationale": "Until v9, the bot recorded the Terms splice but never fired POCRTTRMTRAN. As a result `po_paytm_doclevel_detail` was orphaned. This case proves the sub-screen TRANS fires.",
+  "conversation": [
+    {"turn": 1, "user": "Create a PO for supplier SUP-50, USD, buyer BUY-30, line ITM-90, 50 units at 40 each."},
+    {"turn": 2, "user": "Set payment terms: 30% advance, 70% NET-45. Incoterm DAP."},
+    {"turn": 3, "user": "Create the PO."}
+  ],
+  "ground_truth": {
+    "kind": "multi_commit",
+    "no_writes_expected": false,
+    "status_after": "Draft",
+    "writes": [
+      {
+        "task": "POCRTTRMTRAN",
+        "activity": "POCRT",
+        "screen": "PoCrtTrm",
+        "via_sp_chain": [
+          "poterm_sp_spfy_hdrchk",
+          "poterm_sp_spfy_hdrsav",
+          "poterm_sp_spfyhref",
+          "poterm_sp_spfygrd",
+          "poterm_sp_spfygrd_out"
+        ],
+        "tables_required": [
+          "po_paytm_doclevel_detail",
+          "po_paytm_linelevel_detail"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-50",
+          "payment_terms": "ANY",
+          "incoterm": "DAP"
+        },
+        "status_after": "Draft"
+      },
+      {
+        "task": "POCRTMAINSBT",
+        "activity": "POCRT",
+        "screen": "PoCrtMain",
+        "via_sp_chain": [
+          "pocrmn_sp_crt_hdrsav",
+          "pocrmn_sp_crt_hdrchk",
+          "pocrmn_sp_crtgrd",
+          "pocrmn_sp_init_suptxreg",
+          "pocrmn_sp_aprhref",
+          "pocrmn_sp_crtgrd_out"
+        ],
+        "tables_required": [
+          "po_pomas_pur_order_hdr",
+          "po_poitm_item_detail",
+          "po_poshd_schedule_dtl",
+          "po_powh_allocation_dtl"
+        ],
+        "slot_values_required": {
+          "supplier_code": "SUP-50",
+          "currency": "USD",
+          "buyer": "BUY-30",
+          "item_code": "ITM-90",
+          "quantity": 50,
+          "cost": 40
+        },
+        "status_after": "Draft"
+      }
+    ]
+  }
+}
