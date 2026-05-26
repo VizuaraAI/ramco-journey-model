@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How the Ramco PO chatbot actually works — a visual tutorial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #faf9e3;
+  --bg-soft:      #fcfbed;
+  --bg-deep:      #f3f2cd;
+  --surface:      #ffffff;
+  --ink:          #181717;
+  --ink-2:        #2d2c2a;
+  --ink-3:        #585654;
+  --muted:        #8b8a82;
+  --muted-2:      #b5b3a7;
+  --rule:         #e9e7cf;
+  --rule-strong:  #d8d6bb;
+
+  --lavender:        #e5d4f7;
+  --lavender-soft:   #f0e6fa;
+  --lavender-strong: #d3bbef;
+  --lavender-deep:   #6f4cb7;
+
+  --green:        #4f7a4f;
+  --green-deep:   #2c4e2c;
+  --green-soft:   #d8e9d8;
+
+  --red:          #b56342;
+  --red-deep:     #8e4a30;
+  --red-soft:     #fde0d2;
+
+  --gold:         #c7a358;
+  --gold-soft:    #f4ecc8;
+
+  --highlight:    #fff39c;
+  --highlight-strong: #ffe366;
+
+  --code-bg:      #f4f3dc;
+  --shadow:       0 1px 3px rgba(20,20,18,0.04), 0 6px 18px rgba(20,20,18,0.05);
+  --shadow-deep:  0 12px 40px rgba(20,20,18,0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 64px 160px;
+}
+
+/* ── HERO ─────────────────────────────────────────────────────────────── */
+header.hero { margin-bottom: 96px; }
+.kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lavender-deep);
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+h1.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  color: var(--ink);
+  max-width: 880px;
+}
+h1.hero-title em { font-style: italic; font-weight: 500; color: var(--ink-3); }
+.lede {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink-3);
+  line-height: 1.5;
+  max-width: 720px;
+}
+.hint-banner {
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px 24px;
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.hint-banner b { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.hint-banner span.icon { font-size: 18px; margin-right: 8px; }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 40px;
+}
+.hero-stats .stat {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 22px 24px;
+}
+.hero-stats .stat .num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.hero-stats .stat .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── SECTION ──────────────────────────────────────────────────────────── */
+section { margin-bottom: 120px; }
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lavender-deep);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 42px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+h2 em { font-style: italic; color: var(--ink-3); }
+.section-lede {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-3);
+  line-height: 1.5;
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.015em;
+  margin: 40px 0 14px;
+  color: var(--ink);
+}
+p { margin-bottom: 16px; font-size: 16px; color: var(--ink-2); }
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; color: var(--ink-3); }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--lavender-deep);
+}
+
+/* ── ARTIFACT STACK (with Show File buttons) ──────────────────────────── */
+.stack { display: flex; flex-direction: column; gap: 14px; margin: 32px 0; }
+.stack .layer {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 22px 28px;
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.stack .layer .badge {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--lavender-deep);
+  line-height: 1;
+}
+.stack .layer .head h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.stack .layer .head .path {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.stack .layer .head p {
+  font-size: 14.5px;
+  color: var(--ink-3);
+  margin: 0;
+  line-height: 1.5;
+}
+.show-btn {
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: var(--lavender);
+  border: none;
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.show-btn:hover { background: var(--lavender-strong); }
+
+/* ── SPLICE CARDS with Show Example button ────────────────────────────── */
+.splice-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+.splice-trio .splice-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+}
+.splice-trio .splice-card.ui    { background: var(--lavender-soft); border-color: var(--lavender-strong); }
+.splice-trio .splice-card.data  { background: var(--red-soft); border-color: var(--red); }
+.splice-trio .splice-card.state { background: var(--green-soft); border-color: var(--green); }
+.splice-trio h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.splice-trio .kind-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.splice-trio .ui    .kind-label { color: var(--lavender-deep); }
+.splice-trio .data  .kind-label { color: var(--red-deep); }
+.splice-trio .state .kind-label { color: var(--green-deep); }
+.splice-trio p {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.splice-trio .show-btn { align-self: flex-start; margin-top: auto; }
+
+/* ── CODE/FILE SNIPPETS ───────────────────────────────────────────────── */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 22px 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  overflow-x: auto;
+  color: var(--ink-2);
+  margin: 24px 0;
+  white-space: pre;
+}
+pre .c  { color: var(--muted); font-style: italic; }
+pre .k  { color: var(--lavender-deep); font-weight: 500; }
+pre .s  { color: var(--green-deep); }
+pre .v  { color: var(--red-deep); }
+pre .hl { background: var(--highlight); padding: 1px 3px; border-radius: 3px; }
+pre .hl-strong { background: var(--highlight-strong); padding: 1px 3px; border-radius: 3px; font-weight: 600; }
+
+/* ── PIPELINE FLOW ────────────────────────────────────────────────────── */
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr 50px 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin: 36px 0;
+}
+.pipeline .stage {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 22px 20px;
+}
+.pipeline .stage.parsers   { background: var(--gold-soft); border-color: var(--gold); }
+.pipeline .stage.composer  { background: var(--lavender-soft); border-color: var(--lavender-strong); }
+.pipeline .stage.model     { background: var(--green-soft); border-color: var(--green); }
+.pipeline .stage .stage-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.pipeline .stage h5 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.pipeline .stage .body { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); line-height: 1.55; }
+.pipeline .arrow { display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 28px; color: var(--muted-2); }
+
+/* ── CALLOUTS ─────────────────────────────────────────────────────────── */
+.callout {
+  background: var(--gold-soft);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px 12px 12px 4px;
+  padding: 18px 24px;
+  margin: 28px 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.callout .callout-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* ── CARDS ────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+.card.tinted-yellow { background: var(--gold-soft); border-color: var(--gold); }
+.card.tinted-green  { background: var(--green-soft); border-color: var(--green); }
+.card.tinted-red    { background: var(--red-soft); border-color: var(--red); }
+.card.tinted-lavender { background: var(--lavender-soft); border-color: var(--lavender-strong); }
+
+/* ── CHIPS ────────────────────────────────────────────────────────────── */
+.chip {
+  display: inline-block;
+  padding: 3px 11px;
+  margin: 2px 4px 2px 0;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--bg-deep);
+  border: 1px solid var(--rule);
+  color: var(--ink-3);
+}
+.chip.purple { background: var(--lavender); border-color: var(--lavender-strong); color: var(--lavender-deep); }
+.chip.green  { background: var(--green-soft); border-color: var(--green); color: var(--green-deep); }
+.chip.red    { background: var(--red-soft); border-color: var(--red); color: var(--red-deep); }
+.chip.gold   { background: var(--gold-soft); border-color: var(--gold); color: var(--ink-2); }
+.chip.bold   { font-weight: 600; }
+
+/* ── WORKED EXAMPLE — STEP-BY-STEP DETAIL ─────────────────────────────── */
+.turn-block {
+  margin: 56px 0;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 36px 40px;
+}
+.turn-block .turn-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.turn-block .turn-num-big {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: var(--lavender-deep);
+  line-height: 0.9;
+}
+.turn-block .turn-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.user-bubble {
+  background: var(--lavender-soft);
+  border: 1px solid var(--lavender-strong);
+  border-radius: 18px 18px 18px 4px;
+  padding: 18px 24px;
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 18px;
+  color: var(--ink); line-height: 1.45;
+  margin-bottom: 20px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  margin: 18px 0;
+}
+.step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lavender-deep);
+  font-weight: 600;
+  background: var(--lavender-soft);
+  border: 1px solid var(--lavender-strong);
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  height: fit-content;
+  white-space: nowrap;
+}
+.step-num.green { color: var(--green-deep); background: var(--green-soft); border-color: var(--green); }
+.step-num.red   { color: var(--red-deep); background: var(--red-soft); border-color: var(--red); }
+.step-num.gold  { color: var(--ink); background: var(--gold-soft); border-color: var(--gold); }
+.step-body {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 16px 22px;
+}
+.step-body h5 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.step-body p {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+.step-body p:last-child { margin-bottom: 0; }
+.step-body .meta-box {
+  background: var(--code-bg);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ink-2);
+  margin: 10px 0;
+  line-height: 1.6;
+}
+.step-body .meta-box .k { color: var(--lavender-deep); }
+.step-body .meta-box .ok  { color: var(--green-deep); }
+.step-body .meta-box .bad { color: var(--red-deep); }
+
+.state-snapshot {
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-top: 24px;
+}
+.state-snapshot .state-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.state-snapshot .state-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 14px;
+  padding: 5px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  align-items: baseline;
+}
+.state-snapshot .state-row .label {
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+}
+.state-snapshot .state-row .value {
+  color: var(--ink-2);
+}
+
+.between-turns {
+  text-align: center;
+  margin: 32px 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--muted);
+}
+.between-turns .arrow { font-size: 22px; color: var(--lavender-deep); margin: 0 14px; }
+
+.bot-reply-bubble {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px 18px 4px 18px;
+  padding: 18px 24px;
+  font-size: 15.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-top: 24px;
+}
+.bot-reply-bubble .reply-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.convo-turn { margin: 36px 0; display: grid; grid-template-columns: 60px 1fr; gap: 22px; }
+.convo-turn .turn-num {
+  font-family: 'Fraunces', serif;
+  font-size: 44px; font-weight: 500;
+  color: var(--lavender-deep);
+  line-height: 1; text-align: right;
+}
+.user-msg {
+  background: var(--lavender-soft);
+  border: 1px solid var(--lavender-strong);
+  border-radius: 16px 16px 16px 4px;
+  padding: 14px 20px;
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 17px;
+  color: var(--ink); margin-bottom: 14px; line-height: 1.45;
+}
+.bot-msg {
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 16px 16px 4px 16px;
+  padding: 14px 20px;
+  font-size: 15px; color: var(--ink-2); margin-bottom: 14px; line-height: 1.5;
+}
+.bot-internal {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 22px 26px;
+  margin-top: 4px;
+}
+.bot-internal .internal-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px; font-weight: 600;
+}
+.internal-row {
+  display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+  padding: 6px 0; border-top: 1px dashed var(--rule);
+  align-items: baseline; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+}
+.internal-row:first-child { border-top: none; }
+.internal-row .k { color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; font-size: 10px; font-weight: 500; }
+.internal-row .v { color: var(--ink-2); word-break: break-word; }
+
+.fired-trans {
+  background: var(--red-soft);
+  border: 1px solid var(--red);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 14px 0 4px;
+}
+.fired-trans .fired-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  color: var(--red-deep);
+  margin-bottom: 10px; letter-spacing: 0.06em;
+}
+.fired-trans .sp-list { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-2); }
+.fired-trans .sp-list .sp { color: var(--red-deep); margin-right: 12px; }
+.fired-trans.read { background: var(--green-soft); border-color: var(--green); }
+.fired-trans.read .fired-head { color: var(--green-deep); }
+
+/* ── TABLE ────────────────────────────────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 14px;
+  background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--rule);
+}
+table th, table td {
+  text-align: left; padding: 12px 18px;
+  border-bottom: 1px solid var(--rule); vertical-align: top;
+}
+table th {
+  background: var(--bg-deep);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600;
+}
+table tr:last-child td { border-bottom: none; }
+table td .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--lavender-deep); }
+
+/* ── FILE-VIEWER POPUP ────────────────────────────────────────────────── */
+.popup-backdrop {
+  display: none; position: fixed; inset: 0;
+  background: rgba(20, 20, 18, 0.45);
+  z-index: 100; justify-content: center; align-items: center;
+  padding: 40px;
+  backdrop-filter: blur(6px);
+}
+.popup-backdrop.open { display: flex; }
+.popup {
+  background: var(--bg);
+  border-radius: 18px;
+  max-width: 1040px;
+  width: 100%; max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+}
+.popup-header {
+  padding: 22px 32px;
+  border-bottom: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg-soft);
+}
+.popup-header .titles { flex: 1; }
+.popup-header h2 {
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px;
+  letter-spacing: -0.015em; color: var(--ink); margin-bottom: 4px;
+}
+.popup-header .file-path {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--lavender-deep); letter-spacing: 0.04em;
+}
+.popup-close {
+  background: transparent; border: none; font-size: 30px;
+  color: var(--muted); cursor: pointer; line-height: 1;
+  padding: 4px 12px; border-radius: 999px; transition: background 0.15s;
+}
+.popup-close:hover { background: var(--bg-deep); color: var(--ink); }
+
+.popup-body {
+  padding: 0;
+  overflow-y: auto; flex: 1;
+}
+.popup-explanation {
+  padding: 20px 32px;
+  background: var(--gold-soft);
+  border-bottom: 1px solid var(--gold);
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.popup-explanation .icon { font-size: 18px; margin-right: 8px; }
+.popup-explanation b { font-style: normal; font-weight: 600; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+.file-snippet {
+  background: var(--code-bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow-x: auto;
+  padding: 24px 32px;
+  color: var(--ink-2);
+  white-space: pre;
+}
+.file-snippet .ln {
+  display: inline-block; width: 32px;
+  color: var(--muted-2); text-align: right;
+  margin-right: 14px; user-select: none;
+}
+.file-snippet .line { display: block; padding: 1px 0; }
+.file-snippet .line.hl {
+  background: var(--highlight);
+  margin: 0 -32px; padding: 1px 32px;
+}
+.file-snippet .line.hl-strong {
+  background: var(--highlight-strong);
+  margin: 0 -32px; padding: 1px 32px;
+  font-weight: 500;
+}
+.file-snippet .k { color: var(--lavender-deep); font-weight: 500; }
+.file-snippet .s { color: var(--green-deep); }
+.file-snippet .v { color: var(--red-deep); }
+.file-snippet .c { color: var(--muted); font-style: italic; }
+
+.popup-annotations {
+  padding: 24px 32px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg-soft);
+}
+.popup-annotations .ann-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.popup-annotations .ann {
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-radius: 10px;
+  border-left: 3px solid var(--gold);
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.popup-annotations .ann .ann-pointer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+footer {
+  margin-top: 120px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ════════════════════════════ HERO ════════════════════════════ -->
+<header class="hero">
+  <div class="kicker">A teaching reference · Ramco PO chatbot · May 2026</div>
+  <h1 class="hero-title">How we built a chatbot for Ramco's Purchase Order module<br><em>without reading a single document.</em></h1>
+  <p class="lede">A walk-through of the architecture, the artifacts, the splice taxonomy, and a real multi-turn conversation showing exactly what fires inside the bot — turn by turn.</p>
+
+  <div class="hint-banner">
+    <span class="icon">▸</span><b>How to read this</b> · Every artifact card has a <b style="background:var(--lavender); color:var(--ink); padding:3px 10px; border-radius:999px; font-family:'Inter',sans-serif; font-size:11px;">Show file</b> button that opens the actual file content with the relevant lines highlighted in yellow. Each splice card has a <b style="background:var(--lavender); color:var(--ink); padding:3px 10px; border-radius:999px; font-family:'Inter',sans-serif; font-size:11px;">Show example</b> button. Click them as you read.
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="num">14</div><div class="lbl">user-facing PO journeys</div></div>
+    <div class="stat"><div class="num">1,219</div><div class="lbl">SPs parsed</div></div>
+    <div class="stat"><div class="num">2,809</div><div class="lbl">slots discovered</div></div>
+    <div class="stat"><div class="num">74%</div><div class="lbl">eval cases passing</div></div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════ 1. PROBLEM ════════════════════════════ -->
+<section>
+  <div class="section-num">01 · The problem</div>
+  <h2>An ERP has hundreds of screens.<br><em>A user has one question.</em></h2>
+  <p class="section-lede">Ramco's Purchase Order module alone exposes 14 user-facing journeys, 222 UI tasks, 1,219 stored procedures, and dozens of conditional sub-flows. A user wants to type one sentence: <em>"create a purchase order for SUP-100 in USD."</em></p>
+
+  <p>Traditional chatbots try to bridge that gap by mining training documents. We tried — and it failed because documents are <strong>derivative</strong>: they describe what the system does, but they're authored inconsistently and frequently out of sync with the screens. A manual might say "Create Direct PO" using prose that says nothing about which SP fires or which table gets written. And critically, documents tell you nothing about the conditional logic — that PO type = Capital triggers extra required slots is buried in a stored procedure, not on page 47 of a manual.</p>
+
+  <p>So we threw the documents away and went directly to the source.</p>
+</section>
+
+
+<!-- ════════════════════════════ 2. SIX ARTIFACTS ════════════════════════════ -->
+<section>
+  <div class="section-num">02 · The six artifacts</div>
+  <h2>Six files. Six roles.<br><em>Together: everything the bot needs.</em></h2>
+  <p class="section-lede">Ramco ships six kinds of artifact per module. Each answers a different question. Click <b style="background:var(--lavender); color:var(--ink); padding:2px 10px; border-radius:999px; font-size:12px; font-weight:500;">Show file</b> on any layer to see the real content with the meaningful lines highlighted.</p>
+
+  <div class="stack">
+
+    <div class="layer">
+      <div class="badge">1</div>
+      <div class="head">
+        <h4>The module manifest</h4>
+        <div class="path">PO/ScreenObjects/PO/PO_info.xml &nbsp;·&nbsp; 1,518 lines</div>
+        <p>The whole module's table of contents — every Activity → ILBO → Page → Task. Tasks are typed: FETCH (load), INIT (initialise dropdowns), TRANS (commit / "Save"), LINK (open sub-screen), UI (validate a field), HELP (popup search).</p>
+      </div>
+      <button class="show-btn" data-popup="popup-po-info">Show file ▸</button>
+    </div>
+
+    <div class="layer">
+      <div class="badge">2</div>
+      <div class="head">
+        <h4>The screen state machine</h4>
+        <div class="path">PO/ScreenObjects/PO/PoCrt_PoCrtMain_State.xml &nbsp;·&nbsp; 243 lines</div>
+        <p>One per main screen. Declares the <b>services</b> on that screen (e.g. PoCrtMain has three: Fetch, Create, Approve) and the <b>named visibility states</b> (e.g. <code>project_details_on</code>). State IDs name conditions under which controls show/hide — these are <em>state-machine splices</em>.</p>
+      </div>
+      <button class="show-btn" data-popup="popup-state-xml">Show file ▸</button>
+    </div>
+
+    <div class="layer">
+      <div class="badge">3</div>
+      <div class="head">
+        <h4>The form template</h4>
+        <div class="path">PO/ScreenObjects/PO/Pocrt_pocrtmain.htm &nbsp;·&nbsp; 1,790 lines</div>
+        <p>The screen's HTML layout. At the top is a <code>&lt;meta name="Tasks"&gt;</code> tag enumerating <em>every task on this screen with its description and type</em>. Below: the actual form sections with field labels, types, and datatypes. This is where we learn what slots exist.</p>
+      </div>
+      <button class="show-btn" data-popup="popup-htm">Show file ▸</button>
+    </div>
+
+    <div class="layer">
+      <div class="badge">4</div>
+      <div class="head">
+        <h4>The screen behaviour (JS)</h4>
+        <div class="path">PO/ScreenObjects/PO/Pocrt_pocrtmain_user.js &nbsp;·&nbsp; 227 lines</div>
+        <p>One <code>switch</code> statement with the success message per task. Useful as a cross-check when the manifest description is terse.</p>
+      </div>
+      <button class="show-btn" data-popup="popup-js">Show file ▸</button>
+    </div>
+
+    <div class="layer">
+      <div class="badge">5</div>
+      <div class="head">
+        <h4>The service catalog</h4>
+        <div class="path">PO/ModelInfo/Service_details_PO.csv &nbsp;·&nbsp; 6,778 rows</div>
+        <p>The map: <b>(activity, screen, task) → stored procedure call chain</b>. Ordered by <code>sequenceno</code>. When the user clicks "Save" on PoCrtMain, this CSV tells us exactly which SPs run in what order.</p>
+      </div>
+      <button class="show-btn" data-popup="popup-csv">Show file ▸</button>
+    </div>
+
+    <div class="layer">
+      <div class="badge">6</div>
+      <div class="head">
+        <h4>The stored procedures</h4>
+        <div class="path">PO/SPS/pocrmn_sp_crt_hdrchk.sql &nbsp;·&nbsp; and 1,218 others</div>
+        <p>The actual business logic. Inside each SP: parameter declarations (= slots), <code>IF</code> branches that gate behaviour (= data splices), INSERT/UPDATE/DELETE statements (= what tables get written), and EXEC calls to downstream SPs.</p>
+      </div>
+      <button class="show-btn" data-popup="popup-sql">Show file ▸</button>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">The key insight</span>
+    These files <em>are</em> the system, in machine-readable form. We just need to parse them and join them. No LLM, no fuzzy matching, no guesses.
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ 3. SPLICES ════════════════════════════ -->
+<section>
+  <div class="section-num">03 · The splice taxonomy</div>
+  <h2>Three kinds of "if this, then that."</h2>
+  <p class="section-lede">A "splice" is a branch off the canonical journey — the if-this-then-that logic that makes real business workflows messy. Splices come from three independent sources. Click <b style="background:var(--lavender); color:var(--ink); padding:2px 10px; border-radius:999px; font-size:12px; font-weight:500;">Show example</b> on each card to see what each looks like in a real file.</p>
+
+  <div class="splice-trio">
+    <div class="splice-card ui">
+      <div class="kind-label">Kind 1 · UI splice</div>
+      <h4>User clicks a sub-screen</h4>
+      <p>Every <code>LINK</code>-typed task in the form template's <code>&lt;meta&gt;</code> Tasks header opens a sub-screen. User-initiated, usually optional.</p>
+      <p>PoCrtMain has nine UI splices: Terms, TCD, Schedule, Budget, Dropship, PR-Coverage, SO-Coverage, Quality, Notes.</p>
+      <button class="show-btn" data-popup="popup-ui-splice">Show example ▸</button>
+    </div>
+
+    <div class="splice-card data">
+      <div class="kind-label">Kind 2 · Data splice</div>
+      <h4>A slot value forces a path</h4>
+      <p>Inside the SP code, every <code>IF</code> branch gating on a parameter is a data splice. The parameter is the slot; the value triggers extra required slots downstream.</p>
+      <p>Not optional — once the user commits to that slot value, the path is forced.</p>
+      <button class="show-btn" data-popup="popup-data-splice">Show example ▸</button>
+    </div>
+
+    <div class="splice-card state">
+      <div class="kind-label">Kind 3 · State splice</div>
+      <h4>A named UI state</h4>
+      <p>Each <code>&lt;state id="..."&gt;</code> in the screen's <code>_State.xml</code> declares conditions under which controls show or hide. A UI mirror of an underlying data condition.</p>
+      <p>PoCrtMain has four named states: <code>project_details_on/off</code>, <code>state_on/off</code>.</p>
+      <button class="show-btn" data-popup="popup-state-splice">Show example ▸</button>
+    </div>
+  </div>
+
+  <h3>So why three kinds? And which one actually fires?</h3>
+  <p>Fair question. They describe the <strong>same conditional behaviour from three different perspectives</strong>:</p>
+  <ul style="margin: 16px 0 24px 24px; color: var(--ink-2); font-size: 16px;">
+    <li style="margin-bottom: 10px;"><strong>UI splice</strong> — the user's action (clicking a sub-screen link)</li>
+    <li style="margin-bottom: 10px;"><strong>Data splice</strong> — the system's behaviour (which SP branch executes)</li>
+    <li style="margin-bottom: 10px;"><strong>State splice</strong> — the screen's appearance (which controls become visible)</li>
+  </ul>
+
+  <p>And here's the honest truth about which the bot actually uses at runtime:</p>
+
+  <table>
+    <tr>
+      <th>Splice kind</th>
+      <th>Source</th>
+      <th>When the bot uses it</th>
+      <th>Visible in trace?</th>
+    </tr>
+    <tr>
+      <td><span class="chip purple bold">UI</span></td>
+      <td>.htm meta Tasks (LINK)</td>
+      <td><strong>Heavily used.</strong> When the user mentions a sub-screen ("custom payment terms", "5% discount", "ship to customer") the bot maps that to the right LINK task and walks the sub-screen.</td>
+      <td>Yes — <code>ui_splice_requested</code>, <code>splices_walked</code></td>
+    </tr>
+    <tr>
+      <td><span class="chip red bold">Data</span></td>
+      <td>SP IF branches</td>
+      <td><strong>Used for required-slot detection.</strong> When the user provides a slot value that triggers extra required slots (po_type=Capital → capital_proposal_id), the bot enforces those before committing.</td>
+      <td>Yes — <code>splice_triggered</code>, <code>additional_required_slots</code></td>
+    </tr>
+    <tr>
+      <td><span class="chip green bold">State</span></td>
+      <td>_State.xml &lt;state&gt;</td>
+      <td><strong>Mostly informational today.</strong> Extracted because it's in the artifact, but the bot doesn't currently consult these at runtime. They're a future visual-runtime hint.</td>
+      <td>No (not surfaced in the bot's trace panel)</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <span class="callout-label">A useful way to think about it</span>
+    <strong style="font-style: normal;">UI splice</strong> = the verb (the user clicks). &nbsp;<strong style="font-style: normal;">Data splice</strong> = the noun being checked (the slot value). &nbsp;<strong style="font-style: normal;">State splice</strong> = the consequence the user sees on screen. The first two drive bot behaviour. The third describes what would happen visually in the real Ramco UI.
+  </div>
+
+  <p>You'll see two examples of UI and data splices firing in the next section — the worked conversation. Watch for the splice rows in the trace panel.</p>
+</section>
+
+
+<!-- ════════════════════════════ (former 06a removed — merged into 06) ════════════════════════════ -->
+<section style="display:none;">
+  <div class="convo-turn">
+    <div class="turn-num">1</div>
+    <div>
+      <div class="user-msg">"Create a Capital PO for SUP-100, USD, today, BUY-7, ITM-99 1 unit at 75000."</div>
+      <div class="bot-msg">Got it — a Capital purchase order. Since this is a Capital PO, I'll need the approved capital proposal ID. Could you share it?</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Journey locked</span><span class="v"><span class="chip purple bold">PoCrt</span></span></div>
+        <div class="internal-row"><span class="k">Slots extracted</span><span class="v">
+          <span class="chip">po_type=Capital</span><span class="chip">supplier_code=SUP-100</span>
+          <span class="chip">currency=USD</span><span class="chip">po_date=today</span>
+          <span class="chip">buyer=BUY-7</span><span class="chip">item_code=ITM-99</span>
+          <span class="chip">quantity=1</span><span class="chip">cost=75000</span>
+        </span></div>
+        <div class="internal-row"><span class="k">Data splice ↯</span><span class="v"><span class="chip red bold">po_type==Capital triggered</span> &nbsp; (from SP IF branch in pocrmn_sp_crt_hdrchk)</span></div>
+        <div class="internal-row"><span class="k">+ required slots</span><span class="v"><span class="chip red">capital_proposal_id</span></span></div>
+        <div class="internal-row"><span class="k">Validation</span><span class="v"><span class="chip red">BLOCKED: capital_proposal_id missing</span> — bot refuses commit, asks user</div>
+        <div class="internal-row"><span class="k">TRANS fired</span><span class="v">(none — splice validation blocks the commit)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="convo-turn">
+    <div class="turn-num">2</div>
+    <div>
+      <div class="user-msg">"Proposal is CAP-PROP-2026-04. Also add custom payment terms: 30% advance, 70% NET-45."</div>
+      <div class="bot-msg">Proposal CAP-PROP-2026-04 captured. For payment terms I'll open the Terms sub-screen and record 30% advance plus 70% NET-45. Ready to commit when you say so.</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Slots extracted</span><span class="v">
+          <span class="chip">capital_proposal_id=CAP-PROP-2026-04</span>
+        </span></div>
+        <div class="internal-row"><span class="k">Data splice</span><span class="v"><span class="chip red">po_type==Capital still triggered</span> &nbsp; <span class="chip green">requirement satisfied ✓</span></span></div>
+        <div class="internal-row"><span class="k">UI splice ↯</span><span class="v"><span class="chip purple bold">ui_splice_requested = terms</span> &nbsp; (LNK3 → PoCrtTrm sub-screen)</span></div>
+        <div class="internal-row"><span class="k">Splices walked</span><span class="v"><span class="chip purple">terms_via_LNK3</span></span></div>
+        <div class="fired-trans read">
+          <div class="fired-head">▸ TRANS · POCRTMAINLNK3 · sub-screen link (Terms)</div>
+          <div class="sp-list">opens PoCrtTrm — payment_terms slot captured: "30% advance + 70% NET-45"</div>
+        </div>
+        <div class="internal-row"><span class="k">Validation</span><span class="v"><span class="chip green">all required slots present ✓</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="convo-turn">
+    <div class="turn-num">3</div>
+    <div>
+      <div class="user-msg">"Create it."</div>
+      <div class="bot-msg">Done. PurchaseOrder PO-NEW-001 has been created via POCRTMAINSBT (Capital, payment_terms applied). Status: Draft — pending separate approval since Capital POs require explicit authorisation.</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Commit kind</span><span class="v"><span class="chip red">submit</span> (not submit_and_approve — Capital requires separate approver)</span></div>
+        <div class="internal-row"><span class="k">Active splices</span><span class="v"><span class="chip red bold">data: po_type==Capital</span> &nbsp;+&nbsp; <span class="chip purple bold">ui: terms_via_LNK3</span></span></div>
+        <div class="fired-trans">
+          <div class="fired-head">▸ TRANS · POCRTMAINSBT · write (with Capital + Terms context attached)</div>
+          <div class="sp-list">
+            seq 1 <span class="sp">pocrmn_sp_crt_hdrsav</span><span class="sp">pocrmn_sp_crt_hdrchk</span><span class="sp">pocrmn_sp_crtgrd</span><span class="sp">pocrmn_sp_init_suptxreg</span>
+            <br>seq 2 <span class="sp">pocrmn_sp_aprhref</span> &nbsp;|&nbsp; seq 3 <span class="sp">pocrmn_sp_crtgrd_out</span>
+          </div>
+          <div style="margin-top:10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3);">→ writes to: po_pomas_pur_order_hdr (with po_type=Capital, capital_proposal_id=CAP-PROP-2026-04),<br>
+          &nbsp; &nbsp; po_paytm_doclevel_detail (payment_terms = "30% advance + 70% NET-45"),<br>
+          &nbsp; &nbsp; po_poitm_item_detail, po_poshd_schedule_dtl</div>
+        </div>
+        <div class="internal-row"><span class="k">Session memory</span><span class="v"><span class="chip green">PurchaseOrder · po_number=PO-NEW-001</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">What just happened</span>
+    Two splices, two different kinds, fired in the same conversation. The <strong style="font-style: normal;">data splice</strong> (po_type==Capital) blocked the commit at turn 1 until the user provided the required slot, then attached the Capital context to the final commit. The <strong style="font-style: normal;">UI splice</strong> (Terms via LNK3) was walked when the user requested custom payment terms, adding extra fields to the saved record. The state splices weren't consulted at all — they describe visible-state mirrors which today aren't surfaced to the bot.
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ 4. COMPOSITION ════════════════════════════ -->
+<section>
+  <div class="section-num">04 · How the pieces combine</div>
+  <h2>From six raw files to one journey model.</h2>
+  <p class="section-lede">Six parsers read the six artifact types. A composer joins them into one queryable JSON per activity. Pure deterministic code — no LLM, no judgement.</p>
+
+  <div class="pipeline">
+    <div class="stage parsers">
+      <div class="stage-label">L1 — Parsers</div>
+      <h5>One per artifact</h5>
+      <div class="body">p01 module manifest<br>p02 screen states<br>p03 form HTML<br>p04 behaviour JS<br>p05 service catalog<br>p06 SP branches</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage composer">
+      <div class="stage-label">L2 — Composer</div>
+      <h5>Joins everything</h5>
+      <div class="body">c01 join screen<br>c02 join activity<br>c03 splice catalog<br>c04 cross-journey graph<br>c05 entity taxonomy</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage model">
+      <div class="stage-label">L3 — Journey model</div>
+      <h5>One JSON per activity</h5>
+      <div class="body">POCRT.json<br>POAMND.json<br>POAPP.json<br>POEDT.json<br>... and 17 others</div>
+    </div>
+  </div>
+
+  <h3>What ends up in one journey model</h3>
+  <p>Click below to see the actual <code>POCRT.json</code> file the composer produced.</p>
+  <button class="show-btn" data-popup="popup-model" style="margin: 8px 0 24px;">Show composed POCRT.json ▸</button>
+
+  <div class="callout">
+    <span class="callout-label">A note on determinism</span>
+    Same input artifacts always produce the same model. No randomness. No model temperature. The bot at runtime consults this composed JSON, never the raw artifacts.
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ 5. STEP CAPTIONS (NEW) ════════════════════════════ -->
+<section>
+  <div class="section-num">05 · Step captions</div>
+  <h2>English step labels<br><em>without compromising the deterministic core.</em></h2>
+  <p class="section-lede">Section captions in the form template — "PO Details", "Amount Details", "Default Entries", "Line Details" — are pulled directly from the <code>caption=</code> attribute on each <code>&lt;table type="section"&gt;</code>. They become the visible "steps" the bot announces. <strong>The captions are decoration only — they never change a decision the bot makes.</strong></p>
+
+  <h3>What the captions look like in the model</h3>
+  <p>After parsing, every screen in <code>POCRT.json</code> gains a new <code>collect_steps</code> field — a decorative overlay on top of the existing slot list. Here is what PoCrtMain produces, deterministically, every time:</p>
+
+  <div class="card" style="padding: 28px 36px;">
+    <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+      <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; color: var(--lavender-deep);">S1</div>
+      <div><div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;">Collect PO Details</div><div class="muted" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">section: pocrtmain_mainscreen_section02_2</div></div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: right;"><b>20</b> slots<br>· <b>2</b> mandatory</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+      <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; color: var(--lavender-deep);">S2</div>
+      <div><div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;">Collect Amount Details</div><div class="muted" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">section: pocrtmain_mainscreen_section02_8</div></div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: right;"><b>6</b> slots</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+      <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; color: var(--lavender-deep);">S3</div>
+      <div><div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;">Collect Default Entries</div><div class="muted" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">section: pocrtmain_mainscreen_section02</div></div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: right;"><b>14</b> slots</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+      <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; color: var(--lavender-deep);">S4</div>
+      <div><div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;">Collect Line Details &nbsp;<span class="chip red bold">LINE LOOP</span></div><div class="muted" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">section: pocrtmain_mainscreen_section04 · gridctrl="mlt"</div></div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: right;">multi-row<br>grid</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; padding: 16px 0; align-items: center;">
+      <div style="font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; color: var(--lavender-deep);">S5</div>
+      <div><div style="font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;">Collect Data History</div><div class="muted" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">section: pocrtmain_mainscreen_section15</div></div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); text-align: right;"><b>2</b> slots</div>
+    </div>
+  </div>
+
+  <h3>Where each part comes from</h3>
+  <p>All four pieces of metadata come straight from attributes on the form's <code>&lt;table type="section"&gt;</code> tags. <strong>Zero LLM, zero guessing.</strong></p>
+
+  <table>
+    <tr><th>Field</th><th>Comes from</th><th>Example value</th></tr>
+    <tr><td><b>caption</b></td><td><code>caption="..."</code> attribute</td><td><code>"PO Details"</code></td></tr>
+    <tr><td><b>is_titled</b></td><td><code>stitle="1"</code> attribute</td><td>only titled sections become steps; non-titled layout sections are skipped</td></tr>
+    <tr><td><b>is_grid</b></td><td><code>gridctrl="mlt"</code> attribute</td><td><code>true</code> for "Line Details" → renders the LINE LOOP marker</td></tr>
+    <tr><td><b>mandatory_count</b></td><td>label cells with CSS class <code>labelsmandatoryleft</code></td><td><code>2</code> for PO Details (Numbering Series + PO Date)</td></tr>
+  </table>
+
+  <button class="show-btn" data-popup="popup-stepcaptions" style="margin-top: 16px;">Show the real attributes in the .htm file ▸</button>
+
+  <h3>The decorator contract</h3>
+  <p>This is the principle that holds the architecture together:</p>
+
+  <div class="callout">
+    <span class="callout-label">The contract</span>
+    Captions are pulled deterministically from <code>.htm</code> attributes, attached as metadata, and read by the bot <strong style="font-style: normal;">only when generating responses or updating the trace UI</strong>. <em>Zero impact on which TRANS fires, which SPs run, which tables get written, which slots are required, or any other decision.</em>
+  </div>
+
+  <p>Concretely:</p>
+
+  <table>
+    <tr><th>Captions do affect</th><th>Captions do NOT affect</th></tr>
+    <tr><td>Bot's spoken text (now mentions step name)</td><td>Which journey gets locked</td></tr>
+    <tr><td>Trace panel UI (shows "S2: Amount Details")</td><td>Which TRANS fires (still description-scored)</td></tr>
+    <tr><td>Mandatory progress prose</td><td>Which SPs run, in what order</td></tr>
+    <tr><td>The implicit conversation flow (one section at a time)</td><td>Which tables get written</td></tr>
+    <tr><td>—</td><td>Splice triggers (UI + data)</td></tr>
+    <tr><td>—</td><td>Validation pass/fail</td></tr>
+    <tr><td>—</td><td>Session memory minting</td></tr>
+    <tr><td>—</td><td>Cross-journey routing</td></tr>
+  </table>
+
+  <p>This is why upgrading the bot from v7 to v8 added captions <em>and</em> increased the eval score (35 → 37 of 50) at the same time — the captions themselves don't drive the score; the score lifted because the regenerated model was slightly cleaner. The architectural contract is verified by the eval: zero regressions.</p>
+</section>
+
+
+<!-- ════════════════════════════ 6. HANDOFF VIEWS (NEW) ════════════════════════════ -->
+<section>
+  <div class="section-num">06 · Packaging for handoff</div>
+  <h2>One model, many views.<br><em>Same data, repackaged for humans.</em></h2>
+  <p class="section-lede">The bot reads one big <code>POCRT.json</code> — 36k lines, 1 MB, because it needs everything in one fast-loading file. But a human trying to review a journey can't tell signal from scaffolding. So we generate per-aspect "handoff views" — the same model split into focused files, plus a one-page Markdown summary.</p>
+
+  <h3>The problem with the monolithic file</h3>
+  <p>When you open <code>POCRT.json</code> in a browser, the canonical_spine (6 entries, ~80 lines) is followed by:</p>
+
+  <ul style="margin: 16px 0 20px 28px; color: var(--ink-2); font-size: 15px;">
+    <li>273 splices (~150 KB)</li>
+    <li>15 screens × dozens of slots each (~290 KB)</li>
+    <li>222 SP chains (~640 KB)</li>
+  </ul>
+
+  <p>It all blurs together. You can't tell at a glance: "what's the journey?", "what fires when?", "what gets written where?". The signal is buried.</p>
+
+  <h3>The solution — one folder per activity</h3>
+  <p>A new composer pass (<code>c06_handoff_views.py</code>) takes each monolithic journey JSON and writes a per-aspect folder. The bot's source of truth stays untouched; humans get tidy, focused files.</p>
+
+  <div class="card" style="padding: 28px 36px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.8; color: var(--ink-2);">
+      <div style="color: var(--muted); margin-bottom: 8px;">out/model/activities/POCRT/</div>
+      <div>├── <b style="color: var(--green-deep);">01_spine.json</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: var(--muted);"> 4 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← the canonical journey (6 entries, fits on a screen)</span></div>
+      <div>├── <b style="color: var(--red-deep);">02_splices.json</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--muted);">152 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← UI + state + data splices, grouped</span></div>
+      <div>├── <b style="color: var(--lavender-deep);">03_screens.json</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--muted);">290 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← form layout, slots, collect_steps</span></div>
+      <div>├── <b style="color: var(--ink);">04_sp_chains.json</b> &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: var(--muted);">640 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← task → SP-chain mapping</span></div>
+      <div>├── <b style="color: var(--gold);">05_taxonomy.json</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--muted);"> 0 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← what entity this journey produces / consumes</span></div>
+      <div>└── <b style="color: var(--lavender-deep);">HANDOFF.md</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: var(--muted);"> 4 KB</span> &nbsp;&nbsp; <span style="color: var(--ink-3);">← human-readable one-pager</span></div>
+    </div>
+  </div>
+
+  <h3>What goes where</h3>
+
+  <table>
+    <tr><th>If someone asks…</th><th>Hand them…</th></tr>
+    <tr><td>"What's the canonical journey for Create Direct PO?"</td><td><code>01_spine.json</code> — fits on one screen, 6 entries</td></tr>
+    <tr><td>"What conditional logic does this journey have?"</td><td><code>02_splices.json</code> — UI/state/data splices in their own buckets</td></tr>
+    <tr><td>"What's on each screen? How do the sections break down?"</td><td><code>03_screens.json</code> — including the new collect_steps</td></tr>
+    <tr><td>"Which stored procedures get called when?"</td><td><code>04_sp_chains.json</code> — task-keyed</td></tr>
+    <tr><td>"Does this journey produce or consume an entity?"</td><td><code>05_taxonomy.json</code> — under a kilobyte</td></tr>
+    <tr><td>"Give me a one-page summary I can show the team"</td><td><code>HANDOFF.md</code> — at-a-glance counts, spine table, commit chains, splice samples, screens table</td></tr>
+  </table>
+
+  <button class="show-btn" data-popup="popup-handoff-md" style="margin-top: 16px;">Show the actual HANDOFF.md for PoCrt ▸</button>
+
+  <h3>The architectural rule</h3>
+
+  <div class="callout">
+    <span class="callout-label">Same data, never duplicated</span>
+    The split views are <em>derived</em> from the monolithic file by <code>c06_handoff_views.py</code>. They're regenerated whenever the model regenerates. <strong style="font-style: normal;">The bot still reads <code>POCRT.json</code></strong> — these split files are presentation, not architecture. Editing them by hand would be pointless: they'd be overwritten on the next composer run.
+  </div>
+
+  <p>This separation makes three things easier:</p>
+
+  <table>
+    <tr><th>Benefit</th><th>Why</th></tr>
+    <tr><td>Stakeholder review</td><td>Email a single 4 KB <code>HANDOFF.md</code> instead of expecting them to scroll a 1 MB JSON</td></tr>
+    <tr><td>Targeted diffs</td><td>When SPs change, only <code>04_sp_chains.json</code> changes. When form sections change, only <code>03_screens.json</code> changes. Easier code review.</td></tr>
+    <tr><td>Cross-journey overview</td><td>A future <code>MODULE_HANDOFF.md</code> can consolidate all 13 user-facing activities' HANDOFFs into one document</td></tr>
+  </table>
+
+  <h3>Across the module</h3>
+  <p>Every user-facing PO activity now has its own folder. Spine sizes range from ~130 bytes (PoCopy, the smallest) to ~4 KB (PoAmnd, biggest — 10 commits). <strong>Every canonical spine fits on two screens.</strong></p>
+</section>
+
+
+<!-- ════════════════════════════ 7. SESSION MEMORY ════════════════════════════ -->
+<section>
+  <div class="section-num">07 · Cross-journey context</div>
+  <h2>The bot's working memory.</h2>
+  <p class="section-lede">When the user creates a PO and then says "now amend it", the bot needs to carry the PO number across journeys. Solved by a generic session memory driven by the entity taxonomy — zero PO-specific code.</p>
+
+  <p>The composer's <code>c05_entity_taxonomy.py</code> pass classifies every activity by parsing its description for verbs and nouns. "Create" → producer. "Amend" / "Approve" / "View" → consumer. The noun ("Purchase Order", "Purchase Request") names the entity kind.</p>
+
+  <table>
+    <tr><th>Activity</th><th>Role</th><th>Produces</th><th>Consumes</th></tr>
+    <tr><td><span class="mono">POCRT</span></td><td><span class="chip green">producer</span></td><td>PurchaseOrder · po_number</td><td>—</td></tr>
+    <tr><td><span class="mono">POCRTQTN</span></td><td><span class="chip gold">producer + consumer</span></td><td>PurchaseOrder · po_number</td><td>Quotation · quotation_no</td></tr>
+    <tr><td><span class="mono">POAMND</span></td><td><span class="chip purple">consumer</span></td><td>—</td><td>PurchaseOrder · po_number</td></tr>
+    <tr><td><span class="mono">POAPP</span></td><td><span class="chip purple">consumer</span></td><td>—</td><td>PurchaseOrder · po_number</td></tr>
+    <tr><td><span class="mono">POVIW</span></td><td><span class="chip purple">consumer</span></td><td>—</td><td>PurchaseOrder · po_number</td></tr>
+  </table>
+
+  <p>The same logic, unchanged, classifies any other Ramco module's activities. <strong>"Create"</strong> means produce — in PO, PR, GR, or PQ — the verb taxonomy is universal.</p>
+
+  <h3>What happens at runtime</h3>
+  <p>When the user issues a commit, the bot looks up the activity's taxonomy. If it produces an entity, the bot <strong>mints a synthetic ID</strong> (e.g. <code>PO-NEW-001</code>) and stores it in session memory keyed by entity kind.</p>
+  <p>When the user's next turn uses <em>change-language</em> (wait, actually, bump, change, modify) AND session memory has an entity of the right kind, the bot <strong>deterministically switches journey</strong> to the consumer journey and <strong>auto-fills the consumed-id slot</strong> from session memory. The user never types the PO number.</p>
+</section>
+
+
+<!-- ════════════════════════════ 6. WORKED EXAMPLE — DETAILED ════════════════════════════ -->
+<section>
+  <div class="section-num">07 · A real conversation, slowed down</div>
+  <h2>One full Capital PO conversation,<br><em>broken into every step the bot takes.</em></h2>
+  <p class="section-lede">The user wants to create a Capital purchase order with custom payment terms. We'll go through three turns. For each turn, you'll see the user's message, the six sub-steps the bot takes internally, the bot's reply, and a snapshot of the bot's state after the turn. The goal: nothing about how the bot works should feel hidden.</p>
+
+  <div class="callout">
+    <span class="callout-label">What this conversation exercises</span>
+    A <strong style="font-style: normal;">data splice</strong> (Capital PO requires capital_proposal_id), a <strong style="font-style: normal;">UI splice</strong> (Terms sub-screen), and the full commit path that ends with tables being written and a synthetic PO number minted in session memory.
+  </div>
+
+
+  <!-- ─── TURN 1 ─────────────────────────────────────────────────────────── -->
+  <div class="turn-block">
+    <div class="turn-header">
+      <div class="turn-num-big">1</div>
+      <div class="turn-title">User opens the conversation with a Capital PO request.</div>
+    </div>
+
+    <div class="user-bubble">"Create a Capital PO for SUP-100, USD, today, BUY-7, ITM-99 — 1 unit at 75,000."</div>
+
+    <div class="step">
+      <div class="step-num">Step 1<br>parse</div>
+      <div class="step-body">
+        <h5>The bot sends the message to Gemini for understanding</h5>
+        <p>The bot first calls its LLM classifier (Gemini 2.5 Pro). It gives the LLM <em>only</em> the user's message plus a fixed vocabulary of journey names and slot names from the model. The LLM is forbidden to invent new journeys or new slot names — it can only pick from the lists.</p>
+        <div class="meta-box">
+<span class="k">prompt to LLM:</span>
+&nbsp;&nbsp;available journeys: PoCrt, PoCrtQtn, PoAmnd, PoApp, PoViw, PoHold, ...
+&nbsp;&nbsp;available slots:    supplier_code, currency, po_date, buyer, item_code,
+&nbsp;&nbsp;                    quantity, cost, po_type, capital_proposal_id, ...
+&nbsp;&nbsp;user input:         "Create a Capital PO for SUP-100, USD, today, ..."</div>
+        <div class="meta-box">
+<span class="k">LLM returns (parsed):</span>
+&nbsp;&nbsp;intent:           "create_po"
+&nbsp;&nbsp;journey:          <span class="ok">"PoCrt"</span>
+&nbsp;&nbsp;slots_extracted:  {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">"po_type":        "Capital"</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;"supplier_code":  "SUP-100",
+&nbsp;&nbsp;&nbsp;&nbsp;"currency":       "USD",
+&nbsp;&nbsp;&nbsp;&nbsp;"po_date":        "today",
+&nbsp;&nbsp;&nbsp;&nbsp;"buyer":          "BUY-7",
+&nbsp;&nbsp;&nbsp;&nbsp;"item_code":      "ITM-99",
+&nbsp;&nbsp;&nbsp;&nbsp;"quantity":       1,
+&nbsp;&nbsp;&nbsp;&nbsp;"cost":           75000
+&nbsp;&nbsp;}
+&nbsp;&nbsp;wants_commit:     true
+&nbsp;&nbsp;commit_kind:      "submit"</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 2<br>lookup</div>
+      <div class="step-body">
+        <h5>The bot opens the journey model for PoCrt</h5>
+        <p>With <code>journey = "PoCrt"</code>, the bot loads <code>out/model/activities/POCRT.json</code>. This file (built earlier by the composer) tells it everything about Create Direct PO: the canonical spine, the splices, the screens, the SP chains.</p>
+        <div class="meta-box">
+<span class="k">model lookup:</span>
+&nbsp;&nbsp;loaded out/model/activities/POCRT.json
+&nbsp;&nbsp;canonical spine: fetch → init → fill → commit (SBT or TRN4) → output
+&nbsp;&nbsp;data splices known for PoCrt:
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="bad">po_type == "Capital"      → requires capital_proposal_id</span>
+&nbsp;&nbsp;&nbsp;&nbsp;po_type == "Consignment"  → requires consignment_rule_id
+&nbsp;&nbsp;&nbsp;&nbsp;imports == true           → requires incoterm, country_of_origin
+&nbsp;&nbsp;&nbsp;&nbsp;loi == true               → requires loi_validity_days</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num red">Step 3<br>detect splice</div>
+      <div class="step-body">
+        <h5>A data splice trips: <em>po_type = Capital</em></h5>
+        <p>The bot compares the user's slot values against the data-splice table loaded in Step 2. It finds a match: <code>po_type == "Capital"</code> is one of the known splice triggers for PoCrt. That triggers a rule: <strong>this commit cannot proceed unless <code>capital_proposal_id</code> is also provided.</strong></p>
+        <p>The bot adds <code>capital_proposal_id</code> to its <em>additional required slots</em> list for this conversation.</p>
+        <div class="meta-box">
+<span class="k">splice detection:</span>
+&nbsp;&nbsp;splice_triggered: <span class="bad">"po_type==Capital"</span>
+&nbsp;&nbsp;additional_required_slots: [<span class="bad">"capital_proposal_id"</span>]</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num red">Step 4<br>validate</div>
+      <div class="step-body">
+        <h5>Pre-commit validation BLOCKS the commit</h5>
+        <p>The bot now wants to commit (<code>wants_commit = true</code> from Step 1). Before firing any TRANS task, it runs validation: does the slot state include every slot in <em>additional required slots</em>? It does not — <code>capital_proposal_id</code> is missing.</p>
+        <div class="meta-box">
+<span class="k">validation result:</span>
+&nbsp;&nbsp;required slots check: capital_proposal_id → <span class="bad">MISSING</span>
+&nbsp;&nbsp;decision:             <span class="bad">block commit</span>
+&nbsp;&nbsp;validation_error_detected: true</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num green">Step 5<br>fire</div>
+      <div class="step-body">
+        <h5>No TRANS fires. No SPs run. No tables written.</h5>
+        <p>Because validation blocked the commit, <strong>nothing happens on the database side this turn</strong>. The bot's <code>trans_invoked</code> stays <code>null</code>. The SP chain stays untouched. This is the safety property: the bot will never fire an SP it knows would fail validation.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 6<br>respond</div>
+      <div class="step-body">
+        <h5>The bot generates a clarifying reply</h5>
+        <p>The bot tells the user what's needed. The LLM's response text is informed by the structured state above — it knows the splice triggered and the slot is missing.</p>
+      </div>
+    </div>
+
+    <div class="bot-reply-bubble">
+      <div class="reply-label">Bot replies</div>
+      Got it — a Capital purchase order for SUP-100, item ITM-99, 1 unit at 75,000 USD. Since this is a Capital PO, I also need the approved capital proposal ID. Could you share it?
+    </div>
+
+    <div class="state-snapshot">
+      <div class="state-label">Bot state after Turn 1</div>
+      <div class="state-row"><span class="label">Journey locked</span><span class="value"><span class="chip purple bold">PoCrt</span></span></div>
+      <div class="state-row"><span class="label">Slots collected</span><span class="value">
+        <span class="chip">po_type=Capital</span><span class="chip">supplier_code=SUP-100</span>
+        <span class="chip">currency=USD</span><span class="chip">po_date=today</span>
+        <span class="chip">buyer=BUY-7</span><span class="chip">item_code=ITM-99</span>
+        <span class="chip">quantity=1</span><span class="chip">cost=75000</span>
+      </span></div>
+      <div class="state-row"><span class="label">Splice triggered</span><span class="value"><span class="chip red bold">po_type==Capital</span></span></div>
+      <div class="state-row"><span class="label">Required slots (splice)</span><span class="value"><span class="chip red">capital_proposal_id</span> &nbsp; <span class="chip">missing</span></span></div>
+      <div class="state-row"><span class="label">Validation</span><span class="value"><span class="chip red">BLOCKED</span></span></div>
+      <div class="state-row"><span class="label">TRANS fired</span><span class="value">—</span></div>
+      <div class="state-row"><span class="label">Tables written</span><span class="value">—</span></div>
+      <div class="state-row"><span class="label">Session memory</span><span class="value">empty</span></div>
+    </div>
+  </div>
+
+
+  <div class="between-turns"><span class="arrow">↓</span>Now the user provides the missing proposal AND requests custom payment terms<span class="arrow">↓</span></div>
+
+
+  <!-- ─── TURN 2 ─────────────────────────────────────────────────────────── -->
+  <div class="turn-block">
+    <div class="turn-header">
+      <div class="turn-num-big">2</div>
+      <div class="turn-title">User satisfies the splice and triggers another one.</div>
+    </div>
+
+    <div class="user-bubble">"Proposal is CAP-PROP-2026-04. Also, I want custom payment terms: 30% advance, 70% NET-45."</div>
+
+    <div class="step">
+      <div class="step-num">Step 1<br>parse</div>
+      <div class="step-body">
+        <h5>The LLM extracts two new things from one sentence</h5>
+        <p>The user did two things in one message: provided <code>capital_proposal_id</code>, AND expressed intent to open the Terms sub-screen. The LLM picks both up.</p>
+        <div class="meta-box">
+<span class="k">LLM returns:</span>
+&nbsp;&nbsp;slots_extracted:  {
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">"capital_proposal_id":  "CAP-PROP-2026-04"</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">"payment_terms":        "30% advance + 70% NET-45"</span>
+&nbsp;&nbsp;}
+&nbsp;&nbsp;<span class="k">ui_splice_requested:</span> "terms"      <span class="bad">// user wants to open Terms sub-screen</span>
+&nbsp;&nbsp;wants_commit:     false               <span class="bad">// no commit verb yet</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num green">Step 2<br>merge slots</div>
+      <div class="step-body">
+        <h5>The bot adds the new slots to state</h5>
+        <p>The newly-extracted slots merge into the existing slot state. The required-slots gap is now closed.</p>
+        <div class="meta-box">
+<span class="k">slot state after merge:</span>
+&nbsp;&nbsp;po_type=Capital, supplier_code=SUP-100, currency=USD, po_date=today,
+&nbsp;&nbsp;buyer=BUY-7, item_code=ITM-99, quantity=1, cost=75000,
+&nbsp;&nbsp;<span class="ok">capital_proposal_id=CAP-PROP-2026-04,</span>
+&nbsp;&nbsp;<span class="ok">payment_terms="30% advance + 70% NET-45"</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 3<br>walk UI splice</div>
+      <div class="step-body">
+        <h5>The Terms sub-screen is walked</h5>
+        <p>The LLM flagged <code>ui_splice_requested = terms</code>. The bot maps this to the actual model entry for the Terms sub-screen — <code>POCRTMAINLNK3</code> opens the <code>PoCrtTrm</code> ILBO. The bot records that the Terms splice has been walked.</p>
+        <div class="meta-box">
+<span class="k">UI splice walked:</span>
+&nbsp;&nbsp;splice_id:       <span class="k">"terms_via_LNK3"</span>
+&nbsp;&nbsp;link_task:       POCRTMAINLNK3
+&nbsp;&nbsp;target_screen:   PoCrtTrm
+&nbsp;&nbsp;slots_captured:  payment_terms = "30% advance + 70% NET-45"</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num green">Step 4<br>re-validate</div>
+      <div class="step-body">
+        <h5>Validation passes — all required slots are now present</h5>
+        <p>The bot re-runs the required-slots check. The Capital splice's <code>capital_proposal_id</code> is now in state. Nothing else is required by any active splice. Validation passes.</p>
+        <div class="meta-box">
+<span class="k">validation result:</span>
+&nbsp;&nbsp;required slots check:    capital_proposal_id → <span class="ok">PRESENT ✓</span>
+&nbsp;&nbsp;all-splice requirements: <span class="ok">satisfied</span>
+&nbsp;&nbsp;decision:                <span class="ok">commit would now be allowed</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 5<br>no fire yet</div>
+      <div class="step-body">
+        <h5>But the user didn't ask to commit this turn</h5>
+        <p>Even though validation now passes, <code>wants_commit</code> from Step 1 was <code>false</code>. The user provided information but didn't say "create it" / "save" / "do it". The bot is patient — it stops here and waits.</p>
+        <p>This is a deliberate safety: the bot never auto-commits when the slots happen to be sufficient. The user must explicitly say "create".</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 6<br>respond</div>
+      <div class="step-body">
+        <h5>The bot acknowledges and signals readiness</h5>
+      </div>
+    </div>
+
+    <div class="bot-reply-bubble">
+      <div class="reply-label">Bot replies</div>
+      Proposal CAP-PROP-2026-04 captured. I've opened the Terms sub-screen and recorded payment terms: 30% advance plus 70% NET-45. All required fields are now in place — say "create it" whenever you're ready to commit.
+    </div>
+
+    <div class="state-snapshot">
+      <div class="state-label">Bot state after Turn 2</div>
+      <div class="state-row"><span class="label">Journey locked</span><span class="value"><span class="chip purple bold">PoCrt</span></span></div>
+      <div class="state-row"><span class="label">Slots collected</span><span class="value">
+        <span class="chip">po_type=Capital</span><span class="chip">supplier_code=SUP-100</span>
+        <span class="chip">currency=USD</span><span class="chip">po_date=today</span>
+        <span class="chip">buyer=BUY-7</span><span class="chip">item_code=ITM-99</span>
+        <span class="chip">quantity=1</span><span class="chip">cost=75000</span>
+        <span class="chip green">capital_proposal_id=CAP-PROP-2026-04 ✓</span>
+        <span class="chip green">payment_terms=30%+70% NET-45 ✓</span>
+      </span></div>
+      <div class="state-row"><span class="label">Splice triggered (data)</span><span class="value"><span class="chip red bold">po_type==Capital</span> &nbsp;·&nbsp; <span class="chip green">requirement satisfied</span></span></div>
+      <div class="state-row"><span class="label">Splices walked (UI)</span><span class="value"><span class="chip purple bold">terms_via_LNK3</span></span></div>
+      <div class="state-row"><span class="label">Validation</span><span class="value"><span class="chip green">PASS — commit would succeed</span></span></div>
+      <div class="state-row"><span class="label">TRANS fired</span><span class="value">—</span></div>
+      <div class="state-row"><span class="label">Tables written</span><span class="value">—</span></div>
+      <div class="state-row"><span class="label">Session memory</span><span class="value">empty</span></div>
+    </div>
+  </div>
+
+
+  <div class="between-turns"><span class="arrow">↓</span>Now the user explicitly asks to commit<span class="arrow">↓</span></div>
+
+
+  <!-- ─── TURN 3 ─────────────────────────────────────────────────────────── -->
+  <div class="turn-block">
+    <div class="turn-header">
+      <div class="turn-num-big">3</div>
+      <div class="turn-title">The commit fires. SPs run. Tables get written.</div>
+    </div>
+
+    <div class="user-bubble">"Create it."</div>
+
+    <div class="step">
+      <div class="step-num">Step 1<br>parse</div>
+      <div class="step-body">
+        <h5>The LLM recognises the commit verb</h5>
+        <div class="meta-box">
+<span class="k">LLM returns:</span>
+&nbsp;&nbsp;wants_commit:      <span class="ok">true</span>
+&nbsp;&nbsp;commit_kind:       "submit"        <span class="bad">// not "submit_and_approve" — user said "create", not "create and approve"</span>
+&nbsp;&nbsp;new slots:         none</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num green">Step 2<br>re-validate</div>
+      <div class="step-body">
+        <h5>Validation passes (state unchanged from Turn 2)</h5>
+        <p>All splice-required slots still present. No new requirements appeared between Turn 2 and Turn 3.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 3<br>pick TRANS</div>
+      <div class="step-body">
+        <h5>The bot chooses the right commit task</h5>
+        <p>PoCrtMain has two TRANS tasks for commits: <code>POCRTMAINSBT</code> (Create) and <code>POCRTMAINTRN4</code> (Create + Approve). The bot scores both by their <em>description</em>, biased by the LLM's <code>commit_kind</code>. Because <code>commit_kind = "submit"</code>, it picks the plain-create task.</p>
+        <div class="meta-box">
+<span class="k">trans selection:</span>
+&nbsp;&nbsp;candidate POCRTMAINSBT  (desc="Create PO")              <span class="ok">→ score +200</span>
+&nbsp;&nbsp;candidate POCRTMAINTRN4 (desc="Create and Approve PO")  → score   -100
+&nbsp;&nbsp;<span class="ok">chosen: POCRTMAINSBT</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num red">Step 4<br>fetch SP chain</div>
+      <div class="step-body">
+        <h5>The bot looks up which SPs run for POCRTMAINSBT</h5>
+        <p>From the journey model's <code>sp_chains</code> entry (originally loaded from <code>Service_details_PO.csv</code>), the bot retrieves the ordered list of stored procedures to invoke. Sequence numbers determine the order — same-sequence SPs run in the same batch; later sequences run after earlier ones complete.</p>
+        <div class="meta-box">
+<span class="k">SP call chain for POCRTMAINSBT:</span>
+&nbsp;&nbsp;seq 1: pocrmn_sp_crt_hdrsav     <span class="bad">// save header row</span>
+&nbsp;&nbsp;seq 1: pocrmn_sp_crt_hdrchk     <span class="bad">// validate header business rules</span>
+&nbsp;&nbsp;seq 1: pocrmn_sp_crtgrd         <span class="bad">// build line-item grid</span>
+&nbsp;&nbsp;seq 1: pocrmn_sp_init_suptxreg  <span class="bad">// init supplier tax region</span>
+&nbsp;&nbsp;seq 2: pocrmn_sp_aprhref        <span class="bad">// approval href setup</span>
+&nbsp;&nbsp;seq 3: pocrmn_sp_crtgrd_out     <span class="bad">// emit final output</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num red">Step 5<br>FIRE</div>
+      <div class="step-body">
+        <h5>The TRANS fires. Tables get written.</h5>
+        <p>The bot conceptually invokes the SP chain (in a real Ramco deployment this is a real database call; in our model we trace what <em>would</em> be written). The walked Terms splice adds <code>po_paytm_doclevel_detail</code> to the affected tables; the Capital data splice means the header row carries <code>po_type=Capital</code> and <code>capital_proposal_id</code>.</p>
+        <div class="meta-box">
+<span class="k">tables written:</span>
+&nbsp;&nbsp;<span class="ok">po_pomas_pur_order_hdr</span>     header row · status=Draft · po_type=Capital ·
+&nbsp;&nbsp;                              capital_proposal_id=CAP-PROP-2026-04
+&nbsp;&nbsp;<span class="ok">po_poitm_item_detail</span>       line item · ITM-99, qty=1, cost=75000
+&nbsp;&nbsp;<span class="ok">po_poshd_schedule_dtl</span>      default schedule · need_date=today
+&nbsp;&nbsp;<span class="ok">po_powh_allocation_dtl</span>     default warehouse allocation
+&nbsp;&nbsp;<span class="ok">po_paytm_doclevel_detail</span>   payment terms (from walked Terms splice)
+&nbsp;&nbsp;<span class="ok">po_paytm_linelevel_detail</span>  line-level payment terms</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num gold">Step 6<br>session memory</div>
+      <div class="step-body">
+        <h5>A synthetic PO number is minted</h5>
+        <p>Because PoCrt's entity taxonomy (loaded by the composer) says it produces a <code>PurchaseOrder</code> with id-slot <code>po_number</code>, the bot mints a synthetic id and stores it in session memory. This is the cross-journey carry mechanism: if the user later says "now amend it", the bot knows what "it" means.</p>
+        <div class="meta-box">
+<span class="k">session memory minted:</span>
+&nbsp;&nbsp;entity_kind:    PurchaseOrder
+&nbsp;&nbsp;id_slot:        po_number
+&nbsp;&nbsp;synthetic_id:   <span class="ok">PO-NEW-001</span>
+&nbsp;&nbsp;produced_by:    POCRT
+&nbsp;&nbsp;turn:           3
+&nbsp;&nbsp;amend_journey:  PoAmnd      <span class="bad">// derived from taxonomy — pre-computed for any future "amend it" message</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">Step 7<br>respond</div>
+      <div class="step-body">
+        <h5>The bot generates a confirmation</h5>
+      </div>
+    </div>
+
+    <div class="bot-reply-bubble">
+      <div class="reply-label">Bot replies</div>
+      Done. PurchaseOrder PO-NEW-001 has been created via POCRTMAINSBT (Capital, payment terms applied). Status is Draft — Capital POs need separate authorisation, so you can ask me to send it for approval whenever you're ready.
+    </div>
+
+    <div class="state-snapshot">
+      <div class="state-label">Bot state after Turn 3</div>
+      <div class="state-row"><span class="label">Journey locked</span><span class="value"><span class="chip purple bold">PoCrt</span></span></div>
+      <div class="state-row"><span class="label">Slots collected</span><span class="value">9 user-provided slots + po_number=PO-NEW-001 (auto-minted)</span></div>
+      <div class="state-row"><span class="label">Splice triggered (data)</span><span class="value"><span class="chip red bold">po_type==Capital</span></span></div>
+      <div class="state-row"><span class="label">Splices walked (UI)</span><span class="value"><span class="chip purple bold">terms_via_LNK3</span></span></div>
+      <div class="state-row"><span class="label">TRANS fired</span><span class="value"><span class="chip red bold">POCRTMAINSBT (write)</span></span></div>
+      <div class="state-row"><span class="label">SP chain run</span><span class="value">6 SPs across 3 sequences (see Step 4)</span></div>
+      <div class="state-row"><span class="label">Tables written</span><span class="value">6 tables (see Step 5)</span></div>
+      <div class="state-row"><span class="label">Session memory</span><span class="value"><span class="chip green bold">PurchaseOrder · po_number=PO-NEW-001</span></span></div>
+      <div class="state-row"><span class="label">Status of new PO</span><span class="value">Draft (awaiting authorisation)</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Recap — what just happened across three turns</span>
+    Turn 1: bot detected a data splice and BLOCKED the commit until the user provided the missing slot. &nbsp;Turn 2: user supplied the slot AND requested a sub-screen — bot walked a UI splice in the same turn. &nbsp;Turn 3: user said "create it" — bot picked the right TRANS (SBT, not TRN4), ran 6 SPs, wrote 6 tables, minted a synthetic PO number, and confirmed completion. &nbsp;<em>Zero per-case bot code. All driven by the parsed model.</em>
+  </div>
+</section>
+
+  <div class="convo-turn">
+    <div class="turn-num">1</div>
+    <div>
+      <div class="user-msg">"Create and approve a PO for SUP-300, USD, today, BUY-5, ITM-12 100 units at 5. I have approval rights."</div>
+      <div class="bot-msg">Done. PurchaseOrder PO-NEW-001 has been created via POCRTMAINTRN4. You can amend, approve, or hold this PurchaseOrder by telling me what you'd like to do next.</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Intent</span><span class="v"><span class="chip purple">create + approve</span></span></div>
+        <div class="internal-row"><span class="k">Journey locked</span><span class="v"><span class="chip purple bold">PoCrt</span></span></div>
+        <div class="internal-row"><span class="k">Slots extracted</span><span class="v">
+          <span class="chip">supplier_code=SUP-300</span><span class="chip">currency=USD</span>
+          <span class="chip">po_date=today</span><span class="chip">buyer=BUY-5</span>
+          <span class="chip">item_code=ITM-12</span><span class="chip">quantity=100</span><span class="chip">cost=5</span>
+        </span></div>
+        <div class="internal-row"><span class="k">Commit kind</span><span class="v"><span class="chip red">submit_and_approve</span></span></div>
+        <div class="fired-trans">
+          <div class="fired-head">▸ TRANS · POCRTMAINTRN4 · write</div>
+          <div class="sp-list">
+            seq 1 <span class="sp">pocrmn_sp_apr_hdrchk</span><span class="sp">pocrmn_sp_apr_hdrsav</span><span class="sp">pocrmn_sp_aprgrd</span><span class="sp">pocrmn_sp_init_suptxreg</span>
+            <br>seq 2 <span class="sp">pocrmn_sp_aprhref</span> &nbsp;|&nbsp; seq 3 <span class="sp">pocrmn_sp_aprgrd_out</span>
+          </div>
+          <div style="margin-top:10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3);">→ writes to: po_pomas_pur_order_hdr, po_poitm_item_detail, po_poshd_schedule_dtl, po_paytm_linelevel_detail, po_powh_allocation_dtl</div>
+        </div>
+        <div class="internal-row"><span class="k">Session memory</span><span class="v"><span class="chip green">PurchaseOrder · po_number=PO-NEW-001 (minted)</span></span></div>
+        <div class="internal-row"><span class="k">Post-commit ctx</span><span class="v"><span class="chip gold">entity=PurchaseOrder · amend_journey=PoAmnd</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="convo-turn">
+    <div class="turn-num">2</div>
+    <div>
+      <div class="user-msg">"Wait, I need to bump that quantity to 150."</div>
+      <div class="bot-msg">No problem. I've loaded PO-NEW-001 and updated the quantity to 150. Tell me when you're ready to amend.</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Change-language</span><span class="v"><span class="chip red">detected: "wait", "bump"</span></span></div>
+        <div class="internal-row"><span class="k">Journey switch</span><span class="v">PoCrt → <span class="chip purple bold">PoAmnd</span> (forced by post-commit invariant)</span></div>
+        <div class="internal-row"><span class="k">Auto-filled slot</span><span class="v"><span class="chip green">po_number=PO-NEW-001 (from session memory)</span></span></div>
+        <div class="internal-row"><span class="k">User-given slots</span><span class="v"><span class="chip">quantity=150</span></span></div>
+        <div class="fired-trans read">
+          <div class="fired-head">▸ TRANS · POAMDENTTRN1 · read (entry-screen search)</div>
+          <div class="sp-list">seq 1 <span class="sp">poamden_sp_srch</span></div>
+          <div style="margin-top:10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3);">→ loads PO-NEW-001 from po_pomas_pur_order_hdr (read-only)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="convo-turn">
+    <div class="turn-num">3</div>
+    <div>
+      <div class="user-msg">"Amend and approve in one shot."</div>
+      <div class="bot-msg">Done. PurchaseOrder PO-NEW-001 has been amended via POAMDMAINTRN5 with quantity=150 and re-authorised. Amendment number 1, status Authorised.</div>
+      <div class="bot-internal">
+        <div class="internal-label">Inside the bot</div>
+        <div class="internal-row"><span class="k">Commit kind</span><span class="v"><span class="chip red">submit_and_approve</span></span></div>
+        <div class="internal-row"><span class="k">Journey</span><span class="v"><span class="chip purple bold">PoAmnd</span> (still locked from turn 2)</span></div>
+        <div class="fired-trans">
+          <div class="fired-head">▸ TRANS · POAMDMAINTRN5 · write (Amend + Approve combined)</div>
+          <div class="sp-list">
+            seq 1 <span class="sp">poamdmm_sp_apr_hdrchk</span><span class="sp">poamdmm_sp_apr_hdrsav</span><span class="sp">poamdmm_sp_aprgrd</span>
+            <br>seq 2 <span class="sp">poamdmm_sp_aprhref</span> &nbsp;|&nbsp; seq 3 <span class="sp">poamdmm_sp_aprgrd_out</span>
+          </div>
+          <div style="margin-top:10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3);">→ updates po_pomas_pur_order_hdr (status=Authorised, amendment_number=1, approval_date=today)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Look at what happened</span>
+    Three user messages. Two write commits. One read. One auto-carried entity ID. One journey switch deterministically forced by the post-commit invariant. <em>Zero per-case bot code.</em>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ 7. GENERALISES ════════════════════════════ -->
+<section>
+  <div class="section-num">08 · Why this generalises</div>
+  <h2>How we'd add GR, PR, or PQ tomorrow.</h2>
+  <p class="section-lede">The system is module-agnostic by construction. Adding a new module requires almost no code change.</p>
+
+  <table>
+    <tr><th>Step</th><th>What you do</th><th>What changes</th></tr>
+    <tr><td>1</td><td>Drop GR's artifacts under <code>artifacts/ramco/GR/</code></td><td>Nothing</td></tr>
+    <tr><td>2</td><td>Run the 6 parsers (they auto-discover new files)</td><td>Nothing</td></tr>
+    <tr><td>3</td><td>Run the composer (entity taxonomy auto-classifies)</td><td>Nothing</td></tr>
+    <tr><td>4</td><td>Extend typed-slot dictionary with GR-specific slots</td><td>~10 lines</td></tr>
+    <tr><td>5</td><td>Extend <code>ENTRY_FLOW</code> for GR's entry screen</td><td>~5 lines</td></tr>
+    <tr><td>6</td><td>Write new eval cases for GR scenarios</td><td>JSON files</td></tr>
+  </table>
+
+  <div class="card tinted-green">
+    <p style="color: var(--ink-2); margin-bottom: 10px;"><strong>Convention rules inherit automatically:</strong> "slots ending in <code>_reason</code>/<code>_note</code>/<code>_description</code> are free-text" applies to GR's slots automatically.</p>
+    <p style="color: var(--ink-2);"><strong>Cross-module routing inherits automatically:</strong> when a user references a GR while inside a PO conversation, the bot detects the entity-kind mismatch via the entity taxonomy and routes.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ 8. TAKEAWAYS ════════════════════════════ -->
+<section>
+  <div class="section-num">09 · Five takeaways</div>
+  <h2>What this project taught us.</h2>
+
+  <div class="card tinted-yellow"><p style="color: var(--ink); font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; font-style: italic;">"Documents are commentary on the system, not the system itself. The screens, service catalog, and SPs are the source of truth — and they're deterministically parseable."</p></div>
+  <div class="card tinted-yellow"><p style="color: var(--ink); font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; font-style: italic;">"Per-activity naming conventions are unstable. Score by task description, not name. TRN4 in PoCrt means Create-and-Approve; in PoApp it means Get-Quote-Line-No — totally different."</p></div>
+  <div class="card tinted-yellow"><p style="color: var(--ink); font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; font-style: italic;">"The eval architecture matters more than the bot architecture. Switching from per-turn metrics to system-effect grading revealed bot v3 was 4× better than the original metric suggested."</p></div>
+  <div class="card tinted-yellow"><p style="color: var(--ink); font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; font-style: italic;">"Context carry across journeys must be a separate generic layer. Session memory keyed by entity taxonomy makes the bot module-agnostic."</p></div>
+  <div class="card tinted-yellow"><p style="color: var(--ink); font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; font-style: italic;">"LLM is the natural-language layer, never the structure layer. Every commit goes through the deterministic SP chain. The LLM can talk; only the parsed model can act."</p></div>
+</section>
+
+<footer>
+  Built May 2026 · 70% eval pass rate · 21 PO activities, 14 user-facing journeys, 1,219 SPs, 2,809 slots, 50 ground-truth conversations.<br>
+  Module-agnostic by construction — designed to extend to GR, PR, PQ, SIN with the same pipeline.
+</footer>
+
+</div>
+
+
+<!-- ══════════════════════════════ POPUPS ══════════════════════════════ -->
+<div class="popup-backdrop" id="popup-backdrop">
+  <!-- Popup 1: PO_info.xml -->
+  <div class="popup" data-popup-id="popup-po-info" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The module manifest</h2>
+        <div class="file-path">PO/ScreenObjects/PO/PO_info.xml &nbsp;·&nbsp; excerpt around the POCRT/POCRTMAIN block</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What you're looking at</b> &nbsp; This file lists every activity in the PO module, hierarchically. Activity → ILBO (screen group) → Page → Task. Each task has a <em>Type</em>: FETCH, INIT, TRANS, LINK, UI, HELP, DISPOSAL. The highlighted lines show the start of <code>POCRT</code> (Create Direct PO) and one of its ILBOs (<code>POCRTMAIN</code>) with a sample of its tasks.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">1</span>&lt;CUSTOMER Name="BCDG"&gt;</span><span class="line"><span class="ln">2</span>&lt;PROJECT Name="4H114"&gt;</span><span class="line"><span class="ln">3</span>&lt;COMPONENT Name="PO" Desc="Purchase Order"&gt;</span><span class="line"><span class="ln">4</span>&lt;ACTIVITIES&gt;</span><span class="line"><span class="ln">5</span>...</span><span class="line hl-strong"><span class="ln">·</span><span class="k">&lt;ACTIVITY</span> Name=<span class="s">"POCRT"</span> Desc=<span class="s">"Create Direct Purchase Order"</span><span class="k">&gt;</span></span><span class="line">  <span class="k">&lt;ILBOS&gt;</span></span><span class="line hl">    <span class="k">&lt;ILBO</span> Name=<span class="s">"POCRTMAIN"</span> Desc=<span class="s">"Create Direct Purchase Order"</span><span class="k">&gt;</span></span><span class="line">      <span class="k">&lt;PAGES&gt;</span></span><span class="line">        <span class="k">&lt;PAGE</span> Name=<span class="s">"[MAINSCREEN]"</span>&gt;</span><span class="line">          <span class="k">&lt;TASKS&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINFTH"</span>      Desc=<span class="s">"Fetch Create Main Page"</span>     Type=<span class="v">"FETCH"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAININI"</span>      Desc=<span class="s">"Initialize Create Main Page"</span> Type=<span class="v">"INIT"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINSBT"</span>      Desc=<span class="s">"Create PO"</span>                  Type=<span class="v">"TRANS"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINTRN4"</span>     Desc=<span class="s">"Create and Approve PO"</span>      Type=<span class="v">"TRANS"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINLNK3"</span>     Desc=<span class="s">"Specify Terms and Condition"</span> Type=<span class="v">"LINK"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINLNK7"</span>     Desc=<span class="s">"Specify Budget Details"</span>     Type=<span class="v">"LINK"</span>/<span class="k">&gt;</span></span><span class="line hl">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINLNK8"</span>     Desc=<span class="s">"Specify Dropship Address"</span>   Type=<span class="v">"LINK"</span>/<span class="k">&gt;</span></span><span class="line">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINSUPPUI"</span>   Desc=<span class="s">"Get Supplier Details"</span>       Type=<span class="v">"UI"</span>/<span class="k">&gt;</span></span><span class="line">            <span class="k">&lt;TASK</span> Name=<span class="s">"POCRTMAINHLPSUP"</span>   Desc=<span class="s">"Help On Supplier"</span>           Type=<span class="v">"HELP"</span>/<span class="k">&gt;</span></span><span class="line">            <span class="c">... (75 tasks in total for POCRTMAIN) ...</span></span><span class="line">          <span class="k">&lt;/TASKS&gt;</span></span><span class="line">        <span class="k">&lt;/PAGE&gt;</span></span><span class="line">      <span class="k">&lt;/PAGES&gt;</span></span><span class="line">    <span class="k">&lt;/ILBO&gt;</span></span><span class="line">    <span class="c">... (15 more ILBOs in POCRT: POCRTBUD, POCRTDRPSHP, POCRTTRM, ...) ...</span></span><span class="line"><span class="k">&lt;/ACTIVITY&gt;</span></span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">Reading the highlights</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The ACTIVITY tag</strong> opens the Create Direct PO activity. Each activity is a complete journey in the module.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The ILBO tag</strong> is one "screen group" — POCRTMAIN is the main create screen. Sibling ILBOs are sub-screens (Budget, Dropship, Terms, etc.).</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The TASK tags</strong> are what the user can do on this screen. FETCH = the screen loads. INIT = dropdowns populate. TRANS = the user clicks "Create" or "Create and Approve". LINK = opens a sub-screen.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The parser reads this</strong> and produces a Python dict <code>{POCRT: {POCRTMAIN: [task1, task2, ...]}}</code>. It's the bot's starting reference for "what can happen on this screen".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 2: PoCrt_PoCrtMain_State.xml -->
+  <div class="popup" data-popup-id="popup-state-xml" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The screen state machine</h2>
+        <div class="file-path">PO/ScreenObjects/PO/PoCrt_PoCrtMain_State.xml &nbsp;·&nbsp; top of file</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What's a state machine here?</b> &nbsp; PoCrtMain has <b>three services</b> — fetch (load page), create (submit), approve (submit + authorise). Each service has <b>four named states</b> like <code>project_details_on</code> / <code>project_details_off</code>. These state IDs are <em>splice triggers</em>: in <code>project_details_on</code>, certain controls become visible that are hidden otherwise. This file is the bot's source of "when does PoCrtMain behave differently?"
+      </div>
+      <div class="file-snippet"><span class="line hl-strong"><span class="ln">1</span><span class="k">&lt;states</span> customer=<span class="s">"bcdg"</span> project=<span class="s">"4h114"</span> process=<span class="s">"purchase"</span></span><span class="line hl-strong"><span class="ln">·</span>        component=<span class="s">"po"</span> activity=<span class="s">"pocrt"</span> ui=<span class="s">"pocrtmain"</span><span class="k">&gt;</span></span><span class="line"><span class="ln">2</span>  <span class="k">&lt;services&gt;</span></span><span class="line"><span class="ln">3</span></span><span class="line hl"><span class="ln">·</span>    <span class="k">&lt;service</span> name=<span class="s">"pocrmn_ser_fet"</span> taskname=<span class="s">"pocrtmainfth"</span><span class="k">&gt;</span>     <span class="c">// FETCH (load screen)</span></span><span class="line">      <span class="k">&lt;state</span> id=<span class="v">"project_details_off"</span> ...&gt; ... <span class="k">&lt;/state&gt;</span></span><span class="line">      <span class="k">&lt;state</span> id=<span class="v">"project_details_on"</span> ...&gt; ... <span class="k">&lt;/state&gt;</span></span><span class="line">      <span class="k">&lt;state</span> id=<span class="v">"state_off"</span>           ...&gt; ... <span class="k">&lt;/state&gt;</span></span><span class="line">      <span class="k">&lt;state</span> id=<span class="v">"state_on"</span>            ...&gt; ... <span class="k">&lt;/state&gt;</span></span><span class="line">    <span class="k">&lt;/service&gt;</span></span><span class="line"></span><span class="line hl"><span class="ln">·</span>    <span class="k">&lt;service</span> name=<span class="s">"pocrmn_ser_crt"</span> taskname=<span class="s">"pocrtmainsbt"</span><span class="k">&gt;</span>    <span class="c">// CREATE (submit)</span></span><span class="line">      <span class="k">&lt;state</span> id=<span class="v">"project_details_off"</span>&gt;</span><span class="line">        <span class="k">&lt;controls&gt;</span></span><span class="line hl-strong"><span class="ln">·</span>          <span class="k">&lt;control</span> id=<span class="s">"mlt"</span> name=<span class="s">"mlt"</span>&gt;</span><span class="line hl-strong"><span class="ln">·</span>            <span class="k">&lt;views&gt;</span></span><span class="line hl-strong"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"37"</span> visible=<span class="v">"n"</span>/<span class="k">&gt;</span></span><span class="line hl-strong"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"38"</span> visible=<span class="v">"n"</span>/<span class="k">&gt;</span></span><span class="line hl-strong"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"39"</span> visible=<span class="v">"n"</span>/<span class="k">&gt;</span></span><span class="line">            <span class="k">&lt;/views&gt;</span></span><span class="line">          <span class="k">&lt;/control&gt;</span></span><span class="line">        <span class="k">&lt;/controls&gt;</span></span><span class="line">      <span class="k">&lt;/state&gt;</span></span><span class="line"></span><span class="line"><span class="ln">·</span>      <span class="k">&lt;state</span> id=<span class="v">"project_details_on"</span>&gt;     <span class="c">// SAME service, DIFFERENT state</span></span><span class="line">        ...same control "mlt", but now:</span><span class="line hl"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"37"</span> visible=<span class="v">"y"</span>/<span class="k">&gt;</span>   <span class="c">// ← now visible</span></span><span class="line hl"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"38"</span> visible=<span class="v">"y"</span>/<span class="k">&gt;</span></span><span class="line hl"><span class="ln">·</span>              <span class="k">&lt;vw</span> n=<span class="s">"39"</span> visible=<span class="v">"y"</span>/<span class="k">&gt;</span></span><span class="line">      <span class="k">&lt;/state&gt;</span></span><span class="line">    <span class="k">&lt;/service&gt;</span></span><span class="line"></span><span class="line hl"><span class="ln">·</span>    <span class="k">&lt;service</span> name=<span class="s">"pocrmn_ser_apr"</span> taskname=<span class="s">"pocrtmaintrn4"</span><span class="k">&gt;</span>  <span class="c">// APPROVE (submit + authorise)</span></span><span class="line">      ...same four states...</span><span class="line">    <span class="k">&lt;/service&gt;</span></span><span class="line"></span><span class="line"><span class="ln">·</span>  <span class="k">&lt;/services&gt;</span></span><span class="line"><span class="ln">·</span><span class="k">&lt;/states&gt;</span></span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">Three things to notice</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The three services are the canonical journey skeleton.</strong> Fetch → Create → Approve. The bot's "what does this screen do at the highest level" comes straight from here.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>State IDs are splice trigger names.</strong> The XML doesn't tell us <em>what</em> turns <code>project_details_on</code> — that's in the SP code. But it tells us <em>that</em> the state exists, and which controls change in it.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The view-visibility diff is the splice's UI effect.</strong> In one state, views 37/38/39 are hidden. In the other, they're visible. This is what the user would actually see change on screen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 3: Pocrt_pocrtmain.htm -->
+  <div class="popup" data-popup-id="popup-htm" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The form template — and the self-documenting task header</h2>
+        <div class="file-path">PO/ScreenObjects/PO/Pocrt_pocrtmain.htm &nbsp;·&nbsp; top of file</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What you're looking at</b> &nbsp; The very top of the file is a stack of <code>&lt;meta&gt;</code> tags. The highlighted one — <code>&lt;meta name="Tasks"&gt;</code> — packs <em>every task on this screen</em> into one line, comma-separated, each in the form <code>TASKNAME~Description:TYPE</code>. Then below come the actual form sections with labels and fields.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">1</span>&lt;html&gt;</span><span class="line"><span class="ln">2</span>  &lt;head&gt;</span><span class="line"><span class="ln">3</span>    &lt;meta name=<span class="s">"Activity Name"</span>        content=<span class="s">"POCRT"</span>/&gt;</span><span class="line"><span class="ln">4</span>    &lt;meta name=<span class="s">"Activity Description"</span> content=<span class="s">"Create Direct Purchase Order"</span>/&gt;</span><span class="line"><span class="ln">5</span>    &lt;meta name=<span class="s">"ILBO Name"</span>            content=<span class="s">"POCRTMAIN"</span>/&gt;</span><span class="line"><span class="ln">6</span></span><span class="line hl-strong"><span class="ln">7</span>    <span class="k">&lt;meta</span> name=<span class="s">"Tasks"</span> content=<span class="s">"</span></span><span class="line hl"><span class="ln">·</span>      POCRTMAINFTH~Default Fetch:<span class="v">FETCH</span>,</span><span class="line hl"><span class="ln">·</span>      POCRTMAININI~Initialize:<span class="v">INIT</span>,</span><span class="line hl-strong"><span class="ln">·</span>      POCRTMAINSBT~Create PO:<span class="v">TRANS</span>,</span><span class="line hl-strong"><span class="ln">·</span>      POCRTMAINTRN4~Create and Approve PO:<span class="v">TRANS</span>,</span><span class="line hl"><span class="ln">·</span>      POCRTMAINLNK3~Specify Terms and Condition:<span class="v">LINK</span>,</span><span class="line hl"><span class="ln">·</span>      POCRTMAINLNK4~Specify Tax/Charge/Discount:<span class="v">LINK</span>,</span><span class="line hl"><span class="ln">·</span>      POCRTMAINLNK7~Specify Budget Details:<span class="v">LINK</span>,</span><span class="line hl"><span class="ln">·</span>      POCRTMAINLNK8~Specify Dropship Address:<span class="v">LINK</span>,</span><span class="line"><span class="ln">·</span>      POCRTMAINSUPPUI~Get Supplier Details:<span class="v">UI</span>,</span><span class="line"><span class="ln">·</span>      POCRTMAINHLPSUP~Help On Supplier:<span class="v">HELP</span>,</span><span class="line"><span class="ln">·</span>      ... 75 tasks total ...</span><span class="line hl-strong"><span class="ln">·</span>    <span class="k">"/&gt;</span></span><span class="line"><span class="ln">·</span>  &lt;/head&gt;</span><span class="line"><span class="ln">·</span>  &lt;body&gt;</span><span class="line"><span class="ln">·</span>    &lt;form&gt;</span><span class="line"><span class="ln">·</span>      <span class="c">// ─── now the actual visible form ───</span></span><span class="line"><span class="ln">·</span>      &lt;table id=<span class="s">"workflowsection"</span> type=<span class="s">"section"</span>&gt;</span><span class="line"><span class="ln">·</span>        ...</span><span class="line"><span class="ln">·</span>      &lt;/table&gt;</span><span class="line"><span class="ln">·</span>      &lt;table id=<span class="s">"pocrtmain_mainscreen_section02_1"</span> type=<span class="s">"section"</span>&gt;</span><span class="line"><span class="ln">·</span>        ...</span><span class="line hl"><span class="ln">·</span>        <span class="k">&lt;table</span> type=<span class="s">"label"</span> btsynonym=<span class="s">"status"</span><span class="k">&gt;</span></span><span class="line hl"><span class="ln">·</span>          &lt;td class=<span class="s">"labelsleft"</span>&gt;Order Status&lt;/td&gt;</span><span class="line hl"><span class="ln">·</span>        <span class="k">&lt;/table&gt;</span></span><span class="line hl"><span class="ln">·</span>        <span class="k">&lt;table</span> type=<span class="s">"displayonly"</span> name=<span class="s">"txtstatus"</span> datatype=<span class="s">"char"</span> btsynonym=<span class="s">"status"</span><span class="k">&gt;</span></span><span class="line hl"><span class="ln">·</span>          ...</span><span class="line hl"><span class="ln">·</span>        <span class="k">&lt;/table&gt;</span></span><span class="line"><span class="ln">·</span>      &lt;/table&gt;</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">Two parsing wins</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The meta Tasks tag</strong> gives us the entire task surface of this screen in ONE LINE. Split on commas, parse each entry as <code>TASKNAME~Desc:Type</code>. Every TASK is captured with its TYPE — and TYPE is what tells us whether it's a commit (TRANS), a sub-screen entry (LINK), or just a field validator (UI).</div>
+        <div class="ann"><span class="ln">★</span><strong>The form sections + label + field pattern</strong> gives us slot extraction for free. A field <code>&lt;table type="displayonly" name="txtstatus" btsynonym="status"&gt;</code> is paired with its label <code>&lt;table type="label" btsynonym="status"&gt;Order Status&lt;/table&gt;</code> by the shared <code>btsynonym</code>. The parser walks the DOM, pairs them, produces 86 slot records for PoCrtMain alone.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Interesting discrepancy:</strong> the meta Tasks tag has POCRTMAINLNK4 (TCD) but <code>PO_info.xml</code> doesn't. The two artifacts disagree. Our P3 validator surfaces these mismatches as warnings so you can investigate. We trust the .htm because the form is what actually runs.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 4: Pocrt_pocrtmain_user.js -->
+  <div class="popup" data-popup-id="popup-js" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The screen behaviour (JS)</h2>
+        <div class="file-path">PO/ScreenObjects/PO/Pocrt_pocrtmain_user.js &nbsp;·&nbsp; postTaskResultProcess switch</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What this is</b> &nbsp; Each task on the screen gets a success message displayed to the user when the task completes. This file holds them in one switch statement. The parser reads this to <em>cross-check</em> task descriptions when the manifest is terse — three sources should agree on what a task does.
+      </div>
+      <div class="file-snippet"><span class="line hl-strong"><span class="ln">1</span><span class="k">componentName</span>  = <span class="s">"po"</span>;</span><span class="line hl-strong"><span class="ln">2</span><span class="k">activityName</span>   = <span class="s">"pocrt"</span>;</span><span class="line hl-strong"><span class="ln">3</span><span class="k">ilboName</span>       = <span class="s">"pocrtmain"</span>;</span><span class="line hl-strong"><span class="ln">4</span><span class="k">activityDesc</span>   = <span class="s">"Create Direct Purchase Order"</span>;</span><span class="line"><span class="ln">5</span></span><span class="line"><span class="ln">·</span><span class="k">function</span> postTaskResultProcess(sTaskName) {</span><span class="line"><span class="ln">·</span>  <span class="k">switch</span> (sTaskName) {</span><span class="line hl"><span class="ln">·</span>    <span class="k">case</span> <span class="s">"POCRTMAINFTH"</span>:</span><span class="line hl"><span class="ln">·</span>      sTaskStatusMsg = <span class="s">"Fetch Create Main Page Successfully Completed"</span>;</span><span class="line hl"><span class="ln">·</span>      <span class="k">break</span>;</span><span class="line hl"><span class="ln">·</span>    <span class="k">case</span> <span class="s">"POCRTMAINBUDDETAILLNK"</span>:</span><span class="line hl"><span class="ln">·</span>      sTaskStatusMsg = <span class="s">"View Budget Details Successfully Completed"</span>;</span><span class="line hl"><span class="ln">·</span>      <span class="k">break</span>;</span><span class="line hl"><span class="ln">·</span>    <span class="k">case</span> <span class="s">"POCRTMAINEDTMAINLNK"</span>:</span><span class="line hl"><span class="ln">·</span>      sTaskStatusMsg = <span class="s">"Edit PO Successfully Completed"</span>;</span><span class="line hl"><span class="ln">·</span>      <span class="k">break</span>;</span><span class="line"><span class="ln">·</span>    <span class="k">case</span> <span class="s">"POCRTMAINCURRUI"</span>:</span><span class="line"><span class="ln">·</span>      sTaskStatusMsg = <span class="s">"Get Exchange Rate Successfully Completed"</span>;</span><span class="line"><span class="ln">·</span>      <span class="k">break</span>;</span><span class="line"><span class="ln">·</span>    ... 50+ more cases ...</span><span class="line"><span class="ln">·</span>  }</span><span class="line"><span class="ln">·</span>}</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">Why this matters</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The four globals at the top</strong> bind this screen to its activity: <code>activityName=pocrt</code>, <code>ilboName=pocrtmain</code>. That binding is what lets us cross-reference between files.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The switch cases give a SECOND opinion</strong> on what each task does. If the manifest says "TRN4 — Get all Quote Line No" but the JS says "Create and Approve PO Successfully", we know something's off. (For PoCrtMain they agree.)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 5: Service_details_PO.csv -->
+  <div class="popup" data-popup-id="popup-csv" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The service catalog</h2>
+        <div class="file-path">PO/ModelInfo/Service_details_PO.csv &nbsp;·&nbsp; rows for PoCrtMain.PoCrtMainSbt</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>The most important CSV in the project</b> &nbsp; This file maps <code>(activity, ui, task) → SP call chain</code>, ordered by <code>sequenceno</code>. When the user clicks "Save", we look up the matching rows here, sort by sequenceno, and we have the exact list of stored procedures that run.
+      </div>
+      <div class="file-snippet"><span class="line hl-strong"><span class="ln">1</span>parent_service,parent_method,component,process,<span class="k">activity_name</span>,activitydesc,createddate,<span class="k">ui_name</span>,description,<span class="k">task_name</span>,taskdesc,service_name,method_name,<span class="k">spname</span>,lvl,ps_sequenceno,<span class="k">sequenceno</span></span><span class="line"><span class="ln">2</span></span><span class="line"><span class="ln">·</span><span class="c">// All rows below have the same first 4 cols: NULL,NULL,PO,Purchase</span></span><span class="line"><span class="ln">·</span><span class="c">// All have activity=PoCrt, ui=PoCrtMain, task=PoCrtMainSbt, taskdesc='Create PO'</span></span><span class="line"><span class="ln">·</span></span><span class="line hl"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_met_crt_hdrsav,<span class="v">pocrmn_sp_crt_hdrsav</span>,0,1,<span class="k">1</span></span><span class="line hl"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_met_crt_hdrchk,<span class="v">pocrmn_sp_crt_hdrchk</span>,0,3,<span class="k">1</span></span><span class="line hl"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_met_crtgrd,<span class="v">pocrmn_sp_crtgrd</span>,0,2,<span class="k">1</span></span><span class="line hl"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_Mt_init_suptxreg,<span class="v">pocrmn_sp_init_suptxreg</span>,0,4,<span class="k">1</span></span><span class="line hl-strong"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_met_aprHRef,<span class="v">pocrmn_sp_aprhref</span>,0,4,<span class="k">2</span></span><span class="line hl-strong"><span class="ln">·</span>...<span class="k">PoCrt</span>,Create...,<span class="k">PoCrtMain</span>,Create...,<span class="k">PoCrtMainSbt</span>,Create PO,pocrmn_ser_crt,pocrmn_met_crtgrd_out,<span class="v">pocrmn_sp_crtgrd_out</span>,0,4,<span class="k">3</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="c">// Sort the six rows above by sequenceno, you get the SP execution order:</span></span><span class="line"><span class="ln">·</span><span class="c">// </span></span><span class="line"><span class="ln">·</span><span class="c">//   seq 1 (parallel batch): hdrsav, hdrchk, crtgrd, init_suptxreg</span></span><span class="line"><span class="ln">·</span><span class="c">//   seq 2: aprhref</span></span><span class="line"><span class="ln">·</span><span class="c">//   seq 3: crtgrd_out</span></span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">Reading the highlights</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The CSV header</strong> declares 17 columns; the four bolded ones — <code>activity_name</code>, <code>ui_name</code>, <code>task_name</code>, <code>sequenceno</code> — are the join keys. Plus <code>spname</code> = the stored procedure to call.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Six rows for PoCrtMainSbt</strong>, all with sequenceno 1, 2, or 3. SPs at the same sequenceno run in parallel (or any order); the ones at sequenceno 2 run after all of sequenceno 1's complete; sequenceno 3 last.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The parser groups</strong> by (activity, ui, task) and sorts within group by sequenceno. The result is a clean call chain: <em>hdrsav → hdrchk → crtgrd → init_suptxreg → aprhref → crtgrd_out</em>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 6: pocrmn_sp_crt_hdrchk.sql -->
+  <div class="popup" data-popup-id="popup-sql" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>A stored procedure (the actual business logic)</h2>
+        <div class="file-path">PO/SPS/pocrmn_sp_crt_hdrchk.sql &nbsp;·&nbsp; lines 670-685</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>Where data splices live</b> &nbsp; Every Ramco SP starts with parameter declarations (= slot inputs from the screen). The body contains <code>IF</code> branches that gate behaviour. <strong>Each <code>IF</code> whose condition references a parameter is a data splice.</strong> When the user enters a particular value into a slot, a different branch fires and different tables get written.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">670</span>      WHILE @@fetch_status = 0</span><span class="line"><span class="ln">671</span>      BEGIN</span><span class="line hl-strong"><span class="ln">672</span>          <span class="k">IF</span> <span class="v">@schedtype_tmp</span> = <span class="s">'SI'</span></span><span class="line"><span class="ln">673</span>          <span class="k">BEGIN</span></span><span class="line hl"><span class="ln">674</span>              <span class="k">INSERT INTO</span> <span class="v">po_poshd_schedule_dtl</span></span><span class="line hl"><span class="ln">675</span>                (</span><span class="line hl"><span class="ln">676</span>                  poshd_poou,</span><span class="line hl"><span class="ln">677</span>                  poshd_pono,</span><span class="line hl"><span class="ln">678</span>                  poshd_poamendmentno,</span><span class="line hl"><span class="ln">679</span>                  poshd_polineno,</span><span class="line hl"><span class="ln">680</span>                  poshd_scheduleno,</span><span class="line hl"><span class="ln">681</span>                  poshd_shddate,</span><span class="line"><span class="ln">682</span>                  ...</span><span class="line"><span class="ln">683</span>                )</span><span class="line"><span class="ln">684</span>          <span class="k">END</span></span><span class="line"><span class="ln">685</span>      <span class="k">END</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="c">// Also in this file, elsewhere:</span></span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@potypeenum_tmp</span> = <span class="s">'Capital'</span></span><span class="line"><span class="ln">·</span>   ... requires capital_proposal_id ...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@imports_tmp</span> = 1</span><span class="line"><span class="ln">·</span>   ... requires incoterm, country_of_origin ...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@sup_currency</span> &lt;&gt; <span class="v">@currencycode_tmp</span></span><span class="line"><span class="ln">·</span>   <span class="k">EXEC</span> erate_sysact_spgetexcgrate ...</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">What the parser extracts</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The IF at line 672</strong> says: when the user's <code>schedtype</code> slot equals 'SI' (single-delivery), INSERT a row into <code>po_poshd_schedule_dtl</code>. That's <em>both</em> a data splice (<code>schedtype = SI</code>) <em>and</em> a table-footprint signal (<code>po_poshd_schedule_dtl</code> gets written under this branch).</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The three other examples</strong> are the major data splices the bot knows about: <code>po_type = Capital</code> (requires <code>capital_proposal_id</code>), <code>imports = 1</code> (requires <code>incoterm</code> and <code>country_of_origin</code>), and the currency-mismatch case that auto-fires an exchange-rate lookup.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>p06_sp_branches.py</strong> walks every SP file, extracts every IF/CASE branch, records the parameter and the value being tested, the body's INSERTs/UPDATEs/DELETEs, and the EXEC calls. Across 1,219 SPs we get 23,917 raw branches and (after filtering sentinel-value comparisons) 944 real splice candidates.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 7: UI Splice example -->
+  <div class="popup" data-popup-id="popup-ui-splice" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>UI splice — a real example</h2>
+        <div class="file-path">Source: the <code>&lt;meta name="Tasks"&gt;</code> tag in Pocrt_pocrtmain.htm</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>How UI splices are discovered</b> &nbsp; We split the meta Tasks tag on commas, parse each entry as <code>NAME~Desc:TYPE</code>, and keep only the entries with <code>TYPE=LINK</code>. Each one names a sub-screen the user can open. Below is a slice of PoCrtMain showing the nine LINK-typed tasks — the nine UI splices on this screen.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span><span class="c">// Filtered to TYPE=LINK only — these are the UI splices on PoCrtMain</span></span><span class="line"><span class="ln">·</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK2  ~ <span class="s">"Specify Schedule and Distribution"</span> : <span class="v">LINK</span>    <span class="c">// → PoCrtSch</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK3  ~ <span class="s">"Specify Terms and Condition"</span>        : <span class="v">LINK</span>    <span class="c">// → PoCrtTrm</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK4  ~ <span class="s">"Specify Tax/Charge/Discount"</span>        : <span class="v">LINK</span>    <span class="c">// → PoCrtTcd</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK6  ~ <span class="s">"Specify Quality Details"</span>           : <span class="v">LINK</span>    <span class="c">// → PoCrtQlty</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK7  ~ <span class="s">"Specify Budget Details"</span>            : <span class="v">LINK</span>    <span class="c">// → PoCrtBud</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK8  ~ <span class="s">"Specify Dropship Address"</span>          : <span class="v">LINK</span>    <span class="c">// → PoCrtDrpshp</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK9  ~ <span class="s">"Specify PO-PR Coverage"</span>            : <span class="v">LINK</span>    <span class="c">// → PoCrtPrCov</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK10 ~ <span class="s">"Specify PO-SO Coverage"</span>            : <span class="v">LINK</span>    <span class="c">// → PoCrtSoCov</span></span><span class="line hl"><span class="ln">·</span>POCRTMAINLNK11 ~ <span class="s">"Attach Notes"</span>                      : <span class="v">LINK</span>    <span class="c">// → PoCrtNotes</span></span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">How the bot uses these</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Trigger:</strong> the user explicitly says something that maps to one of these descriptions — "add custom payment terms" (→ LNK3 Terms), "5% discount" (→ LNK4 TCD), "ship directly to customer" (→ LNK8 Dropship).</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Optional:</strong> all of these are user-initiated. The bot doesn't auto-walk them. If the user doesn't mention TCD, the bot won't open it — the core SP chain applies sensible defaults.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Same shape per module:</strong> when GR's <code>.htm</code> meta Tasks tag is parsed, its LINK entries become the GR module's UI splices — no code changes needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 8: Data Splice example -->
+  <div class="popup" data-popup-id="popup-data-splice" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>Data splice — a real example</h2>
+        <div class="file-path">Source: parameter declarations + IF branches in pocrmn_sp_crt_hdrchk.sql</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>How data splices are discovered</b> &nbsp; The SP receives slot values as parameters (lines starting with @). Inside the body, an <code>IF</code> that tests one of those parameters is a data splice — the slot's value forces a different downstream path.
+      </div>
+      <div class="file-snippet"><span class="line hl"><span class="ln">·</span><span class="c">// Parameter declarations at the top of pocrmn_sp_crt_hdrchk.sql:</span></span><span class="line hl-strong"><span class="ln">·</span>CREATE PROCEDURE pocrmn_sp_crt_hdrchk</span><span class="line hl"><span class="ln">·</span>    <span class="v">@potypeenum</span>     udd_potypeenum,         <span class="c">// PO type slot (Standard/Capital/Consignment)</span></span><span class="line hl"><span class="ln">·</span>    <span class="v">@imports</span>        udd_checkbox,            <span class="c">// imports flag slot</span></span><span class="line hl"><span class="ln">·</span>    <span class="v">@loi</span>            udd_modeflag,            <span class="c">// LoI (Letter of Intent) flag</span></span><span class="line hl"><span class="ln">·</span>    <span class="v">@supplier_code</span>  udd_supplier,</span><span class="line hl"><span class="ln">·</span>    <span class="v">@currencycode</span>   udd_currency,</span><span class="line"><span class="ln">·</span>    ...</span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="c">// IF branches further down — each is a data splice:</span></span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@potypeenum_tmp</span> = <span class="s">'Capital'</span></span><span class="line"><span class="ln">·</span>    ...sets <span class="v">capital_proposal_id</span> as required, runs Capital-specific checks...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@potypeenum_tmp</span> = <span class="s">'Consignment'</span></span><span class="line"><span class="ln">·</span>    ...requires <span class="v">consignment_rule_id</span>...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@imports_tmp</span> = 1</span><span class="line"><span class="ln">·</span>    ...requires <span class="v">incoterm</span>, <span class="v">country_of_origin</span>, <span class="v">shipping_mode</span>...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@loi_tmp</span> = <span class="s">'X'</span></span><span class="line"><span class="ln">·</span>    ...marks quantities as indicative, sets <span class="v">loi_validity_days</span>...</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span><span class="k">IF</span> <span class="v">@sup_currency</span> &lt;&gt; <span class="v">@currencycode_tmp</span></span><span class="line"><span class="ln">·</span>    <span class="k">EXEC</span> erate_sysact_spgetexcgrate ...   <span class="c">// triggers exchange-rate fetch</span></span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">What this gives the bot</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>For PoCrt, four canonical data splices:</strong> <code>po_type==Capital</code>, <code>po_type==Consignment</code>, <code>imports==true</code>, <code>loi==true</code>. Each one adds required slots that the bot must collect before committing.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Not optional:</strong> if the user picks po_type=Capital, the bot MUST collect capital_proposal_id. Otherwise the SP's IF branch will raise an error at runtime. The bot checks this client-side before firing the commit.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The "computed splice":</strong> the currency-mismatch IF triggers automatically when the supplier's currency differs from the PO currency. The bot doesn't ask the user — it just fires the rate-fetch via the SP chain.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 9: State Splice example -->
+  <div class="popup" data-popup-id="popup-state-splice" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>State splice — a real example</h2>
+        <div class="file-path">Source: state declarations in PoCrt_PoCrtMain_State.xml</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What's a "state" here?</b> &nbsp; The state XML defines named visibility configurations. Inside each <code>&lt;state&gt;</code>, certain controls/views are visible="y" and others are visible="n". The state ID names the condition; the contents say what changes when the condition is true.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span>&lt;service name="pocrmn_ser_crt" taskname="pocrtmainsbt"&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>  <span class="k">&lt;state</span> id=<span class="v">"project_details_off"</span><span class="k">&gt;</span>     <span class="c">// project tracking NOT in use</span></span><span class="line"><span class="ln">·</span>    &lt;controls&gt;</span><span class="line"><span class="ln">·</span>      &lt;control id="mlt"&gt;</span><span class="line"><span class="ln">·</span>        &lt;views&gt;</span><span class="line hl"><span class="ln">·</span>          &lt;vw n="37" visible=<span class="v">"n"</span>/&gt;   <span class="c">// these three views are HIDDEN</span></span><span class="line hl"><span class="ln">·</span>          &lt;vw n="38" visible=<span class="v">"n"</span>/&gt;</span><span class="line hl"><span class="ln">·</span>          &lt;vw n="39" visible=<span class="v">"n"</span>/&gt;</span><span class="line"><span class="ln">·</span>        &lt;/views&gt;</span><span class="line"><span class="ln">·</span>      &lt;/control&gt;</span><span class="line"><span class="ln">·</span>    &lt;/controls&gt;</span><span class="line"><span class="ln">·</span>  &lt;/state&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>  <span class="k">&lt;state</span> id=<span class="v">"project_details_on"</span><span class="k">&gt;</span>      <span class="c">// project tracking IS in use</span></span><span class="line"><span class="ln">·</span>    &lt;controls&gt;</span><span class="line"><span class="ln">·</span>      &lt;control id="mlt"&gt;</span><span class="line"><span class="ln">·</span>        &lt;views&gt;</span><span class="line hl"><span class="ln">·</span>          &lt;vw n="37" visible=<span class="v">"y"</span>/&gt;   <span class="c">// same views, now VISIBLE</span></span><span class="line hl"><span class="ln">·</span>          &lt;vw n="38" visible=<span class="v">"y"</span>/&gt;</span><span class="line hl"><span class="ln">·</span>          &lt;vw n="39" visible=<span class="v">"y"</span>/&gt;</span><span class="line"><span class="ln">·</span>        &lt;/views&gt;</span><span class="line"><span class="ln">·</span>      &lt;/control&gt;</span><span class="line"><span class="ln">·</span>    &lt;/controls&gt;</span><span class="line"><span class="ln">·</span>  &lt;/state&gt;</span><span class="line"><span class="ln">·</span>&lt;/service&gt;</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">What this gives the bot</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The state ID names the condition.</strong> Here, <code>project_details_on</code> is what the screen looks like when project-tracking is enabled for this PO. The XML doesn't say <em>what makes it on</em> — that's in the SP code — but it tells us the state EXISTS and which controls are affected.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>UI mirror of a data condition.</strong> State splices are essentially the visible side of data splices. The SP has <code>IF @project_id IS NOT NULL ... → state becomes "project_details_on"</code>; the XML tells us views 37/38/39 toggle visibility as a result.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The bot mostly uses the data side</strong> (from SP IFs) for behaviour. The XML state is more for the future visual runtime (showing the user a faithful mirror of what they'd see on Ramco's actual screen).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 10: Composed Model -->
+  <div class="popup" data-popup-id="popup-model" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The composed journey model — actual excerpts</h2>
+        <div class="file-path">out/model/activities/POCRT.json &nbsp;·&nbsp; 36,347 lines &nbsp;·&nbsp; 1.06 MB</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>Honest scope note</b> &nbsp; The full <code>POCRT.json</code> file is <strong>36,347 lines</strong> long because it includes every slot of every screen (15 screens × 50-86 slots each), every splice (273 total), every SP call chain (222 entries), and full task details for each. The excerpts below are <em>real verbatim</em> slices of the file. To see the entire file, use the link at the bottom.
+
+        <div style="margin-top:14px; padding:12px 16px; background: var(--surface); border-radius: 10px; border: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 11px; color: var(--ink-3); line-height: 1.6;">
+          File composition at a glance:<br>
+          &nbsp;&nbsp;• top-level keys: activity, description, main_screen, canonical_spine, splice_summary, splices, screens, sp_chains, sp_chains_summary, entity_produced<br>
+          &nbsp;&nbsp;• canonical_spine: <b>6 entries</b> (fetch, init, fill, 3 commits)<br>
+          &nbsp;&nbsp;• splices: <b>126 ui_splices + 14 state_splices + 133 data_splices</b><br>
+          &nbsp;&nbsp;• screens: <b>15 ILBOs</b>, totalling ~800 slots<br>
+          &nbsp;&nbsp;• sp_chains: <b>222</b> distinct (screen, task) → SP-chain entries
+        </div>
+      </div>
+
+      <!-- Excerpt 1: Top + canonical_spine -->
+      <div style="padding: 0 32px; padding-top: 20px; font-family: 'Inter', sans-serif;">
+        <h4 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--lavender-deep); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Excerpt 1 — Top of file + canonical_spine</h4>
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">1</span>{</span><span class="line hl-strong"><span class="ln">2</span>  <span class="k">"activity"</span>: <span class="s">"POCRT"</span>,</span><span class="line hl-strong"><span class="ln">3</span>  <span class="k">"description"</span>: <span class="s">"Create Direct Purchase Order"</span>,</span><span class="line"><span class="ln">4</span>  <span class="k">"is_user_facing"</span>: true,</span><span class="line"><span class="ln">5</span>  <span class="k">"screen_count"</span>: 15,</span><span class="line"><span class="ln">6</span>  <span class="k">"main_screen"</span>: <span class="s">"POCRTMAIN"</span>,</span><span class="line hl"><span class="ln">7</span>  <span class="k">"canonical_spine"</span>: [</span><span class="line"><span class="ln">8</span>    {</span><span class="line"><span class="ln">9</span>      <span class="k">"phase"</span>: <span class="s">"fetch"</span>,</span><span class="line"><span class="ln">10</span>      <span class="k">"task"</span>: <span class="s">"POCRTMAINFTH"</span>,</span><span class="line"><span class="ln">11</span>      <span class="k">"description"</span>: <span class="s">"Fetch Create Main Page"</span></span><span class="line"><span class="ln">12</span>    },</span><span class="line"><span class="ln">13</span>    {</span><span class="line"><span class="ln">14</span>      <span class="k">"phase"</span>: <span class="s">"init"</span>,</span><span class="line"><span class="ln">15</span>      <span class="k">"task"</span>: <span class="s">"POCRTMAININI"</span>,</span><span class="line"><span class="ln">16</span>      <span class="k">"description"</span>: <span class="s">"Initialize Create Main Page"</span></span><span class="line"><span class="ln">17</span>    },</span><span class="line"><span class="ln">18</span>    {</span><span class="line"><span class="ln">19</span>      <span class="k">"phase"</span>: <span class="s">"fill"</span>,</span><span class="line"><span class="ln">20</span>      <span class="k">"task"</span>: null,</span><span class="line"><span class="ln">21</span>      <span class="k">"description"</span>: <span class="s">"User fills the form (implicit; bot's responsibility)"</span></span><span class="line"><span class="ln">22</span>    },</span><span class="line hl-strong"><span class="ln">23</span>    {</span><span class="line hl-strong"><span class="ln">24</span>      <span class="k">"phase"</span>: <span class="s">"commit"</span>,</span><span class="line hl-strong"><span class="ln">25</span>      <span class="k">"task"</span>: <span class="s">"POCRTMAINSBT"</span>,</span><span class="line hl-strong"><span class="ln">26</span>      <span class="k">"description"</span>: <span class="s">"Create PO"</span>,</span><span class="line hl-strong"><span class="ln">27</span>      <span class="k">"sp_chain"</span>: [</span><span class="line hl"><span class="ln">28</span>        { <span class="k">"sequenceno"</span>: 1, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_crt_hdrsav"</span>,    <span class="k">"method_name"</span>: <span class="s">"pocrmn_met_crt_hdrsav"</span>,    <span class="k">"service_name"</span>: <span class="s">"pocrmn_ser_crt"</span> },</span><span class="line hl"><span class="ln">29</span>        { <span class="k">"sequenceno"</span>: 1, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_crt_hdrchk"</span>,    ... },</span><span class="line hl"><span class="ln">30</span>        { <span class="k">"sequenceno"</span>: 1, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_crtgrd"</span>,         ... },</span><span class="line hl"><span class="ln">31</span>        { <span class="k">"sequenceno"</span>: 1, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_init_suptxreg"</span>,  ... },</span><span class="line hl"><span class="ln">32</span>        { <span class="k">"sequenceno"</span>: 2, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_aprhref"</span>,        ... },</span><span class="line hl"><span class="ln">33</span>        { <span class="k">"sequenceno"</span>: 3, <span class="k">"spname"</span>: <span class="s">"pocrmn_sp_crtgrd_out"</span>,     ... }</span><span class="line"><span class="ln">34</span>      ]</span><span class="line"><span class="ln">35</span>    },</span><span class="line"><span class="ln">36</span>    { <span class="k">"phase"</span>: <span class="s">"commit"</span>, <span class="k">"task"</span>: <span class="s">"POCRTMAINTRN2"</span>, ... },</span><span class="line"><span class="ln">37</span>    { <span class="k">"phase"</span>: <span class="s">"commit"</span>, <span class="k">"task"</span>: <span class="s">"POCRTMAINTRN4"</span>, <span class="c">// Create and Approve PO</span></span><span class="line"><span class="ln">38</span>      <span class="k">"sp_chain"</span>: [ ...6 SPs using _apr_ variants... ] }</span><span class="line"><span class="ln">39</span>  ],</span></div>
+
+      <!-- Excerpt 2: A real ui_splice -->
+      <div style="padding: 0 32px; padding-top: 12px; font-family: 'Inter', sans-serif;">
+        <h4 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--lavender-deep); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Excerpt 2 — A real UI splice (one of 126 in this activity)</h4>
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span>  <span class="k">"splices"</span>: {</span><span class="line"><span class="ln">·</span>    <span class="k">"ui_splices"</span>: [</span><span class="line hl-strong"><span class="ln">·</span>      {</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"kind"</span>: <span class="s">"ui_link"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"splice_id"</span>: <span class="s">"POCRTBUDBUDLNK"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"description"</span>: <span class="s">"View Budget Details"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"hook_screen"</span>: <span class="s">"POCRTBUD"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"trigger"</span>: <span class="s">"user_clicks_POCRTBUDBUDLNK"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"optional"</span>: true</span><span class="line hl-strong"><span class="ln">·</span>      },</span><span class="line"><span class="ln">·</span>      ... 125 more UI splice entries ...</span><span class="line"><span class="ln">·</span>    ],</span></div>
+
+      <!-- Excerpt 3: A real data_splice -->
+      <div style="padding: 0 32px; padding-top: 12px; font-family: 'Inter', sans-serif;">
+        <h4 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--red-deep); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Excerpt 3 — A real DATA splice (one of 133)</h4>
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span>    <span class="k">"data_splices"</span>: [</span><span class="line hl-strong"><span class="ln">·</span>      {</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"kind"</span>: <span class="s">"data_triggered"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"splice_id"</span>: <span class="s">"@fgbase_yes_no = YES"</span>,</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"trigger"</span>: <span class="s">"@fgbase_yes_no = YES"</span>,</span><span class="line hl"><span class="ln">·</span>        <span class="k">"sp_occurrences"</span>: [</span><span class="line hl"><span class="ln">·</span>          {</span><span class="line hl"><span class="ln">·</span>            <span class="k">"sp"</span>: <span class="s">"pocrmn_sp_aprgrd"</span>,</span><span class="line hl"><span class="ln">·</span>            <span class="k">"line"</span>: 641,</span><span class="line hl"><span class="ln">·</span>            <span class="k">"kind"</span>: <span class="s">"if_binary"</span>,</span><span class="line hl"><span class="ln">·</span>            <span class="k">"consequences"</span>: {</span><span class="line hl"><span class="ln">·</span>              <span class="k">"execs"</span>: [<span class="s">"fin_german_raiserror_sp"</span>],</span><span class="line hl"><span class="ln">·</span>              <span class="k">"raiserrors"</span>: [<span class="s">"112"</span>],</span><span class="line hl"><span class="ln">·</span>              <span class="k">"inserts"</span>: [], <span class="k">"updates"</span>: [], <span class="k">"deletes"</span>: []</span><span class="line hl"><span class="ln">·</span>            }</span><span class="line hl"><span class="ln">·</span>          },</span><span class="line"><span class="ln">·</span>          ... more SP occurrences of the same condition ...</span><span class="line"><span class="ln">·</span>        ],</span><span class="line hl-strong"><span class="ln">·</span>        <span class="k">"optional"</span>: false</span><span class="line"><span class="ln">·</span>      },</span><span class="line"><span class="ln">·</span>      ... 132 more data splice entries ...</span><span class="line"><span class="ln">·</span>    ],</span></div>
+
+      <!-- Excerpt 4: A real slot -->
+      <div style="padding: 0 32px; padding-top: 12px; font-family: 'Inter', sans-serif;">
+        <h4 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--green-deep); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Excerpt 4 — A real screen slot (one of 86 on PoCrtMain)</h4>
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span>  <span class="k">"screens"</span>: [</span><span class="line"><span class="ln">·</span>    {</span><span class="line hl-strong"><span class="ln">·</span>      <span class="k">"ilbo_name"</span>: <span class="s">"POCRTMAIN"</span>,</span><span class="line hl-strong"><span class="ln">·</span>      <span class="k">"slot_count"</span>: 86,</span><span class="line"><span class="ln">·</span>      <span class="k">"slots"</span>: [</span><span class="line hl"><span class="ln">·</span>        {</span><span class="line hl"><span class="ln">·</span>          <span class="k">"field_id"</span>: <span class="s">"dspfiller301"</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"field_name"</span>: <span class="s">"dspfiller301"</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"btsynonym"</span>: <span class="s">""</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"input_type"</span>: <span class="s">"displayonly"</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"datatype"</span>: <span class="s">"char"</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"section"</span>: <span class="s">"workflowsection"</span>,</span><span class="line hl"><span class="ln">·</span>          <span class="k">"display_label"</span>: <span class="s">""</span></span><span class="line hl"><span class="ln">·</span>        },</span><span class="line"><span class="ln">·</span>        ... 85 more slots on POCRTMAIN ...</span><span class="line"><span class="ln">·</span>      ],</span><span class="line"><span class="ln">·</span>      <span class="k">"tasks_by_type"</span>: { <span class="k">"FETCH"</span>: [...], <span class="k">"INIT"</span>: [...], <span class="k">"TRANS"</span>: [...], <span class="k">"LINK"</span>: [...], <span class="k">"UI"</span>: [...], <span class="k">"HELP"</span>: [...] }</span><span class="line"><span class="ln">·</span>    },</span><span class="line"><span class="ln">·</span>    ... 14 more screens (POCRTBUD, POCRTDRPSHP, POCRTTRM, ...) ...</span><span class="line"><span class="ln">·</span>  ]</span><span class="line"><span class="ln">·</span>}</span></div>
+
+      <div class="popup-annotations">
+        <div class="ann-label">Where to see the FULL file</div>
+        <div class="ann" style="background: var(--lavender-soft); border-color: var(--lavender-strong); border-left-width: 4px;">
+          <span class="ann-pointer">📄</span><strong>Open the entire 36,347-line POCRT.json in a new tab:</strong>
+          <div style="margin-top: 10px;">
+            <a href="POCRT.json" target="_blank" style="display: inline-block; padding: 8px 18px; background: var(--lavender); color: var(--ink); border-radius: 999px; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px;">▸ View full POCRT.json (1.06 MB)</a>
+            &nbsp;&nbsp;
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--muted);">teaching/POCRT.json</span>
+          </div>
+        </div>
+        <div class="ann-label" style="margin-top: 20px;">Which parser fed which field</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>canonical_spine</strong> ← <em>p02 (State.xml)</em> for the services, <em>p01 (PO_info.xml)</em> for confirming task names, <em>p05 (CSV)</em> for the SP call chains attached to each commit task.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>splices.ui_splices</strong> ← <em>p01 (PO_info.xml)</em> filtering LINK-typed tasks. There are 126 because we include LINKs from <em>all 15 screens</em> in the activity (PoCrtMain has 9 main ones, but Bud/Drpshp/Trm sub-screens also have their own LINKs).</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>splices.data_splices</strong> ← <em>p06 (SP IF branches)</em> filtered to parameter-gated branches across all 1,219 SPs.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>screens.slots</strong> ← <em>p03 (.htm form layout)</em> using the label/field btsynonym pairing. The huge file size mostly comes from this — 15 screens × tens of slots each, each with full metadata.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 11: Step captions in the .htm file -->
+  <div class="popup" data-popup-id="popup-stepcaptions" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>The step captions, in the actual .htm file</h2>
+        <div class="file-path">PO/ScreenObjects/PO/Pocrt_pocrtmain.htm · section attributes</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What you're looking at</b> &nbsp; These are the exact <code>&lt;table type="section"&gt;</code> opening tags from PoCrtMain's HTML, in order. Each one has a <code>caption=</code> attribute (the English step label), an <code>stitle=</code> flag (1 = titled = becomes a visible step boundary), and sometimes a <code>gridctrl=</code> attribute (mlt = multi-line grid = LINE LOOP).
+      </div>
+      <div class="file-snippet"><span class="line c"><span class="ln">·</span>// Five titled sections become user-visible steps in PoCrtMain.</span><span class="line c"><span class="ln">·</span>// Notice stitle="1" on the ones that become steps; non-titled</span><span class="line c"><span class="ln">·</span>// sections are skipped by the composer.</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>&lt;table id=<span class="s">"pocrtmain_mainscreen_section02_2"</span>     ← S1</span><span class="line hl-strong"><span class="ln">·</span>       type=<span class="s">"section"</span>  <span class="k">caption=<span class="s">"PO Details"</span></span>   stitle=<span class="v">"1"</span>&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>&lt;table id=<span class="s">"pocrtmain_mainscreen_section02_8"</span>     ← S2</span><span class="line hl-strong"><span class="ln">·</span>       type=<span class="s">"section"</span>  <span class="k">caption=<span class="s">"Amount Details"</span></span>  stitle=<span class="v">"1"</span>&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>&lt;table id=<span class="s">"pocrtmain_mainscreen_section02"</span>       ← S3</span><span class="line hl-strong"><span class="ln">·</span>       type=<span class="s">"section"</span>  <span class="k">caption=<span class="s">"Default Entries"</span></span>  stitle=<span class="v">"1"</span>&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>&lt;table id=<span class="s">"pocrtmain_mainscreen_section04"</span>       ← S4</span><span class="line hl-strong"><span class="ln">·</span>       type=<span class="s">"section"</span>  <span class="k">caption=<span class="s">"Line Details"</span></span>  stitle=<span class="v">"1"</span>  <span class="v">gridctrl=<span class="s">"mlt"</span></span>&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl-strong"><span class="ln">·</span>&lt;table id=<span class="s">"pocrtmain_mainscreen_section15"</span>       ← S5</span><span class="line hl-strong"><span class="ln">·</span>       type=<span class="s">"section"</span>  <span class="k">caption=<span class="s">"Data History"</span></span>  stitle=<span class="v">"1"</span>&gt;</span><span class="line"><span class="ln">·</span></span><span class="line c"><span class="ln">·</span>// And the mandatory markers — these are CSS classes on the LABEL TDs:</span><span class="line"><span class="ln">·</span></span><span class="line hl"><span class="ln">·</span>&lt;table type=<span class="s">"label"</span> btsynonym=<span class="s">"num_series"</span>&gt;</span><span class="line hl"><span class="ln">·</span>  &lt;td <span class="k">class=<span class="s">"labelsmandatoryleft"</span></span>&gt;Numbering Series&lt;/td&gt;</span><span class="line hl"><span class="ln">·</span>&lt;/table&gt;</span><span class="line"><span class="ln">·</span></span><span class="line hl"><span class="ln">·</span>&lt;table type=<span class="s">"label"</span> btsynonym=<span class="s">"podate"</span>&gt;</span><span class="line hl"><span class="ln">·</span>  &lt;td <span class="k">class=<span class="s">"labelsmandatoryleft"</span></span>&gt;PO Date&lt;/td&gt;</span><span class="line hl"><span class="ln">·</span>&lt;/table&gt;</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">How the parser turns this into model data</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>p03 parser walks the DOM.</strong> When it hits a <code>&lt;table type="section"&gt;</code> it captures the <code>caption</code>, <code>stitle</code>, and <code>gridctrl</code> attributes. Sections with non-empty captions and <code>stitle="1"</code> become candidate steps.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Garbage caption filter.</strong> Some captions are technical IDs like <code>"PoCrtMain_mainscreen_SECTION17"</code>. The parser detects these by pattern and excludes them; only clean English captions become steps.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Mandatory detection via CSS class.</strong> The label cell uses <code>class="labelsmandatoryleft"</code> instead of <code>"labelsleft"</code> for required fields. The parser counts these per section to produce the mandatory_count.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>The composer joins it all.</strong> Each titled section + its slot labels + its mandatory count = one entry in the screen's new <code>collect_steps</code> array. The bot reads this at runtime for the trace UI and response prose. Decisions stay untouched.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup 12: HANDOFF.md preview -->
+  <div class="popup" data-popup-id="popup-handoff-md" style="display:none;">
+    <div class="popup-header">
+      <div class="titles">
+        <h2>HANDOFF.md — the human-readable summary</h2>
+        <div class="file-path">out/model/activities/POCRT/HANDOFF.md · what you'd email a stakeholder</div>
+      </div>
+      <button class="popup-close">×</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-explanation">
+        <span class="icon">▸</span><b>What you're looking at</b> &nbsp; The Markdown file generated by <code>c06_handoff_views.py</code> for the PoCrt journey. Renders nicely in any Markdown viewer, GitHub, or email client. Same data as the JSON files — repackaged for humans.
+      </div>
+      <div class="file-snippet"><span class="line"><span class="ln">·</span><span class="k"># POCRT — Create Direct Purchase Order</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="k">## At a glance</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span>- <b>Activity:</b> <span class="s">`POCRT`</span></span><span class="line"><span class="ln">·</span>- <b>Main screen:</b> <span class="s">`POCRTMAIN`</span></span><span class="line"><span class="ln">·</span>- <b>Screen count:</b> 15</span><span class="line"><span class="ln">·</span>- <b>Total slots across all screens:</b> 549</span><span class="line"><span class="ln">·</span>- <b>Splices:</b> 126 UI · 14 state · 133 data · <b>273 total</b></span><span class="line"><span class="ln">·</span>- <b>SP chains:</b> 222</span><span class="line"><span class="ln">·</span>- <b>Produces entity:</b> <span class="s">`PurchaseOrder`</span> (id slot: <span class="s">`po_number`</span>)</span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="k">## Canonical spine</span></span><span class="line"><span class="ln">·</span></span><span class="line hl"><span class="ln">·</span>| # | Phase  | Task            | Description                | SPs |</span><span class="line hl"><span class="ln">·</span>|---|--------|-----------------|----------------------------|-----|</span><span class="line hl"><span class="ln">·</span>| 1 | fetch  | POCRTMAINFTH    | Fetch Create Main Page     | 0   |</span><span class="line hl"><span class="ln">·</span>| 2 | init   | POCRTMAININI    | Initialize Create Main Page| 0   |</span><span class="line hl"><span class="ln">·</span>| 3 | fill   | (implicit)      | User fills the form        | 0   |</span><span class="line hl"><span class="ln">·</span>| 4 | commit | POCRTMAINSBT    | Create PO                  | 6   |</span><span class="line hl"><span class="ln">·</span>| 5 | commit | POCRTMAINTRN2   | Default                    | 3   |</span><span class="line hl"><span class="ln">·</span>| 6 | commit | POCRTMAINTRN4   | Create and Approve PO      | 6   |</span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="k">## Commit SP chains (in execution order)</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="k">### `POCRTMAINSBT` — Create PO</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_crt_hdrsav`</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_crt_hdrchk`</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_crtgrd`</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_init_suptxreg`</span></span><span class="line"><span class="ln">·</span>- seq 2: <span class="s">`pocrmn_sp_aprhref`</span></span><span class="line"><span class="ln">·</span>- seq 3: <span class="s">`pocrmn_sp_crtgrd_out`</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span><span class="k">### `POCRTMAINTRN4` — Create and Approve PO</span></span><span class="line"><span class="ln">·</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_apr_hdrchk`</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_apr_hdrsav`</span></span><span class="line"><span class="ln">·</span>- seq 1: <span class="s">`pocrmn_sp_aprgrd`</span></span><span class="line"><span class="ln">·</span>... (continues with splices section, screens table)</span></div>
+      <div class="popup-annotations">
+        <div class="ann-label">What this enables</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Email a single 4 KB file</strong> instead of asking a stakeholder to wade through a 1 MB JSON. Renders correctly in GitHub, GitLab, VS Code, Bear, any Markdown viewer.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Sections match how people think about journeys:</strong> at-a-glance counts → canonical spine → which SPs each commit runs → splice categories → screens. No JSON noise.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>Auto-regenerated.</strong> Every time the composer runs (e.g. after an SP changes or a screen attribute is updated), HANDOFF.md is rewritten. Always in sync with the bot's source of truth.</div>
+        <div class="ann"><span class="ann-pointer">★</span><strong>One per activity.</strong> The same script produces a HANDOFF.md for every user-facing PO journey — PoAmnd, PoApp, PoEdt, PoViw, PoHold, PoScl, PoCrtQtn, PoCrtSo, PoCrtTen, PoCopy, PoHlp, PoMtn.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ── Popup wiring ──────────────────────────────────────────────────────
+const backdrop = document.getElementById('popup-backdrop');
+const allPopups = document.querySelectorAll('.popup[data-popup-id]');
+
+function openPopup(id) {
+  allPopups.forEach(p => p.style.display = (p.dataset.popupId === id ? 'flex' : 'none'));
+  backdrop.classList.add('open');
+}
+function closePopup() { backdrop.classList.remove('open'); }
+
+document.querySelectorAll('.show-btn').forEach(btn => {
+  btn.addEventListener('click', () => openPopup(btn.dataset.popup));
+});
+document.querySelectorAll('.popup-close').forEach(btn => {
+  btn.addEventListener('click', closePopup);
+});
+backdrop.addEventListener('click', (e) => {
+  if (e.target === backdrop) closePopup();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePopup();
+});
+</script>
+
+</body>
+</html>
